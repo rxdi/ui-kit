@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=no"
+    />
+    <title>@rxdi client side example</title>
+
+    <meta name="theme-color" content="#33383a" />
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+        color: #f8f8f8;
+        font-family: 'Roboto', sans-serif;
+        background-color: #1c1f24;
+        overflow: visible;
+      }
+    </style>
+    <base href="/" />
+    <!-- iOS -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-status-bar-style" content="black" />
+    <meta name="mobile-web-app-title" content="Expenses" />
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script async>
+      window.onerror = (text, url, lineNumber) => {
+        Swal.fire({
+          type: 'error',
+          title: 'Oops...',
+          text,
+          footer: `<p><strong>File:</strong> ${url}</p>&nbsp<p><strong>Line:</strong> ${lineNumber}</p>`
+        });
+        return true;
+      };
+    </script>
+  </head>
+  <body></body>
+  <script type="text/javascript" src="./main.ts"></script>
+</html>

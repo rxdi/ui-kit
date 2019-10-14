@@ -1,0 +1,10 @@
+{
+  "name": "@rxdi/ui-kit-client",
+  "version": "1.0.0",
+  "browserslist": [
+    "last 1 chrome versions"
+  ],
+  "dependencies": {
+    "@rxdi/ui-kit": "1.0.0"
+  }
+}
