@@ -10,4 +10,7 @@ export const MAIN_CSS = css`
   .pointer {
     cursor: pointer;
   }
+  .center {
+    margin: 0 auto;
+  }
 `;

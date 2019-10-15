@@ -21,6 +21,9 @@ import { style } from './app.component.css';
       <a href="/accordion"
         ><button class="button">Accordion</button>
       </a>
+      <a href="/image"
+        ><button class="button">Image</button>
+      </a>
     </div>
     <router-outlet></router-outlet>
   `,

@@ -10,9 +10,7 @@
     "experimentalDecorators": true,
     "esModuleInterop": true,
     "target": "es6",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
+    "typeRoots": ["node_modules/@types", "../typings.d.ts"],
     "lib": [
       "es2015",
       "es2016",
@@ -22,6 +20,7 @@
     ]
   },
   "include": [
-    "./**/*", "../../src/client/components/base.component.ts"
+    "../typings.d.ts",
+    "./**/*", "../../src/client/components/base.component.ts", "../src/grid"
   ]
 }
