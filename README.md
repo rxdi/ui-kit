@@ -10,6 +10,7 @@
 * [Accordion](/src/accordion/README.md)
 * [Flex-Grid](/src/grid/README.md)
 * [Image](/src/image/README.md)
+* [Badge](/src/badge/README.md)
 
 ### In Progress
 
@@ -18,7 +19,6 @@
 * [Animation](/src//README.md)
 * [Article](/src//README.md)
 * [Background](/src//README.md)
-* [Badge](/src//README.md)
 * [Base](/src//README.md)
 * [Breadcrumb](/src//README.md)
 * [Button](/src//README.md)
