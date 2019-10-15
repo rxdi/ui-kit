@@ -7,6 +7,18 @@
 <rx-badge>1</rx-badge>
 ```
 
+##### Change color
+
+```html
+<rx-badge color="#fff">1</rx-badge>
+```
+
+##### Change background
+
+```html
+<rx-badge background="#1e87f0">1</rx-badge>
+```
+
 
 ##### Example
 
@@ -28,7 +40,7 @@ import { html, Component, LitElement, css } from '@rxdi/lit-html';
     <rx-badge>10</rx-badge>
     <rx-badge>100</rx-badge>
     <rx-badge>1000</rx-badge>
-    <rx-badge>10000</rx-badge>
+    <rx-badge color="red" background="white">10000</rx-badge>
     <rx-badge>100000</rx-badge>
     `;
   }
@@ -36,3 +48,5 @@ import { html, Component, LitElement, css } from '@rxdi/lit-html';
 export class BadgeViewComponent extends LitElement {}
 
 ```
+
+

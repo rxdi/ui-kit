@@ -1,4 +1,11 @@
-import { Component, html, css } from '@rxdi/lit-html';
+import {
+  Component,
+  html,
+  css,
+  styleMap,
+  LitElement,
+  property
+} from '@rxdi/lit-html';
 
 /**
  * @customElement rx-badge
@@ -14,8 +21,6 @@ import { Component, html, css } from '@rxdi/lit-html';
       padding: 0 5px;
       border-radius: 500px;
       vertical-align: middle;
-      background: #1e87f0;
-      color: #fff;
       font-size: 14px;
       display: inline-flex;
       justify-content: center;
@@ -24,8 +29,18 @@ import { Component, html, css } from '@rxdi/lit-html';
   `,
   template(this: BadgeComponent) {
     return html`
-      <span class="badge"><slot></slot></span>
+      <span
+        style=${styleMap({ color: this.color, background: this.background })}
+        class="badge"
+        ><slot></slot
+      ></span>
     `;
   }
 })
-export class BadgeComponent extends HTMLElement {}
+export class BadgeComponent extends LitElement {
+  @property({ type: String })
+  public background = '#1e87f0';
+
+  @property({ type: String })
+  public color = '#fff';
+}

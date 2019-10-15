@@ -11,7 +11,7 @@ import { html, Component, LitElement, css } from '@rxdi/lit-html';
     <rx-badge>10</rx-badge>
     <rx-badge>100</rx-badge>
     <rx-badge>1000</rx-badge>
-    <rx-badge>10000</rx-badge>
+    <rx-badge color="red" background="white">10000</rx-badge>
     <rx-badge>100000</rx-badge>
     `;
   }
