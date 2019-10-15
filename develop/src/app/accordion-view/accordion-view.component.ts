@@ -1,5 +1,6 @@
-import { html, Component, LitElement } from '@rxdi/lit-html';
+import { html, Component, LitElement, svg } from '@rxdi/lit-html';
 import { AccordionItem } from '../../../../src/accordion/model';
+import glyph from '@rxdi/ui-kit/images/glyph.svg';
 
 /**
  * @customElement accordion-view-component
@@ -8,8 +9,8 @@ import { AccordionItem } from '../../../../src/accordion/model';
   selector: 'accordion-view-component',
   template(this: AccordionViewComponent) {
     return html`
-      <div style="max-width: 500px; background-color: white">
-        <rx-accordion .multiple=${true} .items=${this.items}></rx-accordion>
+      <div style="max-width: 200px; background-color: white">
+        <rx-accordion .items=${this.items}></rx-accordion>
       </div>
     `;
   }
