@@ -19,6 +19,14 @@
 <rx-badge background="#1e87f0">1</rx-badge>
 ```
 
+##### Palettes
+
+```html
+<rx-badge palette="default">1</rx-badge>
+<rx-badge palette="primary">1</rx-badge>
+<rx-badge palette="secondary">1</rx-badge>
+```
+
 
 ##### Example
 
@@ -37,16 +45,15 @@ import { html, Component, LitElement, css } from '@rxdi/lit-html';
   `,
   template(this: BadgeViewComponent) {
     return html`
-    <rx-badge>10</rx-badge>
-    <rx-badge>100</rx-badge>
-    <rx-badge>1000</rx-badge>
-    <rx-badge color="red" background="white">10000</rx-badge>
-    <rx-badge>100000</rx-badge>
+      <rx-badge background="red" color="white">10</rx-badge>
+      <rx-badge palette="primary">100</rx-badge>
+      <rx-badge palette="primary">1000</rx-badge>
+      <rx-badge palette="primary">10000</rx-badge>
+      <rx-badge palette="secondary">100000</rx-badge>
     `;
   }
 })
 export class BadgeViewComponent extends LitElement {}
-
 ```
 
 

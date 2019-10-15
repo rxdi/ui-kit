@@ -1,1 +1,2 @@
-export * from './main.css';
+export * from './main';
+export * from './transitions';

@@ -4,15 +4,17 @@ import {
   css,
   styleMap,
   LitElement,
-  property
+  property,
+  classMap
 } from '@rxdi/lit-html';
+import { MAIN_CSS } from '@rxdi/ui-kit/styles';
 
 /**
  * @customElement rx-badge
  */
 @Component({
   selector: 'rx-badge',
-  useShadow: true,
+  styles: [MAIN_CSS],
   style: css`
     .badge {
       box-sizing: border-box;
@@ -30,8 +32,8 @@ import {
   template(this: BadgeComponent) {
     return html`
       <span
-        style=${styleMap({ color: this.color, background: this.background })}
-        class="badge"
+        style=${styleMap(this.palette ? {} : { color: this.color, background: this.background })}
+        class=${classMap({badge: true, ...this.palette ? {[this.palette]: true}  : {}})}
         ><slot></slot
       ></span>
     `;
@@ -43,4 +45,7 @@ export class BadgeComponent extends LitElement {
 
   @property({ type: String })
   public color = '#fff';
+
+  @property({ type: String })
+  public palette: 'default' | 'primary' | 'secondary';
 }
