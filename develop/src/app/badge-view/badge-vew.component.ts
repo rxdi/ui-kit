@@ -1,4 +1,6 @@
 import { html, Component, LitElement, css } from '@rxdi/lit-html';
+import { DynamicCssService } from '@rxdi/ui-kit/services/dynamic-css/dynamic-css';
+import { Inject } from '@rxdi/core';
 
 /**
  * @customElement badge-view-component
@@ -20,4 +22,14 @@ import { html, Component, LitElement, css } from '@rxdi/lit-html';
     `;
   }
 })
-export class BadgeViewComponent extends LitElement {}
+export class BadgeViewComponent extends LitElement {
+  @Inject(DynamicCssService)
+  private dynamicCss: DynamicCssService;
+  OnInit() {
+    setTimeout(() => this.dynamicCss.changeStyle({
+      default: css``,
+      primary: css``,
+      secondary: css``
+    }), 5000);
+  }
+}

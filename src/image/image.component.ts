@@ -22,17 +22,24 @@ import { map } from 'rxjs/operators';
           width: ${this.width};
           height: ${this.height};
         }
+        img {
+          visibility: hidden;
+          width: 1px;
+          position: absolute;
+          height: 1px;
+        }
       </style>
-      <img
-        src=${this.image}
+      <img src=${this.image} />
+      <span
         style=${styleMap({
           display: 'block',
           width: '100%',
           height: '100%',
+          'background-image': `url(${this.image})`,
           'background-repeat': 'no-repeat',
           'background-size': 'contain'
         })}
-      />
+      ></span>
     `;
   }
 })

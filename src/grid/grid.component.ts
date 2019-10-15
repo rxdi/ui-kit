@@ -2,7 +2,6 @@ import {
   html,
   Component,
   LitElement,
-  css,
   property,
   async,
   TemplateResult

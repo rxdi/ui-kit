@@ -1,6 +1,56 @@
 # @rxdi/ui-kit
 
 
+
+#### Installation
+
+```bash
+npm i @rxdi/ui-kit
+```
+
+#### Usage
+
+Import `ReactiveUiModule` inside AppModule, this step will inject for us default providers
+
+```typescript
+import { Module } from '@rxdi/core';
+import { ReactiveUiModule } from '@rxdi/ui-kit';
+
+@Module({
+  imports: [
+    ReactiveUiModule.forRoot()
+  ]
+})
+export class AppModule {}
+```
+
+#### Using Components
+
+```typescript
+import { Module } from '@rxdi/core';
+import { AppComponent } from './app.component';
+import { AccordionComponent } from '@rxdi/ui-kit/accordion';
+import { MarkdownReaderComponent } from '@rxdi/ui-kit/markdown-reader';
+import { RxImageComponent } from '@rxdi/ui-kit/image';
+import { ReactiveUiModule } from '@rxdi/ui-kit';
+import { GridComponent } from '@rxdi/ui-kit/grid';
+import { BadgeComponent } from '@rxdi/ui-kit/badge';
+
+@Module({
+  components: [
+    MarkdownReaderComponent,
+    AccordionComponent,
+    RxImageComponent,
+    GridComponent,
+    BadgeComponent
+  ],
+  imports: [ReactiveUiModule.forRoot()],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+```
+
+
 ## Components
 
 ### Ready
@@ -97,3 +147,7 @@
 ## Services
 
 * [ResponsiveService](/src/services/responsive/README.md)
+* [DynamicCSS](/src/services/dynamic-css/README.md)
+
+
+
