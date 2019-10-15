@@ -13,5 +13,5 @@
 ##### Using it inside html
 
 ```html
-<loading-screen-component></loading-screen-component>
+<rx-progress-loading></rx-progress-loading>
 ```

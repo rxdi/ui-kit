@@ -77,4 +77,4 @@ export class LoadingScreenComponent extends HTMLElement {
   }
 }
 
-customElements.define('loading-screen-component', LoadingScreenComponent);
+customElements.define('rx-progress-loading', LoadingScreenComponent);

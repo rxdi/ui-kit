@@ -5,7 +5,7 @@
 
 * [Loading Screen](/src/loading-screen/README.md) (<span style="color:green">ready</span>)
 * [Markdown Reader](/src/markdown-reader/README.md) (ready)
-* [Accordion](/src/accordion/README.md) (in-progress)
+* [Accordion](/src/accordion/README.md) (ready)
 * [Alert](/src//README.md) (in-progress)
 * [Align](/src//README.md) (in-progress)
 * [Animation](/src//README.md) (in-progress)
