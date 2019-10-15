@@ -1,16 +1,3 @@
-
-# Badge Component
-
-##### Basic Usage
-
-```html
-<rx-badge>1</rx-badge>
-```
-
-
-##### Example
-
-```typescript
 import { html, Component, LitElement, css } from '@rxdi/lit-html';
 
 /**
@@ -18,11 +5,7 @@ import { html, Component, LitElement, css } from '@rxdi/lit-html';
  */
 @Component({
   selector: 'badge-view-component',
-  style: css`
-    rx-badge {
-      display: block;
-    }
-  `,
+  style: css`rx-badge { display: block;}`,
   template(this: BadgeViewComponent) {
     return html`
     <rx-badge>10</rx-badge>
@@ -34,5 +17,3 @@ import { html, Component, LitElement, css } from '@rxdi/lit-html';
   }
 })
 export class BadgeViewComponent extends LitElement {}
-
-```

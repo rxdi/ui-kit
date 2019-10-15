@@ -9,6 +9,8 @@ import { AccordionViewComponent } from './accordion-view/accordion-view.componen
 import { RxImageComponent } from '../../../src/image';
 import { GridComponent } from '../../../src/grid/grid.component';
 import { ImageViewComponent } from './image-view/image-view.component';
+import { BadgeComponent } from '../../../src/badge/badge.component';
+import { BadgeViewComponent } from './badge-view/badge-vew.component';
 
 @Module({
   components: [
@@ -16,7 +18,8 @@ import { ImageViewComponent } from './image-view/image-view.component';
     AccordionViewComponent,
     AccordionComponent,
     RxImageComponent,
-    GridComponent
+    GridComponent,
+    BadgeComponent
   ],
   imports: [
     MarkdownReaderModule,
@@ -41,7 +44,10 @@ import { ImageViewComponent } from './image-view/image-view.component';
         {
           path: '/image',
           component: ImageViewComponent
-
+        },
+        {
+          path: '/badge',
+          component: BadgeViewComponent
         },
       ],
       { log: true }
