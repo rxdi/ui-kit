@@ -18,6 +18,9 @@ import { style } from './app.component.css';
       <a href="/responsive"
         ><button class="button">Responsive Service</button>
       </a>
+      <a href="/accordion"
+        ><button class="button">Accordion</button>
+      </a>
     </div>
     <router-outlet></router-outlet>
   `,

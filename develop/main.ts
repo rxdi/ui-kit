@@ -1,5 +1,5 @@
 import { Bootstrap } from '@rxdi/core';
-import { AppModule } from './app/app.module';
+import { AppModule } from './src/app/app.module';
 
 window.addEventListener('load', () => {
   Bootstrap(AppModule, {
