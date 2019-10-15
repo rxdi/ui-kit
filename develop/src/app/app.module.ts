@@ -33,24 +33,24 @@ import { css } from '@rxdi/lit-html';
     ReactiveUiModule.forRoot({
       palettes: {
         default: css`
-          .default {
-            background-color: transparent;
-            color: #222;
-            border: 1px solid #e5e5e5;
+          :root {
+            --default-bg-color: transparent;
+            --default-color: #222;
+            --default-border-color: 1px solid #e5e5e5;
           }
         `,
         primary: css`
-          .primary {
-            background-color: #1e87f0;
-            color: #fff;
-            border: 1px solid transparent;
+          :root {
+            --primary-bg-color: #1e87f0;
+            --primary-color: #fff;
+            --primary-border-color: 1px solid transparent;
           }
         `,
         secondary: css`
-          .secondary {
-            background-color: #222;
-            color: #fff;
-            border: 1px solid transparent;
+          :root {
+            --secondary-bg-color: #222;
+            --secondary-color: #fff;
+            --secondary-border-color: 1px solid transparent;
           }
         `
       }

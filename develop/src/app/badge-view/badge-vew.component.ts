@@ -1,8 +1,6 @@
 import { html, Component, LitElement, css } from '@rxdi/lit-html';
-import { DynamicCssService } from '@rxdi/ui-kit/services/dynamic-css/dynamic-css';
 import { Inject } from '@rxdi/core';
 import { ModalService } from '../../../../src/modal/modal.service';
-import { ImageViewComponent } from '../image-view/image-view.component';
 
 /**
  * @customElement badge-view-component
@@ -16,6 +14,7 @@ import { ImageViewComponent } from '../image-view/image-view.component';
   `,
   template(this: BadgeViewComponent) {
     return html`
+      <rx-badge>1</rx-badge>
       <rx-badge background="red" color="white">10</rx-badge>
       <rx-badge palette="primary">100</rx-badge>
       <rx-badge palette="primary">1000</rx-badge>
@@ -25,9 +24,8 @@ import { ImageViewComponent } from '../image-view/image-view.component';
   }
 })
 export class BadgeViewComponent extends LitElement {
-  @Inject(DynamicCssService)
-  private dynamicCss: DynamicCssService;
-  @Inject(ModalService) private modalService: ModalService;
+  @Inject(ModalService)
+  private modalService: ModalService;
 
   OnInit() {
     // setTimeout(() => this.dynamicCss.changeStyle({
@@ -36,35 +34,35 @@ export class BadgeViewComponent extends LitElement {
     //   secondary: css``
     // }), 5000);
 
-    this.modalService.open(
-      html`
-        <style>
-          :host {
-            position: fixed;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            z-index: 1010;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-            padding: 15px 15px;
-            background: rgba(0, 0, 0, 0.6);
-            transition: opacity 0.15s linear;
-          }
-        </style>
-        <rx-grid
-          .$items=${[
-            html`
-              <div style="width: 100px">dadada</div>
-            `,
-            html`
-              <div style="width: 200px">dadada</div>
-            `
-          ]}
-        ></rx-grid>
-      `
-    );
+    // this.modalService.open(
+    //   html`
+    //     <style>
+    //       :host {
+    //         position: fixed;
+    //         top: 0;
+    //         right: 0;
+    //         bottom: 0;
+    //         left: 0;
+    //         z-index: 1010;
+    //         overflow-y: auto;
+    //         -webkit-overflow-scrolling: touch;
+    //         padding: 15px 15px;
+    //         background: rgba(0, 0, 0, 0.6);
+    //         transition: opacity 0.15s linear;
+    //       }
+    //     </style>
+    //     <rx-grid
+    //       .$items=${[
+    //         html`
+    //           <div style="width: 100px">dadada</div>
+    //         `,
+    //         html`
+    //           <div style="width: 200px">dadada</div>
+    //         `
+    //       ]}
+    //     ></rx-grid>
+    //   `
+    // );
 
     // this.modalService.openComponent(ImageViewComponent);
 

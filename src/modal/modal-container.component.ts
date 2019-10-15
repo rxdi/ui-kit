@@ -3,7 +3,8 @@ import {
   html,
   TemplateResult,
   async,
-  LitElement
+  LitElement,
+  query
 } from '@rxdi/lit-html';
 import { Inject } from '@rxdi/core';
 import { ModalService } from './modal.service';
@@ -13,6 +14,7 @@ import { Observable } from 'rxjs';
   selector: 'modal-container',
   template(this: ModalContainerComponent) {
     return html`
+      <div></div>
       ${async(this.template)}
     `;
   }

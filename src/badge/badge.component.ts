@@ -1,23 +1,20 @@
 import {
   Component,
   html,
-  css,
   styleMap,
   LitElement,
-  property,
-  classMap,
-  async
+  property
 } from '@rxdi/lit-html';
 import { PalettesUnion } from '@rxdi/ui-kit/settings';
-import { Inject } from '@rxdi/core';
-import { DynamicCssService } from '@rxdi/ui-kit/services/dynamic-css/dynamic-css';
 
 /**
  * @customElement rx-badge
  */
 @Component({
   selector: 'rx-badge',
-  style: css`
+  template(this: BadgeComponent) {
+    return html`
+    <style>
     .badge {
       box-sizing: border-box;
       min-width: 22px;
@@ -29,21 +26,15 @@ import { DynamicCssService } from '@rxdi/ui-kit/services/dynamic-css/dynamic-css
       display: inline-flex;
       justify-content: center;
       align-items: center;
+      color: var(--${this.palette}-color);
+      background: var(--${this.palette}-bg-color);
     }
-  `,
-  template(this: BadgeComponent) {
-    return html`
-      <style>
-        ${async(this.getAsyncStyles)}
-      </style>
+    </style>
       <span
         style=${styleMap(
           this.palette ? {} : { color: this.color, background: this.background }
         )}
-        class=${classMap({
-          badge: true,
-          ...(this.palette ? { [this.palette]: true } : {})
-        })}
+        class="badge"
         ><slot></slot
       ></span>
     `;
@@ -58,9 +49,4 @@ export class BadgeComponent extends LitElement {
 
   @property({ type: String })
   public palette: PalettesUnion;
-
-  @Inject(DynamicCssService)
-  private dynamicCss: DynamicCssService;
-
-  private getAsyncStyles = this.dynamicCss.getStyles();
 }

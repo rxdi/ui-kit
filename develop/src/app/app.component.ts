@@ -22,6 +22,6 @@ import { style } from './app.component.css';
     </div>
     <router-outlet></router-outlet>
   `,
-  container: document.body
+  container: document.getElementById('app')
 })
 export class AppComponent extends HTMLElement {}
