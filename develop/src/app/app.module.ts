@@ -15,6 +15,7 @@ import { ReactiveUiModule } from '../../../src';
 import { GridComponent } from '../../../src/grid/grid.component';
 import { ImageViewComponent } from './image-view/image-view.component';
 import { BadgeComponent } from '../../../src/badge/badge.component';
+import { ModalModule } from '../../../src/modal';
 import { BadgeViewComponent } from './badge-view/badge-vew.component';
 import { css } from '@rxdi/lit-html';
 
@@ -28,6 +29,7 @@ import { css } from '@rxdi/lit-html';
     BadgeComponent
   ],
   imports: [
+    ModalModule.forRoot(),
     ReactiveUiModule.forRoot({
       palettes: {
         default: css`

@@ -1,6 +1,8 @@
 import { html, Component, LitElement, css } from '@rxdi/lit-html';
 import { DynamicCssService } from '@rxdi/ui-kit/services/dynamic-css/dynamic-css';
 import { Inject } from '@rxdi/core';
+import { ModalService } from '../../../../src/modal/modal.service';
+import { ImageViewComponent } from '../image-view/image-view.component';
 
 /**
  * @customElement badge-view-component
@@ -25,11 +27,47 @@ import { Inject } from '@rxdi/core';
 export class BadgeViewComponent extends LitElement {
   @Inject(DynamicCssService)
   private dynamicCss: DynamicCssService;
+  @Inject(ModalService) private modalService: ModalService;
+
   OnInit() {
-    setTimeout(() => this.dynamicCss.changeStyle({
-      default: css``,
-      primary: css``,
-      secondary: css``
-    }), 5000);
+    // setTimeout(() => this.dynamicCss.changeStyle({
+    //   default: css``,
+    //   primary: css``,
+    //   secondary: css``
+    // }), 5000);
+
+    this.modalService.open(
+      html`
+        <style>
+          :host {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 1010;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: 15px 15px;
+            background: rgba(0, 0, 0, 0.6);
+            transition: opacity 0.15s linear;
+          }
+        </style>
+        <rx-grid
+          .$items=${[
+            html`
+              <div style="width: 100px">dadada</div>
+            `,
+            html`
+              <div style="width: 200px">dadada</div>
+            `
+          ]}
+        ></rx-grid>
+      `
+    );
+
+    // this.modalService.openComponent(ImageViewComponent);
+
+    // setTimeout(() => this.modalService.close(), 3000);
   }
 }
