@@ -9,7 +9,7 @@
     "experimentalDecorators": true,
     "esModuleInterop": true,
     "target": "es6",
-    "outDir": "",
+    "outDir": "dist",
     "typeRoots": ["node_modules/@types", "./typings.d.ts"],
     "lib": [
       "es2015",
