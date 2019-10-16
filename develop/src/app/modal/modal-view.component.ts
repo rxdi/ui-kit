@@ -2,21 +2,14 @@ import { Component, LitElement, html, css } from '@rxdi/lit-html';
 import { Inject, Injector } from '@rxdi/core';
 import { ModalService } from '../../../../src/modal/modal.service';
 import { MODAL_DIALOG_DATA } from '../../../../src/modal/interface';
-import { fromEvent } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { fromEvent, of } from 'rxjs';
+import { tap, switchMap, concatMap, map, mergeMap } from 'rxjs/operators';
+import value from '*.jpeg';
+
+const add1 = n => n + 1;
 
 @Component({
   selector: 'test-modal',
-  style: css`
-    :host {
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      position: absolute;
-      background-color: rgba(0, 0, 0, 0.5);
-    }
-  `,
   template(this: TestModal) {
     return html`
       Test Modal ${JSON.stringify(this.data)}
@@ -32,7 +25,7 @@ import { tap } from 'rxjs/operators';
 })
 export class TestModal extends LitElement {
   @Injector(MODAL_DIALOG_DATA)
-  private data: { omg: string };
+  private data: number;
 
   @Inject(ModalService)
   private modalService: ModalService;
@@ -46,26 +39,35 @@ export class TestModal extends LitElement {
   }
 
   close() {
-    this.removeEventListener('click', () => this.close());
-    this.modalService.close();
+    // debugger;
+    this.modalService.close(this.data);
   }
 }
 
 @Component({
   selector: 'modal-view-component',
+  style: css`
+    .button {
+      cursor: pointer;
+      padding: 20px;
+      margin: 20px;
+      background-color: blue;
+    }
+    .button:hover {
+      opacity: 0.9;
+    }
+  `,
   template(this: ModalViewComponent) {
     return html`
-      <div
-        @click=${() => this.openBasicModal()}
-        style="cursor:pointer; padding: 20px; background-color: blue"
-      >
+      <div @click=${() => this.openBasicModal()} class="button">
         Open Basic Modal
       </div>
-      <div
-        @click=${() => this.openAdvancedModal()}
-        style="cursor:pointer; padding: 20px; background-color: blue"
-      >
+      <div @click=${() => this.openAdvancedModal()} class="button">
         Open Advanced Modal
+      </div>
+
+      <div @click=${() => this.openModalSequence()} class="button">
+        Open Modal Sequence
       </div>
     `;
   }
@@ -98,10 +100,23 @@ export class ModalViewComponent extends LitElement {
   }
 
   openAdvancedModal() {
-    this.modalService.openComponent(TestModal, { omg: 'dada' });
+    this.modalService
+      .openComponent(TestModal, { test: 'I am a test data' })
+      .subscribe(console.log);
+  }
+
+  openModalSequence() {
+    const data = Array(5)
+      .fill(null)
+      .map((_, i) => ({ component: TestModal, data: i }));
+    of(data)
+      .pipe(switchMap(this.modalService.openSequence.bind(this.modalService)))
+      .subscribe(console.log);
   }
 
   closeModal() {
     this.modalService.close();
   }
+
+  startWizard(data: any) {}
 }

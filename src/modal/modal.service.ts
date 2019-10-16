@@ -1,49 +1,59 @@
 import { Injectable, Container, Injector } from '@rxdi/core';
 import { TemplateResult, html, unsafeHTML } from '@rxdi/lit-html';
-import { ReplaySubject, fromEvent, Subscription, Observable } from 'rxjs';
+import {
+  ReplaySubject,
+  fromEvent,
+  Subscription,
+  Observable,
+  Subject,
+  of
+} from 'rxjs';
 import { MODAL_DIALOG_DATA, MODAL_DIALOG_OPTIONS } from './interface';
-import { tap } from 'rxjs/operators';
+import { tap, take, map, concatMap } from 'rxjs/operators';
 
 @Injectable()
 export class ModalService {
   private modalRef: HTMLElement;
   private modalTemplate: ReplaySubject<TemplateResult> = new ReplaySubject();
-  private listener: Observable<Event>;
-  private listenerSubscription: Subscription;
-  @Injector(MODAL_DIALOG_OPTIONS) private options: MODAL_DIALOG_OPTIONS;
+  private closeSubject$ = new Subject();
 
-  OnInit() {
-    if (this.options.backdropClose && this.modalRef) {
-      this.listener = fromEvent(this.modalRef, 'click').pipe(
-        tap(() => this.close())
-      );
-      this.listenerSubscription = this.listener.subscribe();
-    }
-  }
-
-  removeListener() {
-    this.listenerSubscription.unsubscribe();
-  }
+  @Injector(MODAL_DIALOG_OPTIONS)
+  private options: MODAL_DIALOG_OPTIONS;
 
   open(template: TemplateResult) {
-    this.createModal();
+    this.createModalPortal();
     this.modalTemplate.next(template);
   }
 
-  openComponent(component: Function, options = {}) {
-    if (!(component as any).is) {
-      throw new Error(
-        'Provide static method `is` inside component or if you use regular html`` template use `open` method instead of `openComponent`'
+  openComponent<T>(component: Function, options = {}) {
+    return new Observable<T>(observer => {
+      if (!(component as any).is) {
+        throw new Error(
+          'Provide static method `is` inside component or if you use regular html`` template use `open` method instead of `openComponent`'
+        );
+      }
+      this.createModalPortal();
+      const tag = (component as any).is();
+      Container.remove(MODAL_DIALOG_DATA);
+      Container.set(MODAL_DIALOG_DATA, options);
+      this.modalTemplate.next(
+        html`
+          ${unsafeHTML(`<${tag}></${tag}>`)}
+        `
       );
-    }
-    this.createModal();
-    const tag = (component as any).is();
-    Container.remove(MODAL_DIALOG_DATA);
-    Container.set(MODAL_DIALOG_DATA, options);
-    this.modalTemplate.next(
-      html`
-        ${unsafeHTML(`<${tag}></${tag}>`)}
-      `
+      this.closeSubject$.pipe(take(1)).subscribe((stream: T) => {
+        observer.next(stream);
+        observer.complete();
+      });
+    });
+  }
+
+  openSequence<T>(components: { component: Function; data: T }[]) {
+    const identity = v => v;
+    return of(components).pipe(
+      map(val => val.map(v => this.openComponent(v.component, v.data))),
+      concatMap(identity),
+      concatMap(identity)
     );
   }
 
@@ -55,8 +65,9 @@ export class ModalService {
     return this.modalRef;
   }
 
-  close() {
+  close<T>(result?: T) {
     document.body.removeChild(this.modalRef);
+    this.closeSubject$.next(result);
   }
 
   private createModalContainer() {
@@ -67,15 +78,15 @@ export class ModalService {
     document.body.appendChild(this.modalRef);
   }
 
-  private createModal() {
+  private createModalPortal() {
     if (this.modalRef) {
-      this.removeModal();
+      this.removeModalPortal();
     }
     this.createModalContainer();
     this.appendReference();
   }
 
-  private removeModal() {
+  private removeModalPortal() {
     this.modalRef.remove();
   }
 }

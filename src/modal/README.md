@@ -71,9 +71,10 @@ export class ModalViewComponent extends LitElement {
 ```typescript
 import { Component, LitElement, html, css } from '@rxdi/lit-html';
 import { Inject, Injector } from '@rxdi/core';
-import { ModalService } from '../../../../src/modal/modal.service';
-import { MODAL_DIALOG_DATA } from '../../../../src/modal/interface';
+import { ModalService } from '@rxdi/ui-kit/modal/modal.service';
+import { MODAL_DIALOG_DATA } from '@rxdi/ui-kit/modal/interface';
 
+/* TestModal Component */
 @Component({
   selector: 'test-modal',
   style: css`
@@ -120,6 +121,7 @@ export class TestModal extends LitElement {
   }
 }
 
+/* Modal View Component */
 @Component({
   selector: 'modal-view-component',
   template(this: ModalViewComponent) {
@@ -141,4 +143,98 @@ export class ModalViewComponent extends LitElement {
     this.modalService.openComponent(TestModal, { omg: 'dada' });
   }
 }
+```
+
+
+##### Using it to spawn `Wizards` or Sequence of modals
+
+```typescript
+
+import { Component, LitElement, html, css } from '@rxdi/lit-html';
+import { Inject, Injector } from '@rxdi/core';
+import { ModalService } from '@rxdi/ui-kit/modal/modal.service';
+import { MODAL_DIALOG_DATA } from '@rxdi/ui-kit/modal/interface';
+import { of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+
+
+/* TestModal Component */
+@Component({
+  selector: 'test-modal',
+  template(this: TestModal) {
+    return html`
+      Test Modal ${JSON.stringify(this.data)}
+
+      <div
+        @click=${() => this.close()}
+        style="cursor:pointer; padding: 20px;position: absolute; bottom: 0; right: 0"
+      >
+        Close
+      </div>
+    `;
+  }
+})
+export class TestModal extends LitElement {
+  @Injector(MODAL_DIALOG_DATA)
+  private data: number;
+
+  @Inject(ModalService)
+  private modalService: ModalService;
+
+  private modalRef = this.modalService.getRef();
+  OnInit() {
+    console.log('test-modal initialized');
+  }
+  OnDestroy() {
+    console.log('test-modal destroyed');
+  }
+
+  close() {
+    // debugger;
+    this.modalService.close(this.data);
+  }
+}
+
+
+/* Modal View Component */
+@Component({
+  selector: 'modal-view-component',
+  style: css`
+    .button {
+      cursor: pointer;
+      padding: 20px;
+      margin: 20px;
+      background-color: blue;
+    }
+    .button:hover {
+      opacity: 0.9;
+    }
+  `,
+  template(this: ModalViewComponent) {
+    return html`
+      <div @click=${() => this.startWizard()} class="button">
+        Open Modal Sequence
+      </div>
+    `;
+  }
+})
+export class ModalViewComponent extends LitElement {
+  @Inject(ModalService)
+  private modalService: ModalService;
+
+  startWizard() {
+    const data = Array(5)
+      .fill(null)
+      .map((_, i) => ({ component: TestModal, data: i }));
+    of(data)
+      .pipe(switchMap(this.modalService.openSequence.bind(this.modalService)))
+      .subscribe(console.log);
+  }
+
+  closeModal() {
+    this.modalService.close();
+  }
+
+}
+
 ```
