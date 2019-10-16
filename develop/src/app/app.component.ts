@@ -19,6 +19,7 @@ import { style } from './app.component.css';
       <a href="/accordion"><button class="button">Accordion</button> </a>
       <a href="/image"><button class="button">Image</button> </a>
       <a href="/badge"><button class="button">Badge</button> </a>
+      <a href="/modal"><button class="button">Modal</button> </a>
     </div>
     <router-outlet></router-outlet>
   `,

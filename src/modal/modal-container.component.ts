@@ -3,8 +3,7 @@ import {
   html,
   TemplateResult,
   async,
-  LitElement,
-  query
+  LitElement
 } from '@rxdi/lit-html';
 import { Inject } from '@rxdi/core';
 import { ModalService } from './modal.service';
@@ -26,4 +25,8 @@ export class ModalContainerComponent extends LitElement {
   private template: Observable<
     TemplateResult
   > = this.modalService.getTemplate();
+
+  OnDestroy() {
+    debugger;
+  }
 }

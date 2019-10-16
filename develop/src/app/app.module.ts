@@ -18,6 +18,7 @@ import { BadgeComponent } from '../../../src/badge/badge.component';
 import { ModalModule } from '../../../src/modal';
 import { BadgeViewComponent } from './badge-view/badge-vew.component';
 import { css } from '@rxdi/lit-html';
+import { ModalViewComponent } from './modal/modal-view.component';
 
 @Module({
   components: [
@@ -81,6 +82,10 @@ import { css } from '@rxdi/lit-html';
         {
           path: '/badge',
           component: BadgeViewComponent
+        },
+        {
+          path: '/modal',
+          component: ModalViewComponent
         }
       ],
       { log: true }
