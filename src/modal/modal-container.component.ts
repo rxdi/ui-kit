@@ -25,8 +25,4 @@ export class ModalContainerComponent extends LitElement {
   private template: Observable<
     TemplateResult
   > = this.modalService.getTemplate();
-
-  OnDestroy() {
-    debugger;
-  }
 }

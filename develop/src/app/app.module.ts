@@ -1,17 +1,13 @@
 import { Module } from '@rxdi/core';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@rxdi/router';
-import {
-  MarkdownReaderModule,
-  MarkdownReaderComponent
-} from '../../../src/markdown-reader';
+import { MarkdownReaderModule, MarkdownReaderComponent } from '../../../src/markdown-reader';
 import { AccordionComponent } from '../../../src/accordion';
 import { RegularMarkdownComponent } from './markdown-reader/markdown-regular.component';
 import { ResponsiveViewComponent } from './responsive/responsive.component';
 import { AccordionViewComponent } from './accordion-view/accordion-view.component';
 import { RxImageComponent } from '../../../src/image';
 import { ReactiveUiModule } from '../../../src';
-
 import { GridComponent } from '../../../src/grid/grid.component';
 import { ImageViewComponent } from './image-view/image-view.component';
 import { BadgeComponent } from '../../../src/badge/badge.component';
@@ -30,7 +26,7 @@ import { ModalViewComponent } from './modal/modal-view.component';
     BadgeComponent
   ],
   imports: [
-    ModalModule.forRoot(),
+    ModalModule.forRoot({ backdropClose: true }),
     ReactiveUiModule.forRoot({
       palettes: {
         default: css`
