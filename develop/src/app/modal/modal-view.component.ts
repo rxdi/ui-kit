@@ -2,7 +2,7 @@ import { Component, LitElement, html, css } from '@rxdi/lit-html';
 import { Inject, Injector } from '@rxdi/core';
 import { ModalService } from '../../../../src/modal/modal.service';
 import { MODAL_DIALOG_DATA } from '../../../../src/modal/interface';
-import { MainModalComponent } from '../../../../src/modals';
+import { MainModalComponent, openMainModal } from '../../../../src/modals';
 import { of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
@@ -67,7 +67,23 @@ export class TestModal extends LitElement {
         Open Modal Sequence
       </div>
 
-      <div @click=${() => this.openMainModal()} class="button">
+      <div
+        @click=${() =>
+          openMainModal(MainModalComponent, {
+            title: `Default`,
+            description: `
+
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+      ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+      aliquip ex ea commodo consequat. Duis aute irure dolor in
+      reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+      pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+      culpa qui officia deserunt mollit anim id est laborum.
+      `
+          }).subscribe()}
+        class="button"
+      >
         Open Main Modal
       </div>
     `;
@@ -77,42 +93,6 @@ export class ModalViewComponent extends LitElement {
   @Inject(ModalService)
   private modalService: ModalService;
 
-  openMainModal() {
-    this.modalService
-      .openComponent(MainModalComponent, null, {
-        backdropClose: false,
-        style: css`
-          .wrapper {
-            position: absolute;
-            top: 0;
-            left: 0;
-            align-items: center;
-            justify-content: center;
-            pointer-events: none;
-            width: 100%;
-            height: 100%;
-          }
-
-          .backdrop {
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            position: absolute;
-            background-color: black;
-            pointer-events: all;
-            z-index: 10;
-          }
-
-          .content {
-            z-index: 20;
-            position: absolute;
-            pointer-events: all;
-          }
-        `
-      })
-      .subscribe();
-  }
   openBasicModal() {
     this.modalService.open(
       html`

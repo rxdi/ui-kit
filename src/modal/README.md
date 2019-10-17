@@ -342,3 +342,16 @@ export class ModalViewComponent extends LitElement {
 }
 
 ```
+
+
+Hacks
+
+```typescript
+
+  OnInit() {
+    const container = document.querySelector('modal-container');
+    const content = container.shadowRoot.querySelector('.content');
+    content.addEventListener('click', () => this.close());
+  }
+
+```
