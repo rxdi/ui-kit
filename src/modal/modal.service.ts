@@ -1,8 +1,9 @@
 import { Injectable, Container, Injector } from '@rxdi/core';
-import { TemplateResult, html, unsafeHTML } from '@rxdi/lit-html';
-import { ReplaySubject, Observable, Subject, of } from 'rxjs';
+import { TemplateResult, html, unsafeHTML, css } from '@rxdi/lit-html';
+import { ReplaySubject, Observable, Subject, of, from } from 'rxjs';
 import { MODAL_DIALOG_DATA, MODAL_DIALOG_OPTIONS } from './interface';
-import { take, map, concatMap } from 'rxjs/operators';
+import { take, map, concatMap, switchMap } from 'rxjs/operators';
+import { DialogData } from '../modals/main/interface';
 
 @Injectable()
 export class ModalService {
@@ -29,6 +30,41 @@ export class ModalService {
       });
       this.modalTemplate.next(template);
     });
+  }
+
+  openMainModal(
+    data: DialogData,
+    settings: MODAL_DIALOG_OPTIONS = { backdropClose: true }
+  ) {
+    return from(import('../modals/main/main')).pipe(
+      map(main => main.MainModalComponent),
+      switchMap(main =>
+        this.openComponent(main, data, {
+          backdropClose: settings.backdropClose,
+          style:
+            settings.style ||
+            css`
+              .wrapper {
+                position: absolute;
+                top: 0;
+                left: 0;
+                align-items: center;
+                justify-content: center;
+                pointer-events: none;
+                width: 100%;
+                height: 100%;
+              }
+              .content {
+                width: 100%;
+                height: 100%;
+                z-index: 20;
+                position: absolute;
+                pointer-events: all;
+              }
+            `
+        })
+      )
+    );
   }
 
   openComponent<T>(

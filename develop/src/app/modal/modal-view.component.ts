@@ -1,11 +1,7 @@
 import { Component, LitElement, html, css } from '@rxdi/lit-html';
 import { Inject, Injector } from '@rxdi/core';
 import { ModalService } from '../../../../src/modal/modal.service';
-import {
-  MODAL_DIALOG_DATA,
-  MODAL_DIALOG_OPTIONS
-} from '../../../../src/modal/interface';
-import { MainModalComponent, openMainModal } from '../../../../src/modals';
+import { MODAL_DIALOG_DATA } from '../../../../src/modal/interface';
 import { of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
@@ -74,10 +70,11 @@ export class TestModal extends LitElement {
 
       <div
         @click=${() =>
-          openMainModal(
-            {
-              title: `Default`,
-              description: `
+          this.modalService
+            .openMainModal(
+              {
+                title: `Default`,
+                description: `
 
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
       eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -87,9 +84,10 @@ export class TestModal extends LitElement {
       pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
       culpa qui officia deserunt mollit anim id est laborum.
       `
-            },
-            { backdropClose: true }
-          ).subscribe()}
+              },
+              { backdropClose: true }
+            )
+            .subscribe()}
         class="button"
       >
         Open Main Modal

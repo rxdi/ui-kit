@@ -18,12 +18,12 @@ import { MODAL_DIALOG_OPTIONS } from './interface';
         ${this.options.style}
       </style>
       <div class="wrapper">
+        <div class="content">${async(this.template)}</div>
         <div
           @click=${() =>
             this.options.backdropClose && this.modalService.close()}
           class="backdrop"
         ></div>
-        <div class="content">${async(this.template)}</div>
       </div>
     `;
   }
