@@ -13,20 +13,109 @@ import { ModalModule } from '@rxdi/ui-kit/modal';
 export class AppModule {}
 ```
 
-In order to have `backdropClose` which by default is disbled
+In order to have `backdropClose` which by default is disabled you need to provide optional config
 
+> `style` With this property you can specify default `modal-container` CSS
+
+> `backdropClose` when click outside of the visible modal area dialog will close
 ```typescript
 import { ModalModule } from '@rxdi/ui-kit/modal';
 
 @Module({
   imports: [
     ModalModule.forRoot({
-      backdropClose: true
+      backdropClose: true,
+      style: css`
+        .wrapper {
+          position: absolute;
+          top: 0;
+          left: 0;
+          align-items: center;
+          justify-content: center;
+          pointer-events: none;
+          width: 100%;
+          height: 100%;
+        }
+
+        .backdrop {
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          position: absolute;
+          background-color: rgba(0, 0, 0, 0.5);
+          pointer-events: all;
+          z-index: 10;
+        }
+
+        .content {
+          z-index: 20;
+          position: absolute;
+          pointer-events: all;
+        }
+      `
     })
   ]
 })
 export class AppModule {}
 ```
+
+Three steps demo modal:
+
+1. Inject `ModalService` inside component
+
+```typescript
+import { ModalService } from '@rxdi/ui-kit/modal';
+
+@Component({
+  selector: 'modal-view-component',
+  template(this: ModalViewComponent) {
+    return html`My test modal`;
+  }
+})
+export class ModalViewComponent extends LitElement {
+  @Inject(ModalService) private modalService: ModalService;
+}
+```
+
+2. Define `descriptor` to open modal dialog
+
+```typescript
+openModal() {
+  this.modalService.open(html`My Modal Content, <div @click=${this.modalService.close()}>Close</div>`)
+}
+```
+
+3. Now lets execute `openModal`
+
+```typescript
+import { ModalService } from '@rxdi/ui-kit/modal';
+import { html, LitElement, Component } from '@rxdi/lit-html';
+import { Inject } from '@rxdi/core';
+
+@Component({
+  selector: 'modal-view-component',
+  template(this: ModalViewComponent) {
+    return html`
+      <div @click=${() => this.openModal()}>Open Modal Dialog</div>
+    `;
+  }
+})
+export class ModalViewComponent extends LitElement {
+  @Inject(ModalService) private modalService: ModalService;
+
+  openModal() {
+    this.modalService.open(
+      html`
+        My Modal Content,
+        <div @click=${this.modalService.close()}>Close</div>
+      `
+    ).subscribe();
+  }
+}
+
+```
+
 
 ##### Basic Usage
 
@@ -242,7 +331,7 @@ export class ModalViewComponent extends LitElement {
       .fill(null)
       .map((_, i) => ({ component: TestModal, data: i }));
     of(data)
-      .pipe(switchMap(this.modalService.openSequence.bind(this.modalService)))
+      .pipe(switchMap((v) => this.modalService.openSequence(v)))
       .subscribe(console.log);
   }
 

@@ -2,11 +2,9 @@ import { Component, LitElement, html, css } from '@rxdi/lit-html';
 import { Inject, Injector } from '@rxdi/core';
 import { ModalService } from '../../../../src/modal/modal.service';
 import { MODAL_DIALOG_DATA } from '../../../../src/modal/interface';
-import { fromEvent, of } from 'rxjs';
-import { tap, switchMap, concatMap, map, mergeMap } from 'rxjs/operators';
-import value from '*.jpeg';
-
-const add1 = n => n + 1;
+import { MainModalComponent } from '../../../../src/modals';
+import { of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'test-modal',
@@ -39,7 +37,6 @@ export class TestModal extends LitElement {
   }
 
   close() {
-    // debugger;
     this.modalService.close(this.data);
   }
 }
@@ -69,6 +66,10 @@ export class TestModal extends LitElement {
       <div @click=${() => this.openModalSequence()} class="button">
         Open Modal Sequence
       </div>
+
+      <div @click=${() => this.openMainModal()} class="button">
+        Open Main Modal
+      </div>
     `;
   }
 })
@@ -76,6 +77,42 @@ export class ModalViewComponent extends LitElement {
   @Inject(ModalService)
   private modalService: ModalService;
 
+  openMainModal() {
+    this.modalService
+      .openComponent(MainModalComponent, null, {
+        backdropClose: false,
+        style: css`
+          .wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            width: 100%;
+            height: 100%;
+          }
+
+          .backdrop {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            position: absolute;
+            background-color: black;
+            pointer-events: all;
+            z-index: 10;
+          }
+
+          .content {
+            z-index: 20;
+            position: absolute;
+            pointer-events: all;
+          }
+        `
+      })
+      .subscribe();
+  }
   openBasicModal() {
     this.modalService.open(
       html`
@@ -110,7 +147,7 @@ export class ModalViewComponent extends LitElement {
       .fill(null)
       .map((_, i) => ({ component: TestModal, data: i }));
     of(data)
-      .pipe(switchMap(this.modalService.openSequence.bind(this.modalService)))
+      .pipe(switchMap(c => this.modalService.openSequence(c)))
       .subscribe(console.log);
   }
 

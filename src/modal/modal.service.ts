@@ -1,11 +1,14 @@
-import { Injectable, Container } from '@rxdi/core';
+import { Injectable, Container, Injector } from '@rxdi/core';
 import { TemplateResult, html, unsafeHTML } from '@rxdi/lit-html';
 import { ReplaySubject, Observable, Subject, of } from 'rxjs';
-import { MODAL_DIALOG_DATA } from './interface';
+import { MODAL_DIALOG_DATA, MODAL_DIALOG_OPTIONS } from './interface';
 import { take, map, concatMap } from 'rxjs/operators';
 
 @Injectable()
 export class ModalService {
+  @Injector(MODAL_DIALOG_OPTIONS)
+  private options: MODAL_DIALOG_OPTIONS;
+
   private modalRef: HTMLElement;
   private modalTemplate: ReplaySubject<TemplateResult> = new ReplaySubject();
   private closeSubject$ = new Subject();
@@ -15,27 +18,43 @@ export class ModalService {
     this.modalTemplate.next(template);
   }
 
-  openComponent<T>(component: Function, options = {}) {
+  openComponent<T>(
+    component: Function,
+    options = {},
+    dialogOptions?: MODAL_DIALOG_OPTIONS
+  ) {
+    const originalOptions = Object.assign({}, this.options);
+    if (dialogOptions) {
+      this.setSettings(dialogOptions);
+    }
     return new Observable<T>(observer => {
-      if (!(component as any).is) {
+      const tag = (component as any).is;
+      if (!tag) {
         throw new Error(
           'Provide static method `is` inside component or if you use regular html`` template use `open` method instead of `openComponent`'
         );
       }
       this.createModalPortal();
-      const tag = (component as any).is();
       Container.remove(MODAL_DIALOG_DATA);
       Container.set(MODAL_DIALOG_DATA, options);
       this.modalTemplate.next(
         html`
-          ${unsafeHTML(`<${tag}></${tag}>`)}
+          ${unsafeHTML(`<${tag()}></${tag()}>`)}
         `
       );
       this.closeSubject$.pipe(take(1)).subscribe((stream: T) => {
         observer.next(stream);
+        if (dialogOptions) {
+          this.setSettings(originalOptions);
+        }
         observer.complete();
       });
     });
+  }
+
+  private setSettings(options: MODAL_DIALOG_OPTIONS) {
+    Container.remove(MODAL_DIALOG_OPTIONS);
+    Container.set(MODAL_DIALOG_OPTIONS, options);
   }
 
   openSequence<T>(components: { component: Function; data: T }[]) {
