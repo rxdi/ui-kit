@@ -1,4 +1,4 @@
-import { Component, LitElement, html, svg, query, css } from '@rxdi/lit-html';
+import { Component, LitElement, html, svg, query } from '@rxdi/lit-html';
 import { Inject, Injector } from '@rxdi/core';
 import { ModalService } from '../../modal/modal.service';
 import { MODAL_DIALOG_OPTIONS, MODAL_DIALOG_DATA } from '../../modal/interface';

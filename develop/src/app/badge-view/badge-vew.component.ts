@@ -34,35 +34,35 @@ export class BadgeViewComponent extends LitElement {
     //   secondary: css``
     // }), 5000);
 
-    // this.modalService.open(
-    //   html`
-    //     <style>
-    //       :host {
-    //         position: fixed;
-    //         top: 0;
-    //         right: 0;
-    //         bottom: 0;
-    //         left: 0;
-    //         z-index: 1010;
-    //         overflow-y: auto;
-    //         -webkit-overflow-scrolling: touch;
-    //         padding: 15px 15px;
-    //         background: rgba(0, 0, 0, 0.6);
-    //         transition: opacity 0.15s linear;
-    //       }
-    //     </style>
-    //     <rx-grid
-    //       .$items=${[
-    //         html`
-    //           <div style="width: 100px">dadada</div>
-    //         `,
-    //         html`
-    //           <div style="width: 200px">dadada</div>
-    //         `
-    //       ]}
-    //     ></rx-grid>
-    //   `
-    // );
+    this.modalService.open(
+      html`
+        <style>
+          :host {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 1010;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: 15px 15px;
+            background: rgba(0, 0, 0, 0.6);
+            transition: opacity 0.15s linear;
+          }
+        </style>
+        <rx-grid
+          .$items=${[
+            html`
+              <div style="width: 100px">dadada</div>
+            `,
+            html`
+              <div style="width: 200px">dadada</div>
+            `
+          ]}
+        ></rx-grid>
+      `
+    ).subscribe();
 
     // this.modalService.openComponent(ImageViewComponent);
 

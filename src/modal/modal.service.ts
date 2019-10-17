@@ -32,7 +32,7 @@ export class ModalService {
     });
   }
 
-  openMainModal(
+  openCustomModal(
     data: DialogData,
     settings: MODAL_DIALOG_OPTIONS = { backdropClose: true }
   ) {
@@ -131,7 +131,7 @@ export class ModalService {
   }
 
   close<T>(result?: T) {
-    document.body.removeChild(this.modalRef);
+    this.removeModalPortal();
     this.closeSubject$.next(result);
   }
 

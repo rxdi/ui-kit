@@ -1,14 +1,15 @@
 import { Injectable, Inject } from '@rxdi/core';
 import { ModalService } from '../../../../src/modal/modal.service';
 import { html, css } from '@rxdi/lit-html';
+import { OverflowText } from './data';
 
 @Injectable()
 export class ModalViewService {
   @Inject(ModalService)
   private modalService: ModalService;
 
-  openMainModal() {
-    return this.modalService.openMainModal(
+  openCustomModal() {
+    return this.modalService.openCustomModal(
       {
         title: `Default`,
         description: `
@@ -39,11 +40,11 @@ export class ModalViewService {
   }
 
   openCustomMainModal() {
-    return this.modalService.openMainModal(
+    return this.modalService.openCustomModal(
       {
         template: html`
           <div style="padding: 15px 30px;border-bottom: 1px solid #e5e5e5;">
-            <h1>Modal Title</h1>
+            <h1>Custom modal</h1>
           </div>
           <div
             style="padding: 10px 30px 10px 30px; border-bottom: 1px solid #e5e5e5;"
@@ -66,6 +67,83 @@ export class ModalViewService {
         style: css`
           .dialog {
             padding: 0 !important;
+          }
+        `
+      },
+      { backdropClose: false }
+    );
+  }
+
+  openOverflowCustomModal() {
+    return this.modalService.openCustomModal(
+      {
+        template: html`
+          <div style="padding: 15px 30px;border-bottom: 1px solid #e5e5e5;">
+            <h1>Overflow</h1>
+          </div>
+          <div class="content">
+            <p>
+              ${OverflowText}
+            </p>
+          </div>
+          <div style="text-align: right">
+            <span @click=${() => this.modalService.close()}>Cancel</span>
+            <span>Save</span>
+          </div>
+        `,
+        style: css`
+          .dialog {
+            padding: 0 !important;
+          }
+          .content {
+            padding: 10px 30px 10px 30px;
+            border-bottom: 1px solid #e5e5e5;
+            overflow: auto;
+            min-height: 150px;
+            max-height: 555px;
+          }
+        `
+      },
+      { backdropClose: true }
+    );
+  }
+
+  openFullScreenModal() {
+    return this.modalService.openCustomModal(
+      {
+        template: html`
+          <div class="flex-grid">
+            <img src="https://getuikit.com/docs/images/photo.jpg" />
+            <h1>Full-screen modal</h1>
+          </div>
+        `,
+        style: css`
+          .container {
+            padding: 0px !important;
+          }
+          .flex-grid {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+          }
+          img {
+            background-position: 50% 50%;
+            background-repeat: no-repeat;
+            width: 50%;
+            min-height: calc(100vh);
+            box-sizing: border-box;
+            background-size: cover;
+          }
+          .dialog {
+            padding: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+          }
+
+          .container {
+            height: 100%;
           }
         `
       },

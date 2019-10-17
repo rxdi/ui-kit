@@ -32,12 +32,20 @@ import { TestModal } from './test-modal.component';
         Open Modal Sequence
       </div>
 
-      <div @click=${() => this.openMainModal()} class="button">
+      <div @click=${() => this.openCustomModal()} class="button">
         Open Main Modal
       </div>
 
       <div @click=${() => this.openCustomMainModal()} class="button">
         Open Main Custom Modal
+      </div>
+
+      <div @click=${() => this.openOverflowCustomModal()} class="button">
+        Open Overflow Custom Modal
+      </div>
+
+      <div @click=${() => this.openFullScreenModal()} class="button">
+        Open Fullscreen Modal
       </div>
     `;
   }
@@ -49,8 +57,8 @@ export class ModalViewComponent extends LitElement {
   @Inject(ModalService)
   private modalService: ModalService;
 
-  openMainModal() {
-    this.modalViewService.openMainModal().subscribe();
+  openCustomModal() {
+    this.modalViewService.openCustomModal().subscribe();
   }
 
   openCustomMainModal() {
@@ -74,5 +82,13 @@ export class ModalViewComponent extends LitElement {
     of(data)
       .pipe(switchMap(c => this.modalService.openSequence(c)))
       .subscribe(console.log);
+  }
+
+  openOverflowCustomModal() {
+    this.modalViewService.openOverflowCustomModal().subscribe(console.log);
+  }
+
+  openFullScreenModal() {
+    this.modalViewService.openFullScreenModal().subscribe(console.log);
   }
 }
