@@ -4,8 +4,8 @@ import { BehaviorSubject } from 'rxjs';
 import { DEFAULT } from '@rxdi/ui-kit/styles/chunks/palettes/default';
 import { PRIMARY } from '@rxdi/ui-kit/styles/chunks/palettes/primary';
 import { SECONDARY } from '@rxdi/ui-kit/styles/chunks/palettes/secondary';
-import { DynamicCssService } from './services/dynamic-css/dynamic-css';
-import { ResponsiveService } from './services';
+import { DynamicCssService } from '@rxdi/ui-kit/services/dynamic-css/dynamic-css';
+import { ResponsiveService } from '@rxdi/ui-kit/services';
 
 @Module()
 export class ReactiveUiModule {
@@ -16,7 +16,6 @@ export class ReactiveUiModule {
       module: ReactiveUiModule,
       providers: [
         ResponsiveService,
-        DynamicCssService,
         {
           provide: Palettes,
           useValue: new BehaviorSubject<Palettes>(
@@ -26,7 +25,8 @@ export class ReactiveUiModule {
               secondary: SECONDARY
             }
           )
-        }
+        },
+        DynamicCssService,
       ]
     };
   }

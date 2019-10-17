@@ -61,6 +61,7 @@ export class AppModule {}
 * [Flex-Grid](/src/grid/README.md)
 * [Image](/src/image/README.md)
 * [Badge](/src/badge/README.md)
+* [Modal](/src/modal/README.md)
 
 ### In Progress
 
@@ -101,7 +102,6 @@ export class AppModule {}
 * [List](/src//README.md)
 * [Margin](/src//README.md)
 * [Marker](/src//README.md)
-* [Modal](/src//README.md)
 * [Nav](/src//README.md)
 * [Navbar](/src//README.md)
 * [Notification](/src//README.md)
