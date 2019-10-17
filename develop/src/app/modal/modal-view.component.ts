@@ -68,13 +68,26 @@ export class TestModal extends LitElement {
         Open Modal Sequence
       </div>
 
-      <div
-        @click=${() =>
-          this.modalService
-            .openMainModal(
-              {
-                title: `Default`,
-                description: `
+      <div @click=${() => this.openMainModal()} class="button">
+        Open Main Modal
+      </div>
+
+      <div @click=${() => this.openCustomMainModal()} class="button">
+        Open Main Custom Modal
+      </div>
+    `;
+  }
+})
+export class ModalViewComponent extends LitElement {
+  @Inject(ModalService)
+  private modalService: ModalService;
+
+  openMainModal() {
+    this.modalService
+      .openMainModal(
+        {
+          title: `Default`,
+          description: `
 
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
       eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -84,20 +97,50 @@ export class TestModal extends LitElement {
       pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
       culpa qui officia deserunt mollit anim id est laborum.
       `
-              },
-              { backdropClose: true }
-            )
-            .subscribe()}
-        class="button"
-      >
-        Open Main Modal
-      </div>
-    `;
+        },
+        { backdropClose: true }
+      )
+      .subscribe();
   }
-})
-export class ModalViewComponent extends LitElement {
-  @Inject(ModalService)
-  private modalService: ModalService;
+
+  openCustomMainModal() {
+    this.modalService
+      .openMainModal(
+        {
+          template: html`
+            <div
+              style="padding-top:10px; padding-left: 20px; height: 50px; border-bottom: 1px solid #e5e5e5;"
+            >
+              <h1>Modal Title</h1>
+            </div>
+            <div
+              style="padding:10px; padding-left: 20px;border-bottom: 1px solid #e5e5e5;"
+            >
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+            <div style="text-align: right">
+              <span @click=${() => this.modalService.close()}>Cancel</span>
+              <span>Save</span>
+            </div>
+          `,
+          style: css`
+            .dialog {
+              padding: 0 !important;
+            }
+          `
+        },
+        { backdropClose: true }
+      )
+      .subscribe();
+  }
 
   openBasicModal() {
     this.modalService
