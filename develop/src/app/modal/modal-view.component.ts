@@ -1,46 +1,10 @@
 import { Component, LitElement, html, css } from '@rxdi/lit-html';
-import { Inject, Injector } from '@rxdi/core';
+import { Inject } from '@rxdi/core';
 import { ModalService } from '../../../../src/modal/modal.service';
-import { MODAL_DIALOG_DATA } from '../../../../src/modal/interface';
 import { of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-
-@Component({
-  selector: 'test-modal',
-  template(this: TestModal) {
-    return html`
-      <div style="margin: 0 auto; width: 600px;">
-        Test Modal ${JSON.stringify(this.data)}
-
-        <div
-          @click=${() => this.close()}
-          style="cursor:pointer; padding: 20px;"
-        >
-          Close
-        </div>
-      </div>
-    `;
-  }
-})
-export class TestModal extends LitElement {
-  @Injector(MODAL_DIALOG_DATA)
-  private data: number;
-
-  @Inject(ModalService)
-  private modalService: ModalService;
-
-  private modalRef = this.modalService.getRef();
-  OnInit() {
-    console.log('test-modal initialized');
-  }
-  OnDestroy() {
-    console.log('test-modal destroyed');
-  }
-
-  close() {
-    this.modalService.close(this.data);
-  }
-}
+import { ModalViewService } from './modal-view.service';
+import { TestModal } from './test-modal.component';
 
 @Component({
   selector: 'modal-view-component',
@@ -79,82 +43,22 @@ export class TestModal extends LitElement {
   }
 })
 export class ModalViewComponent extends LitElement {
+  @Inject(ModalViewService)
+  private modalViewService: ModalViewService;
+
   @Inject(ModalService)
   private modalService: ModalService;
 
   openMainModal() {
-    this.modalService
-      .openMainModal(
-        {
-          title: `Default`,
-          description: `
-
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-      ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-      aliquip ex ea commodo consequat. Duis aute irure dolor in
-      reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-      pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-      culpa qui officia deserunt mollit anim id est laborum.
-      `
-        },
-        { backdropClose: true }
-      )
-      .subscribe();
+    this.modalViewService.openMainModal().subscribe();
   }
 
   openCustomMainModal() {
-    this.modalService
-      .openMainModal(
-        {
-          template: html`
-            <div
-              style="padding-top:10px; padding-left: 20px; height: 50px; border-bottom: 1px solid #e5e5e5;"
-            >
-              <h1>Modal Title</h1>
-            </div>
-            <div
-              style="padding:10px; padding-left: 20px;border-bottom: 1px solid #e5e5e5;"
-            >
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
-            </div>
-            <div style="text-align: right">
-              <span @click=${() => this.modalService.close()}>Cancel</span>
-              <span>Save</span>
-            </div>
-          `,
-          style: css`
-            .dialog {
-              padding: 0 !important;
-            }
-          `
-        },
-        { backdropClose: true }
-      )
-      .subscribe();
+    this.modalViewService.openCustomMainModal().subscribe();
   }
 
   openBasicModal() {
-    this.modalService
-      .open(
-        html`
-          <div
-            @click=${() => this.modalService.close(false)}
-            style="cursor:pointer; padding: 20px; background-color: blue"
-          >
-            Close Modal
-          </div>
-        `
-      )
-      .subscribe();
+    this.modalViewService.openBasicModal().subscribe();
   }
 
   openAdvancedModal() {

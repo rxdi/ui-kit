@@ -1,10 +1,8 @@
 import { Module } from '@rxdi/core';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@rxdi/router';
-import {
-  MarkdownReaderModule,
-  MarkdownReaderComponent
-} from '../../../src/markdown-reader';
+import { css } from '@rxdi/lit-html';
+import { MarkdownReaderModule, MarkdownReaderComponent } from '../../../src/markdown-reader';
 import { AccordionComponent } from '../../../src/accordion';
 import { RegularMarkdownComponent } from './markdown-reader/markdown-regular.component';
 import { ResponsiveViewComponent } from './responsive/responsive.component';
@@ -16,7 +14,6 @@ import { ImageViewComponent } from './image-view/image-view.component';
 import { BadgeComponent } from '../../../src/badge/badge.component';
 import { ModalModule } from '../../../src/modal';
 import { BadgeViewComponent } from './badge-view/badge-vew.component';
-import { css } from '@rxdi/lit-html';
 import { ModalViewComponent } from './modal/modal-view.component';
 
 @Module({

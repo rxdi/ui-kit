@@ -1,13 +1,16 @@
-import { Component, LitElement, html, svg, query } from '@rxdi/lit-html';
+import { Component, LitElement, html, svg, query, css } from '@rxdi/lit-html';
 import { Inject, Injector } from '@rxdi/core';
 import { ModalService } from '../../modal/modal.service';
 import { MODAL_DIALOG_OPTIONS, MODAL_DIALOG_DATA } from '../../modal/interface';
 import { DialogData } from './interface';
-import { style } from './style.css';
+import { style, button } from './style.css';
 
 @Component({
   selector: 'rx-modal-main',
-  style,
+  styles: [
+    style,
+    button
+  ],
   template(this: MainModalComponent) {
     return html`
       <style>
@@ -17,9 +20,9 @@ import { style } from './style.css';
         <div class="dialog">
           <button @click=${() => this.close()}>
             ${svg`
-              <svg width="14" height="14" viewBox="0 0 14 14" data-svg="close-icon">
-                <line fill="none" stroke="#000" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line>
-                <line fill="none" stroke="#000" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line>
+              <svg width="14" height="14" viewBox="0 0 14 14">
+                <line fill="none" stroke="#666" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line>
+                <line fill="none" stroke="#666" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line>
               </svg>
             `}
           </button>

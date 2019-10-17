@@ -35,7 +35,7 @@ export const style = css`
     margin-top: 0;
     font-size: 30px;
     line-height: 1.3;
-    margin: 0 0 20px 0;
+    margin: 0 0 0px 0;
     font-family: ProximaNova, -apple-system, BlinkMacSystemFont, 'Segoe UI',
       Roboto, 'Helvetica Neue', Arial, sans-serif;
     font-weight: 300;
@@ -59,5 +59,16 @@ export const style = css`
     font-size: 15px;
     font-weight: normal;
     line-height: 1.5;
+    color: #666;
+  }
+`;
+
+export const button = css`
+  button {
+    opacity: 0.7;
+  }
+
+  button:hover {
+    opacity: 1;
   }
 `;
