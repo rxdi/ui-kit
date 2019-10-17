@@ -74,9 +74,10 @@ export class TestModal extends LitElement {
 
       <div
         @click=${() =>
-          openMainModal({
-            title: `Default`,
-            description: `
+          openMainModal(
+            {
+              title: `Default`,
+              description: `
 
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
       eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -86,7 +87,9 @@ export class TestModal extends LitElement {
       pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
       culpa qui officia deserunt mollit anim id est laborum.
       `
-          }).subscribe()}
+            },
+            { backdropClose: true }
+          ).subscribe()}
         class="button"
       >
         Open Main Modal

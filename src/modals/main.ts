@@ -5,17 +5,13 @@ import {
   css,
   svg,
   query,
-  CSSResult
+  CSSResult,
+  TemplateResult
 } from '@rxdi/lit-html';
 import { Inject, Container, Injector } from '@rxdi/core';
 import { ModalService } from '../modal/modal.service';
 import { MODAL_DIALOG_OPTIONS, MODAL_DIALOG_DATA } from '../modal/interface';
-
-interface DialogData {
-  title: string;
-  description: string;
-  style?: CSSResult;
-}
+import { DialogData } from './interface';
 
 @Component({
   selector: 'rx-modal-main',
@@ -27,6 +23,9 @@ interface DialogData {
       top: 0;
       z-index: 10;
       background: rgba(0, 0, 0, 0.32);
+    }
+    .container {
+      padding: 30px 50px;
     }
     .dialog {
       position: relative;
@@ -79,18 +78,24 @@ interface DialogData {
       <style>
         ${this.data.style}
       </style>
-      <div class="dialog">
-        <button @click=${() => this.close()}>
-          ${svg`
+      <div class="container">
+        <div class="dialog">
+          <button @click=${() => this.close()}>
+            ${svg`
         <svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" data-svg="close-icon"><line fill="none" stroke="#000" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line><line fill="none" stroke="#000" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line></svg>
         `}
-        </button>
-
-        <h1>${this.data.title}</h1>
-
-        <p>
-          ${this.data.description}
-        </p>
+          </button>
+          ${this.data.template
+            ? html`
+                ${this.data.template}
+              `
+            : html`
+                <h1>${this.data.title}</h1>
+                <p>
+                  ${this.data.description}
+                </p>
+              `}
+        </div>
       </div>
       <div class="backdrop"></div>
     `;
@@ -120,36 +125,32 @@ export class MainModalComponent extends LitElement {
 }
 
 export function openMainModal(
-  options: DialogData,
+  data: DialogData,
   settings: MODAL_DIALOG_OPTIONS = { backdropClose: true }
 ) {
-  return Container.get(ModalService).openComponent(
-    MainModalComponent,
-    options,
-    {
-      backdropClose: settings.backdropClose,
-      style:
-        settings.style ||
-        css`
-          .wrapper {
-            position: absolute;
-            top: 0;
-            left: 0;
-            align-items: center;
-            justify-content: center;
-            pointer-events: none;
-            width: 100%;
-            height: 100%;
-          }
+  return Container.get(ModalService).openComponent(MainModalComponent, data, {
+    backdropClose: settings.backdropClose,
+    style:
+      settings.style ||
+      css`
+        .wrapper {
+          position: absolute;
+          top: 0;
+          left: 0;
+          align-items: center;
+          justify-content: center;
+          pointer-events: none;
+          width: 100%;
+          height: 100%;
+        }
 
-          .content {
-            width: 100%;
-            height: 100%;
-            z-index: 20;
-            position: absolute;
-            pointer-events: all;
-          }
-        `
-    }
-  );
+        .content {
+          width: 100%;
+          height: 100%;
+          z-index: 20;
+          position: absolute;
+          pointer-events: all;
+        }
+      `
+  });
 }
