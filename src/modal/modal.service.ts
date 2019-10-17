@@ -1,24 +1,14 @@
-import { Injectable, Container, Injector } from '@rxdi/core';
+import { Injectable, Container } from '@rxdi/core';
 import { TemplateResult, html, unsafeHTML } from '@rxdi/lit-html';
-import {
-  ReplaySubject,
-  fromEvent,
-  Subscription,
-  Observable,
-  Subject,
-  of
-} from 'rxjs';
-import { MODAL_DIALOG_DATA, MODAL_DIALOG_OPTIONS } from './interface';
-import { tap, take, map, concatMap } from 'rxjs/operators';
+import { ReplaySubject, Observable, Subject, of } from 'rxjs';
+import { MODAL_DIALOG_DATA } from './interface';
+import { take, map, concatMap } from 'rxjs/operators';
 
 @Injectable()
 export class ModalService {
   private modalRef: HTMLElement;
   private modalTemplate: ReplaySubject<TemplateResult> = new ReplaySubject();
   private closeSubject$ = new Subject();
-
-  @Injector(MODAL_DIALOG_OPTIONS)
-  private options: MODAL_DIALOG_OPTIONS;
 
   open(template: TemplateResult) {
     this.createModalPortal();

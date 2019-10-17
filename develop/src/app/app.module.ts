@@ -26,7 +26,7 @@ import { ModalViewComponent } from './modal/modal-view.component';
     BadgeComponent
   ],
   imports: [
-    ModalModule.forRoot({ backdropClose: true }),
+    ModalModule.forRoot({ backdropClose: false }),
     ReactiveUiModule.forRoot({
       palettes: {
         default: css`

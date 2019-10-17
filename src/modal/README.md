@@ -13,6 +13,21 @@ import { ModalModule } from '@rxdi/ui-kit/modal';
 export class AppModule {}
 ```
 
+In order to have `backdropClose` which by default is disbled
+
+```typescript
+import { ModalModule } from '@rxdi/ui-kit/modal';
+
+@Module({
+  imports: [
+    ModalModule.forRoot({
+      backdropClose: true
+    })
+  ]
+})
+export class AppModule {}
+```
+
 ##### Basic Usage
 
 ```typescript

@@ -3,11 +3,13 @@ import {
   html,
   TemplateResult,
   async,
-  LitElement
+  LitElement,
+  query
 } from '@rxdi/lit-html';
-import { Inject } from '@rxdi/core';
+import { Inject, Injector } from '@rxdi/core';
 import { ModalService } from './modal.service';
 import { Observable } from 'rxjs';
+import { MODAL_DIALOG_OPTIONS } from './interface';
 
 @Component({
   selector: 'modal-container',
@@ -39,14 +41,19 @@ import { Observable } from 'rxjs';
         .content {
           z-index: 20;
           position: absolute;
-          width: 100%;
-          height: 100%;
+          /* width: 100%; */
+          /* height: 100%; */
           pointer-events: all;
         }
       </style>
       <div class="wrapper">
-        <div class="backdrop"></div>
+      <div
+          @click=${() =>
+            this.options.backdropClose && this.modalService.close()}
+          class="backdrop"
+        ></div>
         <div class="content">${async(this.template)}</div>
+
       </div>
     `;
   }
@@ -58,4 +65,7 @@ export class ModalContainerComponent extends LitElement {
   private template: Observable<
     TemplateResult
   > = this.modalService.getTemplate();
+
+  @Injector(MODAL_DIALOG_OPTIONS)
+  private options: MODAL_DIALOG_OPTIONS;
 }
