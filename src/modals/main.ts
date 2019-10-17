@@ -1,4 +1,12 @@
-import { Component, LitElement, html, css, svg, query } from '@rxdi/lit-html';
+import {
+  Component,
+  LitElement,
+  html,
+  css,
+  svg,
+  query,
+  CSSResult
+} from '@rxdi/lit-html';
 import { Inject, Container, Injector } from '@rxdi/core';
 import { ModalService } from '../modal/modal.service';
 import { MODAL_DIALOG_OPTIONS, MODAL_DIALOG_DATA } from '../modal/interface';
@@ -6,26 +14,35 @@ import { MODAL_DIALOG_OPTIONS, MODAL_DIALOG_DATA } from '../modal/interface';
 interface DialogData {
   title: string;
   description: string;
+  style?: CSSResult;
 }
 
 @Component({
   selector: 'rx-modal-main',
   style: css`
-    .container {
-      padding: 50px 30px;
+    .backdrop {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      z-index: 10;
+      background: rgba(0, 0, 0, 0.32);
     }
     .dialog {
       position: relative;
       box-sizing: border-box;
       transform: translateY(0);
-      margin: 0 auto;
+      margin: 80px auto;
       background: #fff;
       width: 600px;
+      box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2),
+        0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);
       transition: 0.3s linear;
       transition-property: opacity, transform;
       max-width: calc(100% - 0.01px) !important;
       padding: 30px 30px;
       color: #666;
+      z-index: 12;
     }
 
     h1 {
@@ -59,21 +76,23 @@ interface DialogData {
   `,
   template(this: MainModalComponent) {
     return html`
-      <div class="container">
-        <div class="dialog">
-          <button @click=${() => this.close()}>
-            ${svg`
+      <style>
+        ${this.data.style}
+      </style>
+      <div class="dialog">
+        <button @click=${() => this.close()}>
+          ${svg`
         <svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" data-svg="close-icon"><line fill="none" stroke="#000" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line><line fill="none" stroke="#000" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line></svg>
         `}
-          </button>
+        </button>
 
-          <h1>${this.data.title}</h1>
+        <h1>${this.data.title}</h1>
 
-          <p>
-            ${this.data.description}
-          </p>
-        </div>
+        <p>
+          ${this.data.description}
+        </p>
       </div>
+      <div class="backdrop"></div>
     `;
   }
 })
@@ -87,45 +106,50 @@ export class MainModalComponent extends LitElement {
   @Injector(MODAL_DIALOG_OPTIONS)
   private options: MODAL_DIALOG_OPTIONS;
 
+  @query('.backdrop')
+  private backdrop: HTMLElement;
+
+  OnUpdateFirst() {
+    if (this.options.backdropClose) {
+      this.backdrop.addEventListener('click', () => this.close());
+    }
+  }
   close() {
     this.modalService.close(true);
   }
 }
 
-export function openMainModal(component: Function, options: DialogData) {
-  return Container.get(ModalService).openComponent(component, options, {
-    backdropClose: false,
-    style: css`
-      .wrapper {
-        position: absolute;
-        top: 0;
-        left: 0;
+export function openMainModal(
+  options: DialogData,
+  settings: MODAL_DIALOG_OPTIONS = { backdropClose: true }
+) {
+  return Container.get(ModalService).openComponent(
+    MainModalComponent,
+    options,
+    {
+      backdropClose: settings.backdropClose,
+      style:
+        settings.style ||
+        css`
+          .wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            width: 100%;
+            height: 100%;
+          }
 
-        align-items: center;
-        justify-content: center;
-        pointer-events: none;
-        width: 100%;
-        height: 100%;
-      }
-
-      .backdrop {
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        position: absolute;
-        background: rgba(0, 0, 0, 0.6);
-        pointer-events: all;
-        z-index: 10;
-      }
-
-      .content {
-        width: 100%;
-        height: 100%;
-        z-index: 20;
-        position: absolute;
-        pointer-events: all;
-      }
-    `
-  });
+          .content {
+            width: 100%;
+            height: 100%;
+            z-index: 20;
+            position: absolute;
+            pointer-events: all;
+          }
+        `
+    }
+  );
 }

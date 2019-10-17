@@ -8,14 +8,27 @@ import { take, map, concatMap } from 'rxjs/operators';
 export class ModalService {
   @Injector(MODAL_DIALOG_OPTIONS)
   private options: MODAL_DIALOG_OPTIONS;
+  private originalOptions = Object.assign({}, this.options);
 
   private modalRef: HTMLElement;
   private modalTemplate: ReplaySubject<TemplateResult> = new ReplaySubject();
   private closeSubject$ = new Subject();
 
-  open(template: TemplateResult) {
-    this.createModalPortal();
-    this.modalTemplate.next(template);
+  open<T>(template: TemplateResult, dialogOptions?: MODAL_DIALOG_OPTIONS) {
+    return new Observable<T>(observer => {
+      this.createModalPortal();
+      if (dialogOptions) {
+        this.setSettings(dialogOptions);
+      }
+      this.closeSubject$.pipe(take(1)).subscribe((stream: T) => {
+        if (dialogOptions) {
+          this.setSettings(this.originalOptions);
+        }
+        observer.next(stream);
+        observer.complete();
+      });
+      this.modalTemplate.next(template);
+    });
   }
 
   openComponent<T>(
@@ -23,7 +36,6 @@ export class ModalService {
     options = {},
     dialogOptions?: MODAL_DIALOG_OPTIONS
   ) {
-    const originalOptions = Object.assign({}, this.options);
     if (dialogOptions) {
       this.setSettings(dialogOptions);
     }
@@ -43,10 +55,10 @@ export class ModalService {
         `
       );
       this.closeSubject$.pipe(take(1)).subscribe((stream: T) => {
-        observer.next(stream);
         if (dialogOptions) {
-          this.setSettings(originalOptions);
+          this.setSettings(this.originalOptions);
         }
+        observer.next(stream);
         observer.complete();
       });
     });
@@ -57,10 +69,18 @@ export class ModalService {
     Container.set(MODAL_DIALOG_OPTIONS, options);
   }
 
-  openSequence<T>(components: { component: Function; data: T }[]) {
+  openSequence<T>(
+    components: {
+      component: Function;
+      data: T;
+      options?: MODAL_DIALOG_OPTIONS;
+    }[]
+  ) {
     const identity = v => v;
     return of(components).pipe(
-      map(val => val.map(v => this.openComponent(v.component, v.data))),
+      map(val =>
+        val.map(v => this.openComponent(v.component, v.data, v.options))
+      ),
       concatMap(identity),
       concatMap(identity)
     );

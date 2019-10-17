@@ -1,7 +1,10 @@
 import { Component, LitElement, html, css } from '@rxdi/lit-html';
 import { Inject, Injector } from '@rxdi/core';
 import { ModalService } from '../../../../src/modal/modal.service';
-import { MODAL_DIALOG_DATA } from '../../../../src/modal/interface';
+import {
+  MODAL_DIALOG_DATA,
+  MODAL_DIALOG_OPTIONS
+} from '../../../../src/modal/interface';
 import { MainModalComponent, openMainModal } from '../../../../src/modals';
 import { of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -10,13 +13,15 @@ import { switchMap } from 'rxjs/operators';
   selector: 'test-modal',
   template(this: TestModal) {
     return html`
-      Test Modal ${JSON.stringify(this.data)}
+      <div style="margin: 0 auto; width: 600px;">
+        Test Modal ${JSON.stringify(this.data)}
 
-      <div
-        @click=${() => this.close()}
-        style="cursor:pointer; padding: 20px;position: absolute; bottom: 0; right: 0"
-      >
-        Close
+        <div
+          @click=${() => this.close()}
+          style="cursor:pointer; padding: 20px;"
+        >
+          Close
+        </div>
       </div>
     `;
   }
@@ -69,7 +74,7 @@ export class TestModal extends LitElement {
 
       <div
         @click=${() =>
-          openMainModal(MainModalComponent, {
+          openMainModal({
             title: `Default`,
             description: `
 
@@ -94,26 +99,18 @@ export class ModalViewComponent extends LitElement {
   private modalService: ModalService;
 
   openBasicModal() {
-    this.modalService.open(
-      html`
-        <style>
-          :host {
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            position: absolute;
-            background-color: black;
-          }
-        </style>
-        <div
-          @click=${() => this.closeModal()}
-          style="cursor:pointer; padding: 20px; background-color: blue"
-        >
-          Close Modal
-        </div>
-      `
-    );
+    this.modalService
+      .open(
+        html`
+          <div
+            @click=${() => this.modalService.close(false)}
+            style="cursor:pointer; padding: 20px; background-color: blue"
+          >
+            Close Modal
+          </div>
+        `
+      )
+      .subscribe();
   }
 
   openAdvancedModal() {
@@ -130,10 +127,4 @@ export class ModalViewComponent extends LitElement {
       .pipe(switchMap(c => this.modalService.openSequence(c)))
       .subscribe(console.log);
   }
-
-  closeModal() {
-    this.modalService.close();
-  }
-
-  startWizard(data: any) {}
 }
