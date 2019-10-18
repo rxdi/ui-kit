@@ -29,11 +29,10 @@ export class ModalViewService {
   openBasicModal() {
     return this.modalService.open(
       html`
-        <div
-          @click=${() => this.modalService.close(false)}
-          style="cursor:pointer; padding: 20px; background-color: blue"
-        >
-          Close Modal
+        <div style="text-align: right;padding: 20px 20px;">
+          <rx-button palette="primary" @click=${() => this.modalService.close()}
+            >Close</rx-button
+          >
         </div>
       `
     );
@@ -59,9 +58,11 @@ export class ModalViewService {
               sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
           </div>
-          <div style="text-align: right">
-            <span @click=${() => this.modalService.close()}>Cancel</span>
-            <span>Save</span>
+          <div style="text-align: right;padding: 20px 20px;">
+            <rx-button @click=${() => this.modalService.close()}
+              >Cancel</rx-button
+            >
+            <rx-button palette="primary">Save</rx-button>
           </div>
         `,
         style: css`
@@ -86,9 +87,11 @@ export class ModalViewService {
               ${OverflowText}
             </p>
           </div>
-          <div style="text-align: right">
-            <span @click=${() => this.modalService.close()}>Cancel</span>
-            <span>Save</span>
+          <div style="text-align: right;padding: 20px 20px;">
+            <rx-button @click=${() => this.modalService.close()}
+              >Cancel</rx-button
+            >
+            <rx-button palette="primary">Save</rx-button>
           </div>
         `,
         style: css`

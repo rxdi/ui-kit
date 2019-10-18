@@ -7,14 +7,12 @@ import { ModalService } from '../../../../src/modal/modal.service';
   selector: 'test-modal',
   template(this: TestModal) {
     return html`
-      <div style="margin: 0 auto; width: 600px;">
+      <div>
         Test Modal ${JSON.stringify(this.data)}
-
-        <div
-          @click=${() => this.close()}
-          style="cursor:pointer; padding: 20px;"
-        >
-          Close
+        <div style="text-align: right;padding: 20px 20px;">
+          <rx-button palette="primary" @click=${() => this.close()}
+            >Close</rx-button
+          >
         </div>
       </div>
     `;
