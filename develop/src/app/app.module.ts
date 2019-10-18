@@ -16,10 +16,12 @@ import { GridComponent } from '../../../src/grid/grid.component';
 import { ImageViewComponent } from './image-view/image-view.component';
 import { BadgeComponent } from '../../../src/badge/badge.component';
 import { ButtonComponent } from '../../../src/button/button.component';
+import { ArticleComponent } from '../../../src/article/article.component';
 import { ModalModule } from '../../../src/modal';
 import { BadgeViewComponent } from './badge-view/badge-vew.component';
 import { ModalViewComponent } from './modal/modal-view.component';
 import { ButtonViewComponent } from './button-view/button-view.component';
+import { ArticleViewComponent } from './article-view/article-view.component';
 
 @Module({
   components: [
@@ -29,7 +31,8 @@ import { ButtonViewComponent } from './button-view/button-view.component';
     RxImageComponent,
     GridComponent,
     BadgeComponent,
-    ButtonComponent
+    ButtonComponent,
+    ArticleComponent
   ],
   imports: [
     ModalModule.forRoot({
@@ -70,7 +73,11 @@ import { ButtonViewComponent } from './button-view/button-view.component';
         {
           path: '/button',
           component: ButtonViewComponent
-        }
+        },
+        {
+          path: '/article',
+          component: ArticleViewComponent
+        },
       ],
       { log: true }
     )
