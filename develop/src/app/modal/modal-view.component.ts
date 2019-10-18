@@ -9,43 +9,38 @@ import { TestModal } from './test-modal.component';
 @Component({
   selector: 'modal-view-component',
   style: css`
-    .button {
-      cursor: pointer;
-      padding: 20px;
-      margin: 20px;
-      background-color: blue;
-    }
-    .button:hover {
-      opacity: 0.9;
+    div {
+      margin: 50px auto;
+      width: 300px;
+      display: grid;
     }
   `,
   template(this: ModalViewComponent) {
     return html`
-      <div @click=${() => this.openBasicModal()} class="button">
-        Open Basic Modal
-      </div>
-      <div @click=${() => this.openAdvancedModal()} class="button">
-        Open Advanced Modal
-      </div>
-
-      <div @click=${() => this.openModalSequence()} class="button">
-        Open Modal Sequence
-      </div>
-
-      <div @click=${() => this.openCustomModal()} class="button">
-        Open Main Modal
-      </div>
-
-      <div @click=${() => this.openCustomMainModal()} class="button">
-        Open Main Custom Modal
-      </div>
-
-      <div @click=${() => this.openOverflowCustomModal()} class="button">
-        Open Overflow Custom Modal
-      </div>
-
-      <div @click=${() => this.openFullScreenModal()} class="button">
-        Open Fullscreen Modal
+      <div>
+        <rx-button palette="primary" @click=${() => this.openBasicModal()}
+          >Open Basic Modal</rx-button
+        >
+        <rx-button palette="primary" @click=${() => this.openAdvancedModal()}
+          >Open Advanced Modal</rx-button
+        >
+        <rx-button palette="primary" @click=${() => this.openModalSequence()}
+          >Open Modal Sequence</rx-button
+        >
+        <rx-button palette="primary" @click=${() => this.openCustomModal()}
+          >Open Main Modal</rx-button
+        >
+        <rx-button palette="primary" @click=${() => this.openCustomMainModal()}
+          >Open Main Custom Modal</rx-button
+        >
+        <rx-button
+          palette="primary"
+          @click=${() => this.openOverflowCustomModal()}
+          >Open Overflow Custom Modal</rx-button
+        >
+        <rx-button palette="primary" @click=${() => this.openFullScreenModal()}
+          >Open Fullscreen Modal</rx-button
+        >
       </div>
     `;
   }

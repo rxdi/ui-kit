@@ -62,6 +62,7 @@ export class AppModule {}
 * [Image](/src/image/README.md)
 * [Badge](/src/badge/README.md)
 * [Modal](/src/modal/README.md)
+* [Button](/src//README.md)
 
 ### In Progress
 
@@ -72,7 +73,6 @@ export class AppModule {}
 * [Background](/src//README.md)
 * [Base](/src//README.md)
 * [Breadcrumb](/src//README.md)
-* [Button](/src//README.md)
 * [Card](/src//README.md)
 * [Close](/src//README.md)
 * [Column](/src//README.md)

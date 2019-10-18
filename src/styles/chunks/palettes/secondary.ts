@@ -1,9 +1,11 @@
 import { css } from '@rxdi/lit-html';
 
 export let SECONDARY = css`
-  .secondary {
-    background-color: #222;
-    color: #fff;
-    border: 1px solid transparent;
+  :root {
+    --secondary-bg-color: #222;
+    --secondary-color: #fff;
+    --secondary-border: 1px solid transparent;
+    --secondary-hover-color: #333;
+    --secondary-active-color: #000;
   }
 `;
