@@ -10,11 +10,11 @@ Pull request: https://github.com/rxdi/ui-kit/pull/14
 ##### Usage
 
 ```typescript
-import { ButtonComponent } from '@rxdi/ui-kit/button';
+import { DividerComponent } from '@rxdi/ui-kit/divider';
 
 @Module({
   components: [
-    ButtonComponent
+    DividerComponent
   ],
 })
 export class AppModule {}

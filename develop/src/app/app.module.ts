@@ -17,6 +17,7 @@ import { ImageViewComponent } from './image-view/image-view.component';
 import { BadgeComponent } from '../../../src/badge/badge.component';
 import { ButtonComponent } from '../../../src/button/button.component';
 import { ArticleComponent } from '../../../src/article/article.component';
+import { LabelComponent } from '../../../src/label/label.component';
 import { ModalModule } from '../../../src/modal';
 import { BadgeViewComponent } from './badge-view/badge-vew.component';
 import { ModalViewComponent } from './modal/modal-view.component';
@@ -24,6 +25,7 @@ import { ButtonViewComponent } from './button-view/button-view.component';
 import { ArticleViewComponent } from './article-view/article-view.component';
 import { DividerViewComponent } from './divider-view/divider-view.component';
 import { DividerComponent } from '../../../src/divider/divider.component';
+import { LabelViewComponent } from './label-view/label-view.component';
 
 @Module({
   components: [
@@ -35,11 +37,12 @@ import { DividerComponent } from '../../../src/divider/divider.component';
     BadgeComponent,
     ButtonComponent,
     ArticleComponent,
-    DividerComponent
+    DividerComponent,
+    LabelComponent
   ],
   imports: [
     ModalModule.forRoot({
-      backdropClose: true,
+      backdropClose: true
     }),
     ReactiveUiModule.forRoot(),
     MarkdownReaderModule,
@@ -85,6 +88,10 @@ import { DividerComponent } from '../../../src/divider/divider.component';
           path: '/divider',
           component: DividerViewComponent
         },
+        {
+          path: '/label',
+          component: LabelViewComponent
+        }
       ],
       { log: true }
     )

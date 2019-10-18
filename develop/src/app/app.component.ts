@@ -23,6 +23,7 @@ import { style } from './app.component.css';
       <a href="/button"><button class="button">Button</button> </a>
       <a href="/article"><button class="button">Article</button> </a>
       <a href="/divider"><button class="button">Divider</button> </a>
+      <a href="/label"><button class="button">Label</button> </a>
     </div>
     <router-outlet></router-outlet>
   `,

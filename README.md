@@ -65,13 +65,13 @@ export class AppModule {}
 * [Button](/src//README.md)
 * [Article](/src/article/README.md)
 * [Divider](/src/divider/README.md)
+* [Label](/src/label/README.md)
 
 ### In Progress
 
 * [Alert](/src//README.md)
 * [Align](/src//README.md)
 * [Animation](/src//README.md)
-
 * [Background](/src//README.md)
 * [Base](/src//README.md)
 * [Breadcrumb](/src//README.md)
@@ -83,7 +83,6 @@ export class AppModule {}
 * [Countdown](/src//README.md)
 * [Cover](/src//README.md)
 * [Description List](/src//README.md)
-
 * [Dotnav](/src//README.md)
 * [Drop](/src//README.md)
 * [Dropdown](/src//README.md)
@@ -97,7 +96,6 @@ export class AppModule {}
 * [Iconnav](/src//README.md)
 * [Image](/src//README.md)
 * [Inverse](/src//README.md)
-* [Label](/src//README.md)
 * [Leader](/src//README.md)
 * [Lightbox](/src//README.md)
 * [Link](/src//README.md)
@@ -143,8 +141,6 @@ export class AppModule {}
 * [Video](/src//README.md)
 * [Visibility](/src//README.md)
 * [Width](/src//README.md)
-
-
 
 ## Services
 
