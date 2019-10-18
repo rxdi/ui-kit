@@ -46,4 +46,5 @@ import { PalettesUnion } from '../settings';
 export class ButtonComponent extends LitElement {
   @property({ type: String })
   public palette: PalettesUnion;
+
 }

@@ -4,9 +4,10 @@ import { Component, LitElement, html } from '@rxdi/lit-html';
   selector: 'button-view-component',
   template(this: ButtonViewComponent) {
     return html`
-        <rx-button>Default</rx-button>
-        <rx-button palette="primary">Primary</rx-button>
-        <rx-button palette="secondary">Secondary</rx-button>
+      <rx-button>Default</rx-button>
+      <rx-button palette="primary">Primary</rx-button>
+      <rx-button palette="secondary">Secondary</rx-button>
+      <rx-button palette="danger">Danger</rx-button>
     `;
   }
 })

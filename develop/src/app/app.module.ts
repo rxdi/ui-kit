@@ -88,6 +88,13 @@ import { ButtonViewComponent } from './button-view/button-view.component';
             --secondary-color: #fff;
             --secondary-border-color: 1px solid transparent;
           }
+        `,
+        danger: css`
+          :root {
+            --danger-bg-color: #f0506e;
+            --danger-color: #fff;
+            --danger-border-color: 1px solid transparent;
+          }
         `
       }
     }),
