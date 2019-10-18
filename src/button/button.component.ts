@@ -1,4 +1,4 @@
-import { Component, html, LitElement, property } from '@rxdi/lit-html';
+import { Component, html, LitElement, property, css } from '@rxdi/lit-html';
 import { PalettesUnion } from '../settings';
 
 /**
@@ -17,7 +17,7 @@ import { PalettesUnion } from '../settings';
           color: var(--${this.palette}-color);
           background: var(--${this.palette}-bg-color);
           color: #222;
-          border: 1px solid #e5e5e5;
+          border: var(--${this.palette}-border);
           cursor: pointer;
           color: inherit;
           text-transform: none;
@@ -35,8 +35,15 @@ import { PalettesUnion } from '../settings';
           transition: 0.1s ease-in-out;
           transition-property: color, background-color, border-color;
         }
+        :host(:hover) {
+          background-color: var(--${this.palette}-hover-color);
+        }
+        :host(:active) {
+          background-color: var(--${this.palette}-active-color);
+        }
         slot {
           user-select: none;
+          color: var(--${this.palette}-color);
         }
       </style>
       <slot></slot>
@@ -45,6 +52,5 @@ import { PalettesUnion } from '../settings';
 })
 export class ButtonComponent extends LitElement {
   @property({ type: String })
-  public palette: PalettesUnion;
-
+  public palette: PalettesUnion = 'default';
 }

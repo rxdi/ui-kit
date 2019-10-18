@@ -72,28 +72,36 @@ import { ButtonViewComponent } from './button-view/button-view.component';
           :root {
             --default-bg-color: transparent;
             --default-color: #222;
-            --default-border-color: 1px solid #e5e5e5;
+            --default-border: 1px solid #e5e5e5;
+            --default-hover-color: transparent;
+            --default-hover-border: 1px solid #999;
           }
         `,
         primary: css`
           :root {
             --primary-bg-color: #1e87f0;
             --primary-color: #fff;
-            --primary-border-color: 1px solid transparent;
+            --primary-border: 1px solid transparent;
+            --primary-hover-color: #0f7ae5;
+            --primary-active-color: #0e6dcd;
           }
         `,
         secondary: css`
           :root {
             --secondary-bg-color: #222;
             --secondary-color: #fff;
-            --secondary-border-color: 1px solid transparent;
+            --secondary-border: 1px solid transparent;
+            --secondary-hover-color: #333;
+            --secondary-active-color: #000;
           }
         `,
         danger: css`
           :root {
             --danger-bg-color: #f0506e;
             --danger-color: #fff;
-            --danger-border-color: 1px solid transparent;
+            --danger-border: 1px solid transparent;
+            --danger-hover-color: #ee395b;
+            --danger-active-color: #ec2147;
           }
         `
       }
