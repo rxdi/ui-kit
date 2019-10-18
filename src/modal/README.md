@@ -1,5 +1,12 @@
 # Modal Service
 
+Pull request: https://github.com/rxdi/ui-kit/pull/8
+
+
+![Screenshot from 2019-10-18 13-26-10](https://user-images.githubusercontent.com/19847933/67087105-ed54c200-f1aa-11e9-84bd-8805101749b6.png)
+![Screenshot from 2019-10-18 13-25-47](https://user-images.githubusercontent.com/19847933/67087110-eded5880-f1aa-11e9-9d19-8fb9dd697922.png)
+
+
 ##### Usage
 
 Inject `ModalModule` from `@rxdi/ui-kit/modal`

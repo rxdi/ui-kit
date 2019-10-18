@@ -1,6 +1,10 @@
 
 # Image Component
 
+Pull request: https://github.com/rxdi/ui-kit/pull/4
+
+![Screenshot from 2019-10-15 15-54-54](https://user-images.githubusercontent.com/19847933/66833260-32d37e00-ef64-11e9-9e65-79c5b573fe6b.png)
+
 ##### Basic Usage
 
 ```html

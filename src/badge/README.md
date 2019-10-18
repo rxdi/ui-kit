@@ -1,6 +1,10 @@
 
 # Badge Component
 
+Pull request: https://github.com/rxdi/ui-kit/pull/6
+
+![Screenshot from 2019-10-15 16-20-32](https://user-images.githubusercontent.com/19847933/66835183-be024300-ef67-11e9-9645-749e446c86c8.png)
+
 ##### Basic Usage
 
 ```html

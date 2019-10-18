@@ -1,6 +1,22 @@
 
 # Accordion Component
 
+Pull request: https://github.com/rxdi/ui-kit/pull/2
+
+
+## Multi Collapse
+
+![Screenshot from 2019-10-15 11-23-43](https://user-images.githubusercontent.com/19847933/66813900-5552a080-ef3e-11e9-96b3-2d1f7983c579.png)
+
+## No Collapse
+
+![Screenshot from 2019-10-15 11-23-33](https://user-images.githubusercontent.com/19847933/66813901-5552a080-ef3e-11e9-96a7-92a004bad5a0.png)
+
+## Custom template
+
+![Screenshot from 2019-10-15 11-23-07](https://user-images.githubusercontent.com/19847933/66813902-5552a080-ef3e-11e9-8960-7da0d497445d.png)
+
+
 ##### Usage
 
 ```html

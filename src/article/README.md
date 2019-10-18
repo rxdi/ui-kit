@@ -1,6 +1,12 @@
 
 # Article Component
 
+Pull request: https://github.com/rxdi/ui-kit/pull/12
+
+![Screenshot from 2019-10-18 15-01-28](https://user-images.githubusercontent.com/19847933/67092730-a5d53280-f1b8-11e9-9273-818fd11bf1d8.png)
+
+![Screenshot from 2019-10-18 15-11-52](https://user-images.githubusercontent.com/19847933/67093856-2b59e200-f1bb-11e9-8961-a1de4d08ba85.png)
+
 ##### Usage
 
 ```typescript
