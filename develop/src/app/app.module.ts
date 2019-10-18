@@ -2,7 +2,10 @@ import { Module } from '@rxdi/core';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@rxdi/router';
 import { css } from '@rxdi/lit-html';
-import { MarkdownReaderModule, MarkdownReaderComponent } from '../../../src/markdown-reader';
+import {
+  MarkdownReaderModule,
+  MarkdownReaderComponent
+} from '../../../src/markdown-reader';
 import { AccordionComponent } from '../../../src/accordion';
 import { RegularMarkdownComponent } from './markdown-reader/markdown-regular.component';
 import { ResponsiveViewComponent } from './responsive/responsive.component';
@@ -12,9 +15,11 @@ import { ReactiveUiModule } from '../../../src';
 import { GridComponent } from '../../../src/grid/grid.component';
 import { ImageViewComponent } from './image-view/image-view.component';
 import { BadgeComponent } from '../../../src/badge/badge.component';
+import { ButtonComponent } from '../../../src/button/button.component';
 import { ModalModule } from '../../../src/modal';
 import { BadgeViewComponent } from './badge-view/badge-vew.component';
 import { ModalViewComponent } from './modal/modal-view.component';
+import { ButtonViewComponent } from './button-view/button-view.component';
 
 @Module({
   components: [
@@ -23,7 +28,8 @@ import { ModalViewComponent } from './modal/modal-view.component';
     AccordionComponent,
     RxImageComponent,
     GridComponent,
-    BadgeComponent
+    BadgeComponent,
+    ButtonComponent
   ],
   imports: [
     ModalModule.forRoot({
@@ -115,6 +121,10 @@ import { ModalViewComponent } from './modal/modal-view.component';
         {
           path: '/modal',
           component: ModalViewComponent
+        },
+        {
+          path: '/button',
+          component: ButtonViewComponent
         }
       ],
       { log: true }
