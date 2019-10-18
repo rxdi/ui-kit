@@ -3,6 +3,9 @@ import { ModalService } from '../../../../src/modal/modal.service';
 import { Inject } from '@rxdi/core';
 import { ArticleData } from './data';
 
+/**
+ * @customElement article-view-component
+ */
 @Component({
   selector: 'article-view-component',
   style: css`

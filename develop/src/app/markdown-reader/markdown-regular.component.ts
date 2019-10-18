@@ -4,6 +4,9 @@ import { of } from 'rxjs';
 import { map, tap, debounceTime } from 'rxjs/operators';
 import { style } from './markdown-regular.css';
 
+/**
+ * @customElement regular-markdown-component
+ */
 @Component({
   selector: 'regular-markdown-component',
   style: css`
@@ -12,7 +15,7 @@ import { style } from './markdown-regular.css';
   `,
   template(this: RegularMarkdownComponent) {
     return html`
-    <div class="input-container">
+      <div class="input-container">
         <div class="input-group ${this.error ? 'error' : ''}">
           <label>Password *</label>
           <input
@@ -34,7 +37,7 @@ import { style } from './markdown-regular.css';
 export class RegularMarkdownComponent extends LitElement {
   @property() inputLink =
     'https://raw.githubusercontent.com/rxdi/starter-client-lit-html/master/README.md';
-  @property() error: boolean;
+  @property({ type: Boolean }) error: boolean;
 
   changeText(event) {
     this.error = false;

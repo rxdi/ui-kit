@@ -6,6 +6,9 @@ import { switchMap } from 'rxjs/operators';
 import { ModalViewService } from './modal-view.service';
 import { TestModal } from './test-modal.component';
 
+/**
+ * @customElement modal-view-component
+ */
 @Component({
   selector: 'modal-view-component',
   style: css`

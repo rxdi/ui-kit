@@ -22,6 +22,8 @@ import { BadgeViewComponent } from './badge-view/badge-vew.component';
 import { ModalViewComponent } from './modal/modal-view.component';
 import { ButtonViewComponent } from './button-view/button-view.component';
 import { ArticleViewComponent } from './article-view/article-view.component';
+import { DividerViewComponent } from './divider-view/divider-view.component';
+import { DividerComponent } from '../../../src/divider/divider.component';
 
 @Module({
   components: [
@@ -32,7 +34,8 @@ import { ArticleViewComponent } from './article-view/article-view.component';
     GridComponent,
     BadgeComponent,
     ButtonComponent,
-    ArticleComponent
+    ArticleComponent,
+    DividerComponent
   ],
   imports: [
     ModalModule.forRoot({
@@ -77,6 +80,10 @@ import { ArticleViewComponent } from './article-view/article-view.component';
         {
           path: '/article',
           component: ArticleViewComponent
+        },
+        {
+          path: '/divider',
+          component: DividerViewComponent
         },
       ],
       { log: true }

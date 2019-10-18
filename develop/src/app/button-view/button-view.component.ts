@@ -1,5 +1,8 @@
 import { Component, LitElement, html, css } from '@rxdi/lit-html';
 
+/**
+ * @customElement button-view-component
+ */
 @Component({
   selector: 'button-view-component',
   style: css`
