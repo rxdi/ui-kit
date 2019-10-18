@@ -27,6 +27,8 @@ import { DividerViewComponent } from './divider-view/divider-view.component';
 import { DividerComponent } from '../../../src/divider/divider.component';
 import { LabelViewComponent } from './label-view/label-view.component';
 import { DropDownViewComponent } from './dropdown-view/dropdown-view.component';
+import { NavModule } from '../../../src/nav';
+import { NavViewComponent } from './nav-view/nav-view.component';
 
 @Module({
   components: [
@@ -48,6 +50,7 @@ import { DropDownViewComponent } from './dropdown-view/dropdown-view.component';
     }),
     ReactiveUiModule.forRoot(),
     MarkdownReaderModule,
+    NavModule.forRoot(),
     RouterModule.forRoot(
       [
         {
@@ -97,6 +100,10 @@ import { DropDownViewComponent } from './dropdown-view/dropdown-view.component';
         {
           path: '/dropdown',
           component: DropDownViewComponent
+        },
+        {
+          path: '/nav',
+          component: NavViewComponent
         }
       ],
       { log: true }
