@@ -20,6 +20,7 @@ export const style = css`
   .item {
     background: white;
     margin-top: 20px;
+    min-width: 200px;
   }
   .container {
     margin-top: 20px;

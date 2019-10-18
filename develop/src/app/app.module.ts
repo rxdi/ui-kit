@@ -29,6 +29,7 @@ import { LabelViewComponent } from './label-view/label-view.component';
 import { DropDownViewComponent } from './dropdown-view/dropdown-view.component';
 import { NavModule } from '../../../src/nav';
 import { NavViewComponent } from './nav-view/nav-view.component';
+import { NavComponent } from './nav-view/nav-component';
 
 @Module({
   components: [
@@ -42,7 +43,8 @@ import { NavViewComponent } from './nav-view/nav-view.component';
     ArticleComponent,
     DividerComponent,
     LabelComponent,
-    DropdownComponent
+    DropdownComponent,
+    NavComponent
   ],
   imports: [
     ModalModule.forRoot({

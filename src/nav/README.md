@@ -1,6 +1,23 @@
+# Nav off canvas
+
+Pull request https://github.com/rxdi/ui-kit/pull/18
+
+##### Usage
+
+```typescript
+import { NavModule } from '@rxdi/ui-kit/nav';
+
+@Module({
+  imports: [NavModule.forRoot()]
+})
+export class AppModule {}
+```
+
+
+```typescript
 import { LitElement, Component, html, css } from '@rxdi/lit-html';
 import { Inject } from '@rxdi/core';
-import { Nav } from '../../../../src/nav';
+import { Nav } from '@rxdi/ui-kit/nav';
 
 @Component({
   selector: 'nav-view-component',
@@ -60,3 +77,5 @@ export class NavViewComponent extends LitElement {
     this.nav.close({ delay: 300, left: -500 });
   }
 }
+
+```

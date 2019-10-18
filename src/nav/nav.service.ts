@@ -1,11 +1,14 @@
 import { Injectable } from '@rxdi/core';
 import { BehaviorSubject, ReplaySubject } from 'rxjs';
 import { take, delay } from 'rxjs/operators';
-import { TemplateResult, html, Template, CSSResult, css } from '@rxdi/lit-html';
-
+import { TemplateResult, html, CSSResult, css } from '@rxdi/lit-html';
+interface NavOptions {
+  left?: number;
+  delay?: number;
+}
 @Injectable({ init: true })
-export class NavService {
-  private openSubject: BehaviorSubject<{ left: number }> = new BehaviorSubject({
+export class Nav {
+  private openSubject: BehaviorSubject<NavOptions> = new BehaviorSubject({
     left: -270
   });
 
@@ -37,34 +40,46 @@ export class NavService {
     return this.stylesSubject.asObservable();
   }
 
-  open(options: { template?: TemplateResult; styles?: CSSResult } = {}) {
+  setStylesSubject(style: CSSResult) {
+    this.stylesSubject.next(style);
+  }
+
+  open(
+    options: {
+      template?: TemplateResult;
+      styles?: CSSResult;
+      ref?: HTMLElement;
+      navOptions?: NavOptions;
+    } = { navOptions: { left: 0, delay: 20 } }
+  ) {
     this.removeRef();
     this.createRef();
-    this.attachRef();
+    this.attachRef(options.ref);
     if (options.styles) {
       this.stylesSubject.next(options.styles);
     }
     this.template.next(options.template || html``);
-    this.openSubject.next({ left: 0 });
+    this.openSubject.next(options.navOptions);
   }
 
   getNavRef() {
     return this.navRef;
   }
 
-  close() {
+  close(options: NavOptions = { left: -270, delay: 300 }) {
     this.openSubject
       .pipe(
         take(1),
-        delay(300)
+        delay(options.delay)
       )
       .subscribe(() => this.removeRef());
-    this.openSubject.next({ left: -270 });
+    this.openSubject.next(options);
   }
 
   private removeRef() {
     if (this.navRef) {
       this.navRef.remove();
+      this.navRef = null;
     }
   }
 
@@ -72,7 +87,10 @@ export class NavService {
     this.navRef = document.createElement('rx-nav');
   }
 
-  private attachRef() {
-    document.body.appendChild(this.navRef);
+  private attachRef(ref?: HTMLElement) {
+    if (ref) {
+      return ref.appendChild(this.navRef);
+    }
+    return document.body.appendChild(this.navRef);
   }
 }

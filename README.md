@@ -62,10 +62,12 @@ export class AppModule {}
 * [Image](/src/image/README.md)
 * [Badge](/src/badge/README.md)
 * [Modal](/src/modal/README.md)
-* [Button](/src//README.md)
+* [Button](/src/button/README.md)
 * [Article](/src/article/README.md)
 * [Divider](/src/divider/README.md)
 * [Label](/src/label/README.md)
+* [Dropdown](/src/dropdown/README.md)
+* [Off-canvas-nav](/src/nav/README.md)
 
 ### In Progress
 
@@ -85,7 +87,6 @@ export class AppModule {}
 * [Description List](/src//README.md)
 * [Dotnav](/src//README.md)
 * [Drop](/src//README.md)
-* [Dropdown](/src//README.md)
 * [Filter](/src//README.md)
 * [Flex](/src//README.md)
 * [Form](/src//README.md)
@@ -105,7 +106,6 @@ export class AppModule {}
 * [Nav](/src//README.md)
 * [Navbar](/src//README.md)
 * [Notification](/src//README.md)
-* [Off-canvas](/src//README.md)
 * [Overlay](/src//README.md)
 * [Padding](/src//README.md)
 * [Pagination](/src//README.md)
