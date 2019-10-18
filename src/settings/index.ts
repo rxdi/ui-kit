@@ -5,7 +5,8 @@ export const PalettesUnion = strEnum([
   'default',
   'primary',
   'secondary',
-  'danger'
+  'danger',
+  'warning'
 ]);
 export type PalettesUnion = keyof typeof PalettesUnion;
 export type Palettes = { [key in PalettesUnion]: CSSResult };

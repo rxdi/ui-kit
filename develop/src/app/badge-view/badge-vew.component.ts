@@ -21,6 +21,7 @@ import { ModalService } from '../../../../src/modal/modal.service';
       <rx-badge palette="primary">10000</rx-badge>
       <rx-badge palette="secondary">100000</rx-badge>
       <rx-badge palette="danger">1000000</rx-badge>
+      <rx-badge palette="warning">10000000</rx-badge>
     `;
   }
 })

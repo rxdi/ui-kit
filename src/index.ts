@@ -7,6 +7,7 @@ import { DANGER } from '@rxdi/ui-kit/styles/chunks/palettes/danger';
 import { SECONDARY } from '@rxdi/ui-kit/styles/chunks/palettes/secondary';
 import { DynamicCssService } from '@rxdi/ui-kit/services/dynamic-css/dynamic-css';
 import { ResponsiveService } from '@rxdi/ui-kit/services';
+import { WARNING } from './styles/chunks/palettes/warning';
 
 @Module()
 export class ReactiveUiModule {
@@ -25,10 +26,11 @@ export class ReactiveUiModule {
               primary: PRIMARY,
               secondary: SECONDARY,
               danger: DANGER,
+              warning: WARNING
             }
           )
         },
-        DynamicCssService,
+        DynamicCssService
       ]
     };
   }

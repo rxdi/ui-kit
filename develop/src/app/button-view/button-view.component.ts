@@ -10,6 +10,7 @@ import { Component, LitElement, html, css } from '@rxdi/lit-html';
       background-color: white;
       text-align: center;
       padding: 50px;
+      user-select: none;
     }
   `,
   template(this: ButtonViewComponent) {
@@ -19,6 +20,7 @@ import { Component, LitElement, html, css } from '@rxdi/lit-html';
         <rx-button palette="primary">Primary</rx-button>
         <rx-button palette="secondary">Secondary</rx-button>
         <rx-button palette="danger">Danger</rx-button>
+        <rx-button palette="warning">Warning</rx-button>
       </div>
     `;
   }
