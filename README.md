@@ -63,13 +63,15 @@ export class AppModule {}
 * [Badge](/src/badge/README.md)
 * [Modal](/src/modal/README.md)
 * [Button](/src//README.md)
+* [Article](/src/article/README.md)
+* [Divider](/src/divider/README.md)
 
 ### In Progress
 
 * [Alert](/src//README.md)
 * [Align](/src//README.md)
 * [Animation](/src//README.md)
-* [Article](/src//README.md)
+
 * [Background](/src//README.md)
 * [Base](/src//README.md)
 * [Breadcrumb](/src//README.md)
@@ -81,7 +83,7 @@ export class AppModule {}
 * [Countdown](/src//README.md)
 * [Cover](/src//README.md)
 * [Description List](/src//README.md)
-* [Divider](/src//README.md)
+
 * [Dotnav](/src//README.md)
 * [Drop](/src//README.md)
 * [Dropdown](/src//README.md)
