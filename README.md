@@ -68,6 +68,7 @@ export class AppModule {}
 * [Label](/src/label/README.md)
 * [Dropdown](/src/dropdown/README.md)
 * [Off-canvas-nav](/src/nav/README.md)
+* [Card](/src/card/README.md)
 
 ### In Progress
 
@@ -77,7 +78,6 @@ export class AppModule {}
 * [Background](/src//README.md)
 * [Base](/src//README.md)
 * [Breadcrumb](/src//README.md)
-* [Card](/src//README.md)
 * [Close](/src//README.md)
 * [Column](/src//README.md)
 * [Comment](/src//README.md)

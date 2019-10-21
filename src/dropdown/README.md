@@ -1,4 +1,4 @@
-# Grid Component
+# Dropdown Component
 
 Pull request: https://github.com/rxdi/ui-kit/pull/20
 

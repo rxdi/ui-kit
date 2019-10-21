@@ -17,6 +17,7 @@ import { BadgeComponent } from '../../../src/badge/badge.component';
 import { ButtonComponent } from '../../../src/button/button.component';
 import { ArticleComponent } from '../../../src/article/article.component';
 import { LabelComponent } from '../../../src/label/label.component';
+import { CardComponent } from '../../../src/card/card.component';
 import { DropdownComponent } from '../../../src/dropdown/dropdown.component';
 import { ModalModule } from '../../../src/modal';
 import { BadgeViewComponent } from './badge-view/badge-vew.component';
@@ -30,6 +31,7 @@ import { DropDownViewComponent } from './dropdown-view/dropdown-view.component';
 import { NavModule } from '../../../src/nav';
 import { NavViewComponent } from './nav-view/nav-view.component';
 import { NavComponent } from './nav-view/nav-component';
+import { CardViewComponent } from './card-view/card-view.component';
 
 @Module({
   components: [
@@ -44,7 +46,8 @@ import { NavComponent } from './nav-view/nav-component';
     DividerComponent,
     LabelComponent,
     DropdownComponent,
-    NavComponent
+    NavComponent,
+    CardComponent
   ],
   imports: [
     ModalModule.forRoot({
@@ -106,6 +109,10 @@ import { NavComponent } from './nav-view/nav-component';
         {
           path: '/nav',
           component: NavViewComponent
+        },
+        {
+          path: '/card',
+          component: CardViewComponent
         }
       ],
       { log: true }

@@ -21,6 +21,9 @@ import { Nav } from '../../../../src/nav';
           >Close</rx-button
         >
       </div>
+      <markdown-reader
+        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/nav/README.md"
+      ></markdown-reader>
     `;
   }
 })
@@ -47,9 +50,9 @@ export class NavViewComponent extends LitElement {
           top: 0;
           transition: left 0.3s ease-out;
           bottom: 0;
-          left: -500px;
+          left: -300px;
           box-sizing: border-box;
-          min-width: 500px;
+          min-width: 300px;
           background: #fff;
           overflow-y: auto;
         }
@@ -57,6 +60,6 @@ export class NavViewComponent extends LitElement {
     });
   }
   closeNavigation() {
-    this.nav.close({ delay: 300, left: -500 });
+    this.nav.close({ delay: 300, left: -300 });
   }
 }

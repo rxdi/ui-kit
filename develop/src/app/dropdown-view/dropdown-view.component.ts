@@ -23,6 +23,9 @@ import { notification } from './dropdown.svg';
           ${notification}
         </div>
       </rx-dropdown>
+      <markdown-reader
+        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/dropdown/README.md"
+      ></markdown-reader>
     `;
   }
 })

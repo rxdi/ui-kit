@@ -33,6 +33,7 @@ import { Nav } from '../../../../src/nav';
         <a href="/label"><rx-button palette="primary">Label</rx-button> </a>
         <a href="/nav"><rx-button palette="primary">Nav</rx-button> </a>
         <a href="/dropdown"><rx-button palette="primary">Dropdown</rx-button> </a>
+        <a href="/card"><rx-button palette="primary">Card</rx-button> </a>
 
         <!-- <rx-button
           palette="danger"

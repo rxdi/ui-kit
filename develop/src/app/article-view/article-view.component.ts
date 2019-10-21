@@ -19,6 +19,9 @@ import { ArticleData } from './data';
       <div class="container">
         <rx-article .data=${ArticleData.call(this)}></rx-article>
       </div>
+      <markdown-reader
+        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/article/README.md"
+      ></markdown-reader>
     `;
   }
 })

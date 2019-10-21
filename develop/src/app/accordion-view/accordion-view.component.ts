@@ -12,6 +12,9 @@ import glyph from '@rxdi/ui-kit/images/glyph.svg';
       <div style="max-width: 200px; background-color: white">
         <rx-accordion .items=${this.items}></rx-accordion>
       </div>
+      <markdown-reader
+        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/accordion/README.md"
+      ></markdown-reader>
     `;
   }
 })

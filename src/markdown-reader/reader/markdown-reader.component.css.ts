@@ -125,10 +125,10 @@ export const style = css`
     color: #ffc093;
   }
   .language-html .tag {
-    color: #93d7f1;
+    color: #3178d0;
   }
   .language-html .punctuation {
-    color: white;
+    color: #3178d0;
   }
   .token.selector,
   .token.attr-name,

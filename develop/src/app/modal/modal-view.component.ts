@@ -41,6 +41,9 @@ import { TestModal } from './test-modal.component';
           >Open Fullscreen Modal</rx-button
         >
       </div>
+      <markdown-reader
+        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/modal/README.md"
+      ></markdown-reader>
     `;
   }
 })

@@ -25,7 +25,7 @@ import { tap } from 'rxjs/operators';
     return html`
       ${!this.disableTocComponent
         ? html`
-            <toc-component></toc-component>
+            <toc-component src=""></toc-component>
           `
         : ''}
       ${!this.html

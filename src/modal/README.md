@@ -25,9 +25,10 @@ In order to have `backdropClose` which by default is disabled you need to provid
 > `style` With this property you can specify default `modal-container` CSS
 
 > `backdropClose` when click outside of the visible modal area dialog will close
+
+
 ```typescript
 import { ModalModule } from '@rxdi/ui-kit/modal';
-
 @Module({
   imports: [
     ModalModule.forRoot({
@@ -124,7 +125,7 @@ export class ModalViewComponent extends LitElement {
 ```
 
 
-##### Basic Usage
+#### Basic Usage
 
 ```typescript
 import { Component, LitElement, html, css } from '@rxdi/lit-html';
@@ -177,7 +178,7 @@ export class ModalViewComponent extends LitElement {
 }
 ```
 
-##### Using with `Component`
+#### Using with `Component`
 
 ```typescript
 import { Component, LitElement, html, css } from '@rxdi/lit-html';
@@ -257,7 +258,7 @@ export class ModalViewComponent extends LitElement {
 ```
 
 
-##### Using it to spawn `Wizards` or Sequence of modals
+#### Using it to spawn `Wizards` or Sequence of modals
 
 ```typescript
 
@@ -365,7 +366,7 @@ Hacks
 
 
 
-##### Modal service
+#### Modal service
 
 ```typescript
 import { Injectable, Inject } from '@rxdi/core';
@@ -565,7 +566,7 @@ export class ModalViewService {
 ```
 
 
-##### Another example
+#### Another example
 ```typescript
 this.modalService.open(
   html`
