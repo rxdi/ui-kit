@@ -117,5 +117,8 @@ export class MarkdownReaderComponent extends LitElement implements OnUpdate {
         })
       );
     }
+    this.dispatchEvent(
+      new CustomEvent('onSuccess')
+    );
   }
 }

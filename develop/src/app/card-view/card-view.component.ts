@@ -5,7 +5,7 @@ import { ArticleData } from '../article-view/data';
   selector: 'card-view',
   style: css`
     .container {
-      padding: 50px;
+      max-width: 800px;
       margin-bottom: 20px;
       background-color: white;
     }
@@ -18,7 +18,7 @@ import { ArticleData } from '../article-view/data';
   `,
   template(this: CardViewComponent) {
     return html`
-      <div class="container">
+      <div class="container padding">
         <rx-card>
           <div class="margin padding">Default</div>
         </rx-card>

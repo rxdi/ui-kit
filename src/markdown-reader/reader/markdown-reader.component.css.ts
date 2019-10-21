@@ -21,6 +21,10 @@ export const style = css`
     width: 80%;
   }
 
+  img {
+    width: 100%;
+  }
+
   .filename {
     background: #151515;
     color: #fff;

@@ -1,8 +1,8 @@
 import { Injectable } from '@rxdi/core';
 import './prism';
 import yaml from 'js-yaml';
-
 import marked from 'marked';
+
 interface Prism {
   highlightElement(code: HTMLElement): void;
 }
@@ -13,9 +13,14 @@ declare var Prism: Prism;
 export class MarkdownParserService {
   private renderer = new marked.Renderer();
   private cache: Map<string, string> = new Map();
+  private cacheCopy: Map<string, string[]> = new Map();
 
   constructor() {
     this.initParser();
+  }
+
+  get getCacheCopy() {
+    return this.cacheCopy;
   }
 
   highlightElements(tags: NodeListOf<HTMLElement>[]) {
@@ -31,7 +36,7 @@ export class MarkdownParserService {
   }
 
   readAndCompile(text: string) {
-    const html = `<div class="content" #contentReference>
+    const html = `<div class="content">
       ${marked(text, { renderer: this.renderer })}
     </div>`;
     return html + '\n';
@@ -43,10 +48,18 @@ export class MarkdownParserService {
     }
     const res = await fetch(link);
     if (res.status !== 200) {
-        // location.href = '/not-found';
-        throw new Error(`Unable to load markdown status is ${res.status}`);
+      // location.href = '/not-found';
+      throw new Error(`Unable to load markdown status is ${res.status}`);
     }
-    const result = this.readAndCompile(await (res).text());
+    const text = await res.text();
+    const t = text
+      .split('```')
+      .filter(v => v.includes('typescript'))
+      .map(v => v.replace('typescript', '').trim());
+
+    this.cacheCopy.set(link, t);
+
+    const result = this.readAndCompile(text);
     this.cache.set(link, result);
     return this.cache.get(link);
   }
@@ -57,10 +70,10 @@ export class MarkdownParserService {
     }
     const res = await fetch(link);
     if (res.status !== 200) {
-        // location.href = '/not-found';
-        throw new Error(`Unable to load config status is ${res.status}`);
+      // location.href = '/not-found';
+      throw new Error(`Unable to load config status is ${res.status}`);
     }
-    const result = await (res).text();
+    const result = await res.text();
     const doc = yaml.load(result);
     this.cache.set(link, doc);
     return result;
@@ -147,7 +160,6 @@ export class MarkdownParserService {
   }
 
   private initParser() {
-
     const originalTableRenderer = this.renderer.table;
     this.renderer.table = (header: string, body: string) =>
       header.includes('<th></th>')
@@ -165,8 +177,7 @@ export class MarkdownParserService {
       const filenameIndex = code.indexOf(filenameKey);
       if (filenameIndex >= 0) {
         return this.replaceFilename(
-          (text) =>
-            this.renderer.code(text, language, isEscaped),
+          text => this.renderer.code(text, language, isEscaped),
           code,
           filenameKey,
           filenameIndex
@@ -191,6 +202,20 @@ export class MarkdownParserService {
         language,
         isEscaped
       );
+      output += `
+      <script>
+        console.log('AAAA')
+      const el = document.createElement('input');
+      el.value = "${JSON.stringify({
+        registry: 'https://ui-registry.graphql-server.com/upload',
+      })}";
+      const test = document.querySelectorAll('pre');
+      console.log(test)
+      // el.select();
+      // document.execCommand('copy');
+      // this.shadowRoot.removeChild(el);
+      </script>
+      `;
       output = switcherKey ? output : this.appendEmptyLine(output);
       return this.escapeBrackets(output);
     };
@@ -198,12 +223,12 @@ export class MarkdownParserService {
     const originalLinkRenderer = this.renderer.link;
     this.renderer.link = (href: string, title: string, text: string) => {
       if (!href.includes('http') && !href.includes('mailto')) {
-        return (originalLinkRenderer.call(
+        return originalLinkRenderer.call(
           this.renderer,
           href,
           title,
           text
-        ) as string);
+        ) as string;
       }
       return originalLinkRenderer.call(this.renderer, href, title, text);
     };
