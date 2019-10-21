@@ -12,11 +12,7 @@ import { TestModal } from './test-modal.component';
 @Component({
   selector: 'modal-view-component',
   style: css`
-    div {
-      margin: 50px auto;
-      width: 300px;
-      display: grid;
-    }
+
   `,
   template(this: ModalViewComponent) {
     return html`
