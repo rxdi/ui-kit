@@ -70,6 +70,7 @@ export class AppModule {}
 * [Dropdown](/src/dropdown/README.md)
 * [Off-canvas-nav](/src/nav/README.md)
 * [Card](/src/card/README.md)
+* [Progress](/src/progress/README.md)
 
 ### In Progress
 
@@ -114,7 +115,6 @@ export class AppModule {}
 * [Placeholder](/src//README.md)
 * [Position](/src//README.md)
 * [Print](/src//README.md)
-* [Progress](/src//README.md)
 * [Scroll](/src//README.md)
 * [Scrollspy](/src//README.md)
 * [Search](/src//README.md)
