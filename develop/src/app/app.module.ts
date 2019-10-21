@@ -1,10 +1,7 @@
 import { Module } from '@rxdi/core';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@rxdi/router';
-import {
-  MarkdownReaderModule,
-  MarkdownReaderComponent
-} from '../../../src/markdown-reader';
+import { MarkdownReaderModule, MarkdownReaderComponent } from '../../../src/markdown-reader';
 import { AccordionComponent } from '../../../src/accordion';
 import { RegularMarkdownComponent } from './markdown-reader/markdown-regular.component';
 import { ResponsiveViewComponent } from './responsive/responsive.component';
@@ -33,6 +30,8 @@ import { NavViewComponent } from './nav-view/nav-view.component';
 import { NavComponent } from './nav-view/nav-component';
 import { CardViewComponent } from './card-view/card-view.component';
 import { FormsViewComponent } from './forms/forms-view.component';
+import { ProgressViewComponent } from './progress-view/progress-view.component';
+import { ProgressComponent } from '../../../src/progress/progress.component';
 
 @Module({
   components: [
@@ -48,7 +47,8 @@ import { FormsViewComponent } from './forms/forms-view.component';
     LabelComponent,
     DropdownComponent,
     NavComponent,
-    CardComponent
+    CardComponent,
+    ProgressComponent
   ],
   imports: [
     ModalModule.forRoot({
@@ -118,6 +118,10 @@ import { FormsViewComponent } from './forms/forms-view.component';
         {
           path: '/forms',
           component: FormsViewComponent
+        },
+        {
+          path: '/progress',
+          component: ProgressViewComponent
         }
       ],
       { log: true }

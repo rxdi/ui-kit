@@ -8,6 +8,7 @@
     "last 1 chrome versions"
   ],
   "dependencies": {
+    "@rxdi/forms": "^0.7.24",
     "@rxdi/ui-kit": "1.0.0"
   },
   "fireConfig": {
