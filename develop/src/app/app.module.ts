@@ -60,71 +60,71 @@ import { ProgressComponent } from '../../../src/progress/progress.component';
     RouterModule.forRoot(
       [
         {
-          path: '/',
+          path: '/ui-kit',
           component: RegularMarkdownComponent
         },
         {
-          path: '/markdown-reader/:namespace/:repo/:filePath',
+          path: '/ui-kit/markdown-reader/:namespace/:repo/:filePath',
           component: MarkdownReaderComponent
         },
         {
-          path: '/responsive',
+          path: '/ui-kit/responsive',
           component: ResponsiveViewComponent
         },
         {
-          path: '/accordion',
+          path: '/ui-kit/accordion',
           component: AccordionViewComponent
         },
         {
-          path: '/image',
+          path: '/ui-kit/image',
           component: ImageViewComponent
         },
         {
-          path: '/badge',
+          path: '/ui-kit/badge',
           component: BadgeViewComponent
         },
         {
-          path: '/modal',
+          path: '/ui-kit/modal',
           component: ModalViewComponent
         },
         {
-          path: '/button',
+          path: '/ui-kit/button',
           component: ButtonViewComponent
         },
         {
-          path: '/article',
+          path: '/ui-kit/article',
           component: ArticleViewComponent
         },
         {
-          path: '/divider',
+          path: '/ui-kit/divider',
           component: DividerViewComponent
         },
         {
-          path: '/label',
+          path: '/ui-kit/label',
           component: LabelViewComponent
         },
         {
-          path: '/dropdown',
+          path: '/ui-kit/dropdown',
           component: DropDownViewComponent
         },
         {
-          path: '/nav',
+          path: '/ui-kit/nav',
           component: NavViewComponent
         },
         {
-          path: '/card',
+          path: '/ui-kit/card',
           component: CardViewComponent
         },
         {
-          path: '/forms',
+          path: '/ui-kit/forms',
           component: FormsViewComponent
         },
         {
-          path: '/progress',
+          path: '/ui-kit/progress',
           component: ProgressViewComponent
         }
       ],
-      { log: true }
+      { log: true, baseUrl: '/ui-kit' }
     )
   ],
   bootstrap: [AppComponent]

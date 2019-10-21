@@ -14,28 +14,28 @@ import { Nav } from '../../../../src/nav';
         }
       </style>
       <div style="top:0px;background: #1c1f24;display: grid">
-        <a href="/"><rx-button palette="primary">Markdown Link</rx-button> </a>
-        <a href="/markdown-reader/rxdi/ui-components/README.md"
+        <a href="/ui-kit/"><rx-button palette="primary">Markdown Link</rx-button> </a>
+        <a href="/ui-kit/markdown-reader/rxdi/ui-components/README.md"
           ><rx-button palette="primary">Markdown Route Params</rx-button>
         </a>
-        <a href="/responsive"
+        <a href="/ui-kit/responsive"
           ><rx-button palette="primary">Responsive Service</rx-button>
         </a>
-        <a href="/accordion"
+        <a href="/ui-kit/accordion"
           ><rx-button palette="primary">Accordion</rx-button>
         </a>
-        <a href="/image"><rx-button palette="primary">Image</rx-button> </a>
-        <a href="/badge"><rx-button palette="primary">Badge</rx-button> </a>
-        <a href="/modal"><rx-button palette="primary">Modal</rx-button> </a>
-        <a href="/button"><rx-button palette="primary">Button</rx-button> </a>
-        <a href="/article"><rx-button palette="primary">Article</rx-button> </a>
-        <a href="/divider"><rx-button palette="primary">Divider</rx-button> </a>
-        <a href="/label"><rx-button palette="primary">Label</rx-button> </a>
-        <a href="/nav"><rx-button palette="primary">Nav</rx-button> </a>
-        <a href="/dropdown"><rx-button palette="primary">Dropdown</rx-button> </a>
-        <a href="/card"><rx-button palette="primary">Card</rx-button> </a>
-        <a href="/forms"><rx-button palette="primary">Forms</rx-button> </a>
-        <a href="/progress"><rx-button palette="primary">Progress</rx-button> </a>
+        <a href="/ui-kit/image"><rx-button palette="primary">Image</rx-button> </a>
+        <a href="/ui-kit/badge"><rx-button palette="primary">Badge</rx-button> </a>
+        <a href="/ui-kit/modal"><rx-button palette="primary">Modal</rx-button> </a>
+        <a href="/ui-kit/button"><rx-button palette="primary">Button</rx-button> </a>
+        <a href="/ui-kit/article"><rx-button palette="primary">Article</rx-button> </a>
+        <a href="/ui-kit/divider"><rx-button palette="primary">Divider</rx-button> </a>
+        <a href="/ui-kit/label"><rx-button palette="primary">Label</rx-button> </a>
+        <a href="/ui-kit/nav"><rx-button palette="primary">Nav</rx-button> </a>
+        <a href="/ui-kit/dropdown"><rx-button palette="primary">Dropdown</rx-button> </a>
+        <a href="/ui-kit/card"><rx-button palette="primary">Card</rx-button> </a>
+        <a href="/ui-kit/forms"><rx-button palette="primary">Forms</rx-button> </a>
+        <a href="/ui-kit/progress"><rx-button palette="primary">Progress</rx-button> </a>
 
         <!-- <rx-button
           palette="danger"
