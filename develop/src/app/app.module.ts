@@ -1,7 +1,6 @@
 import { Module } from '@rxdi/core';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@rxdi/router';
-import { css } from '@rxdi/lit-html';
 import {
   MarkdownReaderModule,
   MarkdownReaderComponent
@@ -18,6 +17,7 @@ import { BadgeComponent } from '../../../src/badge/badge.component';
 import { ButtonComponent } from '../../../src/button/button.component';
 import { ArticleComponent } from '../../../src/article/article.component';
 import { LabelComponent } from '../../../src/label/label.component';
+import { DropdownComponent } from '../../../src/dropdown/dropdown.component';
 import { ModalModule } from '../../../src/modal';
 import { BadgeViewComponent } from './badge-view/badge-vew.component';
 import { ModalViewComponent } from './modal/modal-view.component';
@@ -26,6 +26,7 @@ import { ArticleViewComponent } from './article-view/article-view.component';
 import { DividerViewComponent } from './divider-view/divider-view.component';
 import { DividerComponent } from '../../../src/divider/divider.component';
 import { LabelViewComponent } from './label-view/label-view.component';
+import { DropDownViewComponent } from './dropdown-view/dropdown-view.component';
 
 @Module({
   components: [
@@ -38,7 +39,8 @@ import { LabelViewComponent } from './label-view/label-view.component';
     ButtonComponent,
     ArticleComponent,
     DividerComponent,
-    LabelComponent
+    LabelComponent,
+    DropdownComponent
   ],
   imports: [
     ModalModule.forRoot({
@@ -91,6 +93,10 @@ import { LabelViewComponent } from './label-view/label-view.component';
         {
           path: '/label',
           component: LabelViewComponent
+        },
+        {
+          path: '/dropdown',
+          component: DropDownViewComponent
         }
       ],
       { log: true }

@@ -24,6 +24,7 @@ import { style } from './app.component.css';
       <a href="/article"><button class="button">Article</button> </a>
       <a href="/divider"><button class="button">Divider</button> </a>
       <a href="/label"><button class="button">Label</button> </a>
+      <a href="/dropdown"><button class="button">Dropdown</button></a>
     </div>
     <router-outlet></router-outlet>
   `,
