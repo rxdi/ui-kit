@@ -1,5 +1,5 @@
 import { Injectable, Inject, Container } from '@rxdi/core';
-import { Palettes } from '@rxdi/ui-kit/settings';
+import { Palettes } from '../../settings';
 import { BehaviorSubject } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 

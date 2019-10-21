@@ -1,7 +1,7 @@
 import { html, Component, LitElement, css, property } from '@rxdi/lit-html';
 import { fromEvent, Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { PalettesUnion } from '@rxdi/ui-kit/settings';
+import { PalettesUnion } from '../settings';
 /**
  * @customElement rx-dropdown
  */

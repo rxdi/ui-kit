@@ -5,7 +5,7 @@ import {
   LitElement,
   property
 } from '@rxdi/lit-html';
-import { PalettesUnion } from '@rxdi/ui-kit/settings';
+import { PalettesUnion } from '../settings';
 
 /**
  * @customElement rx-badge

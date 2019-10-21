@@ -2,6 +2,21 @@
 
 Pull request: https://github.com/rxdi/ui-kit/pull/22
 
+## Different palettes
+![Screenshot from 2019-10-21 15-32-44](https://user-images.githubusercontent.com/19847933/67205417-66a51c80-f418-11e9-9c85-17a53355a7c4.png)
+
+
+
+## Hover
+
+![Screenshot from 2019-10-21 15-33-35](https://user-images.githubusercontent.com/19847933/67205401-5e4ce180-f418-11e9-97c3-1966298b7d07.png)
+![Screenshot from 2019-10-21 15-33-25](https://user-images.githubusercontent.com/19847933/67205402-5e4ce180-f418-11e9-9a0c-35b40ef16ff2.png)
+
+## With Component
+![Screenshot from 2019-10-21 15-34-10](https://user-images.githubusercontent.com/19847933/67205432-6c9afd80-f418-11e9-8011-5b69423ea4d4.png)
+
+
+
 ## Usage
 
 ```typescript

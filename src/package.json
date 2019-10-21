@@ -1,8 +1,8 @@
 {
   "name": "@rxdi/ui-kit",
   "version": "1.0.0",
-  "dependencies": {
-    "@rxdi/ui-kit": "1.0.0"
+  "scripts": {
+    "build": "echo Build"
   },
   "browserslist": [
     "last 1 chrome versions"

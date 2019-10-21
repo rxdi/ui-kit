@@ -1,5 +1,5 @@
 import { CSSResult } from '@rxdi/lit-html';
-import { strEnum } from '@rxdi/ui-kit/helpers/str-enum';
+import { strEnum } from '../helpers/str-enum';
 
 export const PalettesUnion = strEnum([
   'default',

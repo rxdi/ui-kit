@@ -1,6 +1,6 @@
 import { css, unsafeCSS } from '@rxdi/lit-html';
-import minus from '@rxdi/ui-kit/images/minus.svg';
-import plus from '@rxdi/ui-kit/images/plus.svg';
+import minus from '../images/minus.svg';
+import plus from '../images/plus.svg';
 
 export const IMAGES = css`
   .plus {

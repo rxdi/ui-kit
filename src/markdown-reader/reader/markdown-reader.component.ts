@@ -12,7 +12,7 @@ import { Inject } from '@rxdi/core';
 import { MarkdownParserService } from '../markdown.service';
 import { MarkdownParserMenuProvider } from '../markdown-menu.provider';
 import { UIPackageRouteParams } from './markdown-reader.component.interface';
-import { ResponsiveService } from '@rxdi/ui-kit/services';
+import { ResponsiveService } from '../../services';
 import { tap } from 'rxjs/operators';
 
 /**

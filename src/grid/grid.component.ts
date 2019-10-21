@@ -9,8 +9,8 @@ import {
 import { Inject } from '@rxdi/core';
 import { map, switchMap } from 'rxjs/operators';
 import { combineLatest, of, Observable, isObservable, from } from 'rxjs';
-import { ResponsiveService } from '@rxdi/ui-kit/services';
-import { MAIN_CSS } from '@rxdi/ui-kit/styles';
+import { ResponsiveService } from '../services';
+import { MAIN_CSS } from '../styles';
 
 /**
  * @customElement rx-grid

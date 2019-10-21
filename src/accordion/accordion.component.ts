@@ -5,7 +5,7 @@ import {
   property,
   classMap
 } from '@rxdi/lit-html';
-import { style } from '@rxdi/ui-kit/accordion/style';
+import { style } from '../accordion/style';
 import { AccordionItem } from './model';
 
 /**

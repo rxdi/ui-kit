@@ -1,9 +1,9 @@
 import { css, unsafeCSS } from '@rxdi/lit-html';
-import { MAIN_CSS } from '@rxdi/ui-kit/styles';
-import { TRANSITIONS } from '@rxdi/ui-kit/styles/transitions';
+import { MAIN_CSS } from '../styles';
+import { TRANSITIONS } from '../styles/transitions';
 
-import minus from '@rxdi/ui-kit/images/minus.svg';
-import plus from '@rxdi/ui-kit/images/plus.svg';
+import minus from '../images/minus.svg';
+import plus from '../images/plus.svg';
 
 export const style = css`
   ${MAIN_CSS}

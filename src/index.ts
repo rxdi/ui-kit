@@ -1,12 +1,12 @@
 import { Module, ModuleWithProviders } from '@rxdi/core';
-import { Palettes } from '@rxdi/ui-kit/settings';
+import { Palettes } from './settings';
 import { BehaviorSubject } from 'rxjs';
-import { DEFAULT } from '@rxdi/ui-kit/styles/chunks/palettes/default';
-import { PRIMARY } from '@rxdi/ui-kit/styles/chunks/palettes/primary';
-import { DANGER } from '@rxdi/ui-kit/styles/chunks/palettes/danger';
-import { SECONDARY } from '@rxdi/ui-kit/styles/chunks/palettes/secondary';
-import { DynamicCssService } from '@rxdi/ui-kit/services/dynamic-css/dynamic-css';
-import { ResponsiveService } from '@rxdi/ui-kit/services';
+import { DEFAULT } from './styles/chunks/palettes/default';
+import { PRIMARY } from './styles/chunks/palettes/primary';
+import { DANGER } from './styles/chunks/palettes/danger';
+import { SECONDARY } from './styles/chunks/palettes/secondary';
+import { DynamicCssService } from './services/dynamic-css/dynamic-css';
+import { ResponsiveService } from './services';
 import { WARNING } from './styles/chunks/palettes/warning';
 
 @Module()

@@ -1,6 +1,6 @@
 {
   "name": "@rxdi/ui-kit",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "UI Components for building graphql-server website",
   "bolt": {
     "workspaces": [
@@ -10,7 +10,9 @@
   },
   "scripts": {
     "start": "parcel ./develop/index.html --out-dir build/client",
-    "build": "rm -rf dist && tsc"
+    "build-all": "npm run build && cp -r ./dist/* ./src && bolt ws exec -- npm run build",
+    "patch":"npm version patch && npm publish --update-readme --access public",
+    "build": "rm -rf dist && tsc && cp -r ./dist/* ."
   },
   "repository": {
     "type": "git",
@@ -26,12 +28,14 @@
   "license": "MIT",
   "devDependencies": {
     "@rxdi/core": "0.7.24",
-    "@rxdi/lit-html": "0.7.24",
     "@rxdi/forms": "^0.7.24",
+    "@rxdi/lit-html": "0.7.24",
     "@rxdi/router": "0.7.24",
     "@types/js-yaml": "^3.12.1",
     "@types/marked": "^0.6.5",
     "@types/node": "^12.0.8",
+    "@rxdi/firelink": "^0.0.21",
+    "cssnano": "^4.1.10",
     "typescript": "^3.5.1"
   },
   "browserslist": [
