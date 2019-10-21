@@ -2359,9 +2359,9 @@ var e,t=arguments[3];!function(t){"use strict";var n={newline:/^\n+/,code:/^( {4
 },{"@rxdi/lit-html":"R8ie"}],"tws7":[function(require,module,exports) {
 "use strict";function e(e){for(var r in e)exports.hasOwnProperty(r)||(exports[r]=e[r])}Object.defineProperty(exports,"__esModule",{value:!0}),e(require("./main")),e(require("./transitions"));
 },{"./main":"wZHx","./transitions":"YwVR"}],"Qcir":[function(require,module,exports) {
-module.exports="/minus.428d7201.svg";
+module.exports="ui-kit/minus.428d7201.svg";
 },{}],"JLCr":[function(require,module,exports) {
-module.exports="/plus.e6cef85c.svg";
+module.exports="ui-kit/plus.e6cef85c.svg";
 },{}],"RAVT":[function(require,module,exports) {
 "use strict";var e=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(exports,"__esModule",{value:!0});const t=require("@rxdi/lit-html"),i=require("../styles"),r=require("../styles/transitions"),o=e(require("../images/minus.svg")),s=e(require("../images/plus.svg"));exports.style=t.css`
   ${i.MAIN_CSS}
@@ -2649,7 +2649,7 @@ module.exports="/plus.e6cef85c.svg";
               `)))}
     `}})],a),exports.GridComponent=a;
 },{"@rxdi/lit-html":"R8ie","@rxdi/core":"lhgc","rxjs/operators":"cVrl","rxjs":"iRqj","../services":"wYaI","../styles":"tws7"}],"i0Ro":[function(require,module,exports) {
-module.exports="/glyph.e72576d6.svg";
+module.exports="ui-kit/glyph.e72576d6.svg";
 },{}],"bbMR":[function(require,module,exports) {
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.ImageViewComponent=void 0;var e=require("@rxdi/lit-html"),t=r(require("@rxdi/ui-kit/images/glyph.svg"));function r(e){return e&&e.__esModule?e:{default:e}}var o=function(e,t,r,o){var i,n=arguments.length,a=n<3?t:null===o?o=Object.getOwnPropertyDescriptor(t,r):o;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)a=Reflect.decorate(e,t,r,o);else for(var m=e.length-1;m>=0;m--)(i=e[m])&&(a=(n<3?i(a):n>3?i(t,r,a):i(t,r))||a);return n>3&&a&&Object.defineProperty(t,r,a),a};let i=class extends e.LitElement{constructor(){super(...arguments),this.onLoad=(e=>{console.log(e.target)})}};exports.ImageViewComponent=i,exports.ImageViewComponent=i=o([(0,e.Component)({selector:"image-view-component",template(){return e.html`
       <div style="max-width: 200px; background-color: white">
@@ -3644,4 +3644,4 @@ module.exports="/glyph.e72576d6.svg";
 },{"@rxdi/core":"lhgc","./app.component":"XCbS","@rxdi/router":"tW8N","../../../src/markdown-reader":"X0WN","../../../src/accordion":"oj6B","./markdown-reader/markdown-regular.component":"SbH7","./responsive/responsive.component":"Onv4","./accordion-view/accordion-view.component":"cwfd","../../../src/image":"N7t6","../../../src":"fUdq","../../../src/grid/grid.component":"iXmO","./image-view/image-view.component":"bbMR","../../../src/badge/badge.component":"C2jj","../../../src/button/button.component":"Ofur","../../../src/article/article.component":"pT1A","../../../src/label/label.component":"lvFV","../../../src/card/card.component":"kpCZ","../../../src/dropdown/dropdown.component":"vZQS","../../../src/modal":"mF9g","./badge-view/badge-vew.component":"jitd","./modal/modal-view.component":"jCtu","./button-view/button-view.component":"DgQ9","./article-view/article-view.component":"XMfu","./divider-view/divider-view.component":"LW6G","../../../src/divider/divider.component":"OXJN","./label-view/label-view.component":"JKyV","./dropdown-view/dropdown-view.component":"B4BC","../../../src/nav":"e2p2","./nav-view/nav-view.component":"p3Sc","./nav-view/nav-component":"ynE3","./card-view/card-view.component":"wymD","./forms/forms-view.component":"ZY77"}],"ZCfc":[function(require,module,exports) {
 "use strict";var e=require("@rxdi/core"),o=require("./src/app/app.module");window.addEventListener("load",()=>{(0,e.Bootstrap)(o.AppModule,{init:!1}).subscribe(()=>console.log("App Started!"),e=>console.error(e))}),module.hot&&module.hot.dispose(()=>document.body.innerHTML="");
 },{"@rxdi/core":"lhgc","./src/app/app.module":"Gsig"}]},{},["ZCfc"], null)
-//# sourceMappingURL=/main.879aeb71.js.map
+//# sourceMappingURL=ui-kit/main.879aeb71.js.map

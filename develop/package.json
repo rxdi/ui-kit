@@ -2,7 +2,7 @@
   "name": "@rxdi/ui-kit-client",
   "version": "1.0.0",
   "scripts": {
-    "build": "npx firelink build ./index.html --out-dir ../docs"
+    "build": "npx firelink build ./index.html --out-dir ../docs --public-url ui-kit "
   },
   "browserslist": [
     "last 1 chrome versions"
