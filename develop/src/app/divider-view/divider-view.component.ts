@@ -21,6 +21,9 @@ import { Component, html, LitElement, css } from '@rxdi/lit-html';
         <h1>Icon Divider</h1>
         <rx-divider type="icon"></rx-divider>
       </div>
+      <markdown-reader
+        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/divider/README.md"
+      ></markdown-reader>
     `;
   }
 })

@@ -13,4 +13,5 @@ export const MODAL_DIALOG_OPTIONS = new InjectionToken(
 export interface MODAL_DIALOG_OPTIONS {
   backdropClose?: boolean;
   style?: CSSResult;
+  hideScroll?: boolean;
 }

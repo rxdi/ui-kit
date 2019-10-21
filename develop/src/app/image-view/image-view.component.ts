@@ -14,6 +14,9 @@ import glyph from '@rxdi/ui-kit/images/glyph.svg';
         ></rx-image>
         <rx-image image=${glyph} @onLoad=${this.onLoad}></rx-image>
       </div>
+      <markdown-reader
+        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/image/README.md"
+      ></markdown-reader>
     `;
   }
 })

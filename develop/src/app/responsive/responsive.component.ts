@@ -13,6 +13,10 @@ import { Subscription } from 'rxjs';
     return html`
       <p>Move your browser width or height by pressing F12 on Chrome</p>
       ${JSON.stringify(this.widthHeight)} ${this.printResolutions()}
+
+      <markdown-reader
+        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/services/responsive/README.md"
+      ></markdown-reader>
     `;
   }
 })

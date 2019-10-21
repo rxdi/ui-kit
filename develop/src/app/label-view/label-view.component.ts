@@ -5,7 +5,6 @@ import { Component, html, LitElement, css } from '@rxdi/lit-html';
   style: css`
     .container {
       background-color: white;
-      height: 100px;
       padding: 50px;
       user-select: none;
     }
@@ -16,12 +15,15 @@ import { Component, html, LitElement, css } from '@rxdi/lit-html';
   template(this: LabelViewComponent) {
     return html`
       <div class="container">
-      <rx-label>Default</rx-label>
-      <rx-label palette="primary">Primary</rx-label>
-      <rx-label palette="secondary">Secondary</rx-label>
-      <rx-label palette="warning">Warning</rx-label>
-      <rx-label palette="danger">Danger</rx-label>
+        <rx-label>Default</rx-label>
+        <rx-label palette="primary">Primary</rx-label>
+        <rx-label palette="secondary">Secondary</rx-label>
+        <rx-label palette="warning">Warning</rx-label>
+        <rx-label palette="danger">Danger</rx-label>
       </div>
+      <markdown-reader
+        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/label/README.md"
+      ></markdown-reader>
     `;
   }
 })

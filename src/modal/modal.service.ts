@@ -2,7 +2,7 @@ import { Injectable, Container, Injector } from '@rxdi/core';
 import { TemplateResult, html, unsafeHTML, css } from '@rxdi/lit-html';
 import { ReplaySubject, Observable, Subject, of, from } from 'rxjs';
 import { MODAL_DIALOG_DATA, MODAL_DIALOG_OPTIONS } from './interface';
-import { take, map, concatMap, switchMap } from 'rxjs/operators';
+import { take, map, concatMap, switchMap, tap } from 'rxjs/operators';
 import { DialogData } from '../modals/main/interface';
 
 @Injectable()
@@ -10,12 +10,12 @@ export class ModalService {
   @Injector(MODAL_DIALOG_OPTIONS)
   private options: MODAL_DIALOG_OPTIONS;
   private originalOptions = Object.assign({}, this.options);
-
   private modalRef: HTMLElement;
   private modalTemplate: ReplaySubject<TemplateResult> = new ReplaySubject();
   private closeSubject$ = new Subject();
 
   open<T>(template: TemplateResult, dialogOptions?: MODAL_DIALOG_OPTIONS) {
+    this.overflow('hidden');
     return new Observable<T>(observer => {
       this.createModalPortal();
       if (dialogOptions) {
@@ -25,6 +25,7 @@ export class ModalService {
         if (dialogOptions) {
           this.setSettings(this.originalOptions);
         }
+        this.overflow('visible');
         observer.next(stream);
         observer.complete();
       });
@@ -36,6 +37,7 @@ export class ModalService {
     data: DialogData,
     settings: MODAL_DIALOG_OPTIONS = { backdropClose: true }
   ) {
+    this.overflow('hidden');
     return from(import('../modals/main/main')).pipe(
       map(main => main.MainModalComponent),
       switchMap(main =>
@@ -45,7 +47,7 @@ export class ModalService {
             settings.style ||
             css`
               .wrapper {
-                position: absolute;
+                position: fixed;
                 top: 0;
                 left: 0;
                 align-items: center;
@@ -58,13 +60,20 @@ export class ModalService {
                 width: 100%;
                 height: 100%;
                 z-index: 20;
-                position: absolute;
+                position: fixed;
                 pointer-events: all;
               }
             `
         })
-      )
+      ),
+      tap(() => this.overflow('visible'))
     );
+  }
+
+  overflow(type: 'hidden' | 'visible') {
+    if (this.options.hideScroll) {
+      document.body.style.overflow = type;
+    }
   }
 
   openComponent<T>(
@@ -75,6 +84,7 @@ export class ModalService {
     if (dialogOptions) {
       this.setSettings(dialogOptions);
     }
+    this.overflow('hidden');
     return new Observable<T>(observer => {
       const tag = (component as any).is;
       if (!tag) {
@@ -95,6 +105,7 @@ export class ModalService {
           this.setSettings(this.originalOptions);
         }
         observer.next(stream);
+        this.overflow('visible');
         observer.complete();
       });
     });

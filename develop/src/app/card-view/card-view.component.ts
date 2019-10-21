@@ -1,4 +1,5 @@
 import { Component, html, LitElement, css } from '@rxdi/lit-html';
+import { ArticleData } from '../article-view/data';
 
 @Component({
   selector: 'card-view',
@@ -18,7 +19,7 @@ import { Component, html, LitElement, css } from '@rxdi/lit-html';
   template(this: CardViewComponent) {
     return html`
       <div class="container">
-      <rx-card>
+        <rx-card>
           <div class="margin padding">Default</div>
         </rx-card>
         <rx-card palette="primary">
@@ -34,9 +35,14 @@ import { Component, html, LitElement, css } from '@rxdi/lit-html';
           <div class="margin padding">Danger</div>
         </rx-card>
         <rx-card>
-          <article-view-component></article-view-component>
+          <div class="margin padding">
+            <rx-article .data=${ArticleData.call(this)}></rx-article>
+          </div>
         </rx-card>
       </div>
+      <markdown-reader
+        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/card/README.md"
+      ></markdown-reader>
     `;
   }
 })

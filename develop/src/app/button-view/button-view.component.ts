@@ -22,6 +22,9 @@ import { Component, LitElement, html, css } from '@rxdi/lit-html';
         <rx-button palette="danger">Danger</rx-button>
         <rx-button palette="warning">Warning</rx-button>
       </div>
+      <markdown-reader
+        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/button/README.md"
+      ></markdown-reader>
     `;
   }
 })
