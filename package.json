@@ -27,6 +27,7 @@
   "devDependencies": {
     "@rxdi/core": "0.7.24",
     "@rxdi/lit-html": "0.7.24",
+    "@rxdi/forms": "^0.7.24",
     "@rxdi/router": "0.7.24",
     "@types/js-yaml": "^3.12.1",
     "@types/marked": "^0.6.5",

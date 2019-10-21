@@ -1,6 +1,9 @@
 import { Component, html, LitElement } from '@rxdi/lit-html';
 import { notification } from './dropdown.svg';
 
+/**
+ * @customElement dropdown-view
+ */
 @Component({
   selector: 'dropdown-view',
   template(this: DropDownViewComponent) {

@@ -11,6 +11,11 @@
     rxjs "6.5.2"
     systemjs "0.21.4"
 
+"@rxdi/forms@^0.7.24":
+  version "0.7.24"
+  resolved "https://registry.yarnpkg.com/@rxdi/forms/-/forms-0.7.24.tgz#6b2b5e9f11c9cf9da1e58663f497b26b573353b8"
+  integrity sha512-4RXoYfYNRbnmDgGnettAS4R4IfJHiYTu2sjdiMUMd2p5MUoZHi0IzaHN5WZ02JDQzSzk2VE2q7AyMiTLbMV60w==
+
 "@rxdi/lit-html@0.7.24":
   version "0.7.24"
   resolved "https://registry.yarnpkg.com/@rxdi/lit-html/-/lit-html-0.7.24.tgz#097912f85fe9f7dbab112a8ad7709da25dcc3bac"

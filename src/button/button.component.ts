@@ -1,5 +1,30 @@
-import { Component, html, LitElement, property, css } from '@rxdi/lit-html';
+import { Component, html, LitElement, property } from '@rxdi/lit-html';
 import { PalettesUnion } from '../settings';
+
+type InputType =
+  | 'hidden'
+  | 'text'
+  | 'search'
+  | 'tel'
+  | 'url'
+  | 'email'
+  | 'password'
+  | 'datetime'
+  | 'date'
+  | 'month'
+  | 'week'
+  | 'time'
+  | 'datetime-local'
+  | 'number'
+  | 'range'
+  | 'color'
+  | 'checkbox'
+  | 'radio'
+  | 'file'
+  | 'submit'
+  | 'image'
+  | 'reset'
+  | 'button';
 
 /**
  * @customElement rx-button
@@ -53,4 +78,45 @@ import { PalettesUnion } from '../settings';
 export class ButtonComponent extends LitElement {
   @property({ type: String })
   public palette: PalettesUnion = 'default';
+
+  @property({ type: String })
+  public type: InputType;
+
+  OnUpdateFirst() {
+    if (this.type === 'submit') {
+      const form = this.getFormElement();
+      if (form) {
+        const input = document.createElement('input');
+        input.style.display = 'none';
+        input.type = this.type as InputType;
+        form.append(input);
+        this.addEventListener('click', () => input.click());
+      }
+    }
+  }
+
+  private getFormElement() {
+    const get = (obj: Object = {}, path: string = '') =>
+      path
+        .replace(/\[(.+?)\]/g, '.$1')
+        .split('.')
+        .reduce((o, key) => (!o[key] ? o : o[key]), obj);
+    const defaultKey = 'parentElement';
+    let selector = '';
+    let form: HTMLFormElement;
+
+    for (const k of Array(1000).fill(defaultKey)) {
+      if (!selector) {
+        selector = k;
+      } else {
+        selector += `.${k}`;
+      }
+      const formElement = get(this.parentElement, selector);
+      if (formElement && formElement.tagName === 'FORM') {
+        form = formElement;
+        break;
+      }
+    }
+    return form;
+  }
 }

@@ -32,6 +32,7 @@ import { NavModule } from '../../../src/nav';
 import { NavViewComponent } from './nav-view/nav-view.component';
 import { NavComponent } from './nav-view/nav-component';
 import { CardViewComponent } from './card-view/card-view.component';
+import { FormsViewComponent } from './forms/forms-view.component';
 
 @Module({
   components: [
@@ -113,6 +114,10 @@ import { CardViewComponent } from './card-view/card-view.component';
         {
           path: '/card',
           component: CardViewComponent
+        },
+        {
+          path: '/forms',
+          component: FormsViewComponent
         }
       ],
       { log: true }
