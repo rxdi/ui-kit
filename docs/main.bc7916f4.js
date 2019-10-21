@@ -3507,6 +3507,7 @@ module.exports="ui-kit/glyph.e72576d6.svg";
         <a href="/dropdown"><rx-button palette="primary">Dropdown</rx-button> </a>
         <a href="/card"><rx-button palette="primary">Card</rx-button> </a>
         <a href="/forms"><rx-button palette="primary">Forms</rx-button> </a>
+        <a href="/progress"><rx-button palette="primary">Progress</rx-button> </a>
 
         <!-- <rx-button
           palette="danger"
@@ -3569,17 +3570,17 @@ module.exports="ui-kit/glyph.e72576d6.svg";
         link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/card/README.md"
       ></markdown-reader>
     `}})],t);
-},{"@rxdi/lit-html":"R8ie","../article-view/data":"iAp7"}],"uqUW":[function(require,module,exports) {
+},{"@rxdi/lit-html":"R8ie","../article-view/data":"iAp7"}],"vjjz":[function(require,module,exports) {
 "use strict";function t(t){return t.reduce((t,e)=>(t[e]=e,t),Object.create(null))}Object.defineProperty(exports,"__esModule",{value:!0}),exports.InputValidityState=t(["badInput","customError","patternMismatch","rangeOverflow","rangeUnderflow","stepMismatch","tooLong","tooShort","typeMismatch","valid","valueMissing"]);
-},{}],"WSul":[function(require,module,exports) {
+},{}],"TqKC":[function(require,module,exports) {
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0});class e{constructor(){this.o=new Map}unsubscribe(){[...this.o.values()].forEach(e=>this.o.delete(e))}}exports.$Subscription=e;class t extends e{constructor(e){super(),this.init=!0,this.fn=e}subscribe(e){return this.o.set(e,e),"function"==typeof this.fn&&this.init&&(this.fn(this),this.init=!1),{unsubscribe:()=>{this.o.delete(e)}}}complete(){this.unsubscribe()}next(e){[...this.o.values()].forEach(t=>t(e))}}exports.$Observable=t;class r extends t{constructor(e){"function"==typeof e&&super(e),super(null),this.setValue(e)}setValue(e){this.v=e}next(e){this.setValue(e),super.next(e)}getValue(){return this.v}asObservable(){return this}}function s(){try{return require("rxjs").BehaviorSubject}catch(e){}return r}function n(){try{return require("rxjs").Observable}catch(e){}return t}function u(){try{return require("rxjs").Subscription}catch(t){}return e}function i(){}function o(e){return new(s())(e)}function c(e){return new(n())(e)}function h(){return new(u())}exports.$BehaviorSubject=r,exports.noop=i,exports.BehaviorSubject=o,exports.Observable=c,exports.Subscription=h;
-},{"rxjs":"iRqj"}],"OVCP":[function(require,module,exports) {
+},{"rxjs":"iRqj"}],"pIiP":[function(require,module,exports) {
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0});const e=require("./form.tokens"),t=require("./rx-fake");class r{constructor(e,r){this.validators=new Map,this.valid=!0,this.invalid=!1,this.errors={},this.errorMap=new Map,this.inputs=new Map,this.options={},this._valueChanges=new t.BehaviorSubject(e)}init(){this.setFormElement(this.querySelectForm(this.parentElement.shadowRoot||this.parentElement)).setInputs(this.mapEventToInputs(this.querySelectorAllInputs()))}prepareValues(){return Object.keys(this.value).forEach(e=>{const t=this.value[e];if(this.errors[e]=this.errors[e]||{},t.constructor===Array){if(t[1]&&t[1].constructor===Array&&t[1].forEach(t=>{const r=this.validators.get(e)||[];this.validators.set(e,[...r,t])}),t[0].constructor!==String&&t[0].constructor!==Number&&t[0].constructor!==Boolean)throw new Error("Input value must be of type 'string', 'boolean' or 'number'");this.value[e]=t[0]}}),this}setParentElement(e){return this.parentElement=e,this}getParentElement(){return this.parentElement}setOptions(e){return this.options=e,this}getOptions(){return this.options}get valueChanges(){return this._valueChanges.asObservable()}updateValueAndValidity(){this.resetErrors();const e=this.querySelectorAllInputs().map(e=>(e.setCustomValidity(""),e)).map(e=>this.validate(e)).filter(e=>e.errors.length);return this.getParentElement().requestUpdate(),e}updateValueAndValidityOnEvent(e){const t=this;return function(r){const s=[...t.getFormElement().querySelectorAll(`input[name="${this.name}"]`).values()].length;let n=this.value;1!==s||"checkbox"!==this.type&&"radio"!==this.type||(n=String(this.checked)),t.options.multi&&s>1&&([...t.getFormElement().querySelectorAll("input:checked").values()].forEach(e=>e.checked=!1),this.checked=!0),t.resetErrors();const i=t.applyValidationContext(t.validate(this));return t.options.strict?(i&&t.setValue(this.name,n),t.parentElement.requestUpdate(),e.call(t.parentElement,r)):(t.setValue(this.name,n),t.parentElement.requestUpdate(),e.call(t.parentElement,r))}}applyValidationContext({errors:e,element:t}){const r=this.getFormElement();return e.length?(this.invalid=r.invalid=!0,this.valid=r.valid=!1,!1):(this.errors[t.name]={},this.invalid=r.invalid=!1,this.valid=r.valid=!0,!0)}querySelectForm(e){const t=e.querySelector(`form[name="${this.options.name}"]`);if(!t)throw new Error(`Form element with name "${this.options.name}" not present inside ${this.getParentElement().outerHTML} component`);return t.addEventListener("submit",e=>{e.preventDefault(),e.stopPropagation()}),t}querySelectorAllInputs(){return[...this.form.querySelectorAll("input").values()].filter(e=>this.isInputPresentOnStage(e)).filter(e=>!!e.name)}mapEventToInputs(e=[]){return e.map(e=>{const t=`on${this.options.strategy}`;return e[t]||(e[t]=function(){}),e[t]=this.updateValueAndValidityOnEvent(e[t]),e})}isInputPresentOnStage(e){const t=Object.keys(this.value).filter(t=>t===e.name);if(!t.length)throw new Error(`Missing input element with name ${e.name} for form ${this.getFormElement().name}`);return t.length}validate(t){let r=[];return t.setCustomValidity(""),t.checkValidity()?(r=this.mapInputErrors(t)).length?(this.setFormValidity(!1),t.setCustomValidity(r[0].message),{element:t,errors:r}):{errors:[],element:t}:{errors:r.concat(Object.keys(e.InputValidityState).map(e=>t.validity[e]?{key:e,message:t.validationMessage}:null).filter(e=>!!e)),element:t}}mapInputErrors(e){return(this.validators.get(e.name)||[]).map(t=>{this.errors[e.name]=this.errors[e.name]||{};const r=t.bind(this.getParentElement())(e);if(r&&r.key)return this.errors[e.name][r.key]=r.message,this.errorMap.set(t,r.key),{key:r.key,message:r.message};this.errorMap.has(t)&&delete this.errors[e.name][this.errorMap.get(t)]}).filter(e=>!!e)}get(e){return this.inputs.get(e)}getError(e,t){return this.errors[e][t]}hasError(e,t){return!!this.getError(e,t)}reset(){this.form.reset(),this.resetErrors(),this.setFormValidity(),this.inputs.clear()}setFormValidity(e=!0){this.valid=e,this.invalid=!e}resetErrors(){this.errors=Object.keys(this.errors).reduce((e,t)=>(e[t]={},e),{}),this.errorMap.clear()}get value(){return this._valueChanges.getValue()}set value(e){this._valueChanges.next(e)}unsubscribe(){this.reset(),this._valueChanges.unsubscribe()}getValue(e){return this.value[e]}setValue(e,t){const r=this.value;return r[e]=t,this.value=r,r}setFormValue(e){this.value=e}setFormElement(e){return this.form=e,this}setInputs(e){this.inputs=new Map(e.map(e=>[e.name,e]))}getFormElement(){return this.form}}exports.FormGroup=r;
-},{"./form.tokens":"uqUW","./rx-fake":"WSul"}],"TqxL":[function(require,module,exports) {
+},{"./form.tokens":"vjjz","./rx-fake":"TqKC"}],"bc55":[function(require,module,exports) {
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0});const t=require("./form.group"),o=require("./rx-fake");function r(r={strategy:"none"}){return function(e,n){if(!r.name)throw new Error("Missing form name");const c=e.constructor.prototype.disconnectedCallback||o.noop,s=e.constructor.prototype.firstUpdated||o.noop,i=e.constructor.prototype.connectedCallback||o.noop;e.constructor.prototype.connectedCallback=function(){if(!(this[n]instanceof t.FormGroup))throw new Error("Value provided is not an instance of FormGroup!");return this[n].setParentElement(this).setOptions(r).prepareValues(),i.call(this)},e.constructor.prototype.firstUpdated=function(){return this[n].init(),s.call(this)},e.constructor.prototype.disconnectedCallback=function(){return this[n].unsubscribe(),c.call(this)}}}exports.Form=r;
-},{"./form.group":"OVCP","./rx-fake":"WSul"}],"KKoj":[function(require,module,exports) {
+},{"./form.group":"pIiP","./rx-fake":"TqKC"}],"DQYs":[function(require,module,exports) {
 "use strict";function r(r){for(var e in r)exports.hasOwnProperty(e)||(exports[e]=r[e])}Object.defineProperty(exports,"__esModule",{value:!0}),r(require("./form.decorator")),r(require("./form.group")),r(require("./form.tokens"));
-},{"./form.decorator":"TqxL","./form.group":"OVCP","./form.tokens":"uqUW"}],"L3LI":[function(require,module,exports) {
+},{"./form.decorator":"bc55","./form.group":"pIiP","./form.tokens":"vjjz"}],"L3LI":[function(require,module,exports) {
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.InputErrorTemplate=r,exports.EmailValidator=i;var e=require("@rxdi/lit-html");function r(r){if(r&&!r.checkValidity()){const i=r.validationMessage;return e.html`
       <style>
         .validation-error {
@@ -3639,9 +3640,1159 @@ module.exports="ui-kit/glyph.e72576d6.svg";
         link="https://raw.githubusercontent.com/rxdi/forms/master/README.md"
       ></markdown-reader>
     `}})],a);
-},{"@rxdi/lit-html":"R8ie","@rxdi/forms":"KKoj","./error":"L3LI"}],"Gsig":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.AppModule=void 0;var e=require("@rxdi/core"),o=require("./app.component"),n=require("@rxdi/router"),r=require("../../../src/markdown-reader"),t=require("../../../src/accordion"),i=require("./markdown-reader/markdown-regular.component"),p=require("./responsive/responsive.component"),c=require("./accordion-view/accordion-view.component"),a=require("../../../src/image"),m=require("../../../src"),d=require("../../../src/grid/grid.component"),u=require("./image-view/image-view.component"),w=require("../../../src/badge/badge.component"),l=require("../../../src/button/button.component"),v=require("../../../src/article/article.component"),s=require("../../../src/label/label.component"),q=require("../../../src/card/card.component"),C=require("../../../src/dropdown/dropdown.component"),b=require("../../../src/modal"),g=require("./badge-view/badge-vew.component"),f=require("./modal/modal-view.component"),h=require("./button-view/button-view.component"),M=require("./article-view/article-view.component"),R=require("./divider-view/divider-view.component"),V=require("../../../src/divider/divider.component"),k=require("./label-view/label-view.component"),A=require("./dropdown-view/dropdown-view.component"),x=require("../../../src/nav"),D=require("./nav-view/nav-view.component"),y=require("./nav-view/nav-component"),j=require("./card-view/card-view.component"),B=require("./forms/forms-view.component"),O=function(e,o,n,r){var t,i=arguments.length,p=i<3?o:null===r?r=Object.getOwnPropertyDescriptor(o,n):r;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)p=Reflect.decorate(e,o,n,r);else for(var c=e.length-1;c>=0;c--)(t=e[c])&&(p=(i<3?t(p):i>3?t(o,n,p):t(o,n))||p);return i>3&&p&&Object.defineProperty(o,n,p),p};let P=class{};exports.AppModule=P,exports.AppModule=P=O([(0,e.Module)({components:[i.RegularMarkdownComponent,c.AccordionViewComponent,t.AccordionComponent,a.RxImageComponent,d.GridComponent,w.BadgeComponent,l.ButtonComponent,v.ArticleComponent,V.DividerComponent,s.LabelComponent,C.DropdownComponent,y.NavComponent,q.CardComponent],imports:[b.ModalModule.forRoot({backdropClose:!0}),m.ReactiveUiModule.forRoot(),r.MarkdownReaderModule,x.NavModule.forRoot(),n.RouterModule.forRoot([{path:"/",component:i.RegularMarkdownComponent},{path:"/markdown-reader/:namespace/:repo/:filePath",component:r.MarkdownReaderComponent},{path:"/responsive",component:p.ResponsiveViewComponent},{path:"/accordion",component:c.AccordionViewComponent},{path:"/image",component:u.ImageViewComponent},{path:"/badge",component:g.BadgeViewComponent},{path:"/modal",component:f.ModalViewComponent},{path:"/button",component:h.ButtonViewComponent},{path:"/article",component:M.ArticleViewComponent},{path:"/divider",component:R.DividerViewComponent},{path:"/label",component:k.LabelViewComponent},{path:"/dropdown",component:A.DropDownViewComponent},{path:"/nav",component:D.NavViewComponent},{path:"/card",component:j.CardViewComponent},{path:"/forms",component:B.FormsViewComponent}],{log:!0})],bootstrap:[o.AppComponent]})],P);
-},{"@rxdi/core":"lhgc","./app.component":"XCbS","@rxdi/router":"tW8N","../../../src/markdown-reader":"X0WN","../../../src/accordion":"oj6B","./markdown-reader/markdown-regular.component":"SbH7","./responsive/responsive.component":"Onv4","./accordion-view/accordion-view.component":"cwfd","../../../src/image":"N7t6","../../../src":"fUdq","../../../src/grid/grid.component":"iXmO","./image-view/image-view.component":"bbMR","../../../src/badge/badge.component":"C2jj","../../../src/button/button.component":"Ofur","../../../src/article/article.component":"pT1A","../../../src/label/label.component":"lvFV","../../../src/card/card.component":"kpCZ","../../../src/dropdown/dropdown.component":"vZQS","../../../src/modal":"mF9g","./badge-view/badge-vew.component":"jitd","./modal/modal-view.component":"jCtu","./button-view/button-view.component":"DgQ9","./article-view/article-view.component":"XMfu","./divider-view/divider-view.component":"LW6G","../../../src/divider/divider.component":"OXJN","./label-view/label-view.component":"JKyV","./dropdown-view/dropdown-view.component":"B4BC","../../../src/nav":"e2p2","./nav-view/nav-view.component":"p3Sc","./nav-view/nav-component":"ynE3","./card-view/card-view.component":"wymD","./forms/forms-view.component":"ZY77"}],"ZCfc":[function(require,module,exports) {
+},{"@rxdi/lit-html":"R8ie","@rxdi/forms":"DQYs","./error":"L3LI"}],"wuRl":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.ProgressViewComponent=void 0;var e=require("@rxdi/lit-html"),r=require("rxjs"),t=require("rxjs/operators"),s=function(e,r,t,s){var o,p=arguments.length,l=p<3?r:null===s?s=Object.getOwnPropertyDescriptor(r,t):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)l=Reflect.decorate(e,r,t,s);else for(var i=e.length-1;i>=0;i--)(o=e[i])&&(l=(p<3?o(l):p>3?o(r,t,l):o(r,t))||l);return p>3&&l&&Object.defineProperty(r,t,l),l};let o=class extends e.LitElement{constructor(){super(...arguments),this.reset$=new r.Subject,this.progressValue$=this.reset$.pipe((0,t.switchMap)(()=>(0,r.interval)(100).pipe((0,t.take)(101))))}reset(){this.reset$.next()}OnUpdateFirst(){this.progressValue$.subscribe(console.log),this.reset$.next()}};exports.ProgressViewComponent=o,exports.ProgressViewComponent=o=s([(0,e.Component)({selector:"progress-view-component",template(){return e.html`
+      <style>
+        :host {
+          padding: 20px;
+          display: block;
+        }
+
+        rx-progress {
+          margin: 20px 0;
+        }
+      </style>
+
+      <h3>Progress</h3>
+      <h4>Simple</h4>
+      <rx-progress value="25" palette="primary"></rx-progress>
+      <h4>Rounded</h4>
+      <rx-progress value="50" rounded palette="danger"></rx-progress>
+      <h4>Height</h4>
+      <rx-progress value="75" height="20" palette="warning"></rx-progress>
+      <h4>Label</h4>
+      <rx-progress value="45" height="20" label palette="primary"></rx-progress>
+
+      <br />
+
+      <h4>Full</h4>
+      <rx-progress
+        .value="${(0,e.async)(this.progressValue$)}"
+        height="12"
+        label
+        rounded
+        palette="primary"
+      ></rx-progress>
+
+      <rx-button palette="primary" @click="${this.reset}">reset</rx-button>
+
+      <h4>Circle</h4>
+      <rx-progress palette="primary" height="12" .value="${(0,e.async)(this.progressValue$)}" type="circle"></rx-progress>
+      <rx-progress palette="danger" height="10" value="25" type="circle"></rx-progress>
+      <rx-progress palette="warning" height="8" value="75" type="circle"></rx-progress>
+    `}})],o);
+},{"@rxdi/lit-html":"R8ie","rxjs":"iRqj","rxjs/operators":"cVrl"}],"y5Oc":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const t=require("@rxdi/lit-html");exports.progressCss=t.css`
+  .rect-auto,
+  .uikit.p51 .slice,
+  .uikit.p52 .slice,
+  .uikit.p53 .slice,
+  .uikit.p54 .slice,
+  .uikit.p55 .slice,
+  .uikit.p56 .slice,
+  .uikit.p57 .slice,
+  .uikit.p58 .slice,
+  .uikit.p59 .slice,
+  .uikit.p60 .slice,
+  .uikit.p61 .slice,
+  .uikit.p62 .slice,
+  .uikit.p63 .slice,
+  .uikit.p64 .slice,
+  .uikit.p65 .slice,
+  .uikit.p66 .slice,
+  .uikit.p67 .slice,
+  .uikit.p68 .slice,
+  .uikit.p69 .slice,
+  .uikit.p70 .slice,
+  .uikit.p71 .slice,
+  .uikit.p72 .slice,
+  .uikit.p73 .slice,
+  .uikit.p74 .slice,
+  .uikit.p75 .slice,
+  .uikit.p76 .slice,
+  .uikit.p77 .slice,
+  .uikit.p78 .slice,
+  .uikit.p79 .slice,
+  .uikit.p80 .slice,
+  .uikit.p81 .slice,
+  .uikit.p82 .slice,
+  .uikit.p83 .slice,
+  .uikit.p84 .slice,
+  .uikit.p85 .slice,
+  .uikit.p86 .slice,
+  .uikit.p87 .slice,
+  .uikit.p88 .slice,
+  .uikit.p89 .slice,
+  .uikit.p90 .slice,
+  .uikit.p91 .slice,
+  .uikit.p92 .slice,
+  .uikit.p93 .slice,
+  .uikit.p94 .slice,
+  .uikit.p95 .slice,
+  .uikit.p96 .slice,
+  .uikit.p97 .slice,
+  .uikit.p98 .slice,
+  .uikit.p99 .slice,
+  .uikit.p100 .slice {
+    clip: rect(auto, auto, auto, auto);
+  }
+
+  .pie,
+  .uikit .bar,
+  .uikit.p51 .fill,
+  .uikit.p52 .fill,
+  .uikit.p53 .fill,
+  .uikit.p54 .fill,
+  .uikit.p55 .fill,
+  .uikit.p56 .fill,
+  .uikit.p57 .fill,
+  .uikit.p58 .fill,
+  .uikit.p59 .fill,
+  .uikit.p60 .fill,
+  .uikit.p61 .fill,
+  .uikit.p62 .fill,
+  .uikit.p63 .fill,
+  .uikit.p64 .fill,
+  .uikit.p65 .fill,
+  .uikit.p66 .fill,
+  .uikit.p67 .fill,
+  .uikit.p68 .fill,
+  .uikit.p69 .fill,
+  .uikit.p70 .fill,
+  .uikit.p71 .fill,
+  .uikit.p72 .fill,
+  .uikit.p73 .fill,
+  .uikit.p74 .fill,
+  .uikit.p75 .fill,
+  .uikit.p76 .fill,
+  .uikit.p77 .fill,
+  .uikit.p78 .fill,
+  .uikit.p79 .fill,
+  .uikit.p80 .fill,
+  .uikit.p81 .fill,
+  .uikit.p82 .fill,
+  .uikit.p83 .fill,
+  .uikit.p84 .fill,
+  .uikit.p85 .fill,
+  .uikit.p86 .fill,
+  .uikit.p87 .fill,
+  .uikit.p88 .fill,
+  .uikit.p89 .fill,
+  .uikit.p90 .fill,
+  .uikit.p91 .fill,
+  .uikit.p92 .fill,
+  .uikit.p93 .fill,
+  .uikit.p94 .fill,
+  .uikit.p95 .fill,
+  .uikit.p96 .fill,
+  .uikit.p97 .fill,
+  .uikit.p98 .fill,
+  .uikit.p99 .fill,
+  .uikit.p100 .fill {
+    position: absolute;
+    border: 0.08em solid #307bbb;
+    width: 0.84em;
+    height: 0.84em;
+    clip: rect(0em, 0.5em, 1em, 0em);
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  .pie-fill,
+  .uikit.p51 .bar:after,
+  .uikit.p51 .fill,
+  .uikit.p52 .bar:after,
+  .uikit.p52 .fill,
+  .uikit.p53 .bar:after,
+  .uikit.p53 .fill,
+  .uikit.p54 .bar:after,
+  .uikit.p54 .fill,
+  .uikit.p55 .bar:after,
+  .uikit.p55 .fill,
+  .uikit.p56 .bar:after,
+  .uikit.p56 .fill,
+  .uikit.p57 .bar:after,
+  .uikit.p57 .fill,
+  .uikit.p58 .bar:after,
+  .uikit.p58 .fill,
+  .uikit.p59 .bar:after,
+  .uikit.p59 .fill,
+  .uikit.p60 .bar:after,
+  .uikit.p60 .fill,
+  .uikit.p61 .bar:after,
+  .uikit.p61 .fill,
+  .uikit.p62 .bar:after,
+  .uikit.p62 .fill,
+  .uikit.p63 .bar:after,
+  .uikit.p63 .fill,
+  .uikit.p64 .bar:after,
+  .uikit.p64 .fill,
+  .uikit.p65 .bar:after,
+  .uikit.p65 .fill,
+  .uikit.p66 .bar:after,
+  .uikit.p66 .fill,
+  .uikit.p67 .bar:after,
+  .uikit.p67 .fill,
+  .uikit.p68 .bar:after,
+  .uikit.p68 .fill,
+  .uikit.p69 .bar:after,
+  .uikit.p69 .fill,
+  .uikit.p70 .bar:after,
+  .uikit.p70 .fill,
+  .uikit.p71 .bar:after,
+  .uikit.p71 .fill,
+  .uikit.p72 .bar:after,
+  .uikit.p72 .fill,
+  .uikit.p73 .bar:after,
+  .uikit.p73 .fill,
+  .uikit.p74 .bar:after,
+  .uikit.p74 .fill,
+  .uikit.p75 .bar:after,
+  .uikit.p75 .fill,
+  .uikit.p76 .bar:after,
+  .uikit.p76 .fill,
+  .uikit.p77 .bar:after,
+  .uikit.p77 .fill,
+  .uikit.p78 .bar:after,
+  .uikit.p78 .fill,
+  .uikit.p79 .bar:after,
+  .uikit.p79 .fill,
+  .uikit.p80 .bar:after,
+  .uikit.p80 .fill,
+  .uikit.p81 .bar:after,
+  .uikit.p81 .fill,
+  .uikit.p82 .bar:after,
+  .uikit.p82 .fill,
+  .uikit.p83 .bar:after,
+  .uikit.p83 .fill,
+  .uikit.p84 .bar:after,
+  .uikit.p84 .fill,
+  .uikit.p85 .bar:after,
+  .uikit.p85 .fill,
+  .uikit.p86 .bar:after,
+  .uikit.p86 .fill,
+  .uikit.p87 .bar:after,
+  .uikit.p87 .fill,
+  .uikit.p88 .bar:after,
+  .uikit.p88 .fill,
+  .uikit.p89 .bar:after,
+  .uikit.p89 .fill,
+  .uikit.p90 .bar:after,
+  .uikit.p90 .fill,
+  .uikit.p91 .bar:after,
+  .uikit.p91 .fill,
+  .uikit.p92 .bar:after,
+  .uikit.p92 .fill,
+  .uikit.p93 .bar:after,
+  .uikit.p93 .fill,
+  .uikit.p94 .bar:after,
+  .uikit.p94 .fill,
+  .uikit.p95 .bar:after,
+  .uikit.p95 .fill,
+  .uikit.p96 .bar:after,
+  .uikit.p96 .fill,
+  .uikit.p97 .bar:after,
+  .uikit.p97 .fill,
+  .uikit.p98 .bar:after,
+  .uikit.p98 .fill,
+  .uikit.p99 .bar:after,
+  .uikit.p99 .fill,
+  .uikit.p100 .bar:after,
+  .uikit.p100 .fill {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+
+  .uikit {
+    position: relative;
+    font-size: 120px;
+    width: 1em;
+    height: 1em;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    float: left;
+    margin: 0 0.1em 0.1em 0;
+    background-color: #cccccc;
+  }
+  .uikit *,
+  .uikit *:before,
+  .uikit *:after {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+  }
+  .uikit.center {
+    float: none;
+    margin: 0 auto;
+  }
+  .uikit.big {
+    font-size: 240px;
+  }
+  .uikit.small {
+    font-size: 80px;
+  }
+  .uikit > span {
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 5em;
+    line-height: 5em;
+    font-size: 0.2em;
+    color: #cccccc;
+    display: block;
+    text-align: center;
+    white-space: nowrap;
+    -webkit-transition-property: all;
+    -moz-transition-property: all;
+    -o-transition-property: all;
+    transition-property: all;
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    -o-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    -webkit-transition-timing-function: ease-out;
+    -moz-transition-timing-function: ease-out;
+    -o-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+  }
+  .uikit:after {
+    position: absolute;
+    top: 0.08em;
+    left: 0.08em;
+    display: block;
+    content: ' ';
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    background-color: whitesmoke;
+    width: 0.84em;
+    height: 0.84em;
+    -webkit-transition-property: all;
+    -moz-transition-property: all;
+    -o-transition-property: all;
+    transition-property: all;
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    -o-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    -webkit-transition-timing-function: ease-in;
+    -moz-transition-timing-function: ease-in;
+    -o-transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+  }
+  .uikit .slice {
+    position: absolute;
+    width: 1em;
+    height: 1em;
+    clip: rect(0em, 1em, 1em, 0.5em);
+  }
+  .uikit.p1 .bar {
+    -webkit-transform: rotate(3.6deg);
+    -moz-transform: rotate(3.6deg);
+    -ms-transform: rotate(3.6deg);
+    -o-transform: rotate(3.6deg);
+    transform: rotate(3.6deg);
+  }
+  .uikit.p2 .bar {
+    -webkit-transform: rotate(7.2deg);
+    -moz-transform: rotate(7.2deg);
+    -ms-transform: rotate(7.2deg);
+    -o-transform: rotate(7.2deg);
+    transform: rotate(7.2deg);
+  }
+  .uikit.p3 .bar {
+    -webkit-transform: rotate(10.8deg);
+    -moz-transform: rotate(10.8deg);
+    -ms-transform: rotate(10.8deg);
+    -o-transform: rotate(10.8deg);
+    transform: rotate(10.8deg);
+  }
+  .uikit.p4 .bar {
+    -webkit-transform: rotate(14.4deg);
+    -moz-transform: rotate(14.4deg);
+    -ms-transform: rotate(14.4deg);
+    -o-transform: rotate(14.4deg);
+    transform: rotate(14.4deg);
+  }
+  .uikit.p5 .bar {
+    -webkit-transform: rotate(18deg);
+    -moz-transform: rotate(18deg);
+    -ms-transform: rotate(18deg);
+    -o-transform: rotate(18deg);
+    transform: rotate(18deg);
+  }
+  .uikit.p6 .bar {
+    -webkit-transform: rotate(21.6deg);
+    -moz-transform: rotate(21.6deg);
+    -ms-transform: rotate(21.6deg);
+    -o-transform: rotate(21.6deg);
+    transform: rotate(21.6deg);
+  }
+  .uikit.p7 .bar {
+    -webkit-transform: rotate(25.2deg);
+    -moz-transform: rotate(25.2deg);
+    -ms-transform: rotate(25.2deg);
+    -o-transform: rotate(25.2deg);
+    transform: rotate(25.2deg);
+  }
+  .uikit.p8 .bar {
+    -webkit-transform: rotate(28.8deg);
+    -moz-transform: rotate(28.8deg);
+    -ms-transform: rotate(28.8deg);
+    -o-transform: rotate(28.8deg);
+    transform: rotate(28.8deg);
+  }
+  .uikit.p9 .bar {
+    -webkit-transform: rotate(32.4deg);
+    -moz-transform: rotate(32.4deg);
+    -ms-transform: rotate(32.4deg);
+    -o-transform: rotate(32.4deg);
+    transform: rotate(32.4deg);
+  }
+  .uikit.p10 .bar {
+    -webkit-transform: rotate(36deg);
+    -moz-transform: rotate(36deg);
+    -ms-transform: rotate(36deg);
+    -o-transform: rotate(36deg);
+    transform: rotate(36deg);
+  }
+  .uikit.p11 .bar {
+    -webkit-transform: rotate(39.6deg);
+    -moz-transform: rotate(39.6deg);
+    -ms-transform: rotate(39.6deg);
+    -o-transform: rotate(39.6deg);
+    transform: rotate(39.6deg);
+  }
+  .uikit.p12 .bar {
+    -webkit-transform: rotate(43.2deg);
+    -moz-transform: rotate(43.2deg);
+    -ms-transform: rotate(43.2deg);
+    -o-transform: rotate(43.2deg);
+    transform: rotate(43.2deg);
+  }
+  .uikit.p13 .bar {
+    -webkit-transform: rotate(46.8deg);
+    -moz-transform: rotate(46.8deg);
+    -ms-transform: rotate(46.8deg);
+    -o-transform: rotate(46.8deg);
+    transform: rotate(46.8deg);
+  }
+  .uikit.p14 .bar {
+    -webkit-transform: rotate(50.4deg);
+    -moz-transform: rotate(50.4deg);
+    -ms-transform: rotate(50.4deg);
+    -o-transform: rotate(50.4deg);
+    transform: rotate(50.4deg);
+  }
+  .uikit.p15 .bar {
+    -webkit-transform: rotate(54deg);
+    -moz-transform: rotate(54deg);
+    -ms-transform: rotate(54deg);
+    -o-transform: rotate(54deg);
+    transform: rotate(54deg);
+  }
+  .uikit.p16 .bar {
+    -webkit-transform: rotate(57.6deg);
+    -moz-transform: rotate(57.6deg);
+    -ms-transform: rotate(57.6deg);
+    -o-transform: rotate(57.6deg);
+    transform: rotate(57.6deg);
+  }
+  .uikit.p17 .bar {
+    -webkit-transform: rotate(61.2deg);
+    -moz-transform: rotate(61.2deg);
+    -ms-transform: rotate(61.2deg);
+    -o-transform: rotate(61.2deg);
+    transform: rotate(61.2deg);
+  }
+  .uikit.p18 .bar {
+    -webkit-transform: rotate(64.8deg);
+    -moz-transform: rotate(64.8deg);
+    -ms-transform: rotate(64.8deg);
+    -o-transform: rotate(64.8deg);
+    transform: rotate(64.8deg);
+  }
+  .uikit.p19 .bar {
+    -webkit-transform: rotate(68.4deg);
+    -moz-transform: rotate(68.4deg);
+    -ms-transform: rotate(68.4deg);
+    -o-transform: rotate(68.4deg);
+    transform: rotate(68.4deg);
+  }
+  .uikit.p20 .bar {
+    -webkit-transform: rotate(72deg);
+    -moz-transform: rotate(72deg);
+    -ms-transform: rotate(72deg);
+    -o-transform: rotate(72deg);
+    transform: rotate(72deg);
+  }
+  .uikit.p21 .bar {
+    -webkit-transform: rotate(75.6deg);
+    -moz-transform: rotate(75.6deg);
+    -ms-transform: rotate(75.6deg);
+    -o-transform: rotate(75.6deg);
+    transform: rotate(75.6deg);
+  }
+  .uikit.p22 .bar {
+    -webkit-transform: rotate(79.2deg);
+    -moz-transform: rotate(79.2deg);
+    -ms-transform: rotate(79.2deg);
+    -o-transform: rotate(79.2deg);
+    transform: rotate(79.2deg);
+  }
+  .uikit.p23 .bar {
+    -webkit-transform: rotate(82.8deg);
+    -moz-transform: rotate(82.8deg);
+    -ms-transform: rotate(82.8deg);
+    -o-transform: rotate(82.8deg);
+    transform: rotate(82.8deg);
+  }
+  .uikit.p24 .bar {
+    -webkit-transform: rotate(86.4deg);
+    -moz-transform: rotate(86.4deg);
+    -ms-transform: rotate(86.4deg);
+    -o-transform: rotate(86.4deg);
+    transform: rotate(86.4deg);
+  }
+  .uikit.p25 .bar {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+  }
+  .uikit.p26 .bar {
+    -webkit-transform: rotate(93.6deg);
+    -moz-transform: rotate(93.6deg);
+    -ms-transform: rotate(93.6deg);
+    -o-transform: rotate(93.6deg);
+    transform: rotate(93.6deg);
+  }
+  .uikit.p27 .bar {
+    -webkit-transform: rotate(97.2deg);
+    -moz-transform: rotate(97.2deg);
+    -ms-transform: rotate(97.2deg);
+    -o-transform: rotate(97.2deg);
+    transform: rotate(97.2deg);
+  }
+  .uikit.p28 .bar {
+    -webkit-transform: rotate(100.8deg);
+    -moz-transform: rotate(100.8deg);
+    -ms-transform: rotate(100.8deg);
+    -o-transform: rotate(100.8deg);
+    transform: rotate(100.8deg);
+  }
+  .uikit.p29 .bar {
+    -webkit-transform: rotate(104.4deg);
+    -moz-transform: rotate(104.4deg);
+    -ms-transform: rotate(104.4deg);
+    -o-transform: rotate(104.4deg);
+    transform: rotate(104.4deg);
+  }
+  .uikit.p30 .bar {
+    -webkit-transform: rotate(108deg);
+    -moz-transform: rotate(108deg);
+    -ms-transform: rotate(108deg);
+    -o-transform: rotate(108deg);
+    transform: rotate(108deg);
+  }
+  .uikit.p31 .bar {
+    -webkit-transform: rotate(111.6deg);
+    -moz-transform: rotate(111.6deg);
+    -ms-transform: rotate(111.6deg);
+    -o-transform: rotate(111.6deg);
+    transform: rotate(111.6deg);
+  }
+  .uikit.p32 .bar {
+    -webkit-transform: rotate(115.2deg);
+    -moz-transform: rotate(115.2deg);
+    -ms-transform: rotate(115.2deg);
+    -o-transform: rotate(115.2deg);
+    transform: rotate(115.2deg);
+  }
+  .uikit.p33 .bar {
+    -webkit-transform: rotate(118.8deg);
+    -moz-transform: rotate(118.8deg);
+    -ms-transform: rotate(118.8deg);
+    -o-transform: rotate(118.8deg);
+    transform: rotate(118.8deg);
+  }
+  .uikit.p34 .bar {
+    -webkit-transform: rotate(122.4deg);
+    -moz-transform: rotate(122.4deg);
+    -ms-transform: rotate(122.4deg);
+    -o-transform: rotate(122.4deg);
+    transform: rotate(122.4deg);
+  }
+  .uikit.p35 .bar {
+    -webkit-transform: rotate(126deg);
+    -moz-transform: rotate(126deg);
+    -ms-transform: rotate(126deg);
+    -o-transform: rotate(126deg);
+    transform: rotate(126deg);
+  }
+  .uikit.p36 .bar {
+    -webkit-transform: rotate(129.6deg);
+    -moz-transform: rotate(129.6deg);
+    -ms-transform: rotate(129.6deg);
+    -o-transform: rotate(129.6deg);
+    transform: rotate(129.6deg);
+  }
+  .uikit.p37 .bar {
+    -webkit-transform: rotate(133.2deg);
+    -moz-transform: rotate(133.2deg);
+    -ms-transform: rotate(133.2deg);
+    -o-transform: rotate(133.2deg);
+    transform: rotate(133.2deg);
+  }
+  .uikit.p38 .bar {
+    -webkit-transform: rotate(136.8deg);
+    -moz-transform: rotate(136.8deg);
+    -ms-transform: rotate(136.8deg);
+    -o-transform: rotate(136.8deg);
+    transform: rotate(136.8deg);
+  }
+  .uikit.p39 .bar {
+    -webkit-transform: rotate(140.4deg);
+    -moz-transform: rotate(140.4deg);
+    -ms-transform: rotate(140.4deg);
+    -o-transform: rotate(140.4deg);
+    transform: rotate(140.4deg);
+  }
+  .uikit.p40 .bar {
+    -webkit-transform: rotate(144deg);
+    -moz-transform: rotate(144deg);
+    -ms-transform: rotate(144deg);
+    -o-transform: rotate(144deg);
+    transform: rotate(144deg);
+  }
+  .uikit.p41 .bar {
+    -webkit-transform: rotate(147.6deg);
+    -moz-transform: rotate(147.6deg);
+    -ms-transform: rotate(147.6deg);
+    -o-transform: rotate(147.6deg);
+    transform: rotate(147.6deg);
+  }
+  .uikit.p42 .bar {
+    -webkit-transform: rotate(151.2deg);
+    -moz-transform: rotate(151.2deg);
+    -ms-transform: rotate(151.2deg);
+    -o-transform: rotate(151.2deg);
+    transform: rotate(151.2deg);
+  }
+  .uikit.p43 .bar {
+    -webkit-transform: rotate(154.8deg);
+    -moz-transform: rotate(154.8deg);
+    -ms-transform: rotate(154.8deg);
+    -o-transform: rotate(154.8deg);
+    transform: rotate(154.8deg);
+  }
+  .uikit.p44 .bar {
+    -webkit-transform: rotate(158.4deg);
+    -moz-transform: rotate(158.4deg);
+    -ms-transform: rotate(158.4deg);
+    -o-transform: rotate(158.4deg);
+    transform: rotate(158.4deg);
+  }
+  .uikit.p45 .bar {
+    -webkit-transform: rotate(162deg);
+    -moz-transform: rotate(162deg);
+    -ms-transform: rotate(162deg);
+    -o-transform: rotate(162deg);
+    transform: rotate(162deg);
+  }
+  .uikit.p46 .bar {
+    -webkit-transform: rotate(165.6deg);
+    -moz-transform: rotate(165.6deg);
+    -ms-transform: rotate(165.6deg);
+    -o-transform: rotate(165.6deg);
+    transform: rotate(165.6deg);
+  }
+  .uikit.p47 .bar {
+    -webkit-transform: rotate(169.2deg);
+    -moz-transform: rotate(169.2deg);
+    -ms-transform: rotate(169.2deg);
+    -o-transform: rotate(169.2deg);
+    transform: rotate(169.2deg);
+  }
+  .uikit.p48 .bar {
+    -webkit-transform: rotate(172.8deg);
+    -moz-transform: rotate(172.8deg);
+    -ms-transform: rotate(172.8deg);
+    -o-transform: rotate(172.8deg);
+    transform: rotate(172.8deg);
+  }
+  .uikit.p49 .bar {
+    -webkit-transform: rotate(176.4deg);
+    -moz-transform: rotate(176.4deg);
+    -ms-transform: rotate(176.4deg);
+    -o-transform: rotate(176.4deg);
+    transform: rotate(176.4deg);
+  }
+  .uikit.p50 .bar {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+  .uikit.p51 .bar {
+    -webkit-transform: rotate(183.6deg);
+    -moz-transform: rotate(183.6deg);
+    -ms-transform: rotate(183.6deg);
+    -o-transform: rotate(183.6deg);
+    transform: rotate(183.6deg);
+  }
+  .uikit.p52 .bar {
+    -webkit-transform: rotate(187.2deg);
+    -moz-transform: rotate(187.2deg);
+    -ms-transform: rotate(187.2deg);
+    -o-transform: rotate(187.2deg);
+    transform: rotate(187.2deg);
+  }
+  .uikit.p53 .bar {
+    -webkit-transform: rotate(190.8deg);
+    -moz-transform: rotate(190.8deg);
+    -ms-transform: rotate(190.8deg);
+    -o-transform: rotate(190.8deg);
+    transform: rotate(190.8deg);
+  }
+  .uikit.p54 .bar {
+    -webkit-transform: rotate(194.4deg);
+    -moz-transform: rotate(194.4deg);
+    -ms-transform: rotate(194.4deg);
+    -o-transform: rotate(194.4deg);
+    transform: rotate(194.4deg);
+  }
+  .uikit.p55 .bar {
+    -webkit-transform: rotate(198deg);
+    -moz-transform: rotate(198deg);
+    -ms-transform: rotate(198deg);
+    -o-transform: rotate(198deg);
+    transform: rotate(198deg);
+  }
+  .uikit.p56 .bar {
+    -webkit-transform: rotate(201.6deg);
+    -moz-transform: rotate(201.6deg);
+    -ms-transform: rotate(201.6deg);
+    -o-transform: rotate(201.6deg);
+    transform: rotate(201.6deg);
+  }
+  .uikit.p57 .bar {
+    -webkit-transform: rotate(205.2deg);
+    -moz-transform: rotate(205.2deg);
+    -ms-transform: rotate(205.2deg);
+    -o-transform: rotate(205.2deg);
+    transform: rotate(205.2deg);
+  }
+  .uikit.p58 .bar {
+    -webkit-transform: rotate(208.8deg);
+    -moz-transform: rotate(208.8deg);
+    -ms-transform: rotate(208.8deg);
+    -o-transform: rotate(208.8deg);
+    transform: rotate(208.8deg);
+  }
+  .uikit.p59 .bar {
+    -webkit-transform: rotate(212.4deg);
+    -moz-transform: rotate(212.4deg);
+    -ms-transform: rotate(212.4deg);
+    -o-transform: rotate(212.4deg);
+    transform: rotate(212.4deg);
+  }
+  .uikit.p60 .bar {
+    -webkit-transform: rotate(216deg);
+    -moz-transform: rotate(216deg);
+    -ms-transform: rotate(216deg);
+    -o-transform: rotate(216deg);
+    transform: rotate(216deg);
+  }
+  .uikit.p61 .bar {
+    -webkit-transform: rotate(219.6deg);
+    -moz-transform: rotate(219.6deg);
+    -ms-transform: rotate(219.6deg);
+    -o-transform: rotate(219.6deg);
+    transform: rotate(219.6deg);
+  }
+  .uikit.p62 .bar {
+    -webkit-transform: rotate(223.2deg);
+    -moz-transform: rotate(223.2deg);
+    -ms-transform: rotate(223.2deg);
+    -o-transform: rotate(223.2deg);
+    transform: rotate(223.2deg);
+  }
+  .uikit.p63 .bar {
+    -webkit-transform: rotate(226.8deg);
+    -moz-transform: rotate(226.8deg);
+    -ms-transform: rotate(226.8deg);
+    -o-transform: rotate(226.8deg);
+    transform: rotate(226.8deg);
+  }
+  .uikit.p64 .bar {
+    -webkit-transform: rotate(230.4deg);
+    -moz-transform: rotate(230.4deg);
+    -ms-transform: rotate(230.4deg);
+    -o-transform: rotate(230.4deg);
+    transform: rotate(230.4deg);
+  }
+  .uikit.p65 .bar {
+    -webkit-transform: rotate(234deg);
+    -moz-transform: rotate(234deg);
+    -ms-transform: rotate(234deg);
+    -o-transform: rotate(234deg);
+    transform: rotate(234deg);
+  }
+  .uikit.p66 .bar {
+    -webkit-transform: rotate(237.6deg);
+    -moz-transform: rotate(237.6deg);
+    -ms-transform: rotate(237.6deg);
+    -o-transform: rotate(237.6deg);
+    transform: rotate(237.6deg);
+  }
+  .uikit.p67 .bar {
+    -webkit-transform: rotate(241.2deg);
+    -moz-transform: rotate(241.2deg);
+    -ms-transform: rotate(241.2deg);
+    -o-transform: rotate(241.2deg);
+    transform: rotate(241.2deg);
+  }
+  .uikit.p68 .bar {
+    -webkit-transform: rotate(244.8deg);
+    -moz-transform: rotate(244.8deg);
+    -ms-transform: rotate(244.8deg);
+    -o-transform: rotate(244.8deg);
+    transform: rotate(244.8deg);
+  }
+  .uikit.p69 .bar {
+    -webkit-transform: rotate(248.4deg);
+    -moz-transform: rotate(248.4deg);
+    -ms-transform: rotate(248.4deg);
+    -o-transform: rotate(248.4deg);
+    transform: rotate(248.4deg);
+  }
+  .uikit.p70 .bar {
+    -webkit-transform: rotate(252deg);
+    -moz-transform: rotate(252deg);
+    -ms-transform: rotate(252deg);
+    -o-transform: rotate(252deg);
+    transform: rotate(252deg);
+  }
+  .uikit.p71 .bar {
+    -webkit-transform: rotate(255.6deg);
+    -moz-transform: rotate(255.6deg);
+    -ms-transform: rotate(255.6deg);
+    -o-transform: rotate(255.6deg);
+    transform: rotate(255.6deg);
+  }
+  .uikit.p72 .bar {
+    -webkit-transform: rotate(259.2deg);
+    -moz-transform: rotate(259.2deg);
+    -ms-transform: rotate(259.2deg);
+    -o-transform: rotate(259.2deg);
+    transform: rotate(259.2deg);
+  }
+  .uikit.p73 .bar {
+    -webkit-transform: rotate(262.8deg);
+    -moz-transform: rotate(262.8deg);
+    -ms-transform: rotate(262.8deg);
+    -o-transform: rotate(262.8deg);
+    transform: rotate(262.8deg);
+  }
+  .uikit.p74 .bar {
+    -webkit-transform: rotate(266.4deg);
+    -moz-transform: rotate(266.4deg);
+    -ms-transform: rotate(266.4deg);
+    -o-transform: rotate(266.4deg);
+    transform: rotate(266.4deg);
+  }
+  .uikit.p75 .bar {
+    -webkit-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    transform: rotate(270deg);
+  }
+  .uikit.p76 .bar {
+    -webkit-transform: rotate(273.6deg);
+    -moz-transform: rotate(273.6deg);
+    -ms-transform: rotate(273.6deg);
+    -o-transform: rotate(273.6deg);
+    transform: rotate(273.6deg);
+  }
+  .uikit.p77 .bar {
+    -webkit-transform: rotate(277.2deg);
+    -moz-transform: rotate(277.2deg);
+    -ms-transform: rotate(277.2deg);
+    -o-transform: rotate(277.2deg);
+    transform: rotate(277.2deg);
+  }
+  .uikit.p78 .bar {
+    -webkit-transform: rotate(280.8deg);
+    -moz-transform: rotate(280.8deg);
+    -ms-transform: rotate(280.8deg);
+    -o-transform: rotate(280.8deg);
+    transform: rotate(280.8deg);
+  }
+  .uikit.p79 .bar {
+    -webkit-transform: rotate(284.4deg);
+    -moz-transform: rotate(284.4deg);
+    -ms-transform: rotate(284.4deg);
+    -o-transform: rotate(284.4deg);
+    transform: rotate(284.4deg);
+  }
+  .uikit.p80 .bar {
+    -webkit-transform: rotate(288deg);
+    -moz-transform: rotate(288deg);
+    -ms-transform: rotate(288deg);
+    -o-transform: rotate(288deg);
+    transform: rotate(288deg);
+  }
+  .uikit.p81 .bar {
+    -webkit-transform: rotate(291.6deg);
+    -moz-transform: rotate(291.6deg);
+    -ms-transform: rotate(291.6deg);
+    -o-transform: rotate(291.6deg);
+    transform: rotate(291.6deg);
+  }
+  .uikit.p82 .bar {
+    -webkit-transform: rotate(295.2deg);
+    -moz-transform: rotate(295.2deg);
+    -ms-transform: rotate(295.2deg);
+    -o-transform: rotate(295.2deg);
+    transform: rotate(295.2deg);
+  }
+  .uikit.p83 .bar {
+    -webkit-transform: rotate(298.8deg);
+    -moz-transform: rotate(298.8deg);
+    -ms-transform: rotate(298.8deg);
+    -o-transform: rotate(298.8deg);
+    transform: rotate(298.8deg);
+  }
+  .uikit.p84 .bar {
+    -webkit-transform: rotate(302.4deg);
+    -moz-transform: rotate(302.4deg);
+    -ms-transform: rotate(302.4deg);
+    -o-transform: rotate(302.4deg);
+    transform: rotate(302.4deg);
+  }
+  .uikit.p85 .bar {
+    -webkit-transform: rotate(306deg);
+    -moz-transform: rotate(306deg);
+    -ms-transform: rotate(306deg);
+    -o-transform: rotate(306deg);
+    transform: rotate(306deg);
+  }
+  .uikit.p86 .bar {
+    -webkit-transform: rotate(309.6deg);
+    -moz-transform: rotate(309.6deg);
+    -ms-transform: rotate(309.6deg);
+    -o-transform: rotate(309.6deg);
+    transform: rotate(309.6deg);
+  }
+  .uikit.p87 .bar {
+    -webkit-transform: rotate(313.2deg);
+    -moz-transform: rotate(313.2deg);
+    -ms-transform: rotate(313.2deg);
+    -o-transform: rotate(313.2deg);
+    transform: rotate(313.2deg);
+  }
+  .uikit.p88 .bar {
+    -webkit-transform: rotate(316.8deg);
+    -moz-transform: rotate(316.8deg);
+    -ms-transform: rotate(316.8deg);
+    -o-transform: rotate(316.8deg);
+    transform: rotate(316.8deg);
+  }
+  .uikit.p89 .bar {
+    -webkit-transform: rotate(320.4deg);
+    -moz-transform: rotate(320.4deg);
+    -ms-transform: rotate(320.4deg);
+    -o-transform: rotate(320.4deg);
+    transform: rotate(320.4deg);
+  }
+  .uikit.p90 .bar {
+    -webkit-transform: rotate(324deg);
+    -moz-transform: rotate(324deg);
+    -ms-transform: rotate(324deg);
+    -o-transform: rotate(324deg);
+    transform: rotate(324deg);
+  }
+  .uikit.p91 .bar {
+    -webkit-transform: rotate(327.6deg);
+    -moz-transform: rotate(327.6deg);
+    -ms-transform: rotate(327.6deg);
+    -o-transform: rotate(327.6deg);
+    transform: rotate(327.6deg);
+  }
+  .uikit.p92 .bar {
+    -webkit-transform: rotate(331.2deg);
+    -moz-transform: rotate(331.2deg);
+    -ms-transform: rotate(331.2deg);
+    -o-transform: rotate(331.2deg);
+    transform: rotate(331.2deg);
+  }
+  .uikit.p93 .bar {
+    -webkit-transform: rotate(334.8deg);
+    -moz-transform: rotate(334.8deg);
+    -ms-transform: rotate(334.8deg);
+    -o-transform: rotate(334.8deg);
+    transform: rotate(334.8deg);
+  }
+  .uikit.p94 .bar {
+    -webkit-transform: rotate(338.4deg);
+    -moz-transform: rotate(338.4deg);
+    -ms-transform: rotate(338.4deg);
+    -o-transform: rotate(338.4deg);
+    transform: rotate(338.4deg);
+  }
+  .uikit.p95 .bar {
+    -webkit-transform: rotate(342deg);
+    -moz-transform: rotate(342deg);
+    -ms-transform: rotate(342deg);
+    -o-transform: rotate(342deg);
+    transform: rotate(342deg);
+  }
+  .uikit.p96 .bar {
+    -webkit-transform: rotate(345.6deg);
+    -moz-transform: rotate(345.6deg);
+    -ms-transform: rotate(345.6deg);
+    -o-transform: rotate(345.6deg);
+    transform: rotate(345.6deg);
+  }
+  .uikit.p97 .bar {
+    -webkit-transform: rotate(349.2deg);
+    -moz-transform: rotate(349.2deg);
+    -ms-transform: rotate(349.2deg);
+    -o-transform: rotate(349.2deg);
+    transform: rotate(349.2deg);
+  }
+  .uikit.p98 .bar {
+    -webkit-transform: rotate(352.8deg);
+    -moz-transform: rotate(352.8deg);
+    -ms-transform: rotate(352.8deg);
+    -o-transform: rotate(352.8deg);
+    transform: rotate(352.8deg);
+  }
+  .uikit.p99 .bar {
+    -webkit-transform: rotate(356.4deg);
+    -moz-transform: rotate(356.4deg);
+    -ms-transform: rotate(356.4deg);
+    -o-transform: rotate(356.4deg);
+    transform: rotate(356.4deg);
+  }
+  .uikit.p100 .bar {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+  .uikit:hover {
+    cursor: default;
+  }
+  .uikit:hover > span {
+    width: 3.33em;
+    line-height: 3.33em;
+    font-size: 0.3em;
+    color: #307bbb;
+  }
+  .uikit:hover:after {
+    top: 0.04em;
+    left: 0.04em;
+    width: 0.92em;
+    height: 0.92em;
+  }
+`;
+},{"@rxdi/lit-html":"R8ie"}],"aOBu":[function(require,module,exports) {
+"use strict";var t,e=this&&this.__decorate||function(t,e,i,r){var s,o=arguments.length,l=o<3?e:null===r?r=Object.getOwnPropertyDescriptor(e,i):r;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)l=Reflect.decorate(t,e,i,r);else for(var a=t.length-1;a>=0;a--)(s=t[a])&&(l=(o<3?s(l):o>3?s(e,i,l):s(e,i))||l);return o>3&&l&&Object.defineProperty(e,i,l),l},i=this&&this.__metadata||function(t,e){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(t,e)};Object.defineProperty(exports,"__esModule",{value:!0});const r=require("@rxdi/lit-html"),s=require("../settings"),o=require("./circle.css");let l=class extends r.LitElement{constructor(){super(...arguments),this.palette="default",this.height=8,this._value=0,this.rounded=!1,this.label=!1,this.type="bar"}get value(){return this._value}set value(t){const e=this._value;this._value=t>100?100:t,this.requestUpdate("value",e)}};e([r.property({type:String}),i("design:type","function"==typeof(t=void 0!==s.PalettesUnion&&s.PalettesUnion)?t:Object)],l.prototype,"palette",void 0),e([r.property({type:Number}),i("design:type",Object)],l.prototype,"height",void 0),e([r.property({type:Number}),i("design:type",Number),i("design:paramtypes",[Number])],l.prototype,"value",null),e([r.property({type:Boolean}),i("design:type",Object)],l.prototype,"rounded",void 0),e([r.property({type:Boolean}),i("design:type",Object)],l.prototype,"label",void 0),e([r.property({type:String}),i("design:type",String)],l.prototype,"type",void 0),l=e([r.Component({selector:"rx-progress",template(){return r.html`
+      <style>
+        :host {
+          display: ${"bar"===this.type?"block":"inline-block"};
+        }
+        .container {
+          display: flex;
+          height: ${"circle"===this.type?this.height<=12?10*this.height+20:140:this.height}px;
+          overflow: hidden;
+          width: ${"circle"===this.type?this.height<=12?10*this.height+20+"px":"140px":"100%"};
+
+          justify-content: ${"bar"===this.type?"start":"center"};
+          align-items: ${"bar"===this.type?"flex-start":"center"};
+        }
+        .bar {
+          width: ${this.value}%;
+          height: 100%;
+          background-color: var(--${this.palette}-bg-color);
+          transition: width 0.4s ease;
+          border-radius: ${this.rounded?this.height/2+"px":"0px"};
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          overflow: hidden;
+        }
+        .label {
+          font-size: 0.5em;
+          font-weight: bold;
+        }
+
+        ${"circle"===this.type?o.progressCss:""} .uikit.dark {
+          background-color: #777777;
+        }
+        .uikit.dark .bar,
+        .uikit.dark .fill {
+          border-color: var(--${this.palette}-bg-color) !important;
+        }
+        .uikit.dark > span {
+          color: var(--${this.palette}-color);
+        }
+        .uikit.dark:after {
+          background-color: #666666;
+        }
+        .uikit.dark:hover > span {
+          color: var(--${this.palette}-color);
+        }
+
+        .uikit {
+          font-size: ${this.height<=12?10*this.height:120}px;
+        }
+      </style>
+      <div class="container">
+        ${"bar"===this.type?r.html`
+              <div class="bar">
+                ${this.label&&this.value>5?r.html`
+                      <span class="label">${this.label?this.value+"%":""}</span>
+                    `:""}
+              </div>
+            `:r.html`
+              <div class="uikit p${this.value} dark">
+                <span>${this.value}%</span>
+                <div class="slice">
+                  <div class="bar"></div>
+                  <div class="fill"></div>
+                </div>
+              </div>
+            `}
+      </div>
+    `}})],l),exports.ProgressComponent=l;
+},{"@rxdi/lit-html":"R8ie","../settings":"oZ1d","./circle.css":"y5Oc"}],"Gsig":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.AppModule=void 0;var e=require("@rxdi/core"),o=require("./app.component"),n=require("@rxdi/router"),r=require("../../../src/markdown-reader"),t=require("../../../src/accordion"),p=require("./markdown-reader/markdown-regular.component"),i=require("./responsive/responsive.component"),c=require("./accordion-view/accordion-view.component"),a=require("../../../src/image"),m=require("../../../src"),d=require("../../../src/grid/grid.component"),u=require("./image-view/image-view.component"),s=require("../../../src/badge/badge.component"),w=require("../../../src/button/button.component"),l=require("../../../src/article/article.component"),v=require("../../../src/label/label.component"),q=require("../../../src/card/card.component"),C=require("../../../src/dropdown/dropdown.component"),g=require("../../../src/modal"),b=require("./badge-view/badge-vew.component"),f=require("./modal/modal-view.component"),h=require("./button-view/button-view.component"),M=require("./article-view/article-view.component"),R=require("./divider-view/divider-view.component"),V=require("../../../src/divider/divider.component"),k=require("./label-view/label-view.component"),A=require("./dropdown-view/dropdown-view.component"),x=require("../../../src/nav"),D=require("./nav-view/nav-view.component"),P=require("./nav-view/nav-component"),y=require("./card-view/card-view.component"),j=require("./forms/forms-view.component"),B=require("./progress-view/progress-view.component"),O=require("../../../src/progress/progress.component"),N=function(e,o,n,r){var t,p=arguments.length,i=p<3?o:null===r?r=Object.getOwnPropertyDescriptor(o,n):r;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)i=Reflect.decorate(e,o,n,r);else for(var c=e.length-1;c>=0;c--)(t=e[c])&&(i=(p<3?t(i):p>3?t(o,n,i):t(o,n))||i);return p>3&&i&&Object.defineProperty(o,n,i),i};let I=class{};exports.AppModule=I,exports.AppModule=I=N([(0,e.Module)({components:[p.RegularMarkdownComponent,c.AccordionViewComponent,t.AccordionComponent,a.RxImageComponent,d.GridComponent,s.BadgeComponent,w.ButtonComponent,l.ArticleComponent,V.DividerComponent,v.LabelComponent,C.DropdownComponent,P.NavComponent,q.CardComponent,O.ProgressComponent],imports:[g.ModalModule.forRoot({backdropClose:!0}),m.ReactiveUiModule.forRoot(),r.MarkdownReaderModule,x.NavModule.forRoot(),n.RouterModule.forRoot([{path:"/",component:p.RegularMarkdownComponent},{path:"/markdown-reader/:namespace/:repo/:filePath",component:r.MarkdownReaderComponent},{path:"/responsive",component:i.ResponsiveViewComponent},{path:"/accordion",component:c.AccordionViewComponent},{path:"/image",component:u.ImageViewComponent},{path:"/badge",component:b.BadgeViewComponent},{path:"/modal",component:f.ModalViewComponent},{path:"/button",component:h.ButtonViewComponent},{path:"/article",component:M.ArticleViewComponent},{path:"/divider",component:R.DividerViewComponent},{path:"/label",component:k.LabelViewComponent},{path:"/dropdown",component:A.DropDownViewComponent},{path:"/nav",component:D.NavViewComponent},{path:"/card",component:y.CardViewComponent},{path:"/forms",component:j.FormsViewComponent},{path:"/progress",component:B.ProgressViewComponent}],{log:!0})],bootstrap:[o.AppComponent]})],I);
+},{"@rxdi/core":"lhgc","./app.component":"XCbS","@rxdi/router":"tW8N","../../../src/markdown-reader":"X0WN","../../../src/accordion":"oj6B","./markdown-reader/markdown-regular.component":"SbH7","./responsive/responsive.component":"Onv4","./accordion-view/accordion-view.component":"cwfd","../../../src/image":"N7t6","../../../src":"fUdq","../../../src/grid/grid.component":"iXmO","./image-view/image-view.component":"bbMR","../../../src/badge/badge.component":"C2jj","../../../src/button/button.component":"Ofur","../../../src/article/article.component":"pT1A","../../../src/label/label.component":"lvFV","../../../src/card/card.component":"kpCZ","../../../src/dropdown/dropdown.component":"vZQS","../../../src/modal":"mF9g","./badge-view/badge-vew.component":"jitd","./modal/modal-view.component":"jCtu","./button-view/button-view.component":"DgQ9","./article-view/article-view.component":"XMfu","./divider-view/divider-view.component":"LW6G","../../../src/divider/divider.component":"OXJN","./label-view/label-view.component":"JKyV","./dropdown-view/dropdown-view.component":"B4BC","../../../src/nav":"e2p2","./nav-view/nav-view.component":"p3Sc","./nav-view/nav-component":"ynE3","./card-view/card-view.component":"wymD","./forms/forms-view.component":"ZY77","./progress-view/progress-view.component":"wuRl","../../../src/progress/progress.component":"aOBu"}],"ZCfc":[function(require,module,exports) {
 "use strict";var e=require("@rxdi/core"),o=require("./src/app/app.module");window.addEventListener("load",()=>{(0,e.Bootstrap)(o.AppModule,{init:!1}).subscribe(()=>console.log("App Started!"),e=>console.error(e))}),module.hot&&module.hot.dispose(()=>document.body.innerHTML="");
 },{"@rxdi/core":"lhgc","./src/app/app.module":"Gsig"}]},{},["ZCfc"], null)
-//# sourceMappingURL=ui-kit/main.879aeb71.js.map
+//# sourceMappingURL=ui-kit/main.bc7916f4.js.map

@@ -35,6 +35,7 @@ import { Nav } from '../../../../src/nav';
         <a href="/dropdown"><rx-button palette="primary">Dropdown</rx-button> </a>
         <a href="/card"><rx-button palette="primary">Card</rx-button> </a>
         <a href="/forms"><rx-button palette="primary">Forms</rx-button> </a>
+        <a href="/progress"><rx-button palette="primary">Progress</rx-button> </a>
 
         <!-- <rx-button
           palette="danger"
