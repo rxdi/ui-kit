@@ -2,7 +2,7 @@ import { LitElement, Component, html, property, async } from '@rxdi/lit-html';
 import { style } from './toc.component.css';
 import { Inject } from '@rxdi/core';
 import { MarkdownParserMenuProvider } from '../markdown-menu.provider';
-import { map, filter } from 'rxjs/operators';
+import { map, filter, tap } from 'rxjs/operators';
 import { TocInterface } from './toc.interface';
 
 /**
@@ -13,11 +13,19 @@ import { TocInterface } from './toc.interface';
   style,
   template(this: TocComponent) {
     return html`
-      <div class="toc-wrapper">
-        <ul>
-          ${async(this.menus)}
-        </ul>
-      </div>
+      ${async(
+        this.menus.pipe(
+          map(
+            menus => html`
+              <div class="toc-wrapper">
+                <ul>
+                  ${menus}
+                </ul>
+              </div>
+            `
+          )
+        )
+      )}
     `;
   }
 })
@@ -29,6 +37,7 @@ export class TocComponent extends LitElement {
 
   private menus = this.menuProvider.menu.pipe(
     filter(() => !!this.opened),
+    filter((res) => !!res.length),
     map(menus => this.createMenusTemplate(menus))
   );
 
@@ -48,5 +57,9 @@ export class TocComponent extends LitElement {
         ${item.title}
       </li>
     `;
+  }
+
+  OnDestroy() {
+    this.menuProvider.menu.next([]);
   }
 }

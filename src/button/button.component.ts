@@ -96,26 +96,35 @@ export class ButtonComponent extends LitElement {
   }
 
   private getFormElement() {
-    const get = (obj: Object = {}, path: string = '') =>
-      path
-        .replace(/\[(.+?)\]/g, '.$1')
-        .split('.')
-        .reduce((o, key) => (!o[key] ? o : o[key]), obj);
     const defaultKey = 'parentElement';
     let selector = '';
-    let form: HTMLFormElement;
+    let form: HTMLElement;
 
     for (const k of Array(1000).fill(defaultKey)) {
-      if (!selector) {
-        selector = k;
-      } else {
-        selector += `.${k}`;
-      }
-      const formElement = get(this.parentElement, selector);
-      if (formElement && formElement.tagName === 'FORM') {
+      const formElement = this.findForm(selector);
+      if (formElement) {
         form = formElement;
         break;
       }
+      selector += `.${k}`;
+    }
+    return form;
+  }
+  private get(obj: Object = {}, path: string = '') {
+    return path
+      .replace(/\[(.+?)\]/g, '.$1')
+      .split('.')
+      .reduce((o, key) => (!o[key] ? o : o[key]), obj);
+  }
+  private findForm(selector: string) {
+    let form: HTMLElement;
+    if (!selector) {
+      form = this.parentElement;
+    } else {
+      form = this.get(this.parentElement, selector);
+    }
+    if (form && form.tagName !== 'FORM') {
+      return null;
     }
     return form;
   }

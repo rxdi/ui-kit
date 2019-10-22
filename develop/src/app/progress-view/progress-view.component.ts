@@ -1,5 +1,5 @@
 import { html, Component, LitElement, async } from '@rxdi/lit-html';
-import { interval, Subject } from 'rxjs';
+import { interval, Subject, BehaviorSubject } from 'rxjs';
 import { take, switchMap, map } from 'rxjs/operators';
 
 /**
@@ -47,11 +47,15 @@ import { take, switchMap, map } from 'rxjs/operators';
       <rx-progress palette="primary" height="12" .value="${async(this.progressValue$)}" type="circle"></rx-progress>
       <rx-progress palette="danger" height="10" value="25" type="circle"></rx-progress>
       <rx-progress palette="warning" height="8" value="75" type="circle"></rx-progress>
+
+      <markdown-reader
+        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/progress/README.md"
+      ></markdown-reader>
     `;
   }
 })
 export class ProgressViewComponent extends LitElement {
-  public reset$ = new Subject();
+  public reset$ = new BehaviorSubject(0);
 
   public progressValue$ = this.reset$.pipe(
     switchMap(() =>
@@ -62,13 +66,7 @@ export class ProgressViewComponent extends LitElement {
   );
 
   reset() {
-    this.reset$.next();
+    this.reset$.next(0);
   }
 
-  OnUpdateFirst() {
-    this.progressValue$.subscribe(console.log)
-
-    this.reset$.next();
-
-  }
 }
