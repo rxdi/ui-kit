@@ -8,6 +8,8 @@ import { SECONDARY } from './styles/chunks/palettes/secondary';
 import { DynamicCssService } from './services/dynamic-css/dynamic-css';
 import { ResponsiveService } from './services';
 import { WARNING } from './styles/chunks/palettes/warning';
+import { css } from '@rxdi/lit-html';
+import { ROOT } from './styles/chunks/palettes/root';
 
 @Module()
 export class ReactiveUiModule {
@@ -22,6 +24,7 @@ export class ReactiveUiModule {
           provide: Palettes,
           useValue: new BehaviorSubject<Palettes>(
             options.palettes || {
+              root: ROOT,
               default: DEFAULT,
               primary: PRIMARY,
               secondary: SECONDARY,

@@ -30,7 +30,9 @@ import { InputErrorTemplate, EmailValidator } from './error';
             required
             autofocus
           />
-          ${InputErrorTemplate(this.form.get('email'))}
+          <div style="height:20px;">
+            ${InputErrorTemplate(this.form.get('email'))}
+          </div>
           <input
             style="margin-top: 20px;"
             type="password"
@@ -40,16 +42,21 @@ import { InputErrorTemplate, EmailValidator } from './error';
             name="password"
             placeholder="Password"
           />
-          ${InputErrorTemplate(this.form.get('password'))}
+          <div style="height:20px;">
+            ${InputErrorTemplate(this.form.get('password'))}
+          </div>
 
-          <rx-if .exp=${() => this.form.get('password').invalid}>dadadaa</rx-if>
+          <!-- <rx-if .exp=${() =>
+            this.form.get('password').invalid}>dadadaa</rx-if> -->
 
           <div>
             <label>
               <input name="rememberMe" type="checkbox" required /> Remember me
             </label>
           </div>
-          ${InputErrorTemplate(this.form.get('rememberMe'))}
+          <div style="height:20px;">
+            ${InputErrorTemplate(this.form.get('rememberMe'))}
+          </div>
           <rx-button type="submit" palette="primary">Submit</rx-button>
         </form>
       </div>

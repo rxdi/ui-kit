@@ -33,7 +33,9 @@ import { map } from 'rxjs/operators';
           })
         )
       )} -->
-
+      <style>
+      /*  */
+      </style>
       <div style="display: flex">
         <div class="rx-nav" id="rx-nav"></div>
         <div class="test" style="transition: margin-left .5s;width: 100%;">

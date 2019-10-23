@@ -1,12 +1,13 @@
-import { Injectable, Inject, Container } from '@rxdi/core';
+import { Injectable, Container } from '@rxdi/core';
 import { Palettes } from '../../settings';
 import { BehaviorSubject } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 
 @Injectable({ init: true })
 export class DynamicCssService {
-  @Inject(Palettes)
-  private palletes: BehaviorSubject<Palettes>;
+  private palletes: BehaviorSubject<Palettes> = Container.get<
+    BehaviorSubject<Palettes>
+  >(Palettes);
 
   private style: HTMLStyleElement;
 
@@ -15,13 +16,14 @@ export class DynamicCssService {
   }
 
   OnInit() {
-    this.palletes = Container.get<BehaviorSubject<Palettes>>(Palettes);
     this.palletes.subscribe(stream => {
       if (this.style) {
         this.style.remove();
       }
       this.style = document.createElement('style');
-      this.style.innerHTML = Object.values(stream).join(' ');
+      this.style.innerHTML = Object.entries(stream)
+        .map(([key, css]) => ` /* ${key} pallete */ ${css.cssText}`)
+        .join(' ');
       document.head.appendChild(this.style);
     });
   }
@@ -34,12 +36,6 @@ export class DynamicCssService {
     );
   }
 }
-
-
-
-
-
-
 
 // import { Injectable, Inject, Container } from "@rxdi/core";
 // import { Palettes } from "@rxdi/ui-kit/settings";
