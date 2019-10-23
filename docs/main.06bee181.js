@@ -815,7 +815,9 @@ var e=require("process");Object.defineProperty(exports,"__esModule",{value:!0});
                 }
               </style>
             `))))} -->
-
+      <style>
+      /*  */
+      </style>
       <div style="display: flex">
         <div class="rx-nav" id="rx-nav"></div>
         <div class="test" style="transition: margin-left .5s;width: 100%;">
@@ -840,34 +842,7 @@ var e=require("process");Object.defineProperty(exports,"__esModule",{value:!0});
         </div>
       </div>
     `},container:document.getElementById("app")})],a);
-},{"@rxdi/lit-html":"R8ie","@rxdi/core":"lhgc","../../../src/nav":"e2p2","rxjs/operators":"cVrl"}],"KX2f":[function(require,module,exports) {
-"use strict";function e(e){return e=e||[],Array.isArray(e)?e:[e]}function t(e){return`[Vaadin.Router] ${e}`}function n(e){if("object"!=typeof e)return String(e);const t=Object.prototype.toString.call(e).match(/ (.*)\]$/)[1];return"Object"===t||"Array"===t?`${t} ${JSON.stringify(e)}`:t}Object.defineProperty(exports,"__esModule",{value:!0}),exports.Router=exports.Resolver=void 0;const r="module",o="nomodule",i=[r,o];function a(e){if(!e.match(/.+\.[m]?js$/))throw new Error(t(`Unsupported type for bundle "${e}": .js or .mjs expected.`))}function s(e){if(!e||!_(e.path))throw new Error(t('Expected route config to be an object with a "path" string property, or an array of such objects'));const n=e.bundle,s=["component","redirect","bundle"];if(!(p(e.action)||Array.isArray(e.children)||p(e.children)||d(n)||s.some(t=>_(e[t]))))throw new Error(t(`Expected route config "${e.path}" to include either "${s.join('", "')}" `+'or "action" function but none found.'));if(n)if(_(n))a(n);else{if(!i.some(e=>e in n))throw new Error(t('Expected route bundle to include either "'+o+'" or "'+r+'" keys, or both'));i.forEach(e=>e in n&&a(n[e]))}e.redirect&&["bundle","component"].forEach(n=>{n in e&&console.warn(t(`Route config "${e.path}" has both "redirect" and "${n}" properties, `+`and "redirect" will always override the latter. Did you mean to only use "${n}"?`))})}function c(t){e(t).forEach(e=>s(e))}function l(e,t){let n=document.head.querySelector('script[src="'+e+'"][async]');return n||((n=document.createElement("script")).setAttribute("src",e),t===r?n.setAttribute("type",r):t===o&&n.setAttribute(o,""),n.async=!0),new Promise((e,t)=>{n.onreadystatechange=n.onload=(t=>{n.__dynamicImportLoaded=!0,e(t)}),n.onerror=(e=>{n.parentNode&&n.parentNode.removeChild(n),t(e)}),null===n.parentNode?document.head.appendChild(n):n.__dynamicImportLoaded&&e()})}function h(e){return _(e)?l(e):Promise.race(i.filter(t=>t in e).map(t=>l(e[t],t)))}function u(e,t){return!window.dispatchEvent(new CustomEvent(`vaadin-router-${e}`,{cancelable:"go"===e,detail:t}))}function d(e){return"object"==typeof e&&!!e}function p(e){return"function"==typeof e}function _(e){return"string"==typeof e}function f(e){const n=new Error(t(`Page not found (${e.pathname})`));return n.context=e,n.code=404,n}const m=new class{};function g(e){const t=e.port,n=e.protocol;return`${n}//${"http:"===n&&"80"===t||"https:"===n&&"443"===t?e.hostname:e.host}`}function v(e){if(e.defaultPrevented)return;if(0!==e.button)return;if(e.shiftKey||e.ctrlKey||e.altKey||e.metaKey)return;let t=e.target;const n=e.composedPath?e.composedPath():e.path||[];for(let a=0;a<n.length;a++){const e=n[a];if(e.nodeName&&"a"===e.nodeName.toLowerCase()){t=e;break}}for(;t&&"a"!==t.nodeName.toLowerCase();)t=t.parentNode;if(!t||"a"!==t.nodeName.toLowerCase())return;if(t.target&&"_self"!==t.target.toLowerCase())return;if(t.hasAttribute("download"))return;if(t.pathname===window.location.pathname&&""!==t.hash)return;if((t.origin||g(t))!==window.location.origin)return;const{pathname:r,search:o,hash:i}=t;u("go",{pathname:r,search:o,hash:i})&&e.preventDefault()}const w={activate(){window.document.addEventListener("click",v)},inactivate(){window.document.removeEventListener("click",v)}},y=/Trident/.test(navigator.userAgent);function b(e){if("vaadin-router-ignore"===e.state)return;const{pathname:t,search:n,hash:r}=window.location;u("go",{pathname:t,search:n,hash:r})}y&&!p(window.PopStateEvent)&&(window.PopStateEvent=function(e,t){t=t||{};var n=document.createEvent("Event");return n.initEvent(e,Boolean(t.bubbles),Boolean(t.cancelable)),n.state=t.state||null,n},window.PopStateEvent.prototype=window.Event.prototype);const E={activate(){window.addEventListener("popstate",b)},inactivate(){window.removeEventListener("popstate",b)}};var x=V,C=L,R=j,A=I,O=M,k="/",$="./",P=new RegExp(["(\\\\.)","(?:\\:(\\w+)(?:\\(((?:\\\\.|[^\\\\()])+)\\))?|\\(((?:\\\\.|[^\\\\()])+)\\))([+*?])?"].join("|"),"g");function L(e,t){for(var n,r=[],o=0,i=0,a="",s=t&&t.delimiter||k,c=t&&t.delimiters||$,l=!1;null!==(n=P.exec(e));){var h=n[0],u=n[1],d=n.index;if(a+=e.slice(i,d),i=d+h.length,u)a+=u[1],l=!0;else{var p="",_=e[i],f=n[2],m=n[3],g=n[4],v=n[5];if(!l&&a.length){var w=a.length-1;c.indexOf(a[w])>-1&&(p=a[w],a=a.slice(0,w))}a&&(r.push(a),a="",l=!1);var y=""!==p&&void 0!==_&&_!==p,b="+"===v||"*"===v,E="?"===v||"*"===v,x=p||s,C=m||g;r.push({name:f||o++,prefix:p,delimiter:x,optional:E,repeat:b,partial:y,pattern:C?U(C):"[^"+B(x)+"]+?"})}}return(a||i<e.length)&&r.push(a+e.substr(i)),r}function j(e,t){return I(L(e,t))}function I(e){for(var t=new Array(e.length),n=0;n<e.length;n++)"object"==typeof e[n]&&(t[n]=new RegExp("^(?:"+e[n].pattern+")$"));return function(n,r){for(var o="",i=r&&r.encode||encodeURIComponent,a=0;a<e.length;a++){var s=e[a];if("string"!=typeof s){var c,l=n?n[s.name]:void 0;if(Array.isArray(l)){if(!s.repeat)throw new TypeError('Expected "'+s.name+'" to not repeat, but got array');if(0===l.length){if(s.optional)continue;throw new TypeError('Expected "'+s.name+'" to not be empty')}for(var h=0;h<l.length;h++){if(c=i(l[h],s),!t[a].test(c))throw new TypeError('Expected all "'+s.name+'" to match "'+s.pattern+'"');o+=(0===h?s.prefix:s.delimiter)+c}}else if("string"!=typeof l&&"number"!=typeof l&&"boolean"!=typeof l){if(!s.optional)throw new TypeError('Expected "'+s.name+'" to be '+(s.repeat?"an array":"a string"));s.partial&&(o+=s.prefix)}else{if(c=i(String(l),s),!t[a].test(c))throw new TypeError('Expected "'+s.name+'" to match "'+s.pattern+'", but got "'+c+'"');o+=s.prefix+c}}else o+=s}return o}}function B(e){return e.replace(/([.+*?=^!:${}()[\]|\/\\])/g,"\\$1")}function U(e){return e.replace(/([=!:$\/()])/g,"\\$1")}function N(e){return e&&e.sensitive?"":"i"}function T(e,t){if(!t)return e;var n=e.source.match(/\((?!\?)/g);if(n)for(var r=0;r<n.length;r++)t.push({name:r,prefix:null,delimiter:null,optional:!1,repeat:!1,partial:!1,pattern:null});return e}function S(e,t,n){for(var r=[],o=0;o<e.length;o++)r.push(V(e[o],t,n).source);return new RegExp("(?:"+r.join("|")+")",N(n))}function F(e,t,n){return M(L(e,n),t,n)}function M(e,t,n){for(var r=(n=n||{}).strict,o=!1!==n.start,i=!1!==n.end,a=B(n.delimiter||k),s=n.delimiters||$,c=[].concat(n.endsWith||[]).map(B).concat("$").join("|"),l=o?"^":"",h=0===e.length,u=0;u<e.length;u++){var d=e[u];if("string"==typeof d)l+=B(d),h=u===e.length-1&&s.indexOf(d[d.length-1])>-1;else{var p=d.repeat?"(?:"+d.pattern+")(?:"+B(d.delimiter)+"(?:"+d.pattern+"))*":d.pattern;t&&t.push(d),d.optional?d.partial?l+=B(d.prefix)+"("+p+")?":l+="(?:"+B(d.prefix)+"("+p+"))?":l+=B(d.prefix)+"("+p+")"}}return i?(r||(l+="(?:"+a+")?"),l+="$"===c?"$":"(?="+c+")"):(r||(l+="(?:"+a+"(?="+c+"))?"),h||(l+="(?="+a+"|"+c+")")),new RegExp(l,N(n))}function V(e,t,n){return e instanceof RegExp?T(e,t):Array.isArray(e)?S(e,t,n):F(e,t,n)}x.parse=C,x.compile=R,x.tokensToFunction=A,x.tokensToRegExp=O;const{hasOwnProperty:H}=Object.prototype,D=new Map;function K(e){try{return decodeURIComponent(e)}catch(t){return e}}function W(e,t,n,r,o){const i=`${e}|${n=!!n}`;let a=D.get(i);if(!a){const t=[];a={keys:t,pattern:x(e,t,{end:n,strict:""===e})},D.set(i,a)}const s=a.pattern.exec(t);if(!s)return null;const c=Object.assign({},o);for(let l=1;l<s.length;l++){const e=a.keys[l-1],t=e.name,n=s[l];void 0===n&&H.call(c,t)||(e.repeat?c[t]=n?n.split(e.delimiter).map(K):[]:c[t]=n?K(n):n)}return{path:s[0],keys:(r||[]).concat(a.keys),params:c}}function q(e,t,n,r,o){let i,a,s=0,c=e.path||"";return"/"===c.charAt(0)&&(n&&(c=c.substr(1)),n=!0),{next(l){if(e===l)return{done:!0};const h=e.__children=e.__children||e.children;if(!i&&(i=W(c,t,!h,r,o)))return{done:!1,value:{route:e,keys:i.keys,params:i.params,path:i.path}};if(i&&h)for(;s<h.length;){if(!a){const r=h[s];r.parent=e;let o=i.path.length;o>0&&"/"===t.charAt(o)&&(o+=1),a=q(r,t.substr(o),n,i.keys,i.params)}const r=a.next(l);if(!r.done)return{done:!1,value:r.value};a=null,s++}return{done:!0}}}}function z(e){if(p(e.route.action))return e.route.action(e)}function Q(e,t){let n=t;for(;n;)if((n=n.parent)===e)return!0;return!1}function J(e){let t=`Path '${e.pathname}' is not properly resolved due to an error.`;const n=(e.route||{}).path;return n&&(t+=` Resolution had failed on route: '${n}'`),t}function G(e,t){const{route:n,path:r}=t;if(n&&!n.__synthetic){const t={path:r,route:n};!function(e,t){return!t.parent||!e||!e.length||e[e.length-1].route!==t.parent}(e.chain,n)?e.chain.push(t):e.chain=[t]}}D.set("|false",{keys:[],pattern:/(?:)/});class X{constructor(e,t={}){if(Object(e)!==e)throw new TypeError("Invalid routes");this.baseUrl=t.baseUrl||"",this.errorHandler=t.errorHandler,this.resolveRoute=t.resolveRoute||z,this.context=Object.assign({resolver:this},t.context),this.root=Array.isArray(e)?{path:"",__children:e,parent:null,__synthetic:!0}:e,this.root.parent=null}getRoutes(){return[...this.root.__children]}setRoutes(t){c(t);const n=[...e(t)];this.root.__children=n}addRoutes(t){return c(t),this.root.__children.push(...e(t)),this.getRoutes()}removeRoutes(){this.setRoutes([])}resolve(e){const t=Object.assign({},this.context,_(e)?{pathname:e}:e),n=q(this.root,this.__normalizePathname(t.pathname),this.baseUrl),r=this.resolveRoute;let o=null,i=null,a=t;function s(e,c=o.value.route,l){const h=null===l&&o.value.route;return o=i||n.next(h),i=null,e||!o.done&&Q(c,o.value.route)?o.done?Promise.reject(f(t)):(G(t,o.value),a=Object.assign({},t,o.value),Promise.resolve(r(a)).then(t=>null!=t&&t!==m?(a.result=t.result||t,a):s(e,c,t))):(i=o,Promise.resolve(m))}return t.next=s,Promise.resolve().then(()=>s(!0,this.root)).catch(e=>{const t=J(a);if(e?console.warn(t):e=new Error(t),e.context=e.context||a,e instanceof DOMException||(e.code=e.code||500),this.errorHandler)return a.result=this.errorHandler(e),a;throw e})}static __createUrl(e,t){return new URL(e,t)}get __effectiveBaseUrl(){return this.baseUrl?this.constructor.__createUrl(this.baseUrl,document.baseURI||document.URL).href.replace(/[^\/]*$/,""):""}__normalizePathname(e){if(!this.baseUrl)return e;const t=this.__effectiveBaseUrl,n=this.constructor.__createUrl(e,t).href;return n.slice(0,t.length)===t?n.slice(t.length):void 0}}exports.Resolver=X,X.pathToRegexp=x;const{pathToRegexp:Y}=X,Z=new Map;function ee(e,t,n){const r=t.name||t.component;if(r&&(e.has(r)?e.get(r).push(t):e.set(r,[t])),Array.isArray(n))for(let o=0;o<n.length;o++){const r=n[o];r.parent=t,ee(e,r,r.__children||r.children)}}function te(e,t){const n=e.get(t);if(n&&n.length>1)throw new Error(`Duplicate route with name "${t}".`+" Try seting unique 'name' route properties.");return n&&n[0]}function ne(e){let t=e.path;return void 0!==(t=Array.isArray(t)?t[0]:t)?t:""}function re(e,t={}){if(!(e instanceof X))throw new TypeError("An instance of Resolver is expected");const n=new Map;return(r,o)=>{let i=te(n,r);if(!(i||(n.clear(),ee(n,e.root,e.root.__children),i=te(n,r))))throw new Error(`Route "${r}" not found`);let a=Z.get(i.fullPath);if(!a){let e=ne(i),t=i.parent;for(;t;){const n=ne(t);n&&(e=n.replace(/\/$/,"")+"/"+e.replace(/^\//,"")),t=t.parent}const n=Y.parse(e),r=Y.tokensToFunction(n),o=Object.create(null);for(let i=0;i<n.length;i++)_(n[i])||(o[n[i].name]=!0);a={toPath:r,keys:o},Z.set(e,a),i.fullPath=e}let s=a.toPath(o,t)||"/";if(t.stringifyQueryParams&&o){const e={},n=Object.keys(o);for(let t=0;t<n.length;t++){const r=n[t];a.keys[r]||(e[r]=o[r])}const r=t.stringifyQueryParams(e);r&&(s+="?"===r.charAt(0)?r:`?${r}`)}return s}}let oe=[];function ie(e){oe.forEach(e=>e.inactivate()),e.forEach(e=>e.activate()),oe=e}const ae=e=>{const t=getComputedStyle(e).getPropertyValue("animation-name");return t&&"none"!==t},se=(e,t)=>{const n=()=>{e.removeEventListener("animationend",n),t()};e.addEventListener("animationend",n)};function ce(e,t){return e.classList.add(t),new Promise(n=>{if(ae(e)){const r=e.getBoundingClientRect(),o=`height: ${r.bottom-r.top}px; width: ${r.right-r.left}px`;e.setAttribute("style",`position: absolute; ${o}`),se(e,()=>{e.classList.remove(t),e.removeAttribute("style"),n()})}else e.classList.remove(t),n()})}const le=256;function he(e){return null!=e}function ue(e){const t=Object.assign({},e);return delete t.next,t}function de({pathname:e="",search:t="",hash:n="",chain:r=[],params:o={},redirectFrom:i,resolver:a},s){const c=r.map(e=>e.route);return{baseUrl:a&&a.baseUrl||"",pathname:e,search:t,hash:n,routes:c,route:s||c.length&&c[c.length-1]||null,params:o,redirectFrom:i,getUrl:(e={})=>we(be.pathToRegexp.compile(ye(c))(Object.assign({},o,e)),a)}}function pe(e,t){const n=Object.assign({},e.params);return{redirect:{pathname:t,from:e.pathname,params:n}}}function _e(e,t){t.location=de(e);const n=e.chain.map(e=>e.route).indexOf(e.route);return e.chain[n].element=t,t}function fe(e,t,n){if(p(e))return e.apply(n,t)}function me(e,t,n){return r=>r&&(r.cancel||r.redirect)?r:n?fe(n[e],t,n):void 0}function ge(n,r){if(!Array.isArray(n)&&!d(n))throw new Error(t(`Incorrect "children" value for the route ${r.path}: expected array or object, but got ${n}`));r.__children=[];const o=e(n);for(let e=0;e<o.length;e++)s(o[e]),r.__children.push(o[e])}function ve(e){if(e&&e.length){const t=e[0].parentNode;for(let n=0;n<e.length;n++)t.removeChild(e[n])}}function we(e,t){const n=t.__effectiveBaseUrl;return n?t.constructor.__createUrl(e.replace(/^\//,""),n).pathname:e}function ye(e){return e.map(e=>e.path).reduce((e,t)=>t.length?e.replace(/\/$/,"")+"/"+t.replace(/^\//,""):e,"")}class be extends X{constructor(e,t){const n=document.head.querySelector("base");super([],Object.assign({baseUrl:n&&n.getAttribute("href")},t)),this.resolveRoute=(e=>this.__resolveRoute(e));const r=be.NavigationTrigger;be.setTriggers.apply(be,Object.keys(r).map(e=>r[e])),this.baseUrl,this.ready,this.ready=Promise.resolve(e),this.location,this.location=de({resolver:this}),this.__lastStartedRenderId=0,this.__navigationEventHandler=this.__onNavigationEvent.bind(this),this.setOutlet(e),this.subscribe(),this.__createdByRouter=new WeakMap,this.__addedByRouter=new WeakMap}__resolveRoute(e){const n=e.route;let r=Promise.resolve();p(n.children)&&(r=r.then(()=>n.children(ue(e))).then(e=>{he(e)||p(n.children)||(e=n.children),ge(e,n)}));const o={redirect:t=>pe(e,t),component:e=>{const t=document.createElement(e);return this.__createdByRouter.set(t,!0),t}};return r.then(()=>{if(this.__isLatestRender(e))return fe(n.action,[e,o],n)}).then(e=>he(e)&&(e instanceof HTMLElement||e.redirect||e===m)?e:_(n.redirect)?o.redirect(n.redirect):n.bundle?h(n.bundle).then(()=>{},()=>{throw new Error(t(`Bundle not found: ${n.bundle}. Check if the file name is correct`))}):void 0).then(e=>he(e)?e:_(n.component)?o.component(n.component):void 0)}setOutlet(e){e&&this.__ensureOutlet(e),this.__outlet=e}getOutlet(){return this.__outlet}setRoutes(e,t=!1){return this.__previousContext=void 0,this.__urlForName=void 0,super.setRoutes(e),t||this.__onNavigationEvent(),this.ready}render(e,t){const n=++this.__lastStartedRenderId,r=Object.assign({search:"",hash:""},_(e)?{pathname:e}:e,{__renderId:n});return this.ready=this.resolve(r).then(e=>this.__fullyResolveChain(e)).then(e=>{if(this.__isLatestRender(e)){const n=this.__previousContext;if(e===n)return this.__updateBrowserHistory(n,!0),this.location;if(this.location=de(e),u("location-changed",{router:this,location:this.location}),t&&this.__updateBrowserHistory(e,e.redirectFrom),e.__skipAttach)return this.__copyUnchangedElements(e,n),this.__previousContext=e,this.location;this.__addAppearingContent(e,n);const r=this.__animateIfNeeded(e);return this.__runOnAfterEnterCallbacks(e),this.__runOnAfterLeaveCallbacks(e,n),r.then(()=>{if(this.__isLatestRender(e))return this.__removeDisappearingContent(),this.__previousContext=e,this.location})}}).catch(e=>{if(n===this.__lastStartedRenderId)throw t&&this.__updateBrowserHistory(r),ve(this.__outlet&&this.__outlet.children),this.location=de(Object.assign(r,{resolver:this})),u("error",Object.assign({router:this,error:e},r)),e}),this.ready}__fullyResolveChain(e,t=e){return this.__findComponentContextAfterAllRedirects(t).then(n=>{const r=n!==t?n:e;return n.next().then(e=>{if(null===e||e===m){if(we(ye(n.chain),n.resolver)!==n.pathname)throw f(r)}return e&&e!==m?this.__fullyResolveChain(r,e):this.__amendWithOnBeforeCallbacks(n)})})}__findComponentContextAfterAllRedirects(e){const r=e.result;return r instanceof HTMLElement?(_e(e,r),Promise.resolve(e)):r.redirect?this.__redirect(r.redirect,e.__redirectCount,e.__renderId).then(e=>this.__findComponentContextAfterAllRedirects(e)):r instanceof Error?Promise.reject(r):Promise.reject(new Error(t(`Invalid route resolution result for path "${e.pathname}". `+`Expected redirect object or HTML element, but got: "${n(r)}". `+"Double check the action return value for the route.")))}__amendWithOnBeforeCallbacks(e){return this.__runOnBeforeCallbacks(e).then(t=>t===this.__previousContext||t===e?t:this.__fullyResolveChain(t))}__runOnBeforeCallbacks(e){const t=this.__previousContext||{},n=t.chain||[],r=e.chain;let o=Promise.resolve();const i=()=>({cancel:!0}),a=t=>pe(e,t);if(e.__divergedChainIndex=0,e.__skipAttach=!1,n.length){for(let t=0;t<Math.min(n.length,r.length)&&(n[t].route===r[t].route&&(n[t].path===r[t].path||n[t].element===r[t].element)&&this.__isReusableElement(n[t].element,r[t].element));t=++e.__divergedChainIndex);if(e.__skipAttach=r.length===n.length&&e.__divergedChainIndex==r.length&&this.__isReusableElement(e.result,t.result),e.__skipAttach){for(let a=r.length-1;a>=0;a--)n[a].path===r[a].path&&e.search===t.search||(o=this.__runOnBeforeLeaveCallbacks(o,e,{prevent:i},n[a]));for(let s=0;s<r.length;s++)n[s].path===r[s].path&&e.search===t.search||(o=this.__runOnBeforeEnterCallbacks(o,e,{prevent:i,redirect:a},r[s])),n[s].element.location=de(e,n[s].route)}else for(let t=n.length-1;t>=e.__divergedChainIndex;t--)o=this.__runOnBeforeLeaveCallbacks(o,e,{prevent:i},n[t])}for(let s=e.__divergedChainIndex;!e.__skipAttach&&s<r.length;s++)o=this.__runOnBeforeEnterCallbacks(o,e,{prevent:i,redirect:a},r[s]);return o.then(t=>{if(t){if(t.cancel)return this.__previousContext.__renderId=e.__renderId,this.__previousContext;if(t.redirect)return this.__redirect(t.redirect,e.__redirectCount,e.__renderId)}return e})}__runOnBeforeLeaveCallbacks(e,t,n,r){const o=de(t);return e.then(e=>{if(this.__isLatestRender(t)){return me("onBeforeLeave",[o,n,this],r.element)(e)}}).then(e=>{if(!(e||{}).redirect)return e})}__runOnBeforeEnterCallbacks(e,t,n,r){const o=de(t,r.route);return e.then(e=>{if(this.__isLatestRender(t)){return me("onBeforeEnter",[o,n,this],r.element)(e)}})}__isReusableElement(e,t){return!(!e||!t)&&(this.__createdByRouter.get(e)&&this.__createdByRouter.get(t)?e.localName===t.localName:e===t)}__isLatestRender(e){return e.__renderId===this.__lastStartedRenderId}__redirect(e,n,r){if(n>le)throw new Error(t(`Too many redirects when rendering ${e.from}`));return this.resolve({pathname:this.urlForPath(e.pathname,e.params),redirectFrom:e.from,__redirectCount:(n||0)+1,__renderId:r})}__ensureOutlet(e=this.__outlet){if(!(e instanceof Node))throw new TypeError(t(`Expected router outlet to be a valid DOM Node (but got ${e})`))}__updateBrowserHistory({pathname:e,search:t="",hash:n=""},r){if(window.location.pathname!==e||window.location.search!==t||window.location.hash!==n){const o=r?"replaceState":"pushState";window.history[o](null,document.title,e+t+n),window.dispatchEvent(new PopStateEvent("popstate",{state:"vaadin-router-ignore"}))}}__copyUnchangedElements(e,t){let n=this.__outlet;for(let r=0;r<e.__divergedChainIndex;r++){const o=t&&t.chain[r].element;if(o){if(o.parentNode!==n)break;e.chain[r].element=o,n=o}}return n}__addAppearingContent(e,t){this.__ensureOutlet(),this.__removeAppearingContent();const n=this.__copyUnchangedElements(e,t);this.__appearingContent=[],this.__disappearingContent=Array.from(n.children).filter(t=>this.__addedByRouter.get(t)&&t!==e.result);let r=n;for(let o=e.__divergedChainIndex;o<e.chain.length;o++){const t=e.chain[o].element;t&&(r.appendChild(t),this.__addedByRouter.set(t,!0),r===n&&this.__appearingContent.push(t),r=t)}}__removeDisappearingContent(){this.__disappearingContent&&ve(this.__disappearingContent),this.__disappearingContent=null,this.__appearingContent=null}__removeAppearingContent(){this.__disappearingContent&&this.__appearingContent&&(ve(this.__appearingContent),this.__disappearingContent=null,this.__appearingContent=null)}__runOnAfterLeaveCallbacks(e,t){if(t)for(let n=t.chain.length-1;n>=e.__divergedChainIndex&&this.__isLatestRender(e);n--){const r=t.chain[n].element;if(r)try{const n=de(e);fe(r.onAfterLeave,[n,{},t.resolver],r)}finally{this.__disappearingContent.indexOf(r)>-1&&ve(r.children)}}}__runOnAfterEnterCallbacks(e){for(let t=e.__divergedChainIndex;t<e.chain.length&&this.__isLatestRender(e);t++){const n=e.chain[t].element||{},r=de(e,e.chain[t].route);fe(n.onAfterEnter,[r,{},e.resolver],n)}}__animateIfNeeded(e){const t=(this.__disappearingContent||[])[0],n=(this.__appearingContent||[])[0],r=[],o=e.chain;let i;for(let a=o.length;a>0;a--)if(o[a-1].route.animate){i=o[a-1].route.animate;break}if(t&&n&&i){const e=d(i)&&i.leave||"leaving",o=d(i)&&i.enter||"entering";r.push(ce(t,e)),r.push(ce(n,o))}return Promise.all(r).then(()=>e)}subscribe(){window.addEventListener("vaadin-router-go",this.__navigationEventHandler)}unsubscribe(){window.removeEventListener("vaadin-router-go",this.__navigationEventHandler)}__onNavigationEvent(e){const{pathname:t,search:n,hash:r}=e?e.detail:window.location;_(this.__normalizePathname(t))&&(e&&e.preventDefault&&e.preventDefault(),this.render({pathname:t,search:n,hash:r},!0))}static setTriggers(...e){ie(e)}urlForName(e,t){return this.__urlForName||(this.__urlForName=re(this)),we(this.__urlForName(e,t),this)}urlForPath(e,t){return we(be.pathToRegexp.compile(e)(t),this)}static go(e){const{pathname:t,search:n,hash:r}=_(e)?this.__createUrl(e,"http://a"):e;return u("go",{pathname:t,search:n,hash:r})}}exports.Router=be;const Ee=/\/\*\*\s+vaadin-dev-mode:start([\s\S]*)vaadin-dev-mode:end\s+\*\*\//i,xe=window.Vaadin&&window.Vaadin.Flow&&window.Vaadin.Flow.clients;function Ce(){return $e(function(){return!0})}function Re(){try{return!!Ae()||!!Oe()&&(xe?!ke():!Ce())}catch(e){return!1}}function Ae(){return localStorage.getItem("vaadin.developmentmode.force")}function Oe(){return["localhost","127.0.0.1"].indexOf(window.location.hostname)>=0}function ke(){if(xe){if(Object.keys(xe).map(e=>xe[e]).filter(e=>e.productionMode).length>0)return!0}return!1}function $e(e,t){if("function"!=typeof e)return;const n=Ee.exec(e.toString());if(n)try{e=new Function(n[1])}catch(r){console.log("vaadin-development-mode-detector: uncommentAndRun() failed",r)}return e(t)}window.Vaadin=window.Vaadin||{};const Pe=function(e,t){if(window.Vaadin.developmentMode)return $e(e,t)};function Le(){}void 0===window.Vaadin.developmentMode&&(window.Vaadin.developmentMode=Re());const je=function(){return Pe(Le)};window.Vaadin=window.Vaadin||{},window.Vaadin.registrations=window.Vaadin.registrations||[],window.Vaadin.registrations.push({is:"@vaadin/router",version:"1.5.0"}),Pe(Le),be.NavigationTrigger={POPSTATE:E,CLICK:w};
-},{}],"thVK":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const e=require("@vaadin/router");class t extends e.Router{constructor(e,t){super(e,t),this.options=t,this.activePath="/",window.addEventListener("vaadin-router-location-changed",e=>{this.options.log&&console.log(`You are at '${e.detail.location.pathname}'`),this.activePath=e.detail.location.pathname})}freezeRouter(){this.freeze=!0}unfreezeRouter(){this.freeze=!1}setRoutes(e){return super.setRoutes(e),e}setOutlet(e){super.setOutlet(e)}go(t){return this.activePath!==t&&!this.freeze&&(this.activePath=t,this.options.freeze&&this.freezeRouter(),e.Router.go(t))}urlForName(e,t){return super.urlForName(e,t)}urlForPath(e,t){return super.urlForPath(e,t)}setTriggers(t){e.Router.setTriggers(t)}getOutlet(){return super.getOutlet()}getRoutes(){return super.getRoutes()}removeRoutes(){super.removeRoutes()}render(e,t){return super.render(e,t)}subscribe(){super.subscribe()}unsubscribe(){super.unsubscribe()}addRoutes(e){return super.addRoutes(e)}}exports.Outlet=t;
-},{"@vaadin/router":"KX2f"}],"mrFC":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const e=require("@rxdi/core");function t(){return(t,r)=>{Object.defineProperty(t,r,{get:()=>e.Container.get(exports.RouterRoutlet).getValue()})}}exports.Router=t,exports.RouterRoutlet="router-outlet",exports.RouterInitialized="router-initialized",exports.Routes="router-routes",exports.RouterOptions="router-options";
-},{"@rxdi/core":"lhgc"}],"DItH":[function(require,module,exports) {
-"use strict";var t=this&&this.__decorate||function(t,e,r,i){var o,n=arguments.length,s=n<3?e:null===i?i=Object.getOwnPropertyDescriptor(e,r):i;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)s=Reflect.decorate(t,e,r,i);else for(var c=t.length-1;c>=0;c--)(o=t[c])&&(s=(n<3?o(s):n>3?o(e,r,s):o(e,r))||s);return n>3&&s&&Object.defineProperty(e,r,s),s},e=this&&this.__metadata||function(t,e){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(t,e)},r=this&&this.__param||function(t,e){return function(r,i){e(r,i,t)}},i=this&&this.__awaiter||function(t,e,r,i){return new(r||(r=Promise))(function(o,n){function s(t){try{u(i.next(t))}catch(e){n(e)}}function c(t){try{u(i.throw(t))}catch(e){n(e)}}function u(t){t.done?o(t.value):new r(function(e){e(t.value)}).then(s,c)}u((i=i.apply(t,e||[])).next())})};Object.defineProperty(exports,"__esModule",{value:!0});const o=require("@rxdi/core"),n=require("./outlet"),s=require("./injection.tokens");let c=class{constructor(t,e,r,o){this.routes=t,this.routerOptions=e,this.routerInitialized=r,this.routerPlate=o,this.subscription=this.routerInitialized.asObservable().subscribe(t=>i(this,void 0,void 0,function*(){if(t){yield t.requestUpdate();const e=t.shadowRoot.querySelector(`#${t.id}`),r=new n.Outlet(e,this.routerOptions);r.setRoutes(this.routes),this.routerPlate.next(r),this.subscription.unsubscribe()}}))}};c=t([o.Service(),r(0,o.Inject(s.Routes)),r(1,o.Inject(s.RouterOptions)),r(2,o.Inject(s.RouterInitialized)),r(3,o.Inject(s.RouterRoutlet)),e("design:paramtypes",[Array,Object,Object,Object])],c),exports.RouterService=c;
-},{"@rxdi/core":"lhgc","./outlet":"thVK","./injection.tokens":"mrFC"}],"bIww":[function(require,module,exports) {
-"use strict";var e=this&&this.__decorate||function(e,t,r,o){var i,n=arguments.length,c=n<3?t:null===o?o=Object.getOwnPropertyDescriptor(t,r):o;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)c=Reflect.decorate(e,t,r,o);else for(var l=e.length-1;l>=0;l--)(i=e[l])&&(c=(n<3?i(c):n>3?i(t,r,c):i(t,r))||c);return n>3&&c&&Object.defineProperty(t,r,c),c},t=this&&this.__metadata||function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)};Object.defineProperty(exports,"__esModule",{value:!0});const r=require("@rxdi/core"),o=require("@rxdi/lit-html"),i=require("./injection.tokens");let n=class extends o.LitElement{constructor(){super(...arguments),this.id=i.RouterRoutlet}connectedCallback(){super.connectedCallback(),this.routerInitialized.next(this)}render(){return o.html`
-      <slot name="header"></slot>
-      ${o.html`
-        <main id="${this.id}"></main>
-      `}
-      <slot name="footer"></slot>
-    `}};e([r.Injector(i.RouterInitialized),t("design:type",Object)],n.prototype,"routerInitialized",void 0),e([o.property(),t("design:type",String)],n.prototype,"id",void 0),n=e([o.customElement(i.RouterRoutlet)],n),exports.RouterComponent=n;
-},{"@rxdi/core":"lhgc","@rxdi/lit-html":"R8ie","./injection.tokens":"mrFC"}],"g6E2":[function(require,module,exports) {
-"use strict";var t=this&&this.__awaiter||function(t,n,e,i){return new(e||(e=Promise))(function(o,r){function c(t){try{a(i.next(t))}catch(n){r(n)}}function u(t){try{a(i.throw(t))}catch(n){r(n)}}function a(t){t.done?o(t.value):new e(function(n){n(t.value)}).then(c,u)}a((i=i.apply(t,n||[])).next())})};Object.defineProperty(exports,"__esModule",{value:!0});const n=require("rxjs"),e=require("./injection.tokens"),i=require("@rxdi/core"),o=new Map;function r(n){if(n.children&&"function"==typeof n.children){const e=n.children;n.children=function(i,r){return t(this,void 0,void 0,function*(){yield e(i,r);let t=[...exports.ChildRoutesObservable.getValue().map(t=>Object.assign({},t))];return o.has(n.path)||o.set(n.path,t),o.get(n.path)})}}return n}function c(o,r,c){return t(this,void 0,void 0,function*(){if(n.isObservable(o)&&(o=o.toPromise()),yield o)return o;{const t=i.Container.get(e.RouterOptions);let n;return n="/"===c.path?r.redirect("/not-found"):r.redirect(c.parent.path||"/"),t.log&&console.error(`Guard ${c.canActivate.originalName} activated!`),n}})}function u(n){if(n.canActivate){const e=i.Container.get(n.canActivate);if(n.action){const i=n.action;n.action=function(o,r){return t(this,void 0,void 0,function*(){return yield i(o,r),c(e.canActivate.bind(e)(o,r),r,n)})}}else{n.action=e.canActivate.bind(e);const i=n.action;n.action=function(e,o){return t(this,void 0,void 0,function*(){return c(yield i(e,o),o,n)})}}}return n}function a(t){return"function"==typeof t.component&&(t.component=t.component.is()),t}function s(t){const n=[...t].map(t=>a(u(r(t))));return exports.ChildRoutesObservable.next(null),n}exports.ChildRoutesObservable=new n.BehaviorSubject(null),exports.loadRoutes=s;
-},{"rxjs":"iRqj","./injection.tokens":"mrFC","@rxdi/core":"lhgc"}],"cZWU":[function(require,module,exports) {
-"use strict";function e(){return function(e,t){Object.defineProperty(e,t,{get:function(){return this.location.params}})}}Object.defineProperty(exports,"__esModule",{value:!0}),exports.RouteParams=e;
-},{}],"RzAM":[function(require,module,exports) {
-"use strict";var e=this&&this.__decorate||function(e,t,o,n){var r,c=arguments.length,l=c<3?t:null===n?n=Object.getOwnPropertyDescriptor(t,o):n;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)l=Reflect.decorate(e,t,o,n);else for(var p=e.length-1;p>=0;p--)(r=e[p])&&(l=(c<3?r(l):c>3?r(t,o,l):r(t,o))||l);return c>3&&l&&Object.defineProperty(t,o,l),l};Object.defineProperty(exports,"__esModule",{value:!0});const t=require("@rxdi/lit-html");let o=class extends HTMLElement{};o=e([t.Component({selector:"not-found-component-rxdi",useShadow:!0,template:()=>t.html`
-    <h1>Not found component!</h1>
-    <p>Please check your URL.2222daad</p>
-  `})],o),exports.NotFoundComponent=o,exports.NotFoundPathConfig={path:"(.*)",component:"not-found-component-rxdi"};
-},{"@rxdi/lit-html":"R8ie"}],"tW8N":[function(require,module,exports) {
-"use strict";var e,r=this&&this.__decorate||function(e,r,t,o){var u,i=arguments.length,n=i<3?r:null===o?o=Object.getOwnPropertyDescriptor(r,t):o;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)n=Reflect.decorate(e,r,t,o);else for(var s=e.length-1;s>=0;s--)(u=e[s])&&(n=(i<3?u(n):i>3?u(r,t,n):u(r,t))||n);return i>3&&n&&Object.defineProperty(r,t,n),n};function t(e){for(var r in e)exports.hasOwnProperty(r)||(exports[r]=e[r])}Object.defineProperty(exports,"__esModule",{value:!0});const o=require("@rxdi/core"),u=require("./router.service"),i=require("rxjs"),n=require("./router.component"),s=require("./injection.tokens"),c=require("./helpers");let l=e=class{static forRoot(r,t){return{module:e,services:[{provide:s.RouterOptions,useValue:t||{}},{provide:s.Routes,useValue:c.loadRoutes(r)},{provide:s.RouterInitialized,useFactory:()=>new i.BehaviorSubject(null)},{provide:s.RouterRoutlet,useFactory:()=>new i.BehaviorSubject(null)},{provide:"initRouter",deps:[u.RouterService],useFactory:e=>e}],components:[n.RouterComponent]}}static forChild(r){return c.ChildRoutesObservable.next(c.loadRoutes(r)),e}};l=e=r([o.Module()],l),exports.RouterModule=l,t(require("./injection.tokens")),t(require("./outlet")),t(require("./decorators")),t(require("./router.component")),t(require("./not-found.component")),t(require("./helpers"));
-},{"@rxdi/core":"lhgc","./router.service":"DItH","rxjs":"iRqj","./router.component":"bIww","./injection.tokens":"mrFC","./helpers":"g6E2","./outlet":"thVK","./decorators":"cZWU","./not-found.component":"RzAM"}],"hRlH":[function(require,module,exports) {
+},{"@rxdi/lit-html":"R8ie","@rxdi/core":"lhgc","../../../src/nav":"e2p2","rxjs/operators":"cVrl"}],"hRlH":[function(require,module,exports) {
 var global = arguments[3];
 var e=arguments[3],t="undefined"!=typeof window?window:"undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?self:{},a=function(){var e=/\blang(?:uage)?-(\w+)\b/i,a=0,n=t.Prism={util:{encode:function(e){return e instanceof r?new r(e.type,n.util.encode(e.content),e.alias):"Array"===n.util.type(e)?e.map(n.util.encode):e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\u00a0/g," ")},type:function(e){return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1]},objId:function(e){return e.__id||Object.defineProperty(e,"__id",{value:++a}),e.__id},clone:function(e){switch(n.util.type(e)){case"Object":var t={};for(var a in e)e.hasOwnProperty(a)&&(t[a]=n.util.clone(e[a]));return t;case"Array":return e.map&&e.map(function(e){return n.util.clone(e)})}return e}},languages:{extend:function(e,t){var a=n.util.clone(n.languages[e]);for(var r in t)a[r]=t[r];return a},insertBefore:function(e,t,a,r){var i=(r=r||n.languages)[e];if(2==arguments.length){for(var s in a=arguments[1])a.hasOwnProperty(s)&&(i[s]=a[s]);return i}var l={};for(var o in i)if(i.hasOwnProperty(o)){if(o==t)for(var s in a)a.hasOwnProperty(s)&&(l[s]=a[s]);l[o]=i[o]}return n.languages.DFS(n.languages,function(t,a){a===r[e]&&t!=e&&(this[t]=l)}),r[e]=l},DFS:function(e,t,a,r){for(var i in r=r||{},e)e.hasOwnProperty(i)&&(t.call(e,i,e[i],a||i),"Object"!==n.util.type(e[i])||r[n.util.objId(e[i])]?"Array"!==n.util.type(e[i])||r[n.util.objId(e[i])]||(r[n.util.objId(e[i])]=!0,n.languages.DFS(e[i],t,i,r)):(r[n.util.objId(e[i])]=!0,n.languages.DFS(e[i],t,null,r)))}},plugins:{},highlightAll:function(e,t){n.highlightAllUnder(document,e,t)},highlightAllUnder:function(e,t){var a={callback:t,selector:'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'};n.hooks.run("before-highlightall",a);for(var r,i=a.elements||document.querySelectorAll(a.selector),s=0;r=i[s++];)n.highlightElement(r,!0===e,a.callback)},highlightElement:function(a,r,i){for(var s,l,o=a;o&&!e.test(o.className);)o=o.parentNode;o&&(s=(o.className.match(e)||[,""])[1].toLowerCase(),l=n.languages[s]),a.className=a.className.replace(e,"").replace(/\s+/g," ")+" language-"+s,o=a.parentNode,/pre/i.test(o.nodeName)&&(o.className=o.className.replace(e,"").replace(/\s+/g," ")+" language-"+s);var c={element:a,language:s,grammar:l,code:a.textContent};if(n.hooks.run("before-sanity-check",c),c.code&&c.grammar)if(n.hooks.run("before-highlight",c),r&&t.Worker){var u=new Worker(n.filename);u.onmessage=function(e){c.highlightedCode=e.data,n.hooks.run("before-insert",c),c.element.innerHTML=c.highlightedCode,i&&i.call(c.element),n.hooks.run("after-highlight",c),n.hooks.run("complete",c)},u.postMessage(JSON.stringify({language:c.language,code:c.code,immediateClose:!0}))}else c.highlightedCode=n.highlight(c.code,c.grammar,c.language),n.hooks.run("before-insert",c),c.element.innerHTML=c.highlightedCode,i&&i.call(a),n.hooks.run("after-highlight",c),n.hooks.run("complete",c);else n.hooks.run("complete",c)},highlight:function(e,t,a){var i=n.tokenize(e,t);return r.stringify(n.util.encode(i),a)},tokenize:function(e,t,a){var r=n.Token,i=[e],s=t.rest;if(s){for(var l in s)t[l]=s[l];delete t.rest}e:for(var l in t)if(t.hasOwnProperty(l)&&t[l]){var o=t[l];o="Array"===n.util.type(o)?o:[o];for(var c=0;c<o.length;++c){var u=o[c],g=u.inside,p=!!u.lookbehind,d=!!u.greedy,f=0,h=u.alias;if(d&&!u.pattern.global){var m=u.pattern.toString().match(/[imuy]*$/)[0];u.pattern=RegExp(u.pattern.source,m+"g")}u=u.pattern||u;for(var b=0,y=0;b<i.length;y+=i[b].length,++b){var w=i[b];if(i.length>e.length)break e;if(!(w instanceof r)){u.lastIndex=0;var v=1;if(!(j=u.exec(w))&&d&&b!=i.length-1){if(u.lastIndex=y,!(j=u.exec(e)))break;for(var k=j.index+(p?j[1].length:0),x=j.index+j[0].length,_=b,A=y,S=i.length;_<S&&A<x;++_)k>=(A+=i[_].length)&&(++b,y=A);if(i[b]instanceof r||i[_-1].greedy)continue;v=_-b,w=e.slice(y,A),j.index-=y}if(j){p&&(f=j[1].length);x=(k=j.index+f)+(j=j[0].slice(f)).length;var j,L=w.slice(0,k),C=w.slice(x),N=[b,v];L&&N.push(L);var P=new r(l,g?n.tokenize(j,g):j,h,j,d);N.push(P),C&&N.push(C),Array.prototype.splice.apply(i,N)}}}}}return i},hooks:{all:{},add:function(e,t){var a=n.hooks.all;a[e]=a[e]||[],a[e].push(t)},run:function(e,t){var a=n.hooks.all[e];if(a&&a.length)for(var r,i=0;r=a[i++];)r(t)}}},r=n.Token=function(e,t,a,n,r){this.type=e,this.content=t,this.alias=a,this.length=0|(n||"").length,this.greedy=!!r};if(r.stringify=function(e,t,a){if("string"==typeof e)return e;if("Array"===n.util.type(e))return e.map(function(a){return r.stringify(a,t,e)}).join("");var i={type:e.type,content:r.stringify(e.content,t,a),tag:"span",classes:["token",e.type],attributes:{},language:t,parent:a};if("comment"==i.type&&(i.attributes.spellcheck="true"),e.alias){var s="Array"===n.util.type(e.alias)?e.alias:[e.alias];Array.prototype.push.apply(i.classes,s)}n.hooks.run("wrap",i);var l="";for(var o in i.attributes)l+=(l?" ":"")+o+'="'+(i.attributes[o]||"")+'"';return"<"+i.tag+' class="'+i.classes.join(" ")+'"'+(l?" "+l:"")+">"+i.content+"</"+i.tag+">"},!t.document)return t.addEventListener?(t.addEventListener("message",function(e){var a=JSON.parse(e.data),r=a.language,i=a.code,s=a.immediateClose;t.postMessage(n.highlight(i,n.languages[r],r)),s&&t.close()},!1),t.Prism):t.Prism;var i=document.currentScript||[].slice.call(document.getElementsByTagName("script")).pop();return i&&(n.filename=i.src,document.addEventListener&&!i.hasAttribute("data-manual")&&("loading"!==document.readyState?window.requestAnimationFrame?window.requestAnimationFrame(n.highlightAll):window.setTimeout(n.highlightAll,16):document.addEventListener("DOMContentLoaded",n.highlightAll))),t.Prism}();"undefined"!=typeof module&&module.exports&&(module.exports=a),void 0!==e&&(e.Prism=a),a.languages.markup={comment:/<!--[\w\W]*?-->/,prolog:/<\?[\w\W]+?\?>/,doctype:/<!DOCTYPE[\w\W]+?>/i,cdata:/<!\[CDATA\[[\w\W]*?]]>/i,tag:{pattern:/<\/?(?!\d)[^\s>\/=$<]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\\1|\\?(?!\1)[\w\W])*\1|[^\s'">=]+))?)*\s*\/?>/i,inside:{tag:{pattern:/^<\/?[^\s>\/]+/i,inside:{punctuation:/^<\/?/,namespace:/^[^\s>\/:]+:/}},"attr-value":{pattern:/=(?:('|")[\w\W]*?(\1)|[^\s>]+)/i,inside:{punctuation:/[=>"']/}},punctuation:/\/?>/,"attr-name":{pattern:/[^\s>\/]+/,inside:{namespace:/^[^\s>\/:]+:/}}}},entity:/&#?[\da-z]{1,8};/i},a.hooks.add("wrap",function(e){"entity"===e.type&&(e.attributes.title=e.content.replace(/&amp;/,"&"))}),a.languages.xml=a.languages.markup,a.languages.html=a.languages.markup,a.languages.mathml=a.languages.markup,a.languages.svg=a.languages.markup,a.languages.css={comment:/\/\*[\w\W]*?\*\//,atrule:{pattern:/@[\w-]+?.*?(;|(?=\s*\{))/i,inside:{rule:/@[\w-]+/}},url:/url\((?:(["'])(\\(?:\r\n|[\w\W])|(?!\1)[^\\\r\n])*\1|.*?)\)/i,selector:/[^\{\}\s][^\{\};]*?(?=\s*\{)/,string:{pattern:/("|')(\\(?:\r\n|[\w\W])|(?!\1)[^\\\r\n])*\1/,greedy:!0},property:/(\b|\B)[\w-]+(?=\s*:)/i,important:/\B!important\b/i,function:/[-a-z0-9]+(?=\()/i,punctuation:/[(){};:]/},a.languages.css.atrule.inside.rest=a.util.clone(a.languages.css),a.languages.markup&&(a.languages.insertBefore("markup","tag",{style:{pattern:/(<style[\w\W]*?>)[\w\W]*?(?=<\/style>)/i,lookbehind:!0,inside:a.languages.css,alias:"language-css"}}),a.languages.insertBefore("inside","attr-value",{"style-attr":{pattern:/\s*style=("|').*?\1/i,inside:{"attr-name":{pattern:/^\s*style/i,inside:a.languages.markup.tag.inside},punctuation:/^\s*=\s*['"]|['"]\s*$/,"attr-value":{pattern:/.+/i,inside:a.languages.css}},alias:"language-css"}},a.languages.markup.tag)),a.languages.clike={comment:[{pattern:/(^|[^\\])\/\*[\w\W]*?\*\//,lookbehind:!0},{pattern:/(^|[^\\:])\/\/.*/,lookbehind:!0}],string:{pattern:/(["'])(\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,greedy:!0},"class-name":{pattern:/((?:\b(?:class|interface|extends|implements|trait|instanceof|new)\s+)|(?:catch\s+\())[a-z0-9_\.\\]+/i,lookbehind:!0,inside:{punctuation:/(\.|\\)/}},keyword:/\b(if|else|async|await|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,boolean:/\b(true|false)\b/,function:/[a-z0-9_]+(?=\()/i,number:/\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)\b/i,operator:/--?|\+\+?|!=?=?|<=?|>=?|==?=?|&&?|\|\|?|\?|\*|\/|~|\^|%/,punctuation:/[{}[\];(),.:]/},a.languages.javascript=a.languages.extend("clike",{keyword:/\b(as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|var|void|while|with|yield)\b/,number:/\b-?(0x[\dA-Fa-f]+|0b[01]+|0o[0-7]+|\d*\.?\d+([Ee][+-]?\d+)?|NaN|Infinity)\b/,function:/[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*(?=\()/i,operator:/--?|\+\+?|!=?=?|<=?|>=?|==?=?|&&?|\|\|?|\?|\*\*?|\/|~|\^|%|\.{3}/}),a.languages.insertBefore("javascript","keyword",{regex:{pattern:/(^|[^\/])\/(?!\/)(\[.+?]|\\.|[^\/\\\r\n])+\/[gimyu]{0,5}(?=\s*($|[\r\n,.;})]))/,lookbehind:!0,greedy:!0}}),a.languages.insertBefore("javascript","string",{"template-string":{pattern:/`(?:\\\\|\\?[^\\])*?`/,greedy:!0,inside:{interpolation:{pattern:/\$\{[^}]+\}/,inside:{"interpolation-punctuation":{pattern:/^\$\{|\}$/,alias:"punctuation"},rest:a.languages.javascript}},string:/[\s\S]+/}}}),a.languages.markup&&a.languages.insertBefore("markup","tag",{script:{pattern:/(<script[\w\W]*?>)[\w\W]*?(?=<\/script>)/i,lookbehind:!0,inside:a.languages.javascript,alias:"language-javascript"}}),a.languages.js=a.languages.javascript,a.languages.c=a.languages.extend("clike",{keyword:/\b(asm|typeof|inline|auto|break|case|char|const|continue|default|do|double|else|enum|extern|float|for|goto|if|int|long|register|return|short|signed|sizeof|static|struct|switch|typedef|union|unsigned|void|volatile|while)\b/,operator:/\-[>-]?|\+\+?|!=?|<<?=?|>>?=?|==?|&&?|\|?\||[~^%?*\/]/,number:/\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)[ful]*\b/i}),a.languages.insertBefore("c","string",{macro:{pattern:/(^\s*)#\s*[a-z]+([^\r\n\\]|\\.|\\(?:\r\n?|\n))*/im,lookbehind:!0,alias:"property",inside:{string:{pattern:/(#\s*include\s*)(<.+?>|("|')(\\?.)+?\3)/,lookbehind:!0},directive:{pattern:/(#\s*)\b(define|elif|else|endif|error|ifdef|ifndef|if|import|include|line|pragma|undef|using)\b/,lookbehind:!0,alias:"keyword"}}},constant:/\b(__FILE__|__LINE__|__DATE__|__TIME__|__TIMESTAMP__|__func__|EOF|NULL|stdin|stdout|stderr)\b/}),delete a.languages.c["class-name"],delete a.languages.c.boolean,a.languages.csharp=a.languages.extend("clike",{keyword:/\b(abstract|as|async|await|base|bool|break|byte|case|catch|char|checked|class|const|continue|decimal|default|delegate|do|double|else|enum|event|explicit|extern|false|finally|fixed|float|for|foreach|goto|if|implicit|in|int|interface|internal|is|lock|long|namespace|new|null|object|operator|out|override|params|private|protected|public|readonly|ref|return|sbyte|sealed|short|sizeof|stackalloc|static|string|struct|switch|this|throw|true|try|typeof|uint|ulong|unchecked|unsafe|ushort|using|virtual|void|volatile|while|add|alias|ascending|async|await|descending|dynamic|from|get|global|group|into|join|let|orderby|partial|remove|select|set|value|var|where|yield)\b/,string:[/@("|')(\1\1|\\\1|\\?(?!\1)[\s\S])*\1/,/("|')(\\?.)*?\1/],number:/\b-?(0x[\da-f]+|\d*\.?\d+f?)\b/i}),a.languages.insertBefore("csharp","keyword",{"generic-method":{pattern:/[a-z0-9_]+\s*<[^>\r\n]+?>\s*(?=\()/i,alias:"function",inside:{keyword:a.languages.csharp.keyword,punctuation:/[<>(),.:]/}},preprocessor:{pattern:/(^\s*)#.*/m,lookbehind:!0,alias:"property",inside:{directive:{pattern:/(\s*#)\b(define|elif|else|endif|endregion|error|if|line|pragma|region|undef|warning)\b/,lookbehind:!0,alias:"keyword"}}}}),a.languages.cpp=a.languages.extend("c",{keyword:/\b(alignas|alignof|asm|auto|bool|break|case|catch|char|char16_t|char32_t|class|compl|const|constexpr|const_cast|continue|decltype|default|delete|do|double|dynamic_cast|else|enum|explicit|export|extern|float|for|friend|goto|if|inline|int|long|mutable|namespace|new|noexcept|nullptr|operator|private|protected|public|register|reinterpret_cast|return|short|signed|sizeof|static|static_assert|static_cast|struct|switch|template|this|thread_local|throw|try|typedef|typeid|typename|union|unsigned|using|virtual|void|volatile|wchar_t|while)\b/,boolean:/\b(true|false)\b/,operator:/[-+]{1,2}|!=?|<{1,2}=?|>{1,2}=?|\->|:{1,2}|={1,2}|\^|~|%|&{1,2}|\|?\||\?|\*|\/|\b(and|and_eq|bitand|bitor|not|not_eq|or|or_eq|xor|xor_eq)\b/}),a.languages.insertBefore("cpp","keyword",{"class-name":{pattern:/(class\s+)[a-z0-9_]+/i,lookbehind:!0}}),a.languages.java=a.languages.extend("clike",{keyword:/\b(abstract|continue|for|new|switch|assert|default|goto|package|synchronized|boolean|do|if|private|this|break|double|implements|protected|throw|byte|else|import|public|throws|case|enum|instanceof|return|transient|catch|extends|int|short|try|char|final|interface|static|void|class|finally|long|strictfp|volatile|const|float|native|super|while)\b/,number:/\b0b[01]+\b|\b0x[\da-f]*\.?[\da-fp\-]+\b|\b\d*\.?\d+(?:e[+-]?\d+)?[df]?\b/i,operator:{pattern:/(^|[^.])(?:\+[+=]?|-[-=]?|!=?|<<?=?|>>?>?=?|==?|&[&=]?|\|[|=]?|\*=?|\/=?|%=?|\^=?|[?:~])/m,lookbehind:!0}}),a.languages.insertBefore("java","function",{annotation:{alias:"punctuation",pattern:/(^|[^.])@\w+/,lookbehind:!0}}),a.languages.json={property:/"(?:\\.|[^|"])*"(?=\s*:)/gi,string:/"(?!:)(?:\\.|[^|"])*"(?!:)/g,number:/\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee][+-]?\d+)?)\b/g,punctuation:/[{}[\]);,]/g,operator:/:/g,boolean:/\b(true|false)\b/gi,null:/\bnull\b/gi},a.languages.jsonp=a.languages.json,function(e){var t=e.util.clone(e.languages.javascript);e.languages.jsx=e.languages.extend("markup",t),e.languages.jsx.tag.pattern=/<\/?[\w\.:-]+\s*(?:\s+[\w\.:-]+(?:=(?:("|')(\\?[\w\W])*?\1|[^\s'">=]+|(\{[\w\W]*?\})))?\s*)*\/?>/i,e.languages.jsx.tag.inside["attr-value"].pattern=/=[^\{](?:('|")[\w\W]*?(\1)|[^\s>]+)/i;var a=e.util.clone(e.languages.jsx);delete a.punctuation,a=e.languages.insertBefore("jsx","operator",{punctuation:/=(?={)|[{}[\];(),.:]/},{jsx:a}),e.languages.insertBefore("inside","attr-value",{script:{pattern:/=(\{(?:\{[^}]*\}|[^}])+\})/i,inside:a,alias:"language-javascript"}},e.languages.jsx.tag)}(a),a.languages.scss=a.languages.extend("css",{comment:{pattern:/(^|[^\\])(?:\/\*[\w\W]*?\*\/|\/\/.*)/,lookbehind:!0},atrule:{pattern:/@[\w-]+(?:\([^()]+\)|[^(])*?(?=\s+[{;])/,inside:{rule:/@[\w-]+/}},url:/(?:[-a-z]+-)*url(?=\()/i,selector:{pattern:/(?=\S)[^@;\{\}\(\)]?([^@;\{\}\(\)]|&|#\{\$[-_\w]+\})+(?=\s*\{(\}|\s|[^\}]+(:|\{)[^\}]+))/m,inside:{parent:{pattern:/&/,alias:"important"},placeholder:/%[-_\w]+/,variable:/\$[-_\w]+|#\{\$[-_\w]+\}/}}}),a.languages.insertBefore("scss","atrule",{keyword:[/@(?:if|else(?: if)?|for|each|while|import|extend|debug|warn|mixin|include|function|return|content)/i,{pattern:/( +)(?:from|through)(?= )/,lookbehind:!0}]}),a.languages.scss.property={pattern:/(?:[\w-]|\$[-_\w]+|#\{\$[-_\w]+\})+(?=\s*:)/i,inside:{variable:/\$[-_\w]+|#\{\$[-_\w]+\}/}},a.languages.insertBefore("scss","important",{variable:/\$[-_\w]+|#\{\$[-_\w]+\}/}),a.languages.insertBefore("scss","function",{placeholder:{pattern:/%[-_\w]+/,alias:"selector"},statement:{pattern:/\B!(?:default|optional)\b/i,alias:"keyword"},boolean:/\b(?:true|false)\b/,null:/\bnull\b/,operator:{pattern:/(\s)(?:[-+*\/%]|[=!]=|<=?|>=?|and|or|not)(?=\s)/,lookbehind:!0}}),a.languages.scss.atrule.inside.rest=a.util.clone(a.languages.scss),a.languages.typescript=a.languages.extend("javascript",{keyword:/\b(break|case|async|await|readonly|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|false|finally|for|function|get|if|implements|import|in|instanceof|interface|let|new|null|package|private|protected|public|return|set|static|super|switch|this|throw|true|try|typeof|var|void|while|with|yield|module|declare|constructor|string|Function|any|number|boolean|Array|enum)\b/}),function(){if("undefined"!=typeof self&&self.Prism&&self.document){var e={html:"HTML",xml:"XML",svg:"SVG",mathml:"MathML",css:"CSS",clike:"C-like",javascript:"JavaScript",abap:"ABAP",actionscript:"ActionScript",apacheconf:"Apache Configuration",apl:"APL",applescript:"AppleScript",asciidoc:"AsciiDoc",aspnet:"ASP.NET (C#)",autoit:"AutoIt",autohotkey:"AutoHotkey",basic:"BASIC",csharp:"C#",cpp:"C++",coffeescript:"CoffeeScript","css-extras":"CSS Extras",fsharp:"F#",glsl:"GLSL",graphql:"GraphQL",http:"HTTP",inform7:"Inform 7",json:"JSON",latex:"LaTeX",livescript:"LiveScript",lolcode:"LOLCODE",matlab:"MATLAB",mel:"MEL",nasm:"NASM",nginx:"nginx",nsis:"NSIS",objectivec:"Objective-C",ocaml:"OCaml",parigp:"PARI/GP",php:"PHP","php-extras":"PHP Extras",powershell:"PowerShell",properties:".properties",protobuf:"Protocol Buffers",jsx:"React JSX",rest:"reST (reStructuredText)",sas:"SAS",sass:"Sass (Sass)",scss:"Sass (Scss)",sql:"SQL",typescript:"TypeScript",vhdl:"VHDL",vim:"vim",wiki:"Wiki markup",xojo:"Xojo (REALbasic)",yaml:"YAML"};a.hooks.add("before-highlight",function(t){var a=t.element.parentNode;if(a&&/pre/i.test(a.nodeName)){var n,r,i=a.getAttribute("data-language")||e[t.language]||t.language.substring(0,1).toUpperCase()+t.language.substring(1),s=a.previousSibling;s&&/\s*\bprism-show-language\b\s*/.test(s.className)&&s.firstChild&&/\s*\bprism-show-language-label\b\s*/.test(s.firstChild.className)?r=s.firstChild:(n=document.createElement("div"),(r=document.createElement("div")).className="prism-show-language-label",n.className="prism-show-language",n.appendChild(r),a.parentNode.insertBefore(n,a)),r.innerHTML=i}})}}();
 },{}],"SMAs":[function(require,module,exports) {
@@ -2143,10 +2118,10 @@ var e,t=arguments[3];!function(t){"use strict";var n={newline:/^\n+/,code:/^( {4
 },{"@rxdi/core":"lhgc","rxjs":"iRqj","rxjs/operators":"cVrl"}],"f3cG":[function(require,module,exports) {
 "use strict";function e(e){return e.reduce((e,t)=>(e[t]=t,e),Object.create(null))}Object.defineProperty(exports,"__esModule",{value:!0}),exports.strEnum=e;
 },{}],"oZ1d":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const e=require("../helpers/str-enum");exports.PalettesUnion=e.strEnum(["default","primary","secondary","danger","warning"]),exports.Palettes="palettes",exports.Styles=e.strEnum(["spacer","pointer","images","flex","center","transitions"]);
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const e=require("../helpers/str-enum");exports.PalettesUnion=e.strEnum(["root","default","primary","secondary","danger","warning"]),exports.Palettes="palettes",exports.Styles=e.strEnum(["spacer","pointer","images","flex","center","transitions"]);
 },{"../helpers/str-enum":"f3cG"}],"AhHs":[function(require,module,exports) {
-"use strict";var e,t=this&&this.__decorate||function(e,t,s,r){var i,a=arguments.length,l=a<3?t:null===r?r=Object.getOwnPropertyDescriptor(t,s):r;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)l=Reflect.decorate(e,t,s,r);else for(var n=e.length-1;n>=0;n--)(i=e[n])&&(l=(a<3?i(l):a>3?i(t,s,l):i(t,s))||l);return a>3&&l&&Object.defineProperty(t,s,l),l},s=this&&this.__metadata||function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)};Object.defineProperty(exports,"__esModule",{value:!0});const r=require("@rxdi/core"),i=require("../../settings"),a=require("rxjs"),l=require("rxjs/operators");let n=class{changeStyle(e){this.palletes.next(e)}OnInit(){this.palletes=r.Container.get(i.Palettes),this.palletes.subscribe(e=>{this.style&&this.style.remove(),this.style=document.createElement("style"),this.style.innerHTML=Object.values(e).join(" "),document.head.appendChild(this.style)})}getStyles(){return this.palletes.asObservable().pipe(l.map(e=>Object.values(e)),l.map(e=>e.map(e=>e.cssText)),l.shareReplay({bufferSize:1,refCount:!0}))}};t([r.Inject(i.Palettes),s("design:type","function"==typeof(e=void 0!==a.BehaviorSubject&&a.BehaviorSubject)?e:Object)],n.prototype,"palletes",void 0),n=t([r.Injectable({init:!0})],n),exports.DynamicCssService=n;
-},{"@rxdi/core":"lhgc","../../settings":"oZ1d","rxjs":"iRqj","rxjs/operators":"cVrl"}],"wYaI":[function(require,module,exports) {
+"use strict";var e=this&&this.__decorate||function(e,t,s,r){var l,i=arguments.length,n=i<3?t:null===r?r=Object.getOwnPropertyDescriptor(t,s):r;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)n=Reflect.decorate(e,t,s,r);else for(var a=e.length-1;a>=0;a--)(l=e[a])&&(n=(i<3?l(n):i>3?l(t,s,n):l(t,s))||n);return i>3&&n&&Object.defineProperty(t,s,n),n};Object.defineProperty(exports,"__esModule",{value:!0});const t=require("@rxdi/core"),s=require("../../settings"),r=require("rxjs/operators");let l=class{constructor(){this.palletes=t.Container.get(s.Palettes)}changeStyle(e){this.palletes.next(e)}OnInit(){this.palletes.subscribe(e=>{this.style&&this.style.remove(),this.style=document.createElement("style"),this.style.innerHTML=Object.entries(e).map(([e,t])=>` /* ${e} pallete */ ${t.cssText}`).join(" "),document.head.appendChild(this.style)})}getStyles(){return this.palletes.asObservable().pipe(r.map(e=>Object.values(e)),r.map(e=>e.map(e=>e.cssText)),r.shareReplay({bufferSize:1,refCount:!0}))}};l=e([t.Injectable({init:!0})],l),exports.DynamicCssService=l;
+},{"@rxdi/core":"lhgc","../../settings":"oZ1d","rxjs/operators":"cVrl"}],"wYaI":[function(require,module,exports) {
 "use strict";function e(e){for(var r in e)exports.hasOwnProperty(r)||(exports[r]=e[r])}Object.defineProperty(exports,"__esModule",{value:!0}),e(require("./responsive/responsive.service")),e(require("./dynamic-css/dynamic-css"));
 },{"./responsive/responsive.service":"tte7","./dynamic-css/dynamic-css":"AhHs"}],"aWCv":[function(require,module,exports) {
 "use strict";var e,t,r,o=this&&this.__decorate||function(e,t,r,o){var i,n=arguments.length,s=n<3?t:null===o?o=Object.getOwnPropertyDescriptor(t,r):o;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)s=Reflect.decorate(e,t,r,o);else for(var a=e.length-1;a>=0;a--)(i=e[a])&&(s=(n<3?i(s):n>3?i(t,r,s):i(t,r))||s);return n>3&&s&&Object.defineProperty(t,r,s),s},i=this&&this.__metadata||function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)},n=this&&this.__awaiter||function(e,t,r,o){return new(r||(r=Promise))(function(i,n){function s(e){try{p(o.next(e))}catch(t){n(t)}}function a(e){try{p(o.throw(e))}catch(t){n(t)}}function p(e){var t;e.done?i(e.value):(t=e.value,t instanceof r?t:new r(function(e){e(t)})).then(s,a)}p((o=o.apply(e,t||[])).next())})};Object.defineProperty(exports,"__esModule",{value:!0});const s=require("@rxdi/lit-html"),a=require("./markdown-reader.component.css"),p=require("@rxdi/core"),c=require("../markdown.service"),d=require("../markdown-menu.provider"),h=require("../../services"),l=require("rxjs/operators");let m=class extends s.LitElement{constructor(){super(...arguments),this.html="",this.widthHeight=this.responsive.combineBoth()}OnInit(){this.widthHeight.pipe(l.tap(({width:e})=>{this.disableTocComponent=e<600})).subscribe()}OnUpdate(){return n(this,void 0,void 0,function*(){const e=this.getRouteParams();yield this.fetch(e.namespace,e.repo,e.filePath),this.mdParser.highlightElements(this.tags),this.mdParserMenu.lookupHeadings(this.shadowRoot)})}getRouteParams(){let e={};return this.location&&(e=this.location.params),{namespace:e.namespace||this.namespace,repo:e.repo||this.repo,filePath:e.filePath||this.filePath}}fetch(e="rxdi",t="starter-client-lit-html",r="README.md"){return n(this,void 0,void 0,function*(){try{this.html=yield this.mdParser.fetchMarkdown(this.link||`https://raw.githubusercontent.com/${e}/${t}/master/${r}`)}catch(o){this.dispatchEvent(new CustomEvent("onError",{detail:o}))}this.dispatchEvent(new CustomEvent("onSuccess"))})}};o([s.property(),i("design:type",Object)],m.prototype,"html",void 0),o([s.property({type:Boolean}),i("design:type",Boolean)],m.prototype,"disableTocComponent",void 0),o([s.property(),i("design:type",String)],m.prototype,"link",void 0),o([s.property(),i("design:type",String)],m.prototype,"namespace",void 0),o([s.property(),i("design:type",String)],m.prototype,"repo",void 0),o([s.property(),i("design:type",String)],m.prototype,"filePath",void 0),o([s.property(),i("design:type",String)],m.prototype,"markdownReaderJSON",void 0),o([p.Inject(c.MarkdownParserService),i("design:type","function"==typeof(e=void 0!==c.MarkdownParserService&&c.MarkdownParserService)?e:Object)],m.prototype,"mdParser",void 0),o([p.Inject(d.MarkdownParserMenuProvider),i("design:type","function"==typeof(t=void 0!==d.MarkdownParserMenuProvider&&d.MarkdownParserMenuProvider)?t:Object)],m.prototype,"mdParserMenu",void 0),o([p.Inject(h.ResponsiveService),i("design:type","function"==typeof(r=void 0!==h.ResponsiveService&&h.ResponsiveService)?r:Object)],m.prototype,"responsive",void 0),o([s.queryAll("code"),i("design:type",Array)],m.prototype,"tags",void 0),m=o([s.Component({selector:"markdown-reader",style:a.style,template(){return s.html`
@@ -2180,7 +2155,895 @@ var e,t=arguments[3];!function(t){"use strict";var n={newline:/^\n+/,code:/^( {4
     --default-hover-border: 1px solid #999;
   }
 `;
-},{"@rxdi/lit-html":"R8ie"}],"GZ5L":[function(require,module,exports) {
+},{"@rxdi/lit-html":"R8ie"}],"VwDY":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const r=require("@rxdi/lit-html");exports.PRIMARY=r.css`
+  :root {
+    --primary-bg-color: #1e87f0;
+    --primary-color: #fff;
+    --primary-border: 1px solid transparent;
+    --primary-hover-color: #0f7ae5;
+    --primary-active-color: #0e6dcd;
+  }
+`;
+},{"@rxdi/lit-html":"R8ie"}],"tTZD":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const e=require("@rxdi/lit-html");exports.DANGER=e.css`
+  :root {
+    --danger-bg-color: #f0506e;
+    --danger-color: #fff;
+    --danger-border: 1px solid transparent;
+    --danger-hover-color: #ee395b;
+    --danger-active-color: #ec2147;
+  }
+`;
+},{"@rxdi/lit-html":"R8ie"}],"rI9q":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const o=require("@rxdi/lit-html");exports.SECONDARY=o.css`
+  :root {
+    --secondary-bg-color: #222;
+    --secondary-color: #fff;
+    --secondary-border: 1px solid transparent;
+    --secondary-hover-color: #333;
+    --secondary-active-color: #000;
+  }
+`;
+},{"@rxdi/lit-html":"R8ie"}],"f1bC":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const r=require("@rxdi/lit-html");exports.WARNING=r.css`
+  :root {
+    --warning-bg-color: #faa05a;
+    --warning-color: #fff;
+    --warning-border: 1px solid transparent;
+    --warning-hover-color: #e19457;
+    --warning-active-color: #ef9a56;
+  }
+`;
+},{"@rxdi/lit-html":"R8ie"}],"kZxw":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const e=require("@rxdi/lit-html");exports.ROOT=e.css`
+  :root {
+    --bp-s: 640px;
+    --bp-m: 960px;
+    --bp-l: 1200px;
+    --bp-xl: 1600px;
+  }
+`;
+},{"@rxdi/lit-html":"R8ie"}],"fUdq":[function(require,module,exports) {
+"use strict";var e,r=this&&this.__decorate||function(e,r,t,s){var i,c=arguments.length,o=c<3?r:null===s?s=Object.getOwnPropertyDescriptor(r,t):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,r,t,s);else for(var a=e.length-1;a>=0;a--)(i=e[a])&&(o=(c<3?i(o):c>3?i(r,t,o):i(r,t))||o);return c>3&&o&&Object.defineProperty(r,t,o),o};Object.defineProperty(exports,"__esModule",{value:!0});const t=require("@rxdi/core"),s=require("./settings"),i=require("rxjs"),c=require("./styles/chunks/palettes/default"),o=require("./styles/chunks/palettes/primary"),a=require("./styles/chunks/palettes/danger"),n=require("./styles/chunks/palettes/secondary"),u=require("./services/dynamic-css/dynamic-css"),l=require("./services"),d=require("./styles/chunks/palettes/warning"),p=require("./styles/chunks/palettes/root");let y=e=class{static forRoot(r={}){return{module:e,providers:[l.ResponsiveService,{provide:s.Palettes,useValue:new i.BehaviorSubject(r.palettes||{root:p.ROOT,default:c.DEFAULT,primary:o.PRIMARY,secondary:n.SECONDARY,danger:a.DANGER,warning:d.WARNING})},u.DynamicCssService]}}};y=e=r([t.Module()],y),exports.ReactiveUiModule=y;
+},{"@rxdi/core":"lhgc","./settings":"oZ1d","rxjs":"iRqj","./styles/chunks/palettes/default":"gE8N","./styles/chunks/palettes/primary":"VwDY","./styles/chunks/palettes/danger":"tTZD","./styles/chunks/palettes/secondary":"rI9q","./services/dynamic-css/dynamic-css":"AhHs","./services":"wYaI","./styles/chunks/palettes/warning":"f1bC","./styles/chunks/palettes/root":"kZxw"}],"RPEn":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const e=require("@rxdi/core");exports.MODAL_DIALOG_DATA=new e.InjectionToken("rxdi-ui-kit-modal-data"),exports.MODAL_DIALOG_OPTIONS=new e.InjectionToken("rxdi-ui-kit-modal-options");
+},{"@rxdi/core":"lhgc"}],"oRay":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const o=require("@rxdi/lit-html");exports.style=o.css`
+  .backdrop {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.32);
+  }
+
+  .container {
+    padding: 50px 50px;
+  }
+
+  .dialog {
+    position: relative;
+    box-sizing: border-box;
+    transform: translateY(0);
+    margin: 0 auto;
+    background: #fff;
+    width: 600px;
+    box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2),
+      0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);
+    transition: 0.3s linear;
+    transition-property: opacity, transform;
+    max-width: calc(100% - 0.01px) !important;
+    padding: 30px 30px;
+    color: #666;
+    z-index: 12;
+  }
+
+  h1 {
+    margin-top: 0;
+    font-size: 30px;
+    line-height: 1.3;
+    margin: 0 0 0px 0;
+    font-family: ProximaNova, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+      Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 300;
+    color: #222;
+    text-transform: none;
+  }
+
+  button {
+    position: absolute;
+    z-index: 1010;
+    top: 10px;
+    right: 10px;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    text-transform: none;
+    outline: none;
+    background-color: transparent;
+  }
+  p {
+    font-size: 15px;
+    font-weight: normal;
+    line-height: 1.5;
+    color: #666;
+  }
+`,exports.button=o.css`
+  button {
+    opacity: 0.7;
+  }
+
+  button:hover {
+    opacity: 1;
+  }
+`;
+},{"@rxdi/lit-html":"R8ie"}],"cCLz":[function(require,module,exports) {
+"use strict";var e,t,o,i,r=this&&this.__decorate||function(e,t,o,i){var r,n=arguments.length,l=n<3?t:null===i?i=Object.getOwnPropertyDescriptor(t,o):i;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)l=Reflect.decorate(e,t,o,i);else for(var a=e.length-1;a>=0;a--)(r=e[a])&&(l=(n<3?r(l):n>3?r(t,o,l):r(t,o))||l);return n>3&&l&&Object.defineProperty(t,o,l),l},n=this&&this.__metadata||function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)};Object.defineProperty(exports,"__esModule",{value:!0});const l=require("@rxdi/lit-html"),a=require("@rxdi/core"),s=require("../../modal/modal.service"),c=require("../../modal/interface"),d=require("./interface"),p=require("./style.css");let f=class extends l.LitElement{OnUpdateFirst(){this.options.backdropClose&&this.backdrop.addEventListener("click",()=>this.close())}close(){this.modalService.close(!0)}};r([a.Inject(s.ModalService),n("design:type","function"==typeof(e=void 0!==s.ModalService&&s.ModalService)?e:Object)],f.prototype,"modalService",void 0),r([a.Injector(c.MODAL_DIALOG_DATA),n("design:type","function"==typeof(t=void 0!==d.DialogData&&d.DialogData)?t:Object)],f.prototype,"data",void 0),r([a.Injector(c.MODAL_DIALOG_OPTIONS),n("design:type","function"==typeof(o=void 0!==c.MODAL_DIALOG_OPTIONS&&c.MODAL_DIALOG_OPTIONS)?o:Object)],f.prototype,"options",void 0),r([l.query(".backdrop"),n("design:type","function"==typeof(i="undefined"!=typeof HTMLElement&&HTMLElement)?i:Object)],f.prototype,"backdrop",void 0),f=r([l.Component({selector:"rx-modal-main",styles:[p.style,p.button],template(){return l.html`
+      <style>
+        ${this.data.style}
+      </style>
+      <div class="container">
+        <div class="dialog">
+          <button @click=${()=>this.close()}>
+            ${l.svg`
+              <svg width="14" height="14" viewBox="0 0 14 14">
+                <line fill="none" stroke="#666" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line>
+                <line fill="none" stroke="#666" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line>
+              </svg>
+            `}
+          </button>
+          ${this.data.template?l.html`
+                ${this.data.template}
+              `:l.html`
+                <h1>${this.data.title}</h1>
+                <p>
+                  ${this.data.description}
+                </p>
+              `}
+        </div>
+      </div>
+      <div class="backdrop"></div>
+    `}})],f),exports.MainModalComponent=f;
+},{"@rxdi/lit-html":"R8ie","@rxdi/core":"lhgc","../../modal/modal.service":"D8DB","../../modal/interface":"RPEn","./interface":"l0JX","./style.css":"oRay"}],"D8DB":[function(require,module,exports) {
+"use strict";var e,t=this&&this.__decorate||function(e,t,o,i){var n,r=arguments.length,s=r<3?t:null===i?i=Object.getOwnPropertyDescriptor(t,o):i;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)s=Reflect.decorate(e,t,o,i);else for(var a=e.length-1;a>=0;a--)(n=e[a])&&(s=(r<3?n(s):r>3?n(t,o,s):n(t,o))||s);return r>3&&s&&Object.defineProperty(t,o,s),s},o=this&&this.__metadata||function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)},i=this&&this.__importStar||function(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var o in e)Object.hasOwnProperty.call(e,o)&&(t[o]=e[o]);return t.default=e,t};Object.defineProperty(exports,"__esModule",{value:!0});const n=require("@rxdi/core"),r=require("@rxdi/lit-html"),s=require("rxjs"),a=require("./interface"),l=require("rxjs/operators");let c=class{constructor(){this.originalOptions=Object.assign({},this.options),this.modalTemplate=new s.ReplaySubject,this.closeSubject$=new s.Subject}open(e,t){return this.overflow("hidden"),new s.Observable(o=>{this.createModalPortal(),t&&this.setSettings(t),this.closeSubject$.pipe(l.take(1)).subscribe(e=>{t&&this.setSettings(this.originalOptions),this.overflow("visible"),o.next(e),o.complete()}),this.modalTemplate.next(e)})}openCustomModal(e,t={backdropClose:!0}){return this.overflow("hidden"),s.from(Promise.resolve().then(()=>i(require("../modals/main/main")))).pipe(l.map(e=>e.MainModalComponent),l.switchMap(o=>this.openComponent(o,e,{backdropClose:t.backdropClose,style:t.style||r.css`
+              .wrapper {
+                position: fixed;
+                top: 0;
+                left: 0;
+                align-items: center;
+                justify-content: center;
+                pointer-events: none;
+                width: 100%;
+                height: 100%;
+              }
+              .content {
+                width: 100%;
+                height: 100%;
+                z-index: 20;
+                position: fixed;
+                pointer-events: all;
+              }
+            `})),l.tap(()=>this.overflow("visible")))}overflow(e){this.options.hideScroll&&(document.body.style.overflow=e)}openComponent(e,t={},o){return o&&this.setSettings(o),this.overflow("hidden"),new s.Observable(i=>{const s=e.is;if(!s)throw new Error("Provide static method `is` inside component or if you use regular html`` template use `open` method instead of `openComponent`");this.createModalPortal(),n.Container.remove(a.MODAL_DIALOG_DATA),n.Container.set(a.MODAL_DIALOG_DATA,t),this.modalTemplate.next(r.html`
+          ${r.unsafeHTML(`<${s()}></${s()}>`)}
+        `),this.closeSubject$.pipe(l.take(1)).subscribe(e=>{o&&this.setSettings(this.originalOptions),i.next(e),this.overflow("visible"),i.complete()})})}setSettings(e){n.Container.remove(a.MODAL_DIALOG_OPTIONS),n.Container.set(a.MODAL_DIALOG_OPTIONS,e)}openSequence(e){const t=e=>e;return s.of(e).pipe(l.map(e=>e.map(e=>this.openComponent(e.component,e.data,e.options))),l.concatMap(t),l.concatMap(t))}getTemplate(){return this.modalTemplate.asObservable()}getRef(){return this.modalRef}close(e){this.removeModalPortal(),this.closeSubject$.next(e)}createModalContainer(){this.modalRef=document.createElement("modal-container")}appendReference(){document.body.appendChild(this.modalRef)}createModalPortal(){this.modalRef&&this.removeModalPortal(),this.createModalContainer(),this.appendReference()}removeModalPortal(){this.modalRef.remove()}};t([n.Injector(a.MODAL_DIALOG_OPTIONS),o("design:type","function"==typeof(e=void 0!==a.MODAL_DIALOG_OPTIONS&&a.MODAL_DIALOG_OPTIONS)?e:Object)],c.prototype,"options",void 0),c=t([n.Injectable()],c),exports.ModalService=c;
+},{"@rxdi/core":"lhgc","@rxdi/lit-html":"R8ie","rxjs":"iRqj","./interface":"RPEn","rxjs/operators":"cVrl","../modals/main/main":"cCLz"}],"PXQi":[function(require,module,exports) {
+"use strict";var e,t,o=this&&this.__decorate||function(e,t,o,i){var r,c=arguments.length,n=c<3?t:null===i?i=Object.getOwnPropertyDescriptor(t,o):i;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)n=Reflect.decorate(e,t,o,i);else for(var l=e.length-1;l>=0;l--)(r=e[l])&&(n=(c<3?r(n):c>3?r(t,o,n):r(t,o))||n);return c>3&&n&&Object.defineProperty(t,o,n),n},i=this&&this.__metadata||function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)};Object.defineProperty(exports,"__esModule",{value:!0});const r=require("@rxdi/lit-html"),c=require("@rxdi/core"),n=require("./modal.service"),l=require("./interface");let s=class extends r.LitElement{constructor(){super(...arguments),this.template=this.modalService.getTemplate()}};o([c.Inject(n.ModalService),i("design:type","function"==typeof(e=void 0!==n.ModalService&&n.ModalService)?e:Object)],s.prototype,"modalService",void 0),o([c.Injector(l.MODAL_DIALOG_OPTIONS),i("design:type","function"==typeof(t=void 0!==l.MODAL_DIALOG_OPTIONS&&l.MODAL_DIALOG_OPTIONS)?t:Object)],s.prototype,"options",void 0),s=o([r.Component({selector:"modal-container",template(){return r.html`
+      <style>
+        ${this.options.style}
+      </style>
+      <div class="wrapper">
+        <div class="content">${r.async(this.template)}</div>
+        <div
+          @click=${()=>this.options.backdropClose&&this.modalService.close()}
+          class="backdrop"
+        ></div>
+      </div>
+    `}})],s),exports.ModalContainerComponent=s;
+},{"@rxdi/lit-html":"R8ie","@rxdi/core":"lhgc","./modal.service":"D8DB","./interface":"RPEn"}],"sSrl":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const e=require("@rxdi/lit-html");exports.defaultModalStyle=e.css`
+  .wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+  }
+
+  .backdrop {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    pointer-events: all;
+    z-index: 10;
+  }
+
+  .content {
+    z-index: 20;
+    position: absolute;
+    /* width: 100%; */
+    /* height: 100%; */
+    pointer-events: all;
+  }
+`;
+},{"@rxdi/lit-html":"R8ie"}],"mF9g":[function(require,module,exports) {
+"use strict";var e,t=this&&this.__decorate||function(e,t,r,o){var l,c=arguments.length,n=c<3?t:null===o?o=Object.getOwnPropertyDescriptor(t,r):o;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)n=Reflect.decorate(e,t,r,o);else for(var i=e.length-1;i>=0;i--)(l=e[i])&&(n=(c<3?l(n):c>3?l(t,r,n):l(t,r))||n);return c>3&&n&&Object.defineProperty(t,r,n),n};Object.defineProperty(exports,"__esModule",{value:!0});const r=require("@rxdi/core"),o=require("./modal.service"),l=require("./modal-container.component"),c=require("./interface"),n=require("./default.css");let i=e=class{static forRoot(t={}){return t.style||(t.style=n.defaultModalStyle),{module:e,providers:[o.ModalService,{provide:c.MODAL_DIALOG_OPTIONS,useValue:t}],components:[l.ModalContainerComponent]}}};i=e=t([r.Module()],i),exports.ModalModule=i;
+},{"@rxdi/core":"lhgc","./modal.service":"D8DB","./modal-container.component":"PXQi","./interface":"RPEn","./default.css":"sSrl"}],"KX2f":[function(require,module,exports) {
+"use strict";function e(e){return e=e||[],Array.isArray(e)?e:[e]}function t(e){return`[Vaadin.Router] ${e}`}function n(e){if("object"!=typeof e)return String(e);const t=Object.prototype.toString.call(e).match(/ (.*)\]$/)[1];return"Object"===t||"Array"===t?`${t} ${JSON.stringify(e)}`:t}Object.defineProperty(exports,"__esModule",{value:!0}),exports.Router=exports.Resolver=void 0;const r="module",o="nomodule",i=[r,o];function a(e){if(!e.match(/.+\.[m]?js$/))throw new Error(t(`Unsupported type for bundle "${e}": .js or .mjs expected.`))}function s(e){if(!e||!_(e.path))throw new Error(t('Expected route config to be an object with a "path" string property, or an array of such objects'));const n=e.bundle,s=["component","redirect","bundle"];if(!(p(e.action)||Array.isArray(e.children)||p(e.children)||d(n)||s.some(t=>_(e[t]))))throw new Error(t(`Expected route config "${e.path}" to include either "${s.join('", "')}" `+'or "action" function but none found.'));if(n)if(_(n))a(n);else{if(!i.some(e=>e in n))throw new Error(t('Expected route bundle to include either "'+o+'" or "'+r+'" keys, or both'));i.forEach(e=>e in n&&a(n[e]))}e.redirect&&["bundle","component"].forEach(n=>{n in e&&console.warn(t(`Route config "${e.path}" has both "redirect" and "${n}" properties, `+`and "redirect" will always override the latter. Did you mean to only use "${n}"?`))})}function c(t){e(t).forEach(e=>s(e))}function l(e,t){let n=document.head.querySelector('script[src="'+e+'"][async]');return n||((n=document.createElement("script")).setAttribute("src",e),t===r?n.setAttribute("type",r):t===o&&n.setAttribute(o,""),n.async=!0),new Promise((e,t)=>{n.onreadystatechange=n.onload=(t=>{n.__dynamicImportLoaded=!0,e(t)}),n.onerror=(e=>{n.parentNode&&n.parentNode.removeChild(n),t(e)}),null===n.parentNode?document.head.appendChild(n):n.__dynamicImportLoaded&&e()})}function h(e){return _(e)?l(e):Promise.race(i.filter(t=>t in e).map(t=>l(e[t],t)))}function u(e,t){return!window.dispatchEvent(new CustomEvent(`vaadin-router-${e}`,{cancelable:"go"===e,detail:t}))}function d(e){return"object"==typeof e&&!!e}function p(e){return"function"==typeof e}function _(e){return"string"==typeof e}function f(e){const n=new Error(t(`Page not found (${e.pathname})`));return n.context=e,n.code=404,n}const m=new class{};function g(e){const t=e.port,n=e.protocol;return`${n}//${"http:"===n&&"80"===t||"https:"===n&&"443"===t?e.hostname:e.host}`}function v(e){if(e.defaultPrevented)return;if(0!==e.button)return;if(e.shiftKey||e.ctrlKey||e.altKey||e.metaKey)return;let t=e.target;const n=e.composedPath?e.composedPath():e.path||[];for(let a=0;a<n.length;a++){const e=n[a];if(e.nodeName&&"a"===e.nodeName.toLowerCase()){t=e;break}}for(;t&&"a"!==t.nodeName.toLowerCase();)t=t.parentNode;if(!t||"a"!==t.nodeName.toLowerCase())return;if(t.target&&"_self"!==t.target.toLowerCase())return;if(t.hasAttribute("download"))return;if(t.pathname===window.location.pathname&&""!==t.hash)return;if((t.origin||g(t))!==window.location.origin)return;const{pathname:r,search:o,hash:i}=t;u("go",{pathname:r,search:o,hash:i})&&e.preventDefault()}const w={activate(){window.document.addEventListener("click",v)},inactivate(){window.document.removeEventListener("click",v)}},y=/Trident/.test(navigator.userAgent);function b(e){if("vaadin-router-ignore"===e.state)return;const{pathname:t,search:n,hash:r}=window.location;u("go",{pathname:t,search:n,hash:r})}y&&!p(window.PopStateEvent)&&(window.PopStateEvent=function(e,t){t=t||{};var n=document.createEvent("Event");return n.initEvent(e,Boolean(t.bubbles),Boolean(t.cancelable)),n.state=t.state||null,n},window.PopStateEvent.prototype=window.Event.prototype);const E={activate(){window.addEventListener("popstate",b)},inactivate(){window.removeEventListener("popstate",b)}};var x=V,C=L,R=j,A=I,O=M,k="/",$="./",P=new RegExp(["(\\\\.)","(?:\\:(\\w+)(?:\\(((?:\\\\.|[^\\\\()])+)\\))?|\\(((?:\\\\.|[^\\\\()])+)\\))([+*?])?"].join("|"),"g");function L(e,t){for(var n,r=[],o=0,i=0,a="",s=t&&t.delimiter||k,c=t&&t.delimiters||$,l=!1;null!==(n=P.exec(e));){var h=n[0],u=n[1],d=n.index;if(a+=e.slice(i,d),i=d+h.length,u)a+=u[1],l=!0;else{var p="",_=e[i],f=n[2],m=n[3],g=n[4],v=n[5];if(!l&&a.length){var w=a.length-1;c.indexOf(a[w])>-1&&(p=a[w],a=a.slice(0,w))}a&&(r.push(a),a="",l=!1);var y=""!==p&&void 0!==_&&_!==p,b="+"===v||"*"===v,E="?"===v||"*"===v,x=p||s,C=m||g;r.push({name:f||o++,prefix:p,delimiter:x,optional:E,repeat:b,partial:y,pattern:C?U(C):"[^"+B(x)+"]+?"})}}return(a||i<e.length)&&r.push(a+e.substr(i)),r}function j(e,t){return I(L(e,t))}function I(e){for(var t=new Array(e.length),n=0;n<e.length;n++)"object"==typeof e[n]&&(t[n]=new RegExp("^(?:"+e[n].pattern+")$"));return function(n,r){for(var o="",i=r&&r.encode||encodeURIComponent,a=0;a<e.length;a++){var s=e[a];if("string"!=typeof s){var c,l=n?n[s.name]:void 0;if(Array.isArray(l)){if(!s.repeat)throw new TypeError('Expected "'+s.name+'" to not repeat, but got array');if(0===l.length){if(s.optional)continue;throw new TypeError('Expected "'+s.name+'" to not be empty')}for(var h=0;h<l.length;h++){if(c=i(l[h],s),!t[a].test(c))throw new TypeError('Expected all "'+s.name+'" to match "'+s.pattern+'"');o+=(0===h?s.prefix:s.delimiter)+c}}else if("string"!=typeof l&&"number"!=typeof l&&"boolean"!=typeof l){if(!s.optional)throw new TypeError('Expected "'+s.name+'" to be '+(s.repeat?"an array":"a string"));s.partial&&(o+=s.prefix)}else{if(c=i(String(l),s),!t[a].test(c))throw new TypeError('Expected "'+s.name+'" to match "'+s.pattern+'", but got "'+c+'"');o+=s.prefix+c}}else o+=s}return o}}function B(e){return e.replace(/([.+*?=^!:${}()[\]|\/\\])/g,"\\$1")}function U(e){return e.replace(/([=!:$\/()])/g,"\\$1")}function N(e){return e&&e.sensitive?"":"i"}function T(e,t){if(!t)return e;var n=e.source.match(/\((?!\?)/g);if(n)for(var r=0;r<n.length;r++)t.push({name:r,prefix:null,delimiter:null,optional:!1,repeat:!1,partial:!1,pattern:null});return e}function S(e,t,n){for(var r=[],o=0;o<e.length;o++)r.push(V(e[o],t,n).source);return new RegExp("(?:"+r.join("|")+")",N(n))}function F(e,t,n){return M(L(e,n),t,n)}function M(e,t,n){for(var r=(n=n||{}).strict,o=!1!==n.start,i=!1!==n.end,a=B(n.delimiter||k),s=n.delimiters||$,c=[].concat(n.endsWith||[]).map(B).concat("$").join("|"),l=o?"^":"",h=0===e.length,u=0;u<e.length;u++){var d=e[u];if("string"==typeof d)l+=B(d),h=u===e.length-1&&s.indexOf(d[d.length-1])>-1;else{var p=d.repeat?"(?:"+d.pattern+")(?:"+B(d.delimiter)+"(?:"+d.pattern+"))*":d.pattern;t&&t.push(d),d.optional?d.partial?l+=B(d.prefix)+"("+p+")?":l+="(?:"+B(d.prefix)+"("+p+"))?":l+=B(d.prefix)+"("+p+")"}}return i?(r||(l+="(?:"+a+")?"),l+="$"===c?"$":"(?="+c+")"):(r||(l+="(?:"+a+"(?="+c+"))?"),h||(l+="(?="+a+"|"+c+")")),new RegExp(l,N(n))}function V(e,t,n){return e instanceof RegExp?T(e,t):Array.isArray(e)?S(e,t,n):F(e,t,n)}x.parse=C,x.compile=R,x.tokensToFunction=A,x.tokensToRegExp=O;const{hasOwnProperty:H}=Object.prototype,D=new Map;function K(e){try{return decodeURIComponent(e)}catch(t){return e}}function W(e,t,n,r,o){const i=`${e}|${n=!!n}`;let a=D.get(i);if(!a){const t=[];a={keys:t,pattern:x(e,t,{end:n,strict:""===e})},D.set(i,a)}const s=a.pattern.exec(t);if(!s)return null;const c=Object.assign({},o);for(let l=1;l<s.length;l++){const e=a.keys[l-1],t=e.name,n=s[l];void 0===n&&H.call(c,t)||(e.repeat?c[t]=n?n.split(e.delimiter).map(K):[]:c[t]=n?K(n):n)}return{path:s[0],keys:(r||[]).concat(a.keys),params:c}}function q(e,t,n,r,o){let i,a,s=0,c=e.path||"";return"/"===c.charAt(0)&&(n&&(c=c.substr(1)),n=!0),{next(l){if(e===l)return{done:!0};const h=e.__children=e.__children||e.children;if(!i&&(i=W(c,t,!h,r,o)))return{done:!1,value:{route:e,keys:i.keys,params:i.params,path:i.path}};if(i&&h)for(;s<h.length;){if(!a){const r=h[s];r.parent=e;let o=i.path.length;o>0&&"/"===t.charAt(o)&&(o+=1),a=q(r,t.substr(o),n,i.keys,i.params)}const r=a.next(l);if(!r.done)return{done:!1,value:r.value};a=null,s++}return{done:!0}}}}function z(e){if(p(e.route.action))return e.route.action(e)}function Q(e,t){let n=t;for(;n;)if((n=n.parent)===e)return!0;return!1}function J(e){let t=`Path '${e.pathname}' is not properly resolved due to an error.`;const n=(e.route||{}).path;return n&&(t+=` Resolution had failed on route: '${n}'`),t}function G(e,t){const{route:n,path:r}=t;if(n&&!n.__synthetic){const t={path:r,route:n};!function(e,t){return!t.parent||!e||!e.length||e[e.length-1].route!==t.parent}(e.chain,n)?e.chain.push(t):e.chain=[t]}}D.set("|false",{keys:[],pattern:/(?:)/});class X{constructor(e,t={}){if(Object(e)!==e)throw new TypeError("Invalid routes");this.baseUrl=t.baseUrl||"",this.errorHandler=t.errorHandler,this.resolveRoute=t.resolveRoute||z,this.context=Object.assign({resolver:this},t.context),this.root=Array.isArray(e)?{path:"",__children:e,parent:null,__synthetic:!0}:e,this.root.parent=null}getRoutes(){return[...this.root.__children]}setRoutes(t){c(t);const n=[...e(t)];this.root.__children=n}addRoutes(t){return c(t),this.root.__children.push(...e(t)),this.getRoutes()}removeRoutes(){this.setRoutes([])}resolve(e){const t=Object.assign({},this.context,_(e)?{pathname:e}:e),n=q(this.root,this.__normalizePathname(t.pathname),this.baseUrl),r=this.resolveRoute;let o=null,i=null,a=t;function s(e,c=o.value.route,l){const h=null===l&&o.value.route;return o=i||n.next(h),i=null,e||!o.done&&Q(c,o.value.route)?o.done?Promise.reject(f(t)):(G(t,o.value),a=Object.assign({},t,o.value),Promise.resolve(r(a)).then(t=>null!=t&&t!==m?(a.result=t.result||t,a):s(e,c,t))):(i=o,Promise.resolve(m))}return t.next=s,Promise.resolve().then(()=>s(!0,this.root)).catch(e=>{const t=J(a);if(e?console.warn(t):e=new Error(t),e.context=e.context||a,e instanceof DOMException||(e.code=e.code||500),this.errorHandler)return a.result=this.errorHandler(e),a;throw e})}static __createUrl(e,t){return new URL(e,t)}get __effectiveBaseUrl(){return this.baseUrl?this.constructor.__createUrl(this.baseUrl,document.baseURI||document.URL).href.replace(/[^\/]*$/,""):""}__normalizePathname(e){if(!this.baseUrl)return e;const t=this.__effectiveBaseUrl,n=this.constructor.__createUrl(e,t).href;return n.slice(0,t.length)===t?n.slice(t.length):void 0}}exports.Resolver=X,X.pathToRegexp=x;const{pathToRegexp:Y}=X,Z=new Map;function ee(e,t,n){const r=t.name||t.component;if(r&&(e.has(r)?e.get(r).push(t):e.set(r,[t])),Array.isArray(n))for(let o=0;o<n.length;o++){const r=n[o];r.parent=t,ee(e,r,r.__children||r.children)}}function te(e,t){const n=e.get(t);if(n&&n.length>1)throw new Error(`Duplicate route with name "${t}".`+" Try seting unique 'name' route properties.");return n&&n[0]}function ne(e){let t=e.path;return void 0!==(t=Array.isArray(t)?t[0]:t)?t:""}function re(e,t={}){if(!(e instanceof X))throw new TypeError("An instance of Resolver is expected");const n=new Map;return(r,o)=>{let i=te(n,r);if(!(i||(n.clear(),ee(n,e.root,e.root.__children),i=te(n,r))))throw new Error(`Route "${r}" not found`);let a=Z.get(i.fullPath);if(!a){let e=ne(i),t=i.parent;for(;t;){const n=ne(t);n&&(e=n.replace(/\/$/,"")+"/"+e.replace(/^\//,"")),t=t.parent}const n=Y.parse(e),r=Y.tokensToFunction(n),o=Object.create(null);for(let i=0;i<n.length;i++)_(n[i])||(o[n[i].name]=!0);a={toPath:r,keys:o},Z.set(e,a),i.fullPath=e}let s=a.toPath(o,t)||"/";if(t.stringifyQueryParams&&o){const e={},n=Object.keys(o);for(let t=0;t<n.length;t++){const r=n[t];a.keys[r]||(e[r]=o[r])}const r=t.stringifyQueryParams(e);r&&(s+="?"===r.charAt(0)?r:`?${r}`)}return s}}let oe=[];function ie(e){oe.forEach(e=>e.inactivate()),e.forEach(e=>e.activate()),oe=e}const ae=e=>{const t=getComputedStyle(e).getPropertyValue("animation-name");return t&&"none"!==t},se=(e,t)=>{const n=()=>{e.removeEventListener("animationend",n),t()};e.addEventListener("animationend",n)};function ce(e,t){return e.classList.add(t),new Promise(n=>{if(ae(e)){const r=e.getBoundingClientRect(),o=`height: ${r.bottom-r.top}px; width: ${r.right-r.left}px`;e.setAttribute("style",`position: absolute; ${o}`),se(e,()=>{e.classList.remove(t),e.removeAttribute("style"),n()})}else e.classList.remove(t),n()})}const le=256;function he(e){return null!=e}function ue(e){const t=Object.assign({},e);return delete t.next,t}function de({pathname:e="",search:t="",hash:n="",chain:r=[],params:o={},redirectFrom:i,resolver:a},s){const c=r.map(e=>e.route);return{baseUrl:a&&a.baseUrl||"",pathname:e,search:t,hash:n,routes:c,route:s||c.length&&c[c.length-1]||null,params:o,redirectFrom:i,getUrl:(e={})=>we(be.pathToRegexp.compile(ye(c))(Object.assign({},o,e)),a)}}function pe(e,t){const n=Object.assign({},e.params);return{redirect:{pathname:t,from:e.pathname,params:n}}}function _e(e,t){t.location=de(e);const n=e.chain.map(e=>e.route).indexOf(e.route);return e.chain[n].element=t,t}function fe(e,t,n){if(p(e))return e.apply(n,t)}function me(e,t,n){return r=>r&&(r.cancel||r.redirect)?r:n?fe(n[e],t,n):void 0}function ge(n,r){if(!Array.isArray(n)&&!d(n))throw new Error(t(`Incorrect "children" value for the route ${r.path}: expected array or object, but got ${n}`));r.__children=[];const o=e(n);for(let e=0;e<o.length;e++)s(o[e]),r.__children.push(o[e])}function ve(e){if(e&&e.length){const t=e[0].parentNode;for(let n=0;n<e.length;n++)t.removeChild(e[n])}}function we(e,t){const n=t.__effectiveBaseUrl;return n?t.constructor.__createUrl(e.replace(/^\//,""),n).pathname:e}function ye(e){return e.map(e=>e.path).reduce((e,t)=>t.length?e.replace(/\/$/,"")+"/"+t.replace(/^\//,""):e,"")}class be extends X{constructor(e,t){const n=document.head.querySelector("base");super([],Object.assign({baseUrl:n&&n.getAttribute("href")},t)),this.resolveRoute=(e=>this.__resolveRoute(e));const r=be.NavigationTrigger;be.setTriggers.apply(be,Object.keys(r).map(e=>r[e])),this.baseUrl,this.ready,this.ready=Promise.resolve(e),this.location,this.location=de({resolver:this}),this.__lastStartedRenderId=0,this.__navigationEventHandler=this.__onNavigationEvent.bind(this),this.setOutlet(e),this.subscribe(),this.__createdByRouter=new WeakMap,this.__addedByRouter=new WeakMap}__resolveRoute(e){const n=e.route;let r=Promise.resolve();p(n.children)&&(r=r.then(()=>n.children(ue(e))).then(e=>{he(e)||p(n.children)||(e=n.children),ge(e,n)}));const o={redirect:t=>pe(e,t),component:e=>{const t=document.createElement(e);return this.__createdByRouter.set(t,!0),t}};return r.then(()=>{if(this.__isLatestRender(e))return fe(n.action,[e,o],n)}).then(e=>he(e)&&(e instanceof HTMLElement||e.redirect||e===m)?e:_(n.redirect)?o.redirect(n.redirect):n.bundle?h(n.bundle).then(()=>{},()=>{throw new Error(t(`Bundle not found: ${n.bundle}. Check if the file name is correct`))}):void 0).then(e=>he(e)?e:_(n.component)?o.component(n.component):void 0)}setOutlet(e){e&&this.__ensureOutlet(e),this.__outlet=e}getOutlet(){return this.__outlet}setRoutes(e,t=!1){return this.__previousContext=void 0,this.__urlForName=void 0,super.setRoutes(e),t||this.__onNavigationEvent(),this.ready}render(e,t){const n=++this.__lastStartedRenderId,r=Object.assign({search:"",hash:""},_(e)?{pathname:e}:e,{__renderId:n});return this.ready=this.resolve(r).then(e=>this.__fullyResolveChain(e)).then(e=>{if(this.__isLatestRender(e)){const n=this.__previousContext;if(e===n)return this.__updateBrowserHistory(n,!0),this.location;if(this.location=de(e),u("location-changed",{router:this,location:this.location}),t&&this.__updateBrowserHistory(e,e.redirectFrom),e.__skipAttach)return this.__copyUnchangedElements(e,n),this.__previousContext=e,this.location;this.__addAppearingContent(e,n);const r=this.__animateIfNeeded(e);return this.__runOnAfterEnterCallbacks(e),this.__runOnAfterLeaveCallbacks(e,n),r.then(()=>{if(this.__isLatestRender(e))return this.__removeDisappearingContent(),this.__previousContext=e,this.location})}}).catch(e=>{if(n===this.__lastStartedRenderId)throw t&&this.__updateBrowserHistory(r),ve(this.__outlet&&this.__outlet.children),this.location=de(Object.assign(r,{resolver:this})),u("error",Object.assign({router:this,error:e},r)),e}),this.ready}__fullyResolveChain(e,t=e){return this.__findComponentContextAfterAllRedirects(t).then(n=>{const r=n!==t?n:e;return n.next().then(e=>{if(null===e||e===m){if(we(ye(n.chain),n.resolver)!==n.pathname)throw f(r)}return e&&e!==m?this.__fullyResolveChain(r,e):this.__amendWithOnBeforeCallbacks(n)})})}__findComponentContextAfterAllRedirects(e){const r=e.result;return r instanceof HTMLElement?(_e(e,r),Promise.resolve(e)):r.redirect?this.__redirect(r.redirect,e.__redirectCount,e.__renderId).then(e=>this.__findComponentContextAfterAllRedirects(e)):r instanceof Error?Promise.reject(r):Promise.reject(new Error(t(`Invalid route resolution result for path "${e.pathname}". `+`Expected redirect object or HTML element, but got: "${n(r)}". `+"Double check the action return value for the route.")))}__amendWithOnBeforeCallbacks(e){return this.__runOnBeforeCallbacks(e).then(t=>t===this.__previousContext||t===e?t:this.__fullyResolveChain(t))}__runOnBeforeCallbacks(e){const t=this.__previousContext||{},n=t.chain||[],r=e.chain;let o=Promise.resolve();const i=()=>({cancel:!0}),a=t=>pe(e,t);if(e.__divergedChainIndex=0,e.__skipAttach=!1,n.length){for(let t=0;t<Math.min(n.length,r.length)&&(n[t].route===r[t].route&&(n[t].path===r[t].path||n[t].element===r[t].element)&&this.__isReusableElement(n[t].element,r[t].element));t=++e.__divergedChainIndex);if(e.__skipAttach=r.length===n.length&&e.__divergedChainIndex==r.length&&this.__isReusableElement(e.result,t.result),e.__skipAttach){for(let a=r.length-1;a>=0;a--)n[a].path===r[a].path&&e.search===t.search||(o=this.__runOnBeforeLeaveCallbacks(o,e,{prevent:i},n[a]));for(let s=0;s<r.length;s++)n[s].path===r[s].path&&e.search===t.search||(o=this.__runOnBeforeEnterCallbacks(o,e,{prevent:i,redirect:a},r[s])),n[s].element.location=de(e,n[s].route)}else for(let t=n.length-1;t>=e.__divergedChainIndex;t--)o=this.__runOnBeforeLeaveCallbacks(o,e,{prevent:i},n[t])}for(let s=e.__divergedChainIndex;!e.__skipAttach&&s<r.length;s++)o=this.__runOnBeforeEnterCallbacks(o,e,{prevent:i,redirect:a},r[s]);return o.then(t=>{if(t){if(t.cancel)return this.__previousContext.__renderId=e.__renderId,this.__previousContext;if(t.redirect)return this.__redirect(t.redirect,e.__redirectCount,e.__renderId)}return e})}__runOnBeforeLeaveCallbacks(e,t,n,r){const o=de(t);return e.then(e=>{if(this.__isLatestRender(t)){return me("onBeforeLeave",[o,n,this],r.element)(e)}}).then(e=>{if(!(e||{}).redirect)return e})}__runOnBeforeEnterCallbacks(e,t,n,r){const o=de(t,r.route);return e.then(e=>{if(this.__isLatestRender(t)){return me("onBeforeEnter",[o,n,this],r.element)(e)}})}__isReusableElement(e,t){return!(!e||!t)&&(this.__createdByRouter.get(e)&&this.__createdByRouter.get(t)?e.localName===t.localName:e===t)}__isLatestRender(e){return e.__renderId===this.__lastStartedRenderId}__redirect(e,n,r){if(n>le)throw new Error(t(`Too many redirects when rendering ${e.from}`));return this.resolve({pathname:this.urlForPath(e.pathname,e.params),redirectFrom:e.from,__redirectCount:(n||0)+1,__renderId:r})}__ensureOutlet(e=this.__outlet){if(!(e instanceof Node))throw new TypeError(t(`Expected router outlet to be a valid DOM Node (but got ${e})`))}__updateBrowserHistory({pathname:e,search:t="",hash:n=""},r){if(window.location.pathname!==e||window.location.search!==t||window.location.hash!==n){const o=r?"replaceState":"pushState";window.history[o](null,document.title,e+t+n),window.dispatchEvent(new PopStateEvent("popstate",{state:"vaadin-router-ignore"}))}}__copyUnchangedElements(e,t){let n=this.__outlet;for(let r=0;r<e.__divergedChainIndex;r++){const o=t&&t.chain[r].element;if(o){if(o.parentNode!==n)break;e.chain[r].element=o,n=o}}return n}__addAppearingContent(e,t){this.__ensureOutlet(),this.__removeAppearingContent();const n=this.__copyUnchangedElements(e,t);this.__appearingContent=[],this.__disappearingContent=Array.from(n.children).filter(t=>this.__addedByRouter.get(t)&&t!==e.result);let r=n;for(let o=e.__divergedChainIndex;o<e.chain.length;o++){const t=e.chain[o].element;t&&(r.appendChild(t),this.__addedByRouter.set(t,!0),r===n&&this.__appearingContent.push(t),r=t)}}__removeDisappearingContent(){this.__disappearingContent&&ve(this.__disappearingContent),this.__disappearingContent=null,this.__appearingContent=null}__removeAppearingContent(){this.__disappearingContent&&this.__appearingContent&&(ve(this.__appearingContent),this.__disappearingContent=null,this.__appearingContent=null)}__runOnAfterLeaveCallbacks(e,t){if(t)for(let n=t.chain.length-1;n>=e.__divergedChainIndex&&this.__isLatestRender(e);n--){const r=t.chain[n].element;if(r)try{const n=de(e);fe(r.onAfterLeave,[n,{},t.resolver],r)}finally{this.__disappearingContent.indexOf(r)>-1&&ve(r.children)}}}__runOnAfterEnterCallbacks(e){for(let t=e.__divergedChainIndex;t<e.chain.length&&this.__isLatestRender(e);t++){const n=e.chain[t].element||{},r=de(e,e.chain[t].route);fe(n.onAfterEnter,[r,{},e.resolver],n)}}__animateIfNeeded(e){const t=(this.__disappearingContent||[])[0],n=(this.__appearingContent||[])[0],r=[],o=e.chain;let i;for(let a=o.length;a>0;a--)if(o[a-1].route.animate){i=o[a-1].route.animate;break}if(t&&n&&i){const e=d(i)&&i.leave||"leaving",o=d(i)&&i.enter||"entering";r.push(ce(t,e)),r.push(ce(n,o))}return Promise.all(r).then(()=>e)}subscribe(){window.addEventListener("vaadin-router-go",this.__navigationEventHandler)}unsubscribe(){window.removeEventListener("vaadin-router-go",this.__navigationEventHandler)}__onNavigationEvent(e){const{pathname:t,search:n,hash:r}=e?e.detail:window.location;_(this.__normalizePathname(t))&&(e&&e.preventDefault&&e.preventDefault(),this.render({pathname:t,search:n,hash:r},!0))}static setTriggers(...e){ie(e)}urlForName(e,t){return this.__urlForName||(this.__urlForName=re(this)),we(this.__urlForName(e,t),this)}urlForPath(e,t){return we(be.pathToRegexp.compile(e)(t),this)}static go(e){const{pathname:t,search:n,hash:r}=_(e)?this.__createUrl(e,"http://a"):e;return u("go",{pathname:t,search:n,hash:r})}}exports.Router=be;const Ee=/\/\*\*\s+vaadin-dev-mode:start([\s\S]*)vaadin-dev-mode:end\s+\*\*\//i,xe=window.Vaadin&&window.Vaadin.Flow&&window.Vaadin.Flow.clients;function Ce(){return $e(function(){return!0})}function Re(){try{return!!Ae()||!!Oe()&&(xe?!ke():!Ce())}catch(e){return!1}}function Ae(){return localStorage.getItem("vaadin.developmentmode.force")}function Oe(){return["localhost","127.0.0.1"].indexOf(window.location.hostname)>=0}function ke(){if(xe){if(Object.keys(xe).map(e=>xe[e]).filter(e=>e.productionMode).length>0)return!0}return!1}function $e(e,t){if("function"!=typeof e)return;const n=Ee.exec(e.toString());if(n)try{e=new Function(n[1])}catch(r){console.log("vaadin-development-mode-detector: uncommentAndRun() failed",r)}return e(t)}window.Vaadin=window.Vaadin||{};const Pe=function(e,t){if(window.Vaadin.developmentMode)return $e(e,t)};function Le(){}void 0===window.Vaadin.developmentMode&&(window.Vaadin.developmentMode=Re());const je=function(){return Pe(Le)};window.Vaadin=window.Vaadin||{},window.Vaadin.registrations=window.Vaadin.registrations||[],window.Vaadin.registrations.push({is:"@vaadin/router",version:"1.5.0"}),Pe(Le),be.NavigationTrigger={POPSTATE:E,CLICK:w};
+},{}],"thVK":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const e=require("@vaadin/router");class t extends e.Router{constructor(e,t){super(e,t),this.options=t,this.activePath="/",window.addEventListener("vaadin-router-location-changed",e=>{this.options.log&&console.log(`You are at '${e.detail.location.pathname}'`),this.activePath=e.detail.location.pathname})}freezeRouter(){this.freeze=!0}unfreezeRouter(){this.freeze=!1}setRoutes(e){return super.setRoutes(e),e}setOutlet(e){super.setOutlet(e)}go(t){return this.activePath!==t&&!this.freeze&&(this.activePath=t,this.options.freeze&&this.freezeRouter(),e.Router.go(t))}urlForName(e,t){return super.urlForName(e,t)}urlForPath(e,t){return super.urlForPath(e,t)}setTriggers(t){e.Router.setTriggers(t)}getOutlet(){return super.getOutlet()}getRoutes(){return super.getRoutes()}removeRoutes(){super.removeRoutes()}render(e,t){return super.render(e,t)}subscribe(){super.subscribe()}unsubscribe(){super.unsubscribe()}addRoutes(e){return super.addRoutes(e)}}exports.Outlet=t;
+},{"@vaadin/router":"KX2f"}],"mrFC":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const e=require("@rxdi/core");function t(){return(t,r)=>{Object.defineProperty(t,r,{get:()=>e.Container.get(exports.RouterRoutlet).getValue()})}}exports.Router=t,exports.RouterRoutlet="router-outlet",exports.RouterInitialized="router-initialized",exports.Routes="router-routes",exports.RouterOptions="router-options";
+},{"@rxdi/core":"lhgc"}],"DItH":[function(require,module,exports) {
+"use strict";var t=this&&this.__decorate||function(t,e,r,i){var o,n=arguments.length,s=n<3?e:null===i?i=Object.getOwnPropertyDescriptor(e,r):i;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)s=Reflect.decorate(t,e,r,i);else for(var c=t.length-1;c>=0;c--)(o=t[c])&&(s=(n<3?o(s):n>3?o(e,r,s):o(e,r))||s);return n>3&&s&&Object.defineProperty(e,r,s),s},e=this&&this.__metadata||function(t,e){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(t,e)},r=this&&this.__param||function(t,e){return function(r,i){e(r,i,t)}},i=this&&this.__awaiter||function(t,e,r,i){return new(r||(r=Promise))(function(o,n){function s(t){try{u(i.next(t))}catch(e){n(e)}}function c(t){try{u(i.throw(t))}catch(e){n(e)}}function u(t){t.done?o(t.value):new r(function(e){e(t.value)}).then(s,c)}u((i=i.apply(t,e||[])).next())})};Object.defineProperty(exports,"__esModule",{value:!0});const o=require("@rxdi/core"),n=require("./outlet"),s=require("./injection.tokens");let c=class{constructor(t,e,r,o){this.routes=t,this.routerOptions=e,this.routerInitialized=r,this.routerPlate=o,this.subscription=this.routerInitialized.asObservable().subscribe(t=>i(this,void 0,void 0,function*(){if(t){yield t.requestUpdate();const e=t.shadowRoot.querySelector(`#${t.id}`),r=new n.Outlet(e,this.routerOptions);r.setRoutes(this.routes),this.routerPlate.next(r),this.subscription.unsubscribe()}}))}};c=t([o.Service(),r(0,o.Inject(s.Routes)),r(1,o.Inject(s.RouterOptions)),r(2,o.Inject(s.RouterInitialized)),r(3,o.Inject(s.RouterRoutlet)),e("design:paramtypes",[Array,Object,Object,Object])],c),exports.RouterService=c;
+},{"@rxdi/core":"lhgc","./outlet":"thVK","./injection.tokens":"mrFC"}],"bIww":[function(require,module,exports) {
+"use strict";var e=this&&this.__decorate||function(e,t,r,o){var i,n=arguments.length,c=n<3?t:null===o?o=Object.getOwnPropertyDescriptor(t,r):o;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)c=Reflect.decorate(e,t,r,o);else for(var l=e.length-1;l>=0;l--)(i=e[l])&&(c=(n<3?i(c):n>3?i(t,r,c):i(t,r))||c);return n>3&&c&&Object.defineProperty(t,r,c),c},t=this&&this.__metadata||function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)};Object.defineProperty(exports,"__esModule",{value:!0});const r=require("@rxdi/core"),o=require("@rxdi/lit-html"),i=require("./injection.tokens");let n=class extends o.LitElement{constructor(){super(...arguments),this.id=i.RouterRoutlet}connectedCallback(){super.connectedCallback(),this.routerInitialized.next(this)}render(){return o.html`
+      <slot name="header"></slot>
+      ${o.html`
+        <main id="${this.id}"></main>
+      `}
+      <slot name="footer"></slot>
+    `}};e([r.Injector(i.RouterInitialized),t("design:type",Object)],n.prototype,"routerInitialized",void 0),e([o.property(),t("design:type",String)],n.prototype,"id",void 0),n=e([o.customElement(i.RouterRoutlet)],n),exports.RouterComponent=n;
+},{"@rxdi/core":"lhgc","@rxdi/lit-html":"R8ie","./injection.tokens":"mrFC"}],"g6E2":[function(require,module,exports) {
+"use strict";var t=this&&this.__awaiter||function(t,n,e,i){return new(e||(e=Promise))(function(o,r){function c(t){try{a(i.next(t))}catch(n){r(n)}}function u(t){try{a(i.throw(t))}catch(n){r(n)}}function a(t){t.done?o(t.value):new e(function(n){n(t.value)}).then(c,u)}a((i=i.apply(t,n||[])).next())})};Object.defineProperty(exports,"__esModule",{value:!0});const n=require("rxjs"),e=require("./injection.tokens"),i=require("@rxdi/core"),o=new Map;function r(n){if(n.children&&"function"==typeof n.children){const e=n.children;n.children=function(i,r){return t(this,void 0,void 0,function*(){yield e(i,r);let t=[...exports.ChildRoutesObservable.getValue().map(t=>Object.assign({},t))];return o.has(n.path)||o.set(n.path,t),o.get(n.path)})}}return n}function c(o,r,c){return t(this,void 0,void 0,function*(){if(n.isObservable(o)&&(o=o.toPromise()),yield o)return o;{const t=i.Container.get(e.RouterOptions);let n;return n="/"===c.path?r.redirect("/not-found"):r.redirect(c.parent.path||"/"),t.log&&console.error(`Guard ${c.canActivate.originalName} activated!`),n}})}function u(n){if(n.canActivate){const e=i.Container.get(n.canActivate);if(n.action){const i=n.action;n.action=function(o,r){return t(this,void 0,void 0,function*(){return yield i(o,r),c(e.canActivate.bind(e)(o,r),r,n)})}}else{n.action=e.canActivate.bind(e);const i=n.action;n.action=function(e,o){return t(this,void 0,void 0,function*(){return c(yield i(e,o),o,n)})}}}return n}function a(t){return"function"==typeof t.component&&(t.component=t.component.is()),t}function s(t){const n=t.find(t=>"(.*)"===t.path);t=t.sort(function(t,n){return t.path<n.path?-1:n.path<t.path?1:0}),n&&(t.splice(t.indexOf(n),1),t.push(n));const e=[...t].map(t=>a(u(r(t))));return exports.ChildRoutesObservable.next(null),e}exports.ChildRoutesObservable=new n.BehaviorSubject(null),exports.loadRoutes=s;
+},{"rxjs":"iRqj","./injection.tokens":"mrFC","@rxdi/core":"lhgc"}],"cZWU":[function(require,module,exports) {
+"use strict";function e(){return function(e,t){Object.defineProperty(e,t,{get:function(){return this.location.params}})}}Object.defineProperty(exports,"__esModule",{value:!0}),exports.RouteParams=e;
+},{}],"RzAM":[function(require,module,exports) {
+"use strict";var e=this&&this.__decorate||function(e,t,o,n){var r,c=arguments.length,l=c<3?t:null===n?n=Object.getOwnPropertyDescriptor(t,o):n;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)l=Reflect.decorate(e,t,o,n);else for(var p=e.length-1;p>=0;p--)(r=e[p])&&(l=(c<3?r(l):c>3?r(t,o,l):r(t,o))||l);return c>3&&l&&Object.defineProperty(t,o,l),l};Object.defineProperty(exports,"__esModule",{value:!0});const t=require("@rxdi/lit-html");let o=class extends HTMLElement{};o=e([t.Component({selector:"not-found-component-rxdi",useShadow:!0,template:()=>t.html`
+    <h1>Not found component!</h1>
+    <p>Please check your URL.2222daad</p>
+  `})],o),exports.NotFoundComponent=o,exports.NotFoundPathConfig={path:"(.*)",component:"not-found-component-rxdi"};
+},{"@rxdi/lit-html":"R8ie"}],"tW8N":[function(require,module,exports) {
+"use strict";var e,r=this&&this.__decorate||function(e,r,t,o){var u,i=arguments.length,n=i<3?r:null===o?o=Object.getOwnPropertyDescriptor(r,t):o;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)n=Reflect.decorate(e,r,t,o);else for(var s=e.length-1;s>=0;s--)(u=e[s])&&(n=(i<3?u(n):i>3?u(r,t,n):u(r,t))||n);return i>3&&n&&Object.defineProperty(r,t,n),n};function t(e){for(var r in e)exports.hasOwnProperty(r)||(exports[r]=e[r])}Object.defineProperty(exports,"__esModule",{value:!0});const o=require("@rxdi/core"),u=require("./router.service"),i=require("rxjs"),n=require("./router.component"),s=require("./injection.tokens"),c=require("./helpers");let l=e=class{static forRoot(r,t){return{module:e,services:[{provide:s.RouterOptions,useValue:t||{}},{provide:s.Routes,useValue:c.loadRoutes(r)},{provide:s.RouterInitialized,useFactory:()=>new i.BehaviorSubject(null)},{provide:s.RouterRoutlet,useFactory:()=>new i.BehaviorSubject(null)},{provide:"initRouter",deps:[u.RouterService],useFactory:e=>e}],components:[n.RouterComponent]}}static forChild(r){return c.ChildRoutesObservable.next(c.loadRoutes(r)),e}};l=e=r([o.Module()],l),exports.RouterModule=l,t(require("./injection.tokens")),t(require("./outlet")),t(require("./decorators")),t(require("./router.component")),t(require("./not-found.component")),t(require("./helpers"));
+},{"@rxdi/core":"lhgc","./router.service":"DItH","rxjs":"iRqj","./router.component":"bIww","./injection.tokens":"mrFC","./helpers":"g6E2","./outlet":"thVK","./decorators":"cZWU","./not-found.component":"RzAM"}],"FvGY":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.style=void 0;var o=require("@rxdi/lit-html");const t=o.css`
+.button {
+  background-color: #4caf50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.button:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+    0 10px 10px rgba(0, 0, 0, 0.22);
+  background: #a6463e;
+}
+
+.button:active {
+  background-color: #c0998d;
+  background-size: 100%;
+  transition: background 0s;
+}
+
+.button:focus {
+  outline: 0 !important;
+}
+`;exports.style=t;
+},{"@rxdi/lit-html":"R8ie"}],"neJn":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.style=void 0;var r=require("@rxdi/lit-html");const e=r.css`
+  .container {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+
+  input[type='text'],
+  select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  input[type='submit'] {
+    width: 100%;
+    background-color: #4caf50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .input-group {
+    color: #333;
+    float: left;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    line-height: 20px;
+    width: 650px;
+  }
+
+  .error-message {
+    color: #cc0033;
+    display: inline-block;
+    font-size: 12px;
+    line-height: 15px;
+    margin: 5px 0 0;
+  }
+
+  .input-group .error-message {
+    display: none;
+  }
+
+  /* Error Styling */
+
+  .error label {
+    color: #cc0033;
+  }
+
+  .error input[type='text'] {
+    background-color: #fce4e4;
+    border: 1px solid #cc0033;
+    outline: none;
+  }
+
+  .error .error-message {
+    display: inline-block;
+  }
+
+  input[type='submit']:hover {
+    background-color: #45a049;
+  }
+
+  .input-container {
+    width: 650px;
+    margin: 50px auto;
+  }
+
+
+`;exports.style=e;
+},{"@rxdi/lit-html":"R8ie"}],"SbH7":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.RegularMarkdownComponent=void 0;var e,r,t=require("@rxdi/lit-html"),o=require("../app.component.css"),n=require("rxjs"),i=require("rxjs/operators"),a=require("./markdown-regular.css"),s=require("../../../../src/markdown-reader"),p=require("@rxdi/core"),c=function(e,r,t,o){var n,i=arguments.length,a=i<3?r:null===o?o=Object.getOwnPropertyDescriptor(r,t):o;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)a=Reflect.decorate(e,r,t,o);else for(var s=e.length-1;s>=0;s--)(n=e[s])&&(a=(i<3?n(a):i>3?n(r,t,a):n(r,t))||a);return i>3&&a&&Object.defineProperty(r,t,a),a},d=function(e,r){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,r)};let l=class extends t.LitElement{constructor(){super(...arguments),this.inputLink="https://raw.githubusercontent.com/rxdi/starter-client-lit-html/master/README.md"}changeText(e){return this.error=!1,(0,n.of)(e.target).pipe((0,i.map)(e=>e.value),(0,i.debounceTime)(1e3),(0,i.tap)(e=>this.inputLink=e)).subscribe(e=>{console.log(e)})}onError(e){this.error=e.detail.message}copy(e){return(0,n.of)(e).pipe((0,i.map)(e=>{const r=document.createElement("input");return r.value=e,this.shadowRoot.appendChild(r),r}),(0,i.switchMap)(e=>(0,n.combineLatest)((0,n.of)(e),this.requestUpdate())),(0,i.tap)(([e])=>{e.select(),document.execCommand("copy"),e.remove()}))}};exports.RegularMarkdownComponent=l,c([(0,t.property)(),d("design:type",Object)],l.prototype,"inputLink",void 0),c([(0,t.property)({type:Boolean}),d("design:type",Boolean)],l.prototype,"error",void 0),c([(0,t.query)("markdown-reader"),d("design:type","function"==typeof(e=void 0!==s.MarkdownReaderComponent&&s.MarkdownReaderComponent)?e:Object)],l.prototype,"reader",void 0),c([(0,p.Inject)(s.MarkdownParserService),d("design:type","function"==typeof(r=void 0!==s.MarkdownParserService&&s.MarkdownParserService)?r:Object)],l.prototype,"markdown",void 0),exports.RegularMarkdownComponent=l=c([(0,t.Component)({selector:"regular-markdown-component",style:t.css`
+    ${o.style}
+    ${a.style}
+  `,template(){return t.html`
+      <div class="input-container">
+        <div class="input-group ${this.error?"error":""}">
+          <label>Password *</label>
+          <input
+            type="text"
+            .value="${this.inputLink}"
+            @input="${this.changeText}"
+          />
+          <div class="error-message">${this.error}</div>
+        </div>
+      </div>
+
+      <markdown-reader
+        @onError=${e=>this.onError(e)}
+        link=${this.inputLink}
+        @onSuccess=${()=>{Array.from(Array.from(this.reader.shadowRoot.children)[1].querySelectorAll(".language-typescript")).forEach((e,r)=>{(0,n.fromEvent)(e,"click").pipe((0,i.map)(()=>this.markdown.getCacheCopy.get(this.inputLink)[r]),(0,i.filter)(e=>!!e),(0,i.switchMap)(e=>this.copy(e))).subscribe()})}}
+      ></markdown-reader>
+    `}})],l);
+},{"@rxdi/lit-html":"R8ie","../app.component.css":"FvGY","rxjs":"iRqj","rxjs/operators":"cVrl","./markdown-regular.css":"neJn","../../../../src/markdown-reader":"X0WN","@rxdi/core":"lhgc"}],"Onv4":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.ResponsiveViewComponent=void 0;var e,t=require("@rxdi/lit-html"),i=require("@rxdi/core"),r=require("../../../../src/services/index"),o=function(e,t,i,r){var o,s=arguments.length,n=s<3?t:null===r?r=Object.getOwnPropertyDescriptor(t,i):r;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)n=Reflect.decorate(e,t,i,r);else for(var p=e.length-1;p>=0;p--)(o=e[p])&&(n=(s<3?o(n):s>3?o(t,i,n):o(t,i))||n);return s>3&&n&&Object.defineProperty(t,i,n),n},s=function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)};let n=class extends t.LitElement{constructor(){super(...arguments),this.subscription=this.responsive.combineBoth().subscribe(e=>this.widthHeight=e)}OnDestroy(){this.subscription&&this.subscription.unsubscribe()}printResolutions(){return[200,300,400,500,600,700,800,900,1e3,1100,1200,1300,1400,1500].map(e=>t.html`
+        <p>
+          (Resolution ${e}px)
+          ${this.widthHeight.width>e?"MATCHED":"NOT-MATCHED"}
+        </p>
+      `)}};exports.ResponsiveViewComponent=n,o([(0,i.Inject)(r.ResponsiveService),s("design:type","function"==typeof(e=void 0!==r.ResponsiveService&&r.ResponsiveService)?e:Object)],n.prototype,"responsive",void 0),o([(0,t.property)({type:Object}),s("design:type",Object)],n.prototype,"widthHeight",void 0),exports.ResponsiveViewComponent=n=o([(0,t.Component)({selector:"responsive-view",style:t.css``,template(){return t.html`
+      <p>Move your browser width or height by pressing F12 on Chrome</p>
+      ${JSON.stringify(this.widthHeight)} ${this.printResolutions()}
+
+      <markdown-reader
+        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/services/responsive/README.md"
+      ></markdown-reader>
+    `}})],n);
+},{"@rxdi/lit-html":"R8ie","@rxdi/core":"lhgc","../../../../src/services/index":"wYaI"}],"cwfd":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.AccordionViewComponent=void 0;var e=require("@rxdi/lit-html"),t=function(e,t,o,i){var r,n=arguments.length,c=n<3?t:null===i?i=Object.getOwnPropertyDescriptor(t,o):i;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)c=Reflect.decorate(e,t,o,i);else for(var d=e.length-1;d>=0;d--)(r=e[d])&&(c=(n<3?r(c):n>3?r(t,o,c):r(t,o))||c);return n>3&&c&&Object.defineProperty(t,o,c),c};let o=class extends e.LitElement{constructor(){super(...arguments),this.items=[{title:e.html`
+        <span style="color: red">Item 1</span>
+      `,content:e.html`
+        <span style="color: red"
+          >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.</span
+        >
+      `},{title:"Item 2",content:"\n      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n      Duis aute irure dolor reprehenderit."},{title:"Item 3",content:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."},{title:"Item 4",content:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}]}};exports.AccordionViewComponent=o,exports.AccordionViewComponent=o=t([(0,e.Component)({selector:"accordion-view-component",template(){return e.html`
+      <div style="max-width: 200px; background-color: white">
+        <rx-accordion .items=${this.items}></rx-accordion>
+      </div>
+      <markdown-reader
+        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/accordion/README.md"
+      ></markdown-reader>
+    `}})],o);
+},{"@rxdi/lit-html":"R8ie"}],"i0Ro":[function(require,module,exports) {
+module.exports="/ui-kit/glyph.e72576d6.svg";
+},{}],"bbMR":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.ImageViewComponent=void 0;var e=require("@rxdi/lit-html"),t=r(require("@rxdi/ui-kit/images/glyph.svg"));function r(e){return e&&e.__esModule?e:{default:e}}var o=function(e,t,r,o){var i,n=arguments.length,a=n<3?t:null===o?o=Object.getOwnPropertyDescriptor(t,r):o;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)a=Reflect.decorate(e,t,r,o);else for(var m=e.length-1;m>=0;m--)(i=e[m])&&(a=(n<3?i(a):n>3?i(t,r,a):i(t,r))||a);return n>3&&a&&Object.defineProperty(t,r,a),a};let i=class extends e.LitElement{constructor(){super(...arguments),this.onLoad=(e=>{console.log(e.target)})}};exports.ImageViewComponent=i,exports.ImageViewComponent=i=o([(0,e.Component)({selector:"image-view-component",template(){return e.html`
+      <div style="max-width: 200px; background-color: white">
+        <rx-image
+          image="https://getuikit.com/images/icon-clipboard.svg"
+        ></rx-image>
+        <rx-image image=${t.default} @onLoad=${this.onLoad}></rx-image>
+      </div>
+      <markdown-reader
+        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/image/README.md"
+      ></markdown-reader>
+    `}})],i);
+},{"@rxdi/lit-html":"R8ie","@rxdi/ui-kit/images/glyph.svg":"i0Ro"}],"jitd":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.BadgeViewComponent=void 0;var e,t=require("@rxdi/lit-html"),r=require("@rxdi/core"),a=require("../../../../src/modal/modal.service"),o=function(e,t,r,a){var o,d=arguments.length,n=d<3?t:null===a?a=Object.getOwnPropertyDescriptor(t,r):a;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)n=Reflect.decorate(e,t,r,a);else for(var i=e.length-1;i>=0;i--)(o=e[i])&&(n=(d<3?o(n):d>3?o(t,r,n):o(t,r))||n);return d>3&&n&&Object.defineProperty(t,r,n),n},d=function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)};let n=class extends t.LitElement{OnInit(){}};exports.BadgeViewComponent=n,o([(0,r.Inject)(a.ModalService),d("design:type","function"==typeof(e=void 0!==a.ModalService&&a.ModalService)?e:Object)],n.prototype,"modalService",void 0),exports.BadgeViewComponent=n=o([(0,t.Component)({selector:"badge-view-component",style:t.css`
+    rx-badge {
+      display: block;
+    }
+  `,template:()=>t.html`
+      <rx-badge>1</rx-badge>
+      <rx-badge background="red" color="white">10</rx-badge>
+      <rx-badge palette="primary">100</rx-badge>
+      <rx-badge palette="primary">1000</rx-badge>
+      <rx-badge palette="primary">10000</rx-badge>
+      <rx-badge palette="secondary">100000</rx-badge>
+      <rx-badge palette="danger">1000000</rx-badge>
+      <rx-badge palette="warning">10000000</rx-badge>
+      <markdown-reader
+        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/badge/README.md"
+      ></markdown-reader>
+    `})],n);
+},{"@rxdi/lit-html":"R8ie","@rxdi/core":"lhgc","../../../../src/modal/modal.service":"D8DB"}],"tG34":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.OverflowText=void 0;const i="\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\neiusmod tempor incididunt ut labore et dolore magna aliqua. Ut\nenim ad minim veniam, quis nostrud exercitation ullamco laboris\nnisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in\nreprehenderit in voluptate velit esse cillum dolore eu fugiat\nnulla pariatur. Excepteur sint occaecat cupidatat non proident,\nsunt in culpa qui officia deserunt mollit anim id est laborum.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\neiusmod tempor incididunt ut labore et dolore magna aliqua. Ut\nenim ad minim veniam, quis nostrud exercitation ullamco laboris\nnisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in\nreprehenderit in voluptate velit esse cillum dolore eu fugiat\nnulla pariatur. Excepteur sint occaecat cupidatat non proident,\nsunt in culpa qui officia deserunt mollit anim id est laborum.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\neiusmod tempor incididunt ut labore et dolore magna aliqua. Ut\nenim ad minim veniam, quis nostrud exercitation ullamco laboris\nnisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in\nreprehenderit in voluptate velit esse cillum dolore eu fugiat\nnulla pariatur. Excepteur sint occaecat cupidatat non proident,\nsunt in culpa qui officia deserunt mollit anim id est laborum.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\neiusmod tempor incididunt ut labore et dolore magna aliqua. Ut\nenim ad minim veniam, quis nostrud exercitation ullamco laboris\nnisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in\nreprehenderit in voluptate velit esse cillum dolore eu fugiat\nnulla pariatur. Excepteur sint occaecat cupidatat non proident,\nsunt in culpa qui officia deserunt mollit anim id est laborum.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\neiusmod tempor incididunt ut labore et dolore magna aliqua. Ut\nenim ad minim veniam, quis nostrud exercitation ullamco laboris\nnisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in\nreprehenderit in voluptate velit esse cillum dolore eu fugiat\nnulla pariatur. Excepteur sint occaecat cupidatat non proident,\nsunt in culpa qui officia deserunt mollit anim id est laborum.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\neiusmod tempor incididunt ut labore et dolore magna aliqua. Ut\nenim ad minim veniam, quis nostrud exercitation ullamco laboris\nnisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in\nreprehenderit in voluptate velit esse cillum dolore eu fugiat\nnulla pariatur. Excepteur sint occaecat cupidatat non proident,\nsunt in culpa qui officia deserunt mollit anim id est laborum.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\neiusmod tempor incididunt ut labore et dolore magna aliqua. Ut\nenim ad minim veniam, quis nostrud exercitation ullamco laboris\nnisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in\nreprehenderit in voluptate velit esse cillum dolore eu fugiat\nnulla pariatur. Excepteur sint occaecat cupidatat non proident,\nsunt in culpa qui officia deserunt mollit anim id est laborum.\n";exports.OverflowText=i;
+},{}],"feq3":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.ModalViewService=void 0;var e,t=require("@rxdi/core"),i=require("../../../../src/modal/modal.service"),o=require("@rxdi/lit-html"),r=require("./data"),a=function(e,t,i,o){var r,a=arguments.length,l=a<3?t:null===o?o=Object.getOwnPropertyDescriptor(t,i):o;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)l=Reflect.decorate(e,t,i,o);else for(var n=e.length-1;n>=0;n--)(r=e[n])&&(l=(a<3?r(l):a>3?r(t,i,l):r(t,i))||l);return a>3&&l&&Object.defineProperty(t,i,l),l},l=function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)};let n=class{openCustomModal(){return this.modalService.openCustomModal({title:"Default",description:"\n          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim\n          ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut\n          aliquip ex ea commodo consequat. Duis aute irure dolor in\n          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla\n          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in\n          culpa qui officia deserunt mollit anim id est laborum.\n          "},{backdropClose:!0})}openBasicModal(){return this.modalService.open(o.html`
+        <div style="text-align: right;padding: 20px 20px;">
+          <rx-button palette="primary" @click=${()=>this.modalService.close()}
+            >Close</rx-button
+          >
+        </div>
+      `)}openCustomMainModal(){return this.modalService.openCustomModal({template:o.html`
+          <div style="padding: 15px 30px;border-bottom: 1px solid #e5e5e5;">
+            <h1>Custom modal</h1>
+          </div>
+          <div
+            style="padding: 10px 30px 10px 30px; border-bottom: 1px solid #e5e5e5;"
+          >
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+          </div>
+          <div style="text-align: right;padding: 20px 20px;">
+            <rx-button @click=${()=>this.modalService.close()}
+              >Cancel</rx-button
+            >
+            <rx-button palette="primary">Save</rx-button>
+          </div>
+        `,style:o.css`
+          .dialog {
+            padding: 0 !important;
+          }
+        `},{backdropClose:!1})}openOverflowCustomModal(){return this.modalService.openCustomModal({template:o.html`
+          <div style="padding: 15px 30px;border-bottom: 1px solid #e5e5e5;">
+            <h1>Overflow</h1>
+          </div>
+          <div class="content">
+            <p>
+              ${r.OverflowText}
+            </p>
+          </div>
+          <div style="text-align: right;padding: 20px 20px;">
+            <rx-button @click=${()=>this.modalService.close()}
+              >Cancel</rx-button
+            >
+            <rx-button palette="primary">Save</rx-button>
+          </div>
+        `,style:o.css`
+          .dialog {
+            padding: 0 !important;
+          }
+          .content {
+            padding: 10px 30px 10px 30px;
+            border-bottom: 1px solid #e5e5e5;
+            overflow: auto;
+            min-height: 150px;
+            max-height: 555px;
+          }
+        `},{backdropClose:!0})}openFullScreenModal(){return this.modalService.openCustomModal({template:o.html`
+          <div class="flex-grid">
+            <img src="https://getuikit.com/docs/images/photo.jpg" />
+            <h1>Full-screen modal</h1>
+          </div>
+        `,style:o.css`
+          .container {
+            padding: 0px !important;
+          }
+          .flex-grid {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+          }
+          img {
+            background-position: 50% 50%;
+            background-repeat: no-repeat;
+            width: 50%;
+            min-height: calc(100vh);
+            box-sizing: border-box;
+            background-size: cover;
+          }
+          .dialog {
+            padding: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+          }
+
+          .container {
+            height: 100%;
+          }
+        `},{backdropClose:!1})}};exports.ModalViewService=n,a([(0,t.Inject)(i.ModalService),l("design:type","function"==typeof(e=void 0!==i.ModalService&&i.ModalService)?e:Object)],n.prototype,"modalService",void 0),exports.ModalViewService=n=a([(0,t.Injectable)()],n);
+},{"@rxdi/core":"lhgc","../../../../src/modal/modal.service":"D8DB","@rxdi/lit-html":"R8ie","./data":"tG34"}],"mX0t":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.TestModal=void 0;var e,t=require("@rxdi/core"),o=require("../../../../src/modal/interface"),r=require("@rxdi/lit-html"),i=require("../../../../src/modal/modal.service"),l=function(e,t,o,r){var i,l=arguments.length,c=l<3?t:null===r?r=Object.getOwnPropertyDescriptor(t,o):r;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)c=Reflect.decorate(e,t,o,r);else for(var d=e.length-1;d>=0;d--)(i=e[d])&&(c=(l<3?i(c):l>3?i(t,o,c):i(t,o))||c);return l>3&&c&&Object.defineProperty(t,o,c),c},c=function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)};let d=class extends r.LitElement{constructor(){super(...arguments),this.modalRef=this.modalService.getRef()}OnInit(){console.log("test-modal initialized")}OnDestroy(){console.log("test-modal destroyed")}close(){this.modalService.close(this.data)}};exports.TestModal=d,l([(0,t.Injector)(o.MODAL_DIALOG_DATA),c("design:type",Number)],d.prototype,"data",void 0),l([(0,t.Inject)(i.ModalService),c("design:type","function"==typeof(e=void 0!==i.ModalService&&i.ModalService)?e:Object)],d.prototype,"modalService",void 0),exports.TestModal=d=l([(0,r.Component)({selector:"test-modal",template(){return r.html`
+      <div>
+        Test Modal ${JSON.stringify(this.data)}
+        <div style="text-align: right;padding: 20px 20px;">
+          <rx-button palette="primary" @click=${()=>this.close()}
+            >Close</rx-button
+          >
+        </div>
+      </div>
+    `}})],d);
+},{"@rxdi/core":"lhgc","../../../../src/modal/interface":"RPEn","@rxdi/lit-html":"R8ie","../../../../src/modal/modal.service":"D8DB"}],"jCtu":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.ModalViewComponent=void 0;var e,o,t=require("@rxdi/lit-html"),r=require("@rxdi/core"),i=require("../../../../src/modal/modal.service"),l=require("rxjs"),n=require("rxjs/operators"),a=require("./modal-view.service"),c=require("./test-modal.component"),d=function(e,o,t,r){var i,l=arguments.length,n=l<3?o:null===r?r=Object.getOwnPropertyDescriptor(o,t):r;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)n=Reflect.decorate(e,o,t,r);else for(var a=e.length-1;a>=0;a--)(i=e[a])&&(n=(l<3?i(n):l>3?i(o,t,n):i(o,t))||n);return l>3&&n&&Object.defineProperty(o,t,n),n},s=function(e,o){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,o)};let p=class extends t.LitElement{openCustomModal(){this.modalViewService.openCustomModal().subscribe()}openCustomMainModal(){this.modalViewService.openCustomMainModal().subscribe()}openBasicModal(){this.modalViewService.openBasicModal().subscribe()}openAdvancedModal(){this.modalService.openComponent(c.TestModal,{test:"I am a test data"}).subscribe(console.log)}openModalSequence(){const e=Array(5).fill(null).map((e,o)=>({component:c.TestModal,data:o}));(0,l.of)(e).pipe((0,n.switchMap)(e=>this.modalService.openSequence(e))).subscribe(console.log)}openOverflowCustomModal(){this.modalViewService.openOverflowCustomModal().subscribe(console.log)}openFullScreenModal(){this.modalViewService.openFullScreenModal().subscribe(console.log)}};exports.ModalViewComponent=p,d([(0,r.Inject)(a.ModalViewService),s("design:type","function"==typeof(e=void 0!==a.ModalViewService&&a.ModalViewService)?e:Object)],p.prototype,"modalViewService",void 0),d([(0,r.Inject)(i.ModalService),s("design:type","function"==typeof(o=void 0!==i.ModalService&&i.ModalService)?o:Object)],p.prototype,"modalService",void 0),exports.ModalViewComponent=p=d([(0,t.Component)({selector:"modal-view-component",style:t.css`
+
+  `,template(){return t.html`
+      <div>
+        <rx-button palette="primary" @click=${()=>this.openBasicModal()}
+          >Open Basic Modal</rx-button
+        >
+        <rx-button palette="primary" @click=${()=>this.openAdvancedModal()}
+          >Open Advanced Modal</rx-button
+        >
+        <rx-button palette="primary" @click=${()=>this.openModalSequence()}
+          >Open Modal Sequence</rx-button
+        >
+        <rx-button palette="primary" @click=${()=>this.openCustomModal()}
+          >Open Main Modal</rx-button
+        >
+        <rx-button palette="primary" @click=${()=>this.openCustomMainModal()}
+          >Open Main Custom Modal</rx-button
+        >
+        <rx-button
+          palette="primary"
+          @click=${()=>this.openOverflowCustomModal()}
+          >Open Overflow Custom Modal</rx-button
+        >
+        <rx-button palette="primary" @click=${()=>this.openFullScreenModal()}
+          >Open Fullscreen Modal</rx-button
+        >
+      </div>
+      <markdown-reader
+        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/modal/README.md"
+      ></markdown-reader>
+    `}})],p);
+},{"@rxdi/lit-html":"R8ie","@rxdi/core":"lhgc","../../../../src/modal/modal.service":"D8DB","rxjs":"iRqj","rxjs/operators":"cVrl","./modal-view.service":"feq3","./test-modal.component":"mX0t"}],"DgQ9":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.ButtonViewComponent=void 0;var t=require("@rxdi/lit-html"),e=function(t,e,r,n){var o,a=arguments.length,i=a<3?e:null===n?n=Object.getOwnPropertyDescriptor(e,r):n;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)i=Reflect.decorate(t,e,r,n);else for(var c=t.length-1;c>=0;c--)(o=t[c])&&(i=(a<3?o(i):a>3?o(e,r,i):o(e,r))||i);return a>3&&i&&Object.defineProperty(e,r,i),i};let r=class extends t.LitElement{};exports.ButtonViewComponent=r,exports.ButtonViewComponent=r=e([(0,t.Component)({selector:"button-view-component",style:t.css`
+    .container {
+      background-color: white;
+      text-align: center;
+      padding: 50px;
+      user-select: none;
+    }
+  `,template:()=>t.html`
+      <div class="container">
+        <rx-button>Default</rx-button>
+        <rx-button palette="primary">Primary</rx-button>
+        <rx-button palette="secondary">Secondary</rx-button>
+        <rx-button palette="danger">Danger</rx-button>
+        <rx-button palette="warning">Warning</rx-button>
+      </div>
+      <markdown-reader
+        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/button/README.md"
+      ></markdown-reader>
+    `})],r);
+},{"@rxdi/lit-html":"R8ie"}],"iAp7":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.ArticleData=e;var i=require("@rxdi/lit-html");function e(){return{heading:"My Super Heading",meta:i.html`
+      Written by <a>Super User</a> on 12 April 2012. Posted in
+      <a>Blog</a>
+    `,information:"\n      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad\n      minim veniam, quis nostrud exercitation ullamco laboris nisi ut\n      aliquip ex ea commodo consequat. Duis aute irure dolor in\n      reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla\n      pariatur. Excepteur sint occaecat cupidatat non proident, sunt in\n      culpa qui officia deserunt mollit anim id est laborum.\n      ",lead:"\n      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad\n      minim veniam, quis nostrud exercitation ullamco laboris nisi ut\n      aliquip.\n    ",section:i.html`
+      <div @click=${()=>this.openModalArticle()}>Read more</div>
+      <div style="margin-left: 15px;">5 Comments</div>
+    `}}
+},{"@rxdi/lit-html":"R8ie"}],"XMfu":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.ArticleViewComponent=void 0;var e,t=require("@rxdi/lit-html"),r=require("../../../../src/modal/modal.service"),o=require("@rxdi/core"),i=require("./data"),c=function(e,t,r,o){var i,c=arguments.length,a=c<3?t:null===o?o=Object.getOwnPropertyDescriptor(t,r):o;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)a=Reflect.decorate(e,t,r,o);else for(var l=e.length-1;l>=0;l--)(i=e[l])&&(a=(c<3?i(a):c>3?i(t,r,a):i(t,r))||a);return c>3&&a&&Object.defineProperty(t,r,a),a},a=function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)};let l=class extends t.LitElement{openModalArticle(){this.modalService.openCustomModal({template:t.html`
+          <rx-article .data=${i.ArticleData.call(this)}></rx-article>
+        `}).subscribe()}};exports.ArticleViewComponent=l,c([(0,o.Inject)(r.ModalService),a("design:type","function"==typeof(e=void 0!==r.ModalService&&r.ModalService)?e:Object)],l.prototype,"modalService",void 0),exports.ArticleViewComponent=l=c([(0,t.Component)({selector:"article-view-component",style:t.css`
+    .container {
+      background-color: white;
+      padding: 50px;
+    }
+  `,template(){return t.html`
+      <div class="container">
+        <rx-article .data=${i.ArticleData.call(this)}></rx-article>
+      </div>
+      <markdown-reader
+        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/article/README.md"
+      ></markdown-reader>
+    `}})],l);
+},{"@rxdi/lit-html":"R8ie","../../../../src/modal/modal.service":"D8DB","@rxdi/core":"lhgc","./data":"iAp7"}],"LW6G":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.DividerViewComponent=void 0;var e=require("@rxdi/lit-html"),r=function(e,r,t,i){var o,d=arguments.length,n=d<3?r:null===i?i=Object.getOwnPropertyDescriptor(r,t):i;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)n=Reflect.decorate(e,r,t,i);else for(var c=e.length-1;c>=0;c--)(o=e[c])&&(n=(d<3?o(n):d>3?o(r,t,n):o(r,t))||n);return d>3&&n&&Object.defineProperty(r,t,n),n};let t=class extends e.LitElement{};exports.DividerViewComponent=t,exports.DividerViewComponent=t=r([(0,e.Component)({selector:"divider-view-component",style:e.css`
+    .container {
+      padding: 50px;
+      background: white;
+      color: #666;
+    }
+  `,template:()=>e.html`
+      <div class="container">
+        <h1>Regular Divider</h1>
+        <rx-divider></rx-divider>
+
+        <h1>Icon Divider</h1>
+        <rx-divider type="icon"></rx-divider>
+      </div>
+      <markdown-reader
+        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/divider/README.md"
+      ></markdown-reader>
+    `})],t);
+},{"@rxdi/lit-html":"R8ie"}],"JKyV":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.LabelViewComponent=void 0;var e=require("@rxdi/lit-html"),r=function(e,r,t,l){var a,n=arguments.length,o=n<3?r:null===l?l=Object.getOwnPropertyDescriptor(r,t):l;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,r,t,l);else for(var i=e.length-1;i>=0;i--)(a=e[i])&&(o=(n<3?a(o):n>3?a(r,t,o):a(r,t))||o);return n>3&&o&&Object.defineProperty(r,t,o),o};let t=class extends e.LitElement{};exports.LabelViewComponent=t,exports.LabelViewComponent=t=r([(0,e.Component)({selector:"label-view-component",style:e.css`
+    .container {
+      background-color: white;
+      padding: 50px;
+      user-select: none;
+    }
+    rx-label {
+      margin-right: 10px;
+    }
+  `,template:()=>e.html`
+      <div class="container">
+        <rx-label>Default</rx-label>
+        <rx-label palette="primary">Primary</rx-label>
+        <rx-label palette="secondary">Secondary</rx-label>
+        <rx-label palette="warning">Warning</rx-label>
+        <rx-label palette="danger">Danger</rx-label>
+      </div>
+      <markdown-reader
+        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/label/README.md"
+      ></markdown-reader>
+    `})],t);
+},{"@rxdi/lit-html":"R8ie"}],"fA4d":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.notification=void 0;var t=require("@rxdi/lit-html");const i=t.svg`
+<svg fill="white" viewBox="0 0 300 300" width="28" height="28" class="jss830">
+            <path d="M149.996 0C67.157 0 .001 67.161.001 149.997S67.157 300 149.996 300s150.003-67.163 150.003-150.003S232.835 0 149.996 0zm.003 232.951c-10.766 0-19.499-8.725-19.499-19.499h38.995c.002 10.774-8.73 19.499-19.496 19.499zm65.89-39.051h-.005v-.001c0 7.21-5.843 7.685-13.048 7.685H97.16c-7.208 0-13.046-.475-13.046-7.685v-1.242c0-5.185 3.045-9.625 7.42-11.731l4.142-35.753c0-26.174 18.51-48.02 43.152-53.174v-13.88c0-6.17 5.003-11.173 11.176-11.173 6.17 0 11.173 5.003 11.173 11.173V92c24.642 5.153 43.152 26.997 43.152 53.174l4.142 35.758c4.375 2.109 7.418 6.541 7.418 11.726v1.242z">
+          </path></svg>
+`;exports.notification=i;
+},{"@rxdi/lit-html":"R8ie"}],"B4BC":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.DropDownViewComponent=void 0;var e=require("@rxdi/lit-html"),t=require("./dropdown.svg"),r=function(e,t,r,o){var n,i=arguments.length,p=i<3?t:null===o?o=Object.getOwnPropertyDescriptor(t,r):o;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)p=Reflect.decorate(e,t,r,o);else for(var a=e.length-1;a>=0;a--)(n=e[a])&&(p=(i<3?n(p):i>3?n(t,r,p):n(t,r))||p);return i>3&&p&&Object.defineProperty(t,r,p),p};let o=class extends e.LitElement{};exports.DropDownViewComponent=o,exports.DropDownViewComponent=o=r([(0,e.Component)({selector:"dropdown-view",template:()=>e.html`
+      <rx-dropdown
+        style="margin-right: 5px;"
+        .menuItems=${[e.html`
+            <a href="#" class="item">You need to setup your SSL certificate!</a>
+          `,e.html`
+            <a href="#" class="item">You need to setup your SSL certificate!</a>
+          `,e.html`
+            <a href="#" class="item">You need to setup your SSL certificate!</a>
+          `]}
+      >
+        <div style="margin-right: 10px;margin-top: 3px;">
+          ${t.notification}
+        </div>
+      </rx-dropdown>
+      <markdown-reader
+        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/dropdown/README.md"
+      ></markdown-reader>
+    `})],o);
+},{"@rxdi/lit-html":"R8ie","./dropdown.svg":"fA4d"}],"p3Sc":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.NavViewComponent=void 0;var e,t=require("@rxdi/lit-html"),o=require("@rxdi/core"),n=require("../../../../src/nav"),r=function(e,t,o,n){var r,i=arguments.length,a=i<3?t:null===n?n=Object.getOwnPropertyDescriptor(t,o):n;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)a=Reflect.decorate(e,t,o,n);else for(var c=e.length-1;c>=0;c--)(r=e[c])&&(a=(i<3?r(a):i>3?r(t,o,a):r(t,o))||a);return i>3&&a&&Object.defineProperty(t,o,a),a},i=function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)};let a=class extends t.LitElement{openNavigation(){this.nav.open({navOptions:{left:0,delay:0},template:t.html`
+        <div>
+          <p>daadad</p>
+        </div>
+      `,styles:t.css`
+        p {
+          color: black;
+        }
+        :host {
+          position: absolute;
+          top: 0;
+          transition: left 0.3s ease-out;
+          bottom: 0;
+          left: -300px;
+          box-sizing: border-box;
+          min-width: 300px;
+          background: #fff;
+          overflow-y: auto;
+        }
+      `})}closeNavigation(){this.nav.close({delay:300,left:-300})}};exports.NavViewComponent=a,r([(0,o.Inject)(n.Nav),i("design:type","function"==typeof(e=void 0!==n.Nav&&n.Nav)?e:Object)],a.prototype,"nav",void 0),exports.NavViewComponent=a=r([(0,t.Component)({selector:"nav-view-component",style:t.css`
+    .container {
+      width: 300px;
+      margin: 0 auto;
+    }
+  `,template(){return t.html`
+      <div class="container">
+        <rx-button @click=${()=>this.openNavigation()} palette="primary"
+          >Open</rx-button
+        >
+
+        <rx-button @click=${()=>this.closeNavigation()} palette="primary"
+          >Close</rx-button
+        >
+      </div>
+      <markdown-reader
+        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/nav/README.md"
+      ></markdown-reader>
+    `}})],a);
+},{"@rxdi/lit-html":"R8ie","@rxdi/core":"lhgc","../../../../src/nav":"e2p2"}],"wymD":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.CardViewComponent=void 0;var e,r=require("@rxdi/lit-html"),t=require("../article-view/data"),a=require("@rxdi/core"),i=require("../../../../src/modal/modal.service"),d=function(e,r,t,a){var i,d=arguments.length,c=d<3?r:null===a?a=Object.getOwnPropertyDescriptor(r,t):a;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)c=Reflect.decorate(e,r,t,a);else for(var n=e.length-1;n>=0;n--)(i=e[n])&&(c=(d<3?i(c):d>3?i(r,t,c):i(r,t))||c);return d>3&&c&&Object.defineProperty(r,t,c),c},c=function(e,r){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,r)};let n=class extends r.LitElement{openModalArticle(){this.modalService.openCustomModal({template:r.html`
+          <rx-article .data=${t.ArticleData.call(this)}></rx-article>
+        `}).subscribe()}};exports.CardViewComponent=n,d([(0,a.Inject)(i.ModalService),c("design:type","function"==typeof(e=void 0!==i.ModalService&&i.ModalService)?e:Object)],n.prototype,"modalService",void 0),exports.CardViewComponent=n=d([(0,r.Component)({selector:"card-view",style:r.css`
+    .container {
+      max-width: 800px;
+      margin-bottom: 20px;
+      background-color: white;
+    }
+    .margin {
+      margin-bottom: 20px;
+    }
+    .padding {
+      padding: 50px;
+    }
+  `,template(){return r.html`
+      <div class="container padding">
+        <rx-card>
+          <div class="margin padding">Default</div>
+        </rx-card>
+        <rx-card palette="primary">
+          <div class="margin padding">Primary</div>
+        </rx-card>
+        <rx-card palette="secondary">
+          <div class="margin padding">Secondary</div>
+        </rx-card>
+        <rx-card palette="warning">
+          <div class="margin padding">Warning</div>
+        </rx-card>
+        <rx-card palette="danger">
+          <div class="margin padding">Danger</div>
+        </rx-card>
+        <rx-card>
+          <div class="margin padding">
+            <rx-article .data=${t.ArticleData.call(this)}></rx-article>
+          </div>
+        </rx-card>
+      </div>
+      <markdown-reader
+        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/card/README.md"
+      ></markdown-reader>
+    `}})],n);
+},{"@rxdi/lit-html":"R8ie","../article-view/data":"iAp7","@rxdi/core":"lhgc","../../../../src/modal/modal.service":"D8DB"}],"vjjz":[function(require,module,exports) {
+"use strict";function t(t){return t.reduce((t,e)=>(t[e]=e,t),Object.create(null))}Object.defineProperty(exports,"__esModule",{value:!0}),exports.InputValidityState=t(["badInput","customError","patternMismatch","rangeOverflow","rangeUnderflow","stepMismatch","tooLong","tooShort","typeMismatch","valid","valueMissing"]);
+},{}],"TqKC":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});class e{constructor(){this.o=new Map}unsubscribe(){[...this.o.values()].forEach(e=>this.o.delete(e))}}exports.$Subscription=e;class t extends e{constructor(e){super(),this.init=!0,this.fn=e}subscribe(e){return this.o.set(e,e),"function"==typeof this.fn&&this.init&&(this.fn(this),this.init=!1),{unsubscribe:()=>{this.o.delete(e)}}}complete(){this.unsubscribe()}next(e){[...this.o.values()].forEach(t=>t(e))}}exports.$Observable=t;class r extends t{constructor(e){"function"==typeof e&&super(e),super(null),this.setValue(e)}setValue(e){this.v=e}next(e){this.setValue(e),super.next(e)}getValue(){return this.v}asObservable(){return this}}function s(){try{return require("rxjs").BehaviorSubject}catch(e){}return r}function n(){try{return require("rxjs").Observable}catch(e){}return t}function u(){try{return require("rxjs").Subscription}catch(t){}return e}function i(){}function o(e){return new(s())(e)}function c(e){return new(n())(e)}function h(){return new(u())}exports.$BehaviorSubject=r,exports.noop=i,exports.BehaviorSubject=o,exports.Observable=c,exports.Subscription=h;
+},{"rxjs":"iRqj"}],"pIiP":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const t=require("./form.tokens"),e=require("./rx-fake");class r{constructor(t,r){this.validators=new Map,this.valid=!0,this.invalid=!1,this.errors={},this.errorMap=new Map,this.inputs=new Map,this.options={},this._valueChanges=new e.BehaviorSubject(t)}init(){this.setFormElement(this.querySelectForm(this.parentElement.shadowRoot||this.parentElement)).setInputs(this.mapEventToInputs(this.querySelectorAllInputs()))}prepareValues(){return Object.keys(this.value).forEach(t=>{const e=this.value[t];if(this.errors[t]=this.errors[t]||{},e.constructor===Array){if(e[1]&&e[1].constructor===Array&&e[1].forEach(e=>{const r=this.validators.get(t)||[];this.validators.set(t,[...r,e])}),e[0].constructor!==String&&e[0].constructor!==Number&&e[0].constructor!==Boolean)throw new Error("Input value must be of type 'string', 'boolean' or 'number'");this.value[t]=e[0]}}),this}setParentElement(t){return this.parentElement=t,this}getParentElement(){return this.parentElement}setOptions(t){return this.options=t,this}getOptions(){return this.options}get valueChanges(){return this._valueChanges.asObservable()}updateValueAndValidity(){this.resetErrors();const t=this.querySelectorAllInputs().map(t=>(t.setCustomValidity(""),this.setElementValidity(t),this.setElementDirty(t),t)).map(t=>this.validate(t)).filter(t=>t.errors.length);return this.getParentElement().requestUpdate(),t}updateValueAndValidityOnEvent(t){const e=this;return function(r){e.setElementDirty(this);const s=[...e.getFormElement().querySelectorAll(`input[name="${this.name}"]`).values()].length;let i=this.value;1!==s||"checkbox"!==this.type&&"radio"!==this.type||(i=String(this.checked)),e.options.multi&&s>1&&([...e.getFormElement().querySelectorAll("input:checked").values()].forEach(t=>t.checked=!1),this.checked=!0),e.resetErrors();const n=e.applyValidationContext(e.validate(this));return e.options.strict?(n&&(e.setElementValidity(this,n),e.setValue(this.name,i)),e.parentElement.requestUpdate(),t.call(e.parentElement,r)):(e.setElementValidity(this,n),e.setValue(this.name,i),e.parentElement.requestUpdate(),t.call(e.parentElement,r))}}applyValidationContext({errors:t,element:e}){const r=this.getFormElement();return t.length?(this.invalid=r.invalid=!0,this.valid=r.valid=!1,!1):(this.errors[e.name]={},this.invalid=r.invalid=!1,this.valid=r.valid=!0,!0)}querySelectForm(t){const e=t.querySelector(`form[name="${this.options.name}"]`);if(!e)throw new Error(`Form element with name "${this.options.name}" not present inside ${this.getParentElement().outerHTML} component`);return e.addEventListener("submit",t=>{t.preventDefault(),t.stopPropagation()}),e}querySelectorAllInputs(){return[...this.form.querySelectorAll("input").values()].filter(t=>this.isInputPresentOnStage(t)).filter(t=>!!t.name)}mapEventToInputs(t=[]){return t.map(t=>{const e=`on${this.options.strategy}`;t[e]||(t[e]=function(){});const r=Object.keys(t.attributes).map(e=>t.attributes[e].name.startsWith("#")?t.attributes[e]:null).filter(t=>!!t);if(r.length){const e=r.find(t=>t.name.startsWith("#"));this.parentElement[e.name.replace("#","")]=t}return t.addEventListener("blur",()=>{this.setElementDirty(t),this.parentElement.requestUpdate(),this.setElementValidity(t)}),t[e]=this.updateValueAndValidityOnEvent(t[e]),t})}setElementValidity(t,e){const r=e||this.applyValidationContext(this.validate(t));t.valid=r,t.invalid=!r}setElementDirty(t){t.touched=!0,t.dirty=!0}isInputPresentOnStage(t){if('<input type="submit" style="display: none;">'===t.outerHTML)return;const e=Object.keys(this.value).filter(e=>e===t.name);if(!e.length)throw new Error(`Missing input element with name ${t.name} for form ${this.getFormElement().name}`);return e.length}validate(e){let r=[];return e.setCustomValidity(""),e.checkValidity()?(r=this.mapInputErrors(e)).length?(this.setFormValidity(!1),e.setCustomValidity(r[0].message),{element:e,errors:r}):{errors:[],element:e}:{errors:r.concat(Object.keys(t.InputValidityState).map(t=>e.validity[t]?{key:t,message:e.validationMessage}:null).filter(t=>!!t)),element:e}}mapInputErrors(t){return(this.validators.get(t.name)||[]).map(e=>{this.errors[t.name]=this.errors[t.name]||{};const r=e.bind(this.getParentElement())(t);if(r&&r.key)return this.errors[t.name][r.key]=r.message,this.errorMap.set(e,r.key),{key:r.key,message:r.message};this.errorMap.has(e)&&delete this.errors[t.name][this.errorMap.get(e)]}).filter(t=>!!t)}get(t){return this.inputs.get(t)}getError(t,e){return this.errors[t][e]}hasError(t,e){return!!this.getError(t,e)}reset(){this.form.reset(),this.resetErrors(),this.setFormValidity(),this.inputs.clear()}setFormValidity(t=!0){this.valid=t,this.invalid=!t}resetErrors(){this.errors=Object.keys(this.errors).reduce((t,e)=>(t[e]={},t),{}),this.errorMap.clear()}get value(){return this._valueChanges.getValue()}set value(t){this._valueChanges.next(t)}unsubscribe(){this.reset(),this._valueChanges.unsubscribe()}getValue(t){return this.value[t]}setValue(t,e){const r=this.value;return r[t]=e,this.value=r,r}setFormValue(t){this.value=t}setFormElement(t){return this.form=t,this}setInputs(t){this.inputs=new Map(t.map(t=>[t.name,t]))}getFormElement(){return this.form}}exports.FormGroup=r;
+},{"./form.tokens":"vjjz","./rx-fake":"TqKC"}],"bc55":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const t=require("./form.group"),o=require("./rx-fake");function r(r={strategy:"none"}){return function(e,n){if(!r.name)throw new Error("Missing form name");const c=e.constructor.prototype.disconnectedCallback||o.noop,s=e.constructor.prototype.firstUpdated||o.noop,i=e.constructor.prototype.connectedCallback||o.noop;e.constructor.prototype.connectedCallback=function(){if(!(this[n]instanceof t.FormGroup))throw new Error("Value provided is not an instance of FormGroup!");return this[n].setParentElement(this).setOptions(r).prepareValues(),i.call(this)},e.constructor.prototype.firstUpdated=function(){return this[n].init(),s.call(this)},e.constructor.prototype.disconnectedCallback=function(){return this[n].unsubscribe(),c.call(this)}}}exports.Form=r;
+},{"./form.group":"pIiP","./rx-fake":"TqKC"}],"DQYs":[function(require,module,exports) {
+"use strict";function r(r){for(var e in r)exports.hasOwnProperty(e)||(exports[e]=r[e])}Object.defineProperty(exports,"__esModule",{value:!0}),r(require("./form.decorator")),r(require("./form.group")),r(require("./form.tokens"));
+},{"./form.decorator":"bc55","./form.group":"pIiP","./form.tokens":"vjjz"}],"L3LI":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.InputErrorTemplate=r,exports.EmailValidator=i;var e=require("@rxdi/lit-html");function r(r){if(r&&r.invalid&&(r.dirty||r.touched)){const i=r.validationMessage;return e.html`
+      <span style="color: #a94442;font-size: 13px;" class="validation-error">${i}</span>
+    `}return""}function i(e){if(!e.checked)return e.classList.add("is-invalid"),{key:"remember-me",message:"Please check remember me"};e.classList.remove("is-invalid")}
+},{"@rxdi/lit-html":"R8ie"}],"ZY77":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.FormsViewComponent=void 0;var e=require("@rxdi/lit-html"),t=require("@rxdi/forms"),r=require("./error"),o=function(e,t,r,o){var i,a=arguments.length,s=a<3?t:null===o?o=Object.getOwnPropertyDescriptor(t,r):o;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)s=Reflect.decorate(e,t,r,o);else for(var m=e.length-1;m>=0;m--)(i=e[m])&&(s=(a<3?i(s):a>3?i(t,r,s):i(t,r))||s);return a>3&&s&&Object.defineProperty(t,r,s),s},i=function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)};let a=class extends e.LitElement{constructor(){super(...arguments),this.form=new t.FormGroup({password:"",email:"",rememberMe:["",[r.EmailValidator]]})}OnUpdateFirst(){}onSubmit(e){console.log(this.form.value)}hasErrors(){return this.form.updateValueAndValidity().length}};exports.FormsViewComponent=a,o([(0,t.Form)({strategy:"input",name:"my-form"}),i("design:type",Object)],a.prototype,"form",void 0),exports.FormsViewComponent=a=o([(0,e.Component)({selector:"forms-view-component",style:e.css`
+    .container {
+      margin: 0 auto;
+      width: 430px;
+    }
+  `,template(){return e.html`
+      <div class="container">
+        <form
+          name="my-form"
+          style="display: grid; margin-top: 50px;"
+          @submit=${e=>!this.hasErrors()&&this.onSubmit(e)}
+          novalidate
+        >
+          <input
+            name="email"
+            type="email"
+            value=${this.form.value.email}
+            placeholder="Email address"
+            required
+            autofocus
+          />
+          <div style="height:20px;">
+            ${(0,r.InputErrorTemplate)(this.form.get("email"))}
+          </div>
+          <input
+            style="margin-top: 20px;"
+            type="password"
+            required
+            #pesho
+            value=${this.form.value.password}
+            name="password"
+            placeholder="Password"
+          />
+          <div style="height:20px;">
+            ${(0,r.InputErrorTemplate)(this.form.get("password"))}
+          </div>
+
+          <!-- <rx-if .exp=${()=>this.form.get("password").invalid}>dadadaa</rx-if> -->
+
+          <div>
+            <label>
+              <input name="rememberMe" type="checkbox" required /> Remember me
+            </label>
+          </div>
+          <div style="height:20px;">
+            ${(0,r.InputErrorTemplate)(this.form.get("rememberMe"))}
+          </div>
+          <rx-button type="submit" palette="primary">Submit</rx-button>
+        </form>
+      </div>
+
+      <markdown-reader
+        link="https://raw.githubusercontent.com/rxdi/forms/master/README.md"
+      ></markdown-reader>
+    `}})],a);
+},{"@rxdi/lit-html":"R8ie","@rxdi/forms":"DQYs","./error":"L3LI"}],"wuRl":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.ProgressViewComponent=void 0;var e=require("@rxdi/lit-html"),r=require("rxjs"),t=require("rxjs/operators"),s=function(e,r,t,s){var o,p=arguments.length,i=p<3?r:null===s?s=Object.getOwnPropertyDescriptor(r,t):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)i=Reflect.decorate(e,r,t,s);else for(var l=e.length-1;l>=0;l--)(o=e[l])&&(i=(p<3?o(i):p>3?o(r,t,i):o(r,t))||i);return p>3&&i&&Object.defineProperty(r,t,i),i};let o=class extends e.LitElement{constructor(){super(...arguments),this.reset$=new r.BehaviorSubject(0),this.progressValue$=this.reset$.pipe((0,t.switchMap)(()=>(0,r.interval)(100).pipe((0,t.take)(101))))}reset(){this.reset$.next(0)}};exports.ProgressViewComponent=o,exports.ProgressViewComponent=o=s([(0,e.Component)({selector:"progress-view-component",template(){return e.html`
+      <style>
+        :host {
+          padding: 20px;
+          display: block;
+        }
+
+        rx-progress {
+          margin: 20px 0;
+        }
+      </style>
+
+      <h3>Progress</h3>
+      <h4>Simple</h4>
+      <rx-progress value="25" palette="primary"></rx-progress>
+      <h4>Rounded</h4>
+      <rx-progress value="50" rounded palette="danger"></rx-progress>
+      <h4>Height</h4>
+      <rx-progress value="75" height="20" palette="warning"></rx-progress>
+      <h4>Label</h4>
+      <rx-progress value="45" height="20" label palette="primary"></rx-progress>
+
+      <br />
+
+      <h4>Full</h4>
+      <rx-progress
+        .value="${(0,e.async)(this.progressValue$)}"
+        height="12"
+        label
+        rounded
+        palette="primary"
+      ></rx-progress>
+
+      <rx-button palette="primary" @click="${this.reset}">reset</rx-button>
+
+      <h4>Circle</h4>
+      <rx-progress palette="primary" height="12" .value="${(0,e.async)(this.progressValue$)}" type="circle"></rx-progress>
+      <rx-progress palette="danger" height="10" value="25" type="circle"></rx-progress>
+      <rx-progress palette="warning" height="8" value="75" type="circle"></rx-progress>
+
+      <markdown-reader
+        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/progress/README.md"
+      ></markdown-reader>
+    `}})],o);
+},{"@rxdi/lit-html":"R8ie","rxjs":"iRqj","rxjs/operators":"cVrl"}],"MVQp":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.AppRoutingModule=void 0;var e=require("@rxdi/core"),o=require("@rxdi/router"),n=require("./markdown-reader/markdown-regular.component"),t=require("./responsive/responsive.component"),i=require("./accordion-view/accordion-view.component"),r=require("./image-view/image-view.component"),p=require("./badge-view/badge-vew.component"),a=require("./modal/modal-view.component"),c=require("./button-view/button-view.component"),m=require("./article-view/article-view.component"),u=require("./divider-view/divider-view.component"),d=require("./label-view/label-view.component"),w=require("./dropdown-view/dropdown-view.component"),v=require("./nav-view/nav-view.component"),l=require("./card-view/card-view.component"),s=require("./forms/forms-view.component"),k=require("./progress-view/progress-view.component"),g=require("../../../src/markdown-reader"),h=function(e,o,n,t){var i,r=arguments.length,p=r<3?o:null===t?t=Object.getOwnPropertyDescriptor(o,n):t;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)p=Reflect.decorate(e,o,n,t);else for(var a=e.length-1;a>=0;a--)(i=e[a])&&(p=(r<3?i(p):r>3?i(o,n,p):i(o,n))||p);return r>3&&p&&Object.defineProperty(o,n,p),p};let q=class{};exports.AppRoutingModule=q,exports.AppRoutingModule=q=h([(0,e.Module)({imports:[o.RouterModule.forRoot([{path:"/",redirect:"/ui-kit"},{path:"/ui-kit",component:n.RegularMarkdownComponent},{path:"/ui-kit/markdown-reader/:namespace/:repo/:filePath",component:g.MarkdownReaderComponent},{path:"/ui-kit/responsive",component:t.ResponsiveViewComponent},{path:"/ui-kit/accordion",component:i.AccordionViewComponent},{path:"/ui-kit/image",component:r.ImageViewComponent},{path:"/ui-kit/badge",component:p.BadgeViewComponent},{path:"/ui-kit/modal",component:a.ModalViewComponent},{path:"/ui-kit/button",component:c.ButtonViewComponent},{path:"/ui-kit/article",component:m.ArticleViewComponent},{path:"/ui-kit/divider",component:u.DividerViewComponent},{path:"/ui-kit/label",component:d.LabelViewComponent},{path:"/ui-kit/dropdown",component:w.DropDownViewComponent},{path:"/ui-kit/nav",component:v.NavViewComponent},{path:"/ui-kit/card",component:l.CardViewComponent},{path:"/ui-kit/forms",component:s.FormsViewComponent},{path:"/ui-kit/progress",component:k.ProgressViewComponent}],{log:!0,baseUrl:"/ui-kit"})]})],q);
+},{"@rxdi/core":"lhgc","@rxdi/router":"tW8N","./markdown-reader/markdown-regular.component":"SbH7","./responsive/responsive.component":"Onv4","./accordion-view/accordion-view.component":"cwfd","./image-view/image-view.component":"bbMR","./badge-view/badge-vew.component":"jitd","./modal/modal-view.component":"jCtu","./button-view/button-view.component":"DgQ9","./article-view/article-view.component":"XMfu","./divider-view/divider-view.component":"LW6G","./label-view/label-view.component":"JKyV","./dropdown-view/dropdown-view.component":"B4BC","./nav-view/nav-view.component":"p3Sc","./card-view/card-view.component":"wymD","./forms/forms-view.component":"ZY77","./progress-view/progress-view.component":"wuRl","../../../src/markdown-reader":"X0WN"}],"GZ5L":[function(require,module,exports) {
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0});const e=require("@rxdi/lit-html");exports.FLEX=e.css`
   .flex {
     display: flex;
@@ -2202,26 +3065,6 @@ var e,t=arguments[3];!function(t){"use strict";var n={newline:/^\n+/,code:/^( {4
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0});const e=require("@rxdi/lit-html");exports.SPACER=e.css`
   .spacer {
     flex: 1 3 auto;
-  }
-`;
-},{"@rxdi/lit-html":"R8ie"}],"VwDY":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const r=require("@rxdi/lit-html");exports.PRIMARY=r.css`
-  :root {
-    --primary-bg-color: #1e87f0;
-    --primary-color: #fff;
-    --primary-border: 1px solid transparent;
-    --primary-hover-color: #0f7ae5;
-    --primary-active-color: #0e6dcd;
-  }
-`;
-},{"@rxdi/lit-html":"R8ie"}],"rI9q":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const o=require("@rxdi/lit-html");exports.SECONDARY=o.css`
-  :root {
-    --secondary-bg-color: #222;
-    --secondary-color: #fff;
-    --secondary-border: 1px solid transparent;
-    --secondary-hover-color: #333;
-    --secondary-active-color: #000;
   }
 `;
 },{"@rxdi/lit-html":"R8ie"}],"wZHx":[function(require,module,exports) {
@@ -2430,167 +3273,7 @@ module.exports="/ui-kit/plus.e6cef85c.svg";
     `}})],l),exports.AccordionComponent=l;
 },{"@rxdi/lit-html":"R8ie","../accordion/style":"RAVT"}],"oj6B":[function(require,module,exports) {
 "use strict";function e(e){for(var r in e)exports.hasOwnProperty(r)||(exports[r]=e[r])}Object.defineProperty(exports,"__esModule",{value:!0}),e(require("./accordion.component")),e(require("./model"));
-},{"./accordion.component":"NhnV","./model":"l0JX"}],"FvGY":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.style=void 0;var o=require("@rxdi/lit-html");const t=o.css`
-.button {
-  background-color: #4caf50; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.button:hover {
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
-    0 10px 10px rgba(0, 0, 0, 0.22);
-  background: #a6463e;
-}
-
-.button:active {
-  background-color: #c0998d;
-  background-size: 100%;
-  transition: background 0s;
-}
-
-.button:focus {
-  outline: 0 !important;
-}
-`;exports.style=t;
-},{"@rxdi/lit-html":"R8ie"}],"neJn":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.style=void 0;var r=require("@rxdi/lit-html");const e=r.css`
-  .container {
-    width: 80%;
-    margin: 0 auto;
-  }
-
-
-  input[type='text'],
-  select {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-
-  input[type='submit'] {
-    width: 100%;
-    background-color: #4caf50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  .input-group {
-    color: #333;
-    float: left;
-    font-family: Helvetica, Arial, sans-serif;
-    font-size: 13px;
-    line-height: 20px;
-    width: 650px;
-  }
-
-  .error-message {
-    color: #cc0033;
-    display: inline-block;
-    font-size: 12px;
-    line-height: 15px;
-    margin: 5px 0 0;
-  }
-
-  .input-group .error-message {
-    display: none;
-  }
-
-  /* Error Styling */
-
-  .error label {
-    color: #cc0033;
-  }
-
-  .error input[type='text'] {
-    background-color: #fce4e4;
-    border: 1px solid #cc0033;
-    outline: none;
-  }
-
-  .error .error-message {
-    display: inline-block;
-  }
-
-  input[type='submit']:hover {
-    background-color: #45a049;
-  }
-
-  .input-container {
-    width: 650px;
-    margin: 50px auto;
-  }
-
-
-`;exports.style=e;
-},{"@rxdi/lit-html":"R8ie"}],"SbH7":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.RegularMarkdownComponent=void 0;var e,r,t=require("@rxdi/lit-html"),o=require("../app.component.css"),n=require("rxjs"),i=require("rxjs/operators"),a=require("./markdown-regular.css"),s=require("../../../../src/markdown-reader"),p=require("@rxdi/core"),c=function(e,r,t,o){var n,i=arguments.length,a=i<3?r:null===o?o=Object.getOwnPropertyDescriptor(r,t):o;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)a=Reflect.decorate(e,r,t,o);else for(var s=e.length-1;s>=0;s--)(n=e[s])&&(a=(i<3?n(a):i>3?n(r,t,a):n(r,t))||a);return i>3&&a&&Object.defineProperty(r,t,a),a},d=function(e,r){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,r)};let l=class extends t.LitElement{constructor(){super(...arguments),this.inputLink="https://raw.githubusercontent.com/rxdi/starter-client-lit-html/master/README.md"}changeText(e){return this.error=!1,(0,n.of)(e.target).pipe((0,i.map)(e=>e.value),(0,i.debounceTime)(1e3),(0,i.tap)(e=>this.inputLink=e)).subscribe(e=>{console.log(e)})}onError(e){this.error=e.detail.message}copy(e){return(0,n.of)(e).pipe((0,i.map)(e=>{const r=document.createElement("input");return r.value=e,this.shadowRoot.appendChild(r),r}),(0,i.switchMap)(e=>(0,n.combineLatest)((0,n.of)(e),this.requestUpdate())),(0,i.tap)(([e])=>{e.select(),document.execCommand("copy"),e.remove()}))}};exports.RegularMarkdownComponent=l,c([(0,t.property)(),d("design:type",Object)],l.prototype,"inputLink",void 0),c([(0,t.property)({type:Boolean}),d("design:type",Boolean)],l.prototype,"error",void 0),c([(0,t.query)("markdown-reader"),d("design:type","function"==typeof(e=void 0!==s.MarkdownReaderComponent&&s.MarkdownReaderComponent)?e:Object)],l.prototype,"reader",void 0),c([(0,p.Inject)(s.MarkdownParserService),d("design:type","function"==typeof(r=void 0!==s.MarkdownParserService&&s.MarkdownParserService)?r:Object)],l.prototype,"markdown",void 0),exports.RegularMarkdownComponent=l=c([(0,t.Component)({selector:"regular-markdown-component",style:t.css`
-    ${o.style}
-    ${a.style}
-  `,template(){return t.html`
-      <div class="input-container">
-        <div class="input-group ${this.error?"error":""}">
-          <label>Password *</label>
-          <input
-            type="text"
-            .value="${this.inputLink}"
-            @input="${this.changeText}"
-          />
-          <div class="error-message">${this.error}</div>
-        </div>
-      </div>
-
-      <markdown-reader
-        @onError=${e=>this.onError(e)}
-        link=${this.inputLink}
-        @onSuccess=${()=>{Array.from(Array.from(this.reader.shadowRoot.children)[1].querySelectorAll(".language-typescript")).forEach((e,r)=>{(0,n.fromEvent)(e,"click").pipe((0,i.map)(()=>this.markdown.getCacheCopy.get(this.inputLink)[r]),(0,i.filter)(e=>!!e),(0,i.switchMap)(e=>this.copy(e))).subscribe()})}}
-      ></markdown-reader>
-    `}})],l);
-},{"@rxdi/lit-html":"R8ie","../app.component.css":"FvGY","rxjs":"iRqj","rxjs/operators":"cVrl","./markdown-regular.css":"neJn","../../../../src/markdown-reader":"X0WN","@rxdi/core":"lhgc"}],"Onv4":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.ResponsiveViewComponent=void 0;var e,t=require("@rxdi/lit-html"),i=require("@rxdi/core"),r=require("../../../../src/services/index"),o=function(e,t,i,r){var o,s=arguments.length,n=s<3?t:null===r?r=Object.getOwnPropertyDescriptor(t,i):r;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)n=Reflect.decorate(e,t,i,r);else for(var p=e.length-1;p>=0;p--)(o=e[p])&&(n=(s<3?o(n):s>3?o(t,i,n):o(t,i))||n);return s>3&&n&&Object.defineProperty(t,i,n),n},s=function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)};let n=class extends t.LitElement{constructor(){super(...arguments),this.subscription=this.responsive.combineBoth().subscribe(e=>this.widthHeight=e)}OnDestroy(){this.subscription&&this.subscription.unsubscribe()}printResolutions(){return[200,300,400,500,600,700,800,900,1e3,1100,1200,1300,1400,1500].map(e=>t.html`
-        <p>
-          (Resolution ${e}px)
-          ${this.widthHeight.width>e?"MATCHED":"NOT-MATCHED"}
-        </p>
-      `)}};exports.ResponsiveViewComponent=n,o([(0,i.Inject)(r.ResponsiveService),s("design:type","function"==typeof(e=void 0!==r.ResponsiveService&&r.ResponsiveService)?e:Object)],n.prototype,"responsive",void 0),o([(0,t.property)({type:Object}),s("design:type",Object)],n.prototype,"widthHeight",void 0),exports.ResponsiveViewComponent=n=o([(0,t.Component)({selector:"responsive-view",style:t.css``,template(){return t.html`
-      <p>Move your browser width or height by pressing F12 on Chrome</p>
-      ${JSON.stringify(this.widthHeight)} ${this.printResolutions()}
-
-      <markdown-reader
-        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/services/responsive/README.md"
-      ></markdown-reader>
-    `}})],n);
-},{"@rxdi/lit-html":"R8ie","@rxdi/core":"lhgc","../../../../src/services/index":"wYaI"}],"cwfd":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.AccordionViewComponent=void 0;var e=require("@rxdi/lit-html"),t=function(e,t,o,i){var r,n=arguments.length,c=n<3?t:null===i?i=Object.getOwnPropertyDescriptor(t,o):i;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)c=Reflect.decorate(e,t,o,i);else for(var d=e.length-1;d>=0;d--)(r=e[d])&&(c=(n<3?r(c):n>3?r(t,o,c):r(t,o))||c);return n>3&&c&&Object.defineProperty(t,o,c),c};let o=class extends e.LitElement{constructor(){super(...arguments),this.items=[{title:e.html`
-        <span style="color: red">Item 1</span>
-      `,content:e.html`
-        <span style="color: red"
-          >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.</span
-        >
-      `},{title:"Item 2",content:"\n      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n      Duis aute irure dolor reprehenderit."},{title:"Item 3",content:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."},{title:"Item 4",content:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}]}};exports.AccordionViewComponent=o,exports.AccordionViewComponent=o=t([(0,e.Component)({selector:"accordion-view-component",template(){return e.html`
-      <div style="max-width: 200px; background-color: white">
-        <rx-accordion .items=${this.items}></rx-accordion>
-      </div>
-      <markdown-reader
-        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/accordion/README.md"
-      ></markdown-reader>
-    `}})],o);
-},{"@rxdi/lit-html":"R8ie"}],"nReW":[function(require,module,exports) {
+},{"./accordion.component":"NhnV","./model":"l0JX"}],"nReW":[function(require,module,exports) {
 "use strict";var e,t=this&&this.__decorate||function(e,t,i,r){var o,n=arguments.length,s=n<3?t:null===r?r=Object.getOwnPropertyDescriptor(t,i):r;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)s=Reflect.decorate(e,t,i,r);else for(var p=e.length-1;p>=0;p--)(o=e[p])&&(s=(n<3?o(s):n>3?o(t,i,s):o(t,i))||s);return n>3&&s&&Object.defineProperty(t,i,s),s},i=this&&this.__metadata||function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)};Object.defineProperty(exports,"__esModule",{value:!0});const r=require("@rxdi/lit-html"),o=require("rxjs"),n=require("rxjs/operators");let s=class extends r.LitElement{constructor(){super(...arguments),this.width="80px",this.height="80px"}OnUpdateFirst(){this.onLoadSubscription=o.fromEvent(this.element,"load").pipe(n.map(e=>this.dispatchEvent(new CustomEvent("onLoad",{detail:e})))).subscribe(),this.onErrorSubscription=o.fromEvent(this.element,"error").pipe(n.map(e=>this.dispatchEvent(new CustomEvent("onError",{detail:e})))).subscribe()}OnDestroy(){this.onErrorSubscription.unsubscribe(),this.onLoadSubscription.unsubscribe()}};t([r.property({type:String}),i("design:type",String)],s.prototype,"image",void 0),t([r.property({type:String}),i("design:type",Object)],s.prototype,"width",void 0),t([r.property({type:String}),i("design:type",Object)],s.prototype,"height",void 0),t([r.query("img"),i("design:type","function"==typeof(e="undefined"!=typeof HTMLImageElement&&HTMLImageElement)?e:Object)],s.prototype,"element",void 0),s=t([r.Component({selector:"rx-image",template(){return r.html`
       <style>
         :host {
@@ -2612,29 +3295,7 @@ module.exports="/ui-kit/plus.e6cef85c.svg";
     `}})],s),exports.RxImageComponent=s;
 },{"@rxdi/lit-html":"R8ie","rxjs":"iRqj","rxjs/operators":"cVrl"}],"N7t6":[function(require,module,exports) {
 "use strict";function e(e){for(var r in e)exports.hasOwnProperty(r)||(exports[r]=e[r])}Object.defineProperty(exports,"__esModule",{value:!0}),e(require("./image.component"));
-},{"./image.component":"nReW"}],"tTZD":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const e=require("@rxdi/lit-html");exports.DANGER=e.css`
-  :root {
-    --danger-bg-color: #f0506e;
-    --danger-color: #fff;
-    --danger-border: 1px solid transparent;
-    --danger-hover-color: #ee395b;
-    --danger-active-color: #ec2147;
-  }
-`;
-},{"@rxdi/lit-html":"R8ie"}],"f1bC":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const r=require("@rxdi/lit-html");exports.WARNING=r.css`
-  :root {
-    --warning-bg-color: #faa05a;
-    --warning-color: #fff;
-    --warning-border: 1px solid transparent;
-    --warning-hover-color: #e19457;
-    --warning-active-color: #ef9a56;
-  }
-`;
-},{"@rxdi/lit-html":"R8ie"}],"fUdq":[function(require,module,exports) {
-"use strict";var e,r=this&&this.__decorate||function(e,r,t,s){var i,c=arguments.length,a=c<3?r:null===s?s=Object.getOwnPropertyDescriptor(r,t):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)a=Reflect.decorate(e,r,t,s);else for(var n=e.length-1;n>=0;n--)(i=e[n])&&(a=(c<3?i(a):c>3?i(r,t,a):i(r,t))||a);return c>3&&a&&Object.defineProperty(r,t,a),a};Object.defineProperty(exports,"__esModule",{value:!0});const t=require("@rxdi/core"),s=require("./settings"),i=require("rxjs"),c=require("./styles/chunks/palettes/default"),a=require("./styles/chunks/palettes/primary"),n=require("./styles/chunks/palettes/danger"),u=require("./styles/chunks/palettes/secondary"),l=require("./services/dynamic-css/dynamic-css"),o=require("./services"),d=require("./styles/chunks/palettes/warning");let p=e=class{static forRoot(r={}){return{module:e,providers:[o.ResponsiveService,{provide:s.Palettes,useValue:new i.BehaviorSubject(r.palettes||{default:c.DEFAULT,primary:a.PRIMARY,secondary:u.SECONDARY,danger:n.DANGER,warning:d.WARNING})},l.DynamicCssService]}}};p=e=r([t.Module()],p),exports.ReactiveUiModule=p;
-},{"@rxdi/core":"lhgc","./settings":"oZ1d","rxjs":"iRqj","./styles/chunks/palettes/default":"gE8N","./styles/chunks/palettes/primary":"VwDY","./styles/chunks/palettes/danger":"tTZD","./styles/chunks/palettes/secondary":"rI9q","./services/dynamic-css/dynamic-css":"AhHs","./services":"wYaI","./styles/chunks/palettes/warning":"f1bC"}],"iXmO":[function(require,module,exports) {
+},{"./image.component":"nReW"}],"iXmO":[function(require,module,exports) {
 "use strict";var e,t,r=this&&this.__decorate||function(e,t,r,s){var o,i=arguments.length,p=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)p=Reflect.decorate(e,t,r,s);else for(var l=e.length-1;l>=0;l--)(o=e[l])&&(p=(i<3?o(p):i>3?o(t,r,p):o(t,r))||p);return i>3&&p&&Object.defineProperty(t,r,p),p},s=this&&this.__metadata||function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)};Object.defineProperty(exports,"__esModule",{value:!0});const o=require("@rxdi/lit-html"),i=require("@rxdi/core"),p=require("rxjs/operators"),l=require("rxjs"),n=require("../services"),c=require("../styles");let a=class extends o.LitElement{constructor(){super(...arguments),this.$items=l.of([])}calculateColumns(e){let t;return this.columns?this.columns:(e<700?t=1:e<1e3?t=2:e<1450?t=3:e>1450&&(t=4),t)}calculateRows(e,t){return this.rows?this.rows:Math.round(e/t)+2}calculateTemplateColumns(e,t,r){const s=t*r,i=s-r;return o.html`
       <div class="flex center">
         ${e.length?o.html`
@@ -2655,21 +3316,7 @@ module.exports="/ui-kit/plus.e6cef85c.svg";
                   `)}
               `)))}
     `}})],a),exports.GridComponent=a;
-},{"@rxdi/lit-html":"R8ie","@rxdi/core":"lhgc","rxjs/operators":"cVrl","rxjs":"iRqj","../services":"wYaI","../styles":"tws7"}],"i0Ro":[function(require,module,exports) {
-module.exports="/ui-kit/glyph.e72576d6.svg";
-},{}],"bbMR":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.ImageViewComponent=void 0;var e=require("@rxdi/lit-html"),t=r(require("@rxdi/ui-kit/images/glyph.svg"));function r(e){return e&&e.__esModule?e:{default:e}}var o=function(e,t,r,o){var i,n=arguments.length,a=n<3?t:null===o?o=Object.getOwnPropertyDescriptor(t,r):o;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)a=Reflect.decorate(e,t,r,o);else for(var m=e.length-1;m>=0;m--)(i=e[m])&&(a=(n<3?i(a):n>3?i(t,r,a):i(t,r))||a);return n>3&&a&&Object.defineProperty(t,r,a),a};let i=class extends e.LitElement{constructor(){super(...arguments),this.onLoad=(e=>{console.log(e.target)})}};exports.ImageViewComponent=i,exports.ImageViewComponent=i=o([(0,e.Component)({selector:"image-view-component",template(){return e.html`
-      <div style="max-width: 200px; background-color: white">
-        <rx-image
-          image="https://getuikit.com/images/icon-clipboard.svg"
-        ></rx-image>
-        <rx-image image=${t.default} @onLoad=${this.onLoad}></rx-image>
-      </div>
-      <markdown-reader
-        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/image/README.md"
-      ></markdown-reader>
-    `}})],i);
-},{"@rxdi/lit-html":"R8ie","@rxdi/ui-kit/images/glyph.svg":"i0Ro"}],"C2jj":[function(require,module,exports) {
+},{"@rxdi/lit-html":"R8ie","@rxdi/core":"lhgc","rxjs/operators":"cVrl","rxjs":"iRqj","../services":"wYaI","../styles":"tws7"}],"C2jj":[function(require,module,exports) {
 "use strict";var e,t=this&&this.__decorate||function(e,t,o,r){var i,n=arguments.length,l=n<3?t:null===r?r=Object.getOwnPropertyDescriptor(t,o):r;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)l=Reflect.decorate(e,t,o,r);else for(var s=e.length-1;s>=0;s--)(i=e[s])&&(l=(n<3?i(l):n>3?i(t,o,l):i(t,o))||l);return n>3&&l&&Object.defineProperty(t,o,l),l},o=this&&this.__metadata||function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)};Object.defineProperty(exports,"__esModule",{value:!0});const r=require("@rxdi/lit-html"),i=require("../settings");let n=class extends r.LitElement{constructor(){super(...arguments),this.background="#1e87f0",this.color="#fff"}};t([r.property({type:String}),o("design:type",Object)],n.prototype,"background",void 0),t([r.property({type:String}),o("design:type",Object)],n.prototype,"color",void 0),t([r.property({type:String}),o("design:type","function"==typeof(e=void 0!==i.PalettesUnion&&i.PalettesUnion)?e:Object)],n.prototype,"palette",void 0),n=t([r.Component({selector:"rx-badge",template(){return r.html`
     <style>
     .badge {
@@ -2963,396 +3610,12 @@ module.exports="/ui-kit/glyph.e72576d6.svg";
             `:""}
       </div>
     `}})],p),exports.DropdownComponent=p;
-},{"@rxdi/lit-html":"R8ie","rxjs":"iRqj","rxjs/operators":"cVrl","../settings":"oZ1d"}],"RPEn":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const e=require("@rxdi/core");exports.MODAL_DIALOG_DATA=new e.InjectionToken("rxdi-ui-kit-modal-data"),exports.MODAL_DIALOG_OPTIONS=new e.InjectionToken("rxdi-ui-kit-modal-options");
-},{"@rxdi/core":"lhgc"}],"oRay":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const o=require("@rxdi/lit-html");exports.style=o.css`
-  .backdrop {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    z-index: 10;
-    background: rgba(0, 0, 0, 0.32);
-  }
-
-  .container {
-    padding: 50px 50px;
-  }
-
-  .dialog {
-    position: relative;
-    box-sizing: border-box;
-    transform: translateY(0);
-    margin: 0 auto;
-    background: #fff;
-    width: 600px;
-    box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2),
-      0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);
-    transition: 0.3s linear;
-    transition-property: opacity, transform;
-    max-width: calc(100% - 0.01px) !important;
-    padding: 30px 30px;
-    color: #666;
-    z-index: 12;
-  }
-
-  h1 {
-    margin-top: 0;
-    font-size: 30px;
-    line-height: 1.3;
-    margin: 0 0 0px 0;
-    font-family: ProximaNova, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-      Roboto, 'Helvetica Neue', Arial, sans-serif;
-    font-weight: 300;
-    color: #222;
-    text-transform: none;
-  }
-
-  button {
-    position: absolute;
-    z-index: 1010;
-    top: 10px;
-    right: 10px;
-    padding: 5px;
-    border: none;
-    cursor: pointer;
-    text-transform: none;
-    outline: none;
-    background-color: transparent;
-  }
-  p {
-    font-size: 15px;
-    font-weight: normal;
-    line-height: 1.5;
-    color: #666;
-  }
-`,exports.button=o.css`
-  button {
-    opacity: 0.7;
-  }
-
-  button:hover {
-    opacity: 1;
-  }
-`;
-},{"@rxdi/lit-html":"R8ie"}],"cCLz":[function(require,module,exports) {
-"use strict";var e,t,o,i,r=this&&this.__decorate||function(e,t,o,i){var r,n=arguments.length,l=n<3?t:null===i?i=Object.getOwnPropertyDescriptor(t,o):i;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)l=Reflect.decorate(e,t,o,i);else for(var a=e.length-1;a>=0;a--)(r=e[a])&&(l=(n<3?r(l):n>3?r(t,o,l):r(t,o))||l);return n>3&&l&&Object.defineProperty(t,o,l),l},n=this&&this.__metadata||function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)};Object.defineProperty(exports,"__esModule",{value:!0});const l=require("@rxdi/lit-html"),a=require("@rxdi/core"),s=require("../../modal/modal.service"),c=require("../../modal/interface"),d=require("./interface"),p=require("./style.css");let f=class extends l.LitElement{OnUpdateFirst(){this.options.backdropClose&&this.backdrop.addEventListener("click",()=>this.close())}close(){this.modalService.close(!0)}};r([a.Inject(s.ModalService),n("design:type","function"==typeof(e=void 0!==s.ModalService&&s.ModalService)?e:Object)],f.prototype,"modalService",void 0),r([a.Injector(c.MODAL_DIALOG_DATA),n("design:type","function"==typeof(t=void 0!==d.DialogData&&d.DialogData)?t:Object)],f.prototype,"data",void 0),r([a.Injector(c.MODAL_DIALOG_OPTIONS),n("design:type","function"==typeof(o=void 0!==c.MODAL_DIALOG_OPTIONS&&c.MODAL_DIALOG_OPTIONS)?o:Object)],f.prototype,"options",void 0),r([l.query(".backdrop"),n("design:type","function"==typeof(i="undefined"!=typeof HTMLElement&&HTMLElement)?i:Object)],f.prototype,"backdrop",void 0),f=r([l.Component({selector:"rx-modal-main",styles:[p.style,p.button],template(){return l.html`
-      <style>
-        ${this.data.style}
-      </style>
-      <div class="container">
-        <div class="dialog">
-          <button @click=${()=>this.close()}>
-            ${l.svg`
-              <svg width="14" height="14" viewBox="0 0 14 14">
-                <line fill="none" stroke="#666" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line>
-                <line fill="none" stroke="#666" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line>
-              </svg>
-            `}
-          </button>
-          ${this.data.template?l.html`
-                ${this.data.template}
-              `:l.html`
-                <h1>${this.data.title}</h1>
-                <p>
-                  ${this.data.description}
-                </p>
-              `}
-        </div>
-      </div>
-      <div class="backdrop"></div>
-    `}})],f),exports.MainModalComponent=f;
-},{"@rxdi/lit-html":"R8ie","@rxdi/core":"lhgc","../../modal/modal.service":"D8DB","../../modal/interface":"RPEn","./interface":"l0JX","./style.css":"oRay"}],"D8DB":[function(require,module,exports) {
-"use strict";var e,t=this&&this.__decorate||function(e,t,o,i){var n,r=arguments.length,s=r<3?t:null===i?i=Object.getOwnPropertyDescriptor(t,o):i;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)s=Reflect.decorate(e,t,o,i);else for(var a=e.length-1;a>=0;a--)(n=e[a])&&(s=(r<3?n(s):r>3?n(t,o,s):n(t,o))||s);return r>3&&s&&Object.defineProperty(t,o,s),s},o=this&&this.__metadata||function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)},i=this&&this.__importStar||function(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var o in e)Object.hasOwnProperty.call(e,o)&&(t[o]=e[o]);return t.default=e,t};Object.defineProperty(exports,"__esModule",{value:!0});const n=require("@rxdi/core"),r=require("@rxdi/lit-html"),s=require("rxjs"),a=require("./interface"),l=require("rxjs/operators");let c=class{constructor(){this.originalOptions=Object.assign({},this.options),this.modalTemplate=new s.ReplaySubject,this.closeSubject$=new s.Subject}open(e,t){return this.overflow("hidden"),new s.Observable(o=>{this.createModalPortal(),t&&this.setSettings(t),this.closeSubject$.pipe(l.take(1)).subscribe(e=>{t&&this.setSettings(this.originalOptions),this.overflow("visible"),o.next(e),o.complete()}),this.modalTemplate.next(e)})}openCustomModal(e,t={backdropClose:!0}){return this.overflow("hidden"),s.from(Promise.resolve().then(()=>i(require("../modals/main/main")))).pipe(l.map(e=>e.MainModalComponent),l.switchMap(o=>this.openComponent(o,e,{backdropClose:t.backdropClose,style:t.style||r.css`
-              .wrapper {
-                position: fixed;
-                top: 0;
-                left: 0;
-                align-items: center;
-                justify-content: center;
-                pointer-events: none;
-                width: 100%;
-                height: 100%;
-              }
-              .content {
-                width: 100%;
-                height: 100%;
-                z-index: 20;
-                position: fixed;
-                pointer-events: all;
-              }
-            `})),l.tap(()=>this.overflow("visible")))}overflow(e){this.options.hideScroll&&(document.body.style.overflow=e)}openComponent(e,t={},o){return o&&this.setSettings(o),this.overflow("hidden"),new s.Observable(i=>{const s=e.is;if(!s)throw new Error("Provide static method `is` inside component or if you use regular html`` template use `open` method instead of `openComponent`");this.createModalPortal(),n.Container.remove(a.MODAL_DIALOG_DATA),n.Container.set(a.MODAL_DIALOG_DATA,t),this.modalTemplate.next(r.html`
-          ${r.unsafeHTML(`<${s()}></${s()}>`)}
-        `),this.closeSubject$.pipe(l.take(1)).subscribe(e=>{o&&this.setSettings(this.originalOptions),i.next(e),this.overflow("visible"),i.complete()})})}setSettings(e){n.Container.remove(a.MODAL_DIALOG_OPTIONS),n.Container.set(a.MODAL_DIALOG_OPTIONS,e)}openSequence(e){const t=e=>e;return s.of(e).pipe(l.map(e=>e.map(e=>this.openComponent(e.component,e.data,e.options))),l.concatMap(t),l.concatMap(t))}getTemplate(){return this.modalTemplate.asObservable()}getRef(){return this.modalRef}close(e){this.removeModalPortal(),this.closeSubject$.next(e)}createModalContainer(){this.modalRef=document.createElement("modal-container")}appendReference(){document.body.appendChild(this.modalRef)}createModalPortal(){this.modalRef&&this.removeModalPortal(),this.createModalContainer(),this.appendReference()}removeModalPortal(){this.modalRef.remove()}};t([n.Injector(a.MODAL_DIALOG_OPTIONS),o("design:type","function"==typeof(e=void 0!==a.MODAL_DIALOG_OPTIONS&&a.MODAL_DIALOG_OPTIONS)?e:Object)],c.prototype,"options",void 0),c=t([n.Injectable()],c),exports.ModalService=c;
-},{"@rxdi/core":"lhgc","@rxdi/lit-html":"R8ie","rxjs":"iRqj","./interface":"RPEn","rxjs/operators":"cVrl","../modals/main/main":"cCLz"}],"PXQi":[function(require,module,exports) {
-"use strict";var e,t,o=this&&this.__decorate||function(e,t,o,i){var r,c=arguments.length,n=c<3?t:null===i?i=Object.getOwnPropertyDescriptor(t,o):i;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)n=Reflect.decorate(e,t,o,i);else for(var l=e.length-1;l>=0;l--)(r=e[l])&&(n=(c<3?r(n):c>3?r(t,o,n):r(t,o))||n);return c>3&&n&&Object.defineProperty(t,o,n),n},i=this&&this.__metadata||function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)};Object.defineProperty(exports,"__esModule",{value:!0});const r=require("@rxdi/lit-html"),c=require("@rxdi/core"),n=require("./modal.service"),l=require("./interface");let s=class extends r.LitElement{constructor(){super(...arguments),this.template=this.modalService.getTemplate()}};o([c.Inject(n.ModalService),i("design:type","function"==typeof(e=void 0!==n.ModalService&&n.ModalService)?e:Object)],s.prototype,"modalService",void 0),o([c.Injector(l.MODAL_DIALOG_OPTIONS),i("design:type","function"==typeof(t=void 0!==l.MODAL_DIALOG_OPTIONS&&l.MODAL_DIALOG_OPTIONS)?t:Object)],s.prototype,"options",void 0),s=o([r.Component({selector:"modal-container",template(){return r.html`
-      <style>
-        ${this.options.style}
-      </style>
-      <div class="wrapper">
-        <div class="content">${r.async(this.template)}</div>
-        <div
-          @click=${()=>this.options.backdropClose&&this.modalService.close()}
-          class="backdrop"
-        ></div>
-      </div>
-    `}})],s),exports.ModalContainerComponent=s;
-},{"@rxdi/lit-html":"R8ie","@rxdi/core":"lhgc","./modal.service":"D8DB","./interface":"RPEn"}],"sSrl":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const e=require("@rxdi/lit-html");exports.defaultModalStyle=e.css`
-  .wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
-    width: 100%;
-    height: 100%;
-  }
-
-  .backdrop {
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.5);
-    pointer-events: all;
-    z-index: 10;
-  }
-
-  .content {
-    z-index: 20;
-    position: absolute;
-    /* width: 100%; */
-    /* height: 100%; */
-    pointer-events: all;
-  }
-`;
-},{"@rxdi/lit-html":"R8ie"}],"mF9g":[function(require,module,exports) {
-"use strict";var e,t=this&&this.__decorate||function(e,t,r,o){var l,c=arguments.length,n=c<3?t:null===o?o=Object.getOwnPropertyDescriptor(t,r):o;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)n=Reflect.decorate(e,t,r,o);else for(var i=e.length-1;i>=0;i--)(l=e[i])&&(n=(c<3?l(n):c>3?l(t,r,n):l(t,r))||n);return c>3&&n&&Object.defineProperty(t,r,n),n};Object.defineProperty(exports,"__esModule",{value:!0});const r=require("@rxdi/core"),o=require("./modal.service"),l=require("./modal-container.component"),c=require("./interface"),n=require("./default.css");let i=e=class{static forRoot(t={}){return t.style||(t.style=n.defaultModalStyle),{module:e,providers:[o.ModalService,{provide:c.MODAL_DIALOG_OPTIONS,useValue:t}],components:[l.ModalContainerComponent]}}};i=e=t([r.Module()],i),exports.ModalModule=i;
-},{"@rxdi/core":"lhgc","./modal.service":"D8DB","./modal-container.component":"PXQi","./interface":"RPEn","./default.css":"sSrl"}],"jitd":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.BadgeViewComponent=void 0;var e,t=require("@rxdi/lit-html"),r=require("@rxdi/core"),a=require("../../../../src/modal/modal.service"),o=function(e,t,r,a){var o,d=arguments.length,n=d<3?t:null===a?a=Object.getOwnPropertyDescriptor(t,r):a;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)n=Reflect.decorate(e,t,r,a);else for(var i=e.length-1;i>=0;i--)(o=e[i])&&(n=(d<3?o(n):d>3?o(t,r,n):o(t,r))||n);return d>3&&n&&Object.defineProperty(t,r,n),n},d=function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)};let n=class extends t.LitElement{OnInit(){}};exports.BadgeViewComponent=n,o([(0,r.Inject)(a.ModalService),d("design:type","function"==typeof(e=void 0!==a.ModalService&&a.ModalService)?e:Object)],n.prototype,"modalService",void 0),exports.BadgeViewComponent=n=o([(0,t.Component)({selector:"badge-view-component",style:t.css`
-    rx-badge {
-      display: block;
-    }
-  `,template:()=>t.html`
-      <rx-badge>1</rx-badge>
-      <rx-badge background="red" color="white">10</rx-badge>
-      <rx-badge palette="primary">100</rx-badge>
-      <rx-badge palette="primary">1000</rx-badge>
-      <rx-badge palette="primary">10000</rx-badge>
-      <rx-badge palette="secondary">100000</rx-badge>
-      <rx-badge palette="danger">1000000</rx-badge>
-      <rx-badge palette="warning">10000000</rx-badge>
-      <markdown-reader
-        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/badge/README.md"
-      ></markdown-reader>
-    `})],n);
-},{"@rxdi/lit-html":"R8ie","@rxdi/core":"lhgc","../../../../src/modal/modal.service":"D8DB"}],"tG34":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.OverflowText=void 0;const i="\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\neiusmod tempor incididunt ut labore et dolore magna aliqua. Ut\nenim ad minim veniam, quis nostrud exercitation ullamco laboris\nnisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in\nreprehenderit in voluptate velit esse cillum dolore eu fugiat\nnulla pariatur. Excepteur sint occaecat cupidatat non proident,\nsunt in culpa qui officia deserunt mollit anim id est laborum.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\neiusmod tempor incididunt ut labore et dolore magna aliqua. Ut\nenim ad minim veniam, quis nostrud exercitation ullamco laboris\nnisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in\nreprehenderit in voluptate velit esse cillum dolore eu fugiat\nnulla pariatur. Excepteur sint occaecat cupidatat non proident,\nsunt in culpa qui officia deserunt mollit anim id est laborum.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\neiusmod tempor incididunt ut labore et dolore magna aliqua. Ut\nenim ad minim veniam, quis nostrud exercitation ullamco laboris\nnisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in\nreprehenderit in voluptate velit esse cillum dolore eu fugiat\nnulla pariatur. Excepteur sint occaecat cupidatat non proident,\nsunt in culpa qui officia deserunt mollit anim id est laborum.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\neiusmod tempor incididunt ut labore et dolore magna aliqua. Ut\nenim ad minim veniam, quis nostrud exercitation ullamco laboris\nnisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in\nreprehenderit in voluptate velit esse cillum dolore eu fugiat\nnulla pariatur. Excepteur sint occaecat cupidatat non proident,\nsunt in culpa qui officia deserunt mollit anim id est laborum.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\neiusmod tempor incididunt ut labore et dolore magna aliqua. Ut\nenim ad minim veniam, quis nostrud exercitation ullamco laboris\nnisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in\nreprehenderit in voluptate velit esse cillum dolore eu fugiat\nnulla pariatur. Excepteur sint occaecat cupidatat non proident,\nsunt in culpa qui officia deserunt mollit anim id est laborum.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\neiusmod tempor incididunt ut labore et dolore magna aliqua. Ut\nenim ad minim veniam, quis nostrud exercitation ullamco laboris\nnisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in\nreprehenderit in voluptate velit esse cillum dolore eu fugiat\nnulla pariatur. Excepteur sint occaecat cupidatat non proident,\nsunt in culpa qui officia deserunt mollit anim id est laborum.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\neiusmod tempor incididunt ut labore et dolore magna aliqua. Ut\nenim ad minim veniam, quis nostrud exercitation ullamco laboris\nnisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in\nreprehenderit in voluptate velit esse cillum dolore eu fugiat\nnulla pariatur. Excepteur sint occaecat cupidatat non proident,\nsunt in culpa qui officia deserunt mollit anim id est laborum.\n";exports.OverflowText=i;
-},{}],"feq3":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.ModalViewService=void 0;var e,t=require("@rxdi/core"),i=require("../../../../src/modal/modal.service"),o=require("@rxdi/lit-html"),r=require("./data"),a=function(e,t,i,o){var r,a=arguments.length,l=a<3?t:null===o?o=Object.getOwnPropertyDescriptor(t,i):o;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)l=Reflect.decorate(e,t,i,o);else for(var n=e.length-1;n>=0;n--)(r=e[n])&&(l=(a<3?r(l):a>3?r(t,i,l):r(t,i))||l);return a>3&&l&&Object.defineProperty(t,i,l),l},l=function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)};let n=class{openCustomModal(){return this.modalService.openCustomModal({title:"Default",description:"\n          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim\n          ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut\n          aliquip ex ea commodo consequat. Duis aute irure dolor in\n          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla\n          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in\n          culpa qui officia deserunt mollit anim id est laborum.\n          "},{backdropClose:!0})}openBasicModal(){return this.modalService.open(o.html`
-        <div style="text-align: right;padding: 20px 20px;">
-          <rx-button palette="primary" @click=${()=>this.modalService.close()}
-            >Close</rx-button
-          >
-        </div>
-      `)}openCustomMainModal(){return this.modalService.openCustomModal({template:o.html`
-          <div style="padding: 15px 30px;border-bottom: 1px solid #e5e5e5;">
-            <h1>Custom modal</h1>
-          </div>
-          <div
-            style="padding: 10px 30px 10px 30px; border-bottom: 1px solid #e5e5e5;"
-          >
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-          </div>
-          <div style="text-align: right;padding: 20px 20px;">
-            <rx-button @click=${()=>this.modalService.close()}
-              >Cancel</rx-button
-            >
-            <rx-button palette="primary">Save</rx-button>
-          </div>
-        `,style:o.css`
-          .dialog {
-            padding: 0 !important;
-          }
-        `},{backdropClose:!1})}openOverflowCustomModal(){return this.modalService.openCustomModal({template:o.html`
-          <div style="padding: 15px 30px;border-bottom: 1px solid #e5e5e5;">
-            <h1>Overflow</h1>
-          </div>
-          <div class="content">
-            <p>
-              ${r.OverflowText}
-            </p>
-          </div>
-          <div style="text-align: right;padding: 20px 20px;">
-            <rx-button @click=${()=>this.modalService.close()}
-              >Cancel</rx-button
-            >
-            <rx-button palette="primary">Save</rx-button>
-          </div>
-        `,style:o.css`
-          .dialog {
-            padding: 0 !important;
-          }
-          .content {
-            padding: 10px 30px 10px 30px;
-            border-bottom: 1px solid #e5e5e5;
-            overflow: auto;
-            min-height: 150px;
-            max-height: 555px;
-          }
-        `},{backdropClose:!0})}openFullScreenModal(){return this.modalService.openCustomModal({template:o.html`
-          <div class="flex-grid">
-            <img src="https://getuikit.com/docs/images/photo.jpg" />
-            <h1>Full-screen modal</h1>
-          </div>
-        `,style:o.css`
-          .container {
-            padding: 0px !important;
-          }
-          .flex-grid {
-            display: flex;
-            flex-wrap: wrap;
-            margin: 0;
-            padding: 0;
-            list-style: none;
-          }
-          img {
-            background-position: 50% 50%;
-            background-repeat: no-repeat;
-            width: 50%;
-            min-height: calc(100vh);
-            box-sizing: border-box;
-            background-size: cover;
-          }
-          .dialog {
-            padding: 0 !important;
-            width: 100% !important;
-            height: 100% !important;
-          }
-
-          .container {
-            height: 100%;
-          }
-        `},{backdropClose:!1})}};exports.ModalViewService=n,a([(0,t.Inject)(i.ModalService),l("design:type","function"==typeof(e=void 0!==i.ModalService&&i.ModalService)?e:Object)],n.prototype,"modalService",void 0),exports.ModalViewService=n=a([(0,t.Injectable)()],n);
-},{"@rxdi/core":"lhgc","../../../../src/modal/modal.service":"D8DB","@rxdi/lit-html":"R8ie","./data":"tG34"}],"mX0t":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.TestModal=void 0;var e,t=require("@rxdi/core"),o=require("../../../../src/modal/interface"),r=require("@rxdi/lit-html"),i=require("../../../../src/modal/modal.service"),l=function(e,t,o,r){var i,l=arguments.length,c=l<3?t:null===r?r=Object.getOwnPropertyDescriptor(t,o):r;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)c=Reflect.decorate(e,t,o,r);else for(var d=e.length-1;d>=0;d--)(i=e[d])&&(c=(l<3?i(c):l>3?i(t,o,c):i(t,o))||c);return l>3&&c&&Object.defineProperty(t,o,c),c},c=function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)};let d=class extends r.LitElement{constructor(){super(...arguments),this.modalRef=this.modalService.getRef()}OnInit(){console.log("test-modal initialized")}OnDestroy(){console.log("test-modal destroyed")}close(){this.modalService.close(this.data)}};exports.TestModal=d,l([(0,t.Injector)(o.MODAL_DIALOG_DATA),c("design:type",Number)],d.prototype,"data",void 0),l([(0,t.Inject)(i.ModalService),c("design:type","function"==typeof(e=void 0!==i.ModalService&&i.ModalService)?e:Object)],d.prototype,"modalService",void 0),exports.TestModal=d=l([(0,r.Component)({selector:"test-modal",template(){return r.html`
-      <div>
-        Test Modal ${JSON.stringify(this.data)}
-        <div style="text-align: right;padding: 20px 20px;">
-          <rx-button palette="primary" @click=${()=>this.close()}
-            >Close</rx-button
-          >
-        </div>
-      </div>
-    `}})],d);
-},{"@rxdi/core":"lhgc","../../../../src/modal/interface":"RPEn","@rxdi/lit-html":"R8ie","../../../../src/modal/modal.service":"D8DB"}],"jCtu":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.ModalViewComponent=void 0;var e,o,t=require("@rxdi/lit-html"),r=require("@rxdi/core"),i=require("../../../../src/modal/modal.service"),l=require("rxjs"),n=require("rxjs/operators"),a=require("./modal-view.service"),c=require("./test-modal.component"),d=function(e,o,t,r){var i,l=arguments.length,n=l<3?o:null===r?r=Object.getOwnPropertyDescriptor(o,t):r;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)n=Reflect.decorate(e,o,t,r);else for(var a=e.length-1;a>=0;a--)(i=e[a])&&(n=(l<3?i(n):l>3?i(o,t,n):i(o,t))||n);return l>3&&n&&Object.defineProperty(o,t,n),n},s=function(e,o){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,o)};let p=class extends t.LitElement{openCustomModal(){this.modalViewService.openCustomModal().subscribe()}openCustomMainModal(){this.modalViewService.openCustomMainModal().subscribe()}openBasicModal(){this.modalViewService.openBasicModal().subscribe()}openAdvancedModal(){this.modalService.openComponent(c.TestModal,{test:"I am a test data"}).subscribe(console.log)}openModalSequence(){const e=Array(5).fill(null).map((e,o)=>({component:c.TestModal,data:o}));(0,l.of)(e).pipe((0,n.switchMap)(e=>this.modalService.openSequence(e))).subscribe(console.log)}openOverflowCustomModal(){this.modalViewService.openOverflowCustomModal().subscribe(console.log)}openFullScreenModal(){this.modalViewService.openFullScreenModal().subscribe(console.log)}};exports.ModalViewComponent=p,d([(0,r.Inject)(a.ModalViewService),s("design:type","function"==typeof(e=void 0!==a.ModalViewService&&a.ModalViewService)?e:Object)],p.prototype,"modalViewService",void 0),d([(0,r.Inject)(i.ModalService),s("design:type","function"==typeof(o=void 0!==i.ModalService&&i.ModalService)?o:Object)],p.prototype,"modalService",void 0),exports.ModalViewComponent=p=d([(0,t.Component)({selector:"modal-view-component",style:t.css`
-
-  `,template(){return t.html`
-      <div>
-        <rx-button palette="primary" @click=${()=>this.openBasicModal()}
-          >Open Basic Modal</rx-button
-        >
-        <rx-button palette="primary" @click=${()=>this.openAdvancedModal()}
-          >Open Advanced Modal</rx-button
-        >
-        <rx-button palette="primary" @click=${()=>this.openModalSequence()}
-          >Open Modal Sequence</rx-button
-        >
-        <rx-button palette="primary" @click=${()=>this.openCustomModal()}
-          >Open Main Modal</rx-button
-        >
-        <rx-button palette="primary" @click=${()=>this.openCustomMainModal()}
-          >Open Main Custom Modal</rx-button
-        >
-        <rx-button
-          palette="primary"
-          @click=${()=>this.openOverflowCustomModal()}
-          >Open Overflow Custom Modal</rx-button
-        >
-        <rx-button palette="primary" @click=${()=>this.openFullScreenModal()}
-          >Open Fullscreen Modal</rx-button
-        >
-      </div>
-      <markdown-reader
-        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/modal/README.md"
-      ></markdown-reader>
-    `}})],p);
-},{"@rxdi/lit-html":"R8ie","@rxdi/core":"lhgc","../../../../src/modal/modal.service":"D8DB","rxjs":"iRqj","rxjs/operators":"cVrl","./modal-view.service":"feq3","./test-modal.component":"mX0t"}],"DgQ9":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.ButtonViewComponent=void 0;var t=require("@rxdi/lit-html"),e=function(t,e,r,n){var o,a=arguments.length,i=a<3?e:null===n?n=Object.getOwnPropertyDescriptor(e,r):n;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)i=Reflect.decorate(t,e,r,n);else for(var c=t.length-1;c>=0;c--)(o=t[c])&&(i=(a<3?o(i):a>3?o(e,r,i):o(e,r))||i);return a>3&&i&&Object.defineProperty(e,r,i),i};let r=class extends t.LitElement{};exports.ButtonViewComponent=r,exports.ButtonViewComponent=r=e([(0,t.Component)({selector:"button-view-component",style:t.css`
-    .container {
-      background-color: white;
-      text-align: center;
-      padding: 50px;
-      user-select: none;
-    }
-  `,template:()=>t.html`
-      <div class="container">
-        <rx-button>Default</rx-button>
-        <rx-button palette="primary">Primary</rx-button>
-        <rx-button palette="secondary">Secondary</rx-button>
-        <rx-button palette="danger">Danger</rx-button>
-        <rx-button palette="warning">Warning</rx-button>
-      </div>
-      <markdown-reader
-        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/button/README.md"
-      ></markdown-reader>
-    `})],r);
-},{"@rxdi/lit-html":"R8ie"}],"iAp7":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.ArticleData=e;var i=require("@rxdi/lit-html");function e(){return{heading:"My Super Heading",meta:i.html`
-      Written by <a>Super User</a> on 12 April 2012. Posted in
-      <a>Blog</a>
-    `,information:"\n      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad\n      minim veniam, quis nostrud exercitation ullamco laboris nisi ut\n      aliquip ex ea commodo consequat. Duis aute irure dolor in\n      reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla\n      pariatur. Excepteur sint occaecat cupidatat non proident, sunt in\n      culpa qui officia deserunt mollit anim id est laborum.\n      ",lead:"\n      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad\n      minim veniam, quis nostrud exercitation ullamco laboris nisi ut\n      aliquip.\n    ",section:i.html`
-      <div @click=${()=>this.openModalArticle()}>Read more</div>
-      <div style="margin-left: 15px;">5 Comments</div>
-    `}}
-},{"@rxdi/lit-html":"R8ie"}],"XMfu":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.ArticleViewComponent=void 0;var e,t=require("@rxdi/lit-html"),r=require("../../../../src/modal/modal.service"),o=require("@rxdi/core"),i=require("./data"),c=function(e,t,r,o){var i,c=arguments.length,a=c<3?t:null===o?o=Object.getOwnPropertyDescriptor(t,r):o;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)a=Reflect.decorate(e,t,r,o);else for(var l=e.length-1;l>=0;l--)(i=e[l])&&(a=(c<3?i(a):c>3?i(t,r,a):i(t,r))||a);return c>3&&a&&Object.defineProperty(t,r,a),a},a=function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)};let l=class extends t.LitElement{openModalArticle(){this.modalService.openCustomModal({template:t.html`
-          <rx-article .data=${i.ArticleData.call(this)}></rx-article>
-        `}).subscribe()}};exports.ArticleViewComponent=l,c([(0,o.Inject)(r.ModalService),a("design:type","function"==typeof(e=void 0!==r.ModalService&&r.ModalService)?e:Object)],l.prototype,"modalService",void 0),exports.ArticleViewComponent=l=c([(0,t.Component)({selector:"article-view-component",style:t.css`
-    .container {
-      background-color: white;
-      padding: 50px;
-    }
-  `,template(){return t.html`
-      <div class="container">
-        <rx-article .data=${i.ArticleData.call(this)}></rx-article>
-      </div>
-      <markdown-reader
-        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/article/README.md"
-      ></markdown-reader>
-    `}})],l);
-},{"@rxdi/lit-html":"R8ie","../../../../src/modal/modal.service":"D8DB","@rxdi/core":"lhgc","./data":"iAp7"}],"LW6G":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.DividerViewComponent=void 0;var e=require("@rxdi/lit-html"),r=function(e,r,t,i){var o,d=arguments.length,n=d<3?r:null===i?i=Object.getOwnPropertyDescriptor(r,t):i;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)n=Reflect.decorate(e,r,t,i);else for(var c=e.length-1;c>=0;c--)(o=e[c])&&(n=(d<3?o(n):d>3?o(r,t,n):o(r,t))||n);return d>3&&n&&Object.defineProperty(r,t,n),n};let t=class extends e.LitElement{};exports.DividerViewComponent=t,exports.DividerViewComponent=t=r([(0,e.Component)({selector:"divider-view-component",style:e.css`
-    .container {
-      padding: 50px;
-      background: white;
-      color: #666;
-    }
-  `,template:()=>e.html`
-      <div class="container">
-        <h1>Regular Divider</h1>
-        <rx-divider></rx-divider>
-
-        <h1>Icon Divider</h1>
-        <rx-divider type="icon"></rx-divider>
-      </div>
-      <markdown-reader
-        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/divider/README.md"
-      ></markdown-reader>
-    `})],t);
+},{"@rxdi/lit-html":"R8ie","rxjs":"iRqj","rxjs/operators":"cVrl","../settings":"oZ1d"}],"fOvE":[function(require,module,exports) {
+"use strict";var e=this&&this.__decorate||function(e,t,o,r){var n,c=arguments.length,i=c<3?t:null===r?r=Object.getOwnPropertyDescriptor(t,o):r;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)i=Reflect.decorate(e,t,o,r);else for(var l=e.length-1;l>=0;l--)(n=e[l])&&(i=(c<3?n(i):c>3?n(t,o,i):n(t,o))||i);return c>3&&i&&Object.defineProperty(t,o,i),i},t=this&&this.__metadata||function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)};Object.defineProperty(exports,"__esModule",{value:!0});const o=require("@rxdi/lit-html");let r=class extends o.LitElement{};e([o.property({attribute:!1}),t("design:type",Function)],r.prototype,"exp",void 0),r=e([o.Component({selector:"rx-if",template(){return o.html`
+      ${this.exp()?o.html`
+            <slot></slot>
+          `:""}
+    `}})],r),exports.IfComponent=r;
 },{"@rxdi/lit-html":"R8ie"}],"J1LA":[function(require,module,exports) {
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0});const e=require("@rxdi/lit-html");exports.style=e.css`
   .icon {
@@ -3398,301 +3661,7 @@ module.exports="/ui-kit/glyph.e72576d6.svg";
       `:r.html`
       <hr class="default" />
     `}})],i),exports.DividerComponent=i;
-},{"@rxdi/lit-html":"R8ie","./style":"J1LA"}],"JKyV":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.LabelViewComponent=void 0;var e=require("@rxdi/lit-html"),r=function(e,r,t,l){var a,n=arguments.length,o=n<3?r:null===l?l=Object.getOwnPropertyDescriptor(r,t):l;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,r,t,l);else for(var i=e.length-1;i>=0;i--)(a=e[i])&&(o=(n<3?a(o):n>3?a(r,t,o):a(r,t))||o);return n>3&&o&&Object.defineProperty(r,t,o),o};let t=class extends e.LitElement{};exports.LabelViewComponent=t,exports.LabelViewComponent=t=r([(0,e.Component)({selector:"label-view-component",style:e.css`
-    .container {
-      background-color: white;
-      padding: 50px;
-      user-select: none;
-    }
-    rx-label {
-      margin-right: 10px;
-    }
-  `,template:()=>e.html`
-      <div class="container">
-        <rx-label>Default</rx-label>
-        <rx-label palette="primary">Primary</rx-label>
-        <rx-label palette="secondary">Secondary</rx-label>
-        <rx-label palette="warning">Warning</rx-label>
-        <rx-label palette="danger">Danger</rx-label>
-      </div>
-      <markdown-reader
-        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/label/README.md"
-      ></markdown-reader>
-    `})],t);
-},{"@rxdi/lit-html":"R8ie"}],"fA4d":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.notification=void 0;var t=require("@rxdi/lit-html");const i=t.svg`
-<svg fill="white" viewBox="0 0 300 300" width="28" height="28" class="jss830">
-            <path d="M149.996 0C67.157 0 .001 67.161.001 149.997S67.157 300 149.996 300s150.003-67.163 150.003-150.003S232.835 0 149.996 0zm.003 232.951c-10.766 0-19.499-8.725-19.499-19.499h38.995c.002 10.774-8.73 19.499-19.496 19.499zm65.89-39.051h-.005v-.001c0 7.21-5.843 7.685-13.048 7.685H97.16c-7.208 0-13.046-.475-13.046-7.685v-1.242c0-5.185 3.045-9.625 7.42-11.731l4.142-35.753c0-26.174 18.51-48.02 43.152-53.174v-13.88c0-6.17 5.003-11.173 11.176-11.173 6.17 0 11.173 5.003 11.173 11.173V92c24.642 5.153 43.152 26.997 43.152 53.174l4.142 35.758c4.375 2.109 7.418 6.541 7.418 11.726v1.242z">
-          </path></svg>
-`;exports.notification=i;
-},{"@rxdi/lit-html":"R8ie"}],"B4BC":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.DropDownViewComponent=void 0;var e=require("@rxdi/lit-html"),t=require("./dropdown.svg"),r=function(e,t,r,o){var n,i=arguments.length,p=i<3?t:null===o?o=Object.getOwnPropertyDescriptor(t,r):o;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)p=Reflect.decorate(e,t,r,o);else for(var a=e.length-1;a>=0;a--)(n=e[a])&&(p=(i<3?n(p):i>3?n(t,r,p):n(t,r))||p);return i>3&&p&&Object.defineProperty(t,r,p),p};let o=class extends e.LitElement{};exports.DropDownViewComponent=o,exports.DropDownViewComponent=o=r([(0,e.Component)({selector:"dropdown-view",template:()=>e.html`
-      <rx-dropdown
-        style="margin-right: 5px;"
-        .menuItems=${[e.html`
-            <a href="#" class="item">You need to setup your SSL certificate!</a>
-          `,e.html`
-            <a href="#" class="item">You need to setup your SSL certificate!</a>
-          `,e.html`
-            <a href="#" class="item">You need to setup your SSL certificate!</a>
-          `]}
-      >
-        <div style="margin-right: 10px;margin-top: 3px;">
-          ${t.notification}
-        </div>
-      </rx-dropdown>
-      <markdown-reader
-        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/dropdown/README.md"
-      ></markdown-reader>
-    `})],o);
-},{"@rxdi/lit-html":"R8ie","./dropdown.svg":"fA4d"}],"p3Sc":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.NavViewComponent=void 0;var e,t=require("@rxdi/lit-html"),o=require("@rxdi/core"),n=require("../../../../src/nav"),r=function(e,t,o,n){var r,i=arguments.length,a=i<3?t:null===n?n=Object.getOwnPropertyDescriptor(t,o):n;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)a=Reflect.decorate(e,t,o,n);else for(var c=e.length-1;c>=0;c--)(r=e[c])&&(a=(i<3?r(a):i>3?r(t,o,a):r(t,o))||a);return i>3&&a&&Object.defineProperty(t,o,a),a},i=function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)};let a=class extends t.LitElement{openNavigation(){this.nav.open({navOptions:{left:0,delay:0},template:t.html`
-        <div>
-          <p>daadad</p>
-        </div>
-      `,styles:t.css`
-        p {
-          color: black;
-        }
-        :host {
-          position: absolute;
-          top: 0;
-          transition: left 0.3s ease-out;
-          bottom: 0;
-          left: -300px;
-          box-sizing: border-box;
-          min-width: 300px;
-          background: #fff;
-          overflow-y: auto;
-        }
-      `})}closeNavigation(){this.nav.close({delay:300,left:-300})}};exports.NavViewComponent=a,r([(0,o.Inject)(n.Nav),i("design:type","function"==typeof(e=void 0!==n.Nav&&n.Nav)?e:Object)],a.prototype,"nav",void 0),exports.NavViewComponent=a=r([(0,t.Component)({selector:"nav-view-component",style:t.css`
-    .container {
-      width: 300px;
-      margin: 0 auto;
-    }
-  `,template(){return t.html`
-      <div class="container">
-        <rx-button @click=${()=>this.openNavigation()} palette="primary"
-          >Open</rx-button
-        >
-
-        <rx-button @click=${()=>this.closeNavigation()} palette="primary"
-          >Close</rx-button
-        >
-      </div>
-      <markdown-reader
-        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/nav/README.md"
-      ></markdown-reader>
-    `}})],a);
-},{"@rxdi/lit-html":"R8ie","@rxdi/core":"lhgc","../../../../src/nav":"e2p2"}],"ynE3":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.NavComponent=void 0;var t,e=require("@rxdi/lit-html"),r=require("@rxdi/core"),a=require("../../../../src/nav"),o=function(t,e,r,a){var o,i=arguments.length,n=i<3?e:null===a?a=Object.getOwnPropertyDescriptor(e,r):a;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)n=Reflect.decorate(t,e,r,a);else for(var u=t.length-1;u>=0;u--)(o=t[u])&&(n=(i<3?o(n):i>3?o(e,r,n):o(e,r))||n);return i>3&&n&&Object.defineProperty(e,r,n),n},i=function(t,e){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(t,e)};let n=class extends e.LitElement{};exports.NavComponent=n,o([(0,r.Inject)(a.Nav),i("design:type","function"==typeof(t=void 0!==a.Nav&&a.Nav)?t:Object)],n.prototype,"nav",void 0),exports.NavComponent=n=o([(0,e.Component)({selector:"nav-component",template(){return e.html`
-      <style>
-        rx-button {
-          width: 200px;
-        }
-      </style>
-      <div style="top:0px;background: #1c1f24;display: grid">
-        <a href="/ui-kit/"><rx-button palette="primary">Markdown Link</rx-button> </a>
-        <a href="/ui-kit/markdown-reader/rxdi/ui-components/README.md"
-          ><rx-button palette="primary">Markdown Route Params</rx-button>
-        </a>
-        <a href="/ui-kit/responsive"
-          ><rx-button palette="primary">Responsive Service</rx-button>
-        </a>
-        <a href="/ui-kit/accordion"
-          ><rx-button palette="primary">Accordion</rx-button>
-        </a>
-        <a href="/ui-kit/image"><rx-button palette="primary">Image</rx-button> </a>
-        <a href="/ui-kit/badge"><rx-button palette="primary">Badge</rx-button> </a>
-        <a href="/ui-kit/modal"><rx-button palette="primary">Modal</rx-button> </a>
-        <a href="/ui-kit/button"><rx-button palette="primary">Button</rx-button> </a>
-        <a href="/ui-kit/article"><rx-button palette="primary">Article</rx-button> </a>
-        <a href="/ui-kit/divider"><rx-button palette="primary">Divider</rx-button> </a>
-        <a href="/ui-kit/label"><rx-button palette="primary">Label</rx-button> </a>
-        <a href="/ui-kit/nav"><rx-button palette="primary">Nav</rx-button> </a>
-        <a href="/ui-kit/dropdown"><rx-button palette="primary">Dropdown</rx-button> </a>
-        <a href="/ui-kit/card"><rx-button palette="primary">Card</rx-button> </a>
-        <a href="/ui-kit/forms"><rx-button palette="primary">Forms</rx-button> </a>
-        <a href="/ui-kit/progress"><rx-button palette="primary">Progress</rx-button> </a>
-
-        <!-- <rx-button
-          palette="danger"
-          @click=${()=>this.nav.setStylesSubject(e.css`
-              :host {
-                position: absolute;
-              }
-            `)}
-          >Absolute</rx-button
-        >
-
-        <rx-button
-          palette="danger"
-          @click=${()=>this.nav.setStylesSubject(e.css`
-              :host {
-                position: relative;
-              }
-            `)}
-          >Relative</rx-button
-        > -->
-      </div>
-    `}})],n);
-},{"@rxdi/lit-html":"R8ie","@rxdi/core":"lhgc","../../../../src/nav":"e2p2"}],"wymD":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.CardViewComponent=void 0;var r=require("@rxdi/lit-html"),e=require("../article-view/data"),a=function(r,e,a,t){var d,i=arguments.length,n=i<3?e:null===t?t=Object.getOwnPropertyDescriptor(e,a):t;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)n=Reflect.decorate(r,e,a,t);else for(var c=r.length-1;c>=0;c--)(d=r[c])&&(n=(i<3?d(n):i>3?d(e,a,n):d(e,a))||n);return i>3&&n&&Object.defineProperty(e,a,n),n};let t=class extends r.LitElement{};exports.CardViewComponent=t,exports.CardViewComponent=t=a([(0,r.Component)({selector:"card-view",style:r.css`
-    .container {
-      max-width: 800px;
-      margin-bottom: 20px;
-      background-color: white;
-    }
-    .margin {
-      margin-bottom: 20px;
-    }
-    .padding {
-      padding: 50px;
-    }
-  `,template(){return r.html`
-      <div class="container padding">
-        <rx-card>
-          <div class="margin padding">Default</div>
-        </rx-card>
-        <rx-card palette="primary">
-          <div class="margin padding">Primary</div>
-        </rx-card>
-        <rx-card palette="secondary">
-          <div class="margin padding">Secondary</div>
-        </rx-card>
-        <rx-card palette="warning">
-          <div class="margin padding">Warning</div>
-        </rx-card>
-        <rx-card palette="danger">
-          <div class="margin padding">Danger</div>
-        </rx-card>
-        <rx-card>
-          <div class="margin padding">
-            <rx-article .data=${e.ArticleData.call(this)}></rx-article>
-          </div>
-        </rx-card>
-      </div>
-      <markdown-reader
-        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/card/README.md"
-      ></markdown-reader>
-    `}})],t);
-},{"@rxdi/lit-html":"R8ie","../article-view/data":"iAp7"}],"vjjz":[function(require,module,exports) {
-"use strict";function t(t){return t.reduce((t,e)=>(t[e]=e,t),Object.create(null))}Object.defineProperty(exports,"__esModule",{value:!0}),exports.InputValidityState=t(["badInput","customError","patternMismatch","rangeOverflow","rangeUnderflow","stepMismatch","tooLong","tooShort","typeMismatch","valid","valueMissing"]);
-},{}],"TqKC":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});class e{constructor(){this.o=new Map}unsubscribe(){[...this.o.values()].forEach(e=>this.o.delete(e))}}exports.$Subscription=e;class t extends e{constructor(e){super(),this.init=!0,this.fn=e}subscribe(e){return this.o.set(e,e),"function"==typeof this.fn&&this.init&&(this.fn(this),this.init=!1),{unsubscribe:()=>{this.o.delete(e)}}}complete(){this.unsubscribe()}next(e){[...this.o.values()].forEach(t=>t(e))}}exports.$Observable=t;class r extends t{constructor(e){"function"==typeof e&&super(e),super(null),this.setValue(e)}setValue(e){this.v=e}next(e){this.setValue(e),super.next(e)}getValue(){return this.v}asObservable(){return this}}function s(){try{return require("rxjs").BehaviorSubject}catch(e){}return r}function n(){try{return require("rxjs").Observable}catch(e){}return t}function u(){try{return require("rxjs").Subscription}catch(t){}return e}function i(){}function o(e){return new(s())(e)}function c(e){return new(n())(e)}function h(){return new(u())}exports.$BehaviorSubject=r,exports.noop=i,exports.BehaviorSubject=o,exports.Observable=c,exports.Subscription=h;
-},{"rxjs":"iRqj"}],"pIiP":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const e=require("./form.tokens"),t=require("./rx-fake");class r{constructor(e,r){this.validators=new Map,this.valid=!0,this.invalid=!1,this.errors={},this.errorMap=new Map,this.inputs=new Map,this.options={},this._valueChanges=new t.BehaviorSubject(e)}init(){this.setFormElement(this.querySelectForm(this.parentElement.shadowRoot||this.parentElement)).setInputs(this.mapEventToInputs(this.querySelectorAllInputs()))}prepareValues(){return Object.keys(this.value).forEach(e=>{const t=this.value[e];if(this.errors[e]=this.errors[e]||{},t.constructor===Array){if(t[1]&&t[1].constructor===Array&&t[1].forEach(t=>{const r=this.validators.get(e)||[];this.validators.set(e,[...r,t])}),t[0].constructor!==String&&t[0].constructor!==Number&&t[0].constructor!==Boolean)throw new Error("Input value must be of type 'string', 'boolean' or 'number'");this.value[e]=t[0]}}),this}setParentElement(e){return this.parentElement=e,this}getParentElement(){return this.parentElement}setOptions(e){return this.options=e,this}getOptions(){return this.options}get valueChanges(){return this._valueChanges.asObservable()}updateValueAndValidity(){this.resetErrors();const e=this.querySelectorAllInputs().map(e=>(e.setCustomValidity(""),e)).map(e=>this.validate(e)).filter(e=>e.errors.length);return this.getParentElement().requestUpdate(),e}updateValueAndValidityOnEvent(e){const t=this;return function(r){const s=[...t.getFormElement().querySelectorAll(`input[name="${this.name}"]`).values()].length;let n=this.value;1!==s||"checkbox"!==this.type&&"radio"!==this.type||(n=String(this.checked)),t.options.multi&&s>1&&([...t.getFormElement().querySelectorAll("input:checked").values()].forEach(e=>e.checked=!1),this.checked=!0),t.resetErrors();const i=t.applyValidationContext(t.validate(this));return t.options.strict?(i&&t.setValue(this.name,n),t.parentElement.requestUpdate(),e.call(t.parentElement,r)):(t.setValue(this.name,n),t.parentElement.requestUpdate(),e.call(t.parentElement,r))}}applyValidationContext({errors:e,element:t}){const r=this.getFormElement();return e.length?(this.invalid=r.invalid=!0,this.valid=r.valid=!1,!1):(this.errors[t.name]={},this.invalid=r.invalid=!1,this.valid=r.valid=!0,!0)}querySelectForm(e){const t=e.querySelector(`form[name="${this.options.name}"]`);if(!t)throw new Error(`Form element with name "${this.options.name}" not present inside ${this.getParentElement().outerHTML} component`);return t.addEventListener("submit",e=>{e.preventDefault(),e.stopPropagation()}),t}querySelectorAllInputs(){return[...this.form.querySelectorAll("input").values()].filter(e=>this.isInputPresentOnStage(e)).filter(e=>!!e.name)}mapEventToInputs(e=[]){return e.map(e=>{const t=`on${this.options.strategy}`;return e[t]||(e[t]=function(){}),e[t]=this.updateValueAndValidityOnEvent(e[t]),e})}isInputPresentOnStage(e){if(!e.name)return;const t=Object.keys(this.value).filter(t=>t===e.name);if(!t.length)throw new Error(`Missing input element with name ${e.name} for form ${this.getFormElement().name}`);return t.length}validate(t){let r=[];return t.setCustomValidity(""),t.checkValidity()?(r=this.mapInputErrors(t)).length?(this.setFormValidity(!1),t.setCustomValidity(r[0].message),{element:t,errors:r}):{errors:[],element:t}:{errors:r.concat(Object.keys(e.InputValidityState).map(e=>t.validity[e]?{key:e,message:t.validationMessage}:null).filter(e=>!!e)),element:t}}mapInputErrors(e){return(this.validators.get(e.name)||[]).map(t=>{this.errors[e.name]=this.errors[e.name]||{};const r=t.bind(this.getParentElement())(e);if(r&&r.key)return this.errors[e.name][r.key]=r.message,this.errorMap.set(t,r.key),{key:r.key,message:r.message};this.errorMap.has(t)&&delete this.errors[e.name][this.errorMap.get(t)]}).filter(e=>!!e)}get(e){return this.inputs.get(e)}getError(e,t){return this.errors[e][t]}hasError(e,t){return!!this.getError(e,t)}reset(){this.form.reset(),this.resetErrors(),this.setFormValidity(),this.inputs.clear()}setFormValidity(e=!0){this.valid=e,this.invalid=!e}resetErrors(){this.errors=Object.keys(this.errors).reduce((e,t)=>(e[t]={},e),{}),this.errorMap.clear()}get value(){return this._valueChanges.getValue()}set value(e){this._valueChanges.next(e)}unsubscribe(){this.reset(),this._valueChanges.unsubscribe()}getValue(e){return this.value[e]}setValue(e,t){const r=this.value;return r[e]=t,this.value=r,r}setFormValue(e){this.value=e}setFormElement(e){return this.form=e,this}setInputs(e){this.inputs=new Map(e.map(e=>[e.name,e]))}getFormElement(){return this.form}}exports.FormGroup=r;
-},{"./form.tokens":"vjjz","./rx-fake":"TqKC"}],"bc55":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const t=require("./form.group"),o=require("./rx-fake");function r(r={strategy:"none"}){return function(e,n){if(!r.name)throw new Error("Missing form name");const c=e.constructor.prototype.disconnectedCallback||o.noop,s=e.constructor.prototype.firstUpdated||o.noop,i=e.constructor.prototype.connectedCallback||o.noop;e.constructor.prototype.connectedCallback=function(){if(!(this[n]instanceof t.FormGroup))throw new Error("Value provided is not an instance of FormGroup!");return this[n].setParentElement(this).setOptions(r).prepareValues(),i.call(this)},e.constructor.prototype.firstUpdated=function(){return this[n].init(),s.call(this)},e.constructor.prototype.disconnectedCallback=function(){return this[n].unsubscribe(),c.call(this)}}}exports.Form=r;
-},{"./form.group":"pIiP","./rx-fake":"TqKC"}],"DQYs":[function(require,module,exports) {
-"use strict";function r(r){for(var e in r)exports.hasOwnProperty(e)||(exports[e]=r[e])}Object.defineProperty(exports,"__esModule",{value:!0}),r(require("./form.decorator")),r(require("./form.group")),r(require("./form.tokens"));
-},{"./form.decorator":"bc55","./form.group":"pIiP","./form.tokens":"vjjz"}],"L3LI":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.InputErrorTemplate=r,exports.EmailValidator=i;var e=require("@rxdi/lit-html");function r(r){if(r&&!r.checkValidity()){const i=r.validationMessage;return e.html`
-      <style>
-        .validation-error {
-          color: #a94442;
-          font-size: 13px;
-        }
-      </style>
-      <span class="validation-error">${i}</span>
-    `}return""}function i(e){if(!e.checked)return e.classList.add("is-invalid"),{key:"remember-me",message:"Please check remember me"};e.classList.remove("is-invalid")}
-},{"@rxdi/lit-html":"R8ie"}],"ZY77":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.FormsViewComponent=void 0;var e=require("@rxdi/lit-html"),t=require("@rxdi/forms"),r=require("./error"),o=function(e,t,r,o){var i,a=arguments.length,m=a<3?t:null===o?o=Object.getOwnPropertyDescriptor(t,r):o;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)m=Reflect.decorate(e,t,r,o);else for(var s=e.length-1;s>=0;s--)(i=e[s])&&(m=(a<3?i(m):a>3?i(t,r,m):i(t,r))||m);return a>3&&m&&Object.defineProperty(t,r,m),m},i=function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)};let a=class extends e.LitElement{constructor(){super(...arguments),this.form=new t.FormGroup({password:"",email:"",rememberMe:["",[r.EmailValidator]]})}OnUpdateFirst(){}onSubmit(e){console.log(this.form.value)}hasErrors(){return this.form.updateValueAndValidity().length}};exports.FormsViewComponent=a,o([(0,t.Form)({strategy:"input",name:"my-form"}),i("design:type",Object)],a.prototype,"form",void 0),exports.FormsViewComponent=a=o([(0,e.Component)({selector:"forms-view-component",style:e.css`
-    .container {
-      margin: 0 auto;
-      width: 430px;
-    }
-  `,template(){return e.html`
-      <div class="container">
-        <form
-          name="my-form"
-          style="display: grid; margin-top: 50px;"
-          @submit=${e=>!this.hasErrors()&&this.onSubmit(e)}
-          novalidate
-        >
-          <input
-            name="email"
-            type="email"
-            value=${this.form.value.email}
-            placeholder="Email address"
-            required
-            autofocus
-          />
-          ${(0,r.InputErrorTemplate)(this.form.get("email"))}
-          <input
-            style="margin-top: 20px;"
-            type="password"
-            value=${this.form.value.password}
-            name="password"
-            placeholder="Password"
-            required=""
-          />
-          ${(0,r.InputErrorTemplate)(this.form.get("password"))}
-
-          <div>
-            <label>
-              <input name="rememberMe" type="checkbox" /> Remember me
-            </label>
-          </div>
-          <div>
-            ${(0,r.InputErrorTemplate)(this.form.get("rememberMe"))}
-          </div>
-
-          <rx-button type="submit" palette="primary">Submit</rx-button>
-        </form>
-      </div>
-
-      <markdown-reader
-        link="https://raw.githubusercontent.com/rxdi/forms/master/README.md"
-      ></markdown-reader>
-    `}})],a);
-},{"@rxdi/lit-html":"R8ie","@rxdi/forms":"DQYs","./error":"L3LI"}],"wuRl":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.ProgressViewComponent=void 0;var e=require("@rxdi/lit-html"),r=require("rxjs"),t=require("rxjs/operators"),s=function(e,r,t,s){var o,p=arguments.length,i=p<3?r:null===s?s=Object.getOwnPropertyDescriptor(r,t):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)i=Reflect.decorate(e,r,t,s);else for(var l=e.length-1;l>=0;l--)(o=e[l])&&(i=(p<3?o(i):p>3?o(r,t,i):o(r,t))||i);return p>3&&i&&Object.defineProperty(r,t,i),i};let o=class extends e.LitElement{constructor(){super(...arguments),this.reset$=new r.Subject,this.progressValue$=this.reset$.pipe((0,t.switchMap)(()=>(0,r.interval)(100).pipe((0,t.take)(101))))}reset(){this.reset$.next()}OnUpdateFirst(){this.progressValue$.subscribe(console.log),this.reset$.next()}};exports.ProgressViewComponent=o,exports.ProgressViewComponent=o=s([(0,e.Component)({selector:"progress-view-component",template(){return e.html`
-      <style>
-        :host {
-          padding: 20px;
-          display: block;
-        }
-
-        rx-progress {
-          margin: 20px 0;
-        }
-      </style>
-
-      <h3>Progress</h3>
-      <h4>Simple</h4>
-      <rx-progress value="25" palette="primary"></rx-progress>
-      <h4>Rounded</h4>
-      <rx-progress value="50" rounded palette="danger"></rx-progress>
-      <h4>Height</h4>
-      <rx-progress value="75" height="20" palette="warning"></rx-progress>
-      <h4>Label</h4>
-      <rx-progress value="45" height="20" label palette="primary"></rx-progress>
-
-      <br />
-
-      <h4>Full</h4>
-      <rx-progress
-        .value="${(0,e.async)(this.progressValue$)}"
-        height="12"
-        label
-        rounded
-        palette="primary"
-      ></rx-progress>
-
-      <rx-button palette="primary" @click="${this.reset}">reset</rx-button>
-
-      <h4>Circle</h4>
-      <rx-progress palette="primary" height="12" .value="${(0,e.async)(this.progressValue$)}" type="circle"></rx-progress>
-      <rx-progress palette="danger" height="10" value="25" type="circle"></rx-progress>
-      <rx-progress palette="warning" height="8" value="75" type="circle"></rx-progress>
-
-      <markdown-reader
-        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/progress/README.md"
-      ></markdown-reader>
-    `}})],o);
-},{"@rxdi/lit-html":"R8ie","rxjs":"iRqj","rxjs/operators":"cVrl"}],"y5Oc":[function(require,module,exports) {
+},{"@rxdi/lit-html":"R8ie","./style":"J1LA"}],"y5Oc":[function(require,module,exports) {
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0});const t=require("@rxdi/lit-html");exports.progressCss=t.css`
   .rect-auto,
   .uikit.p51 .slice,
@@ -4801,9 +4770,96 @@ module.exports="/ui-kit/glyph.e72576d6.svg";
             `}
       </div>
     `}})],l),exports.ProgressComponent=l;
-},{"@rxdi/lit-html":"R8ie","../settings":"oZ1d","./circle.css":"y5Oc"}],"Gsig":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.AppModule=void 0;var e=require("@rxdi/core"),o=require("./app.component"),n=require("@rxdi/router"),r=require("../../../src/markdown-reader"),t=require("../../../src/accordion"),i=require("./markdown-reader/markdown-regular.component"),p=require("./responsive/responsive.component"),c=require("./accordion-view/accordion-view.component"),a=require("../../../src/image"),m=require("../../../src"),d=require("../../../src/grid/grid.component"),u=require("./image-view/image-view.component"),s=require("../../../src/badge/badge.component"),w=require("../../../src/button/button.component"),l=require("../../../src/article/article.component"),v=require("../../../src/label/label.component"),q=require("../../../src/card/card.component"),C=require("../../../src/dropdown/dropdown.component"),g=require("../../../src/modal"),k=require("./badge-view/badge-vew.component"),b=require("./modal/modal-view.component"),f=require("./button-view/button-view.component"),h=require("./article-view/article-view.component"),M=require("./divider-view/divider-view.component"),R=require("../../../src/divider/divider.component"),V=require("./label-view/label-view.component"),A=require("./dropdown-view/dropdown-view.component"),x=require("../../../src/nav"),D=require("./nav-view/nav-view.component"),P=require("./nav-view/nav-component"),y=require("./card-view/card-view.component"),j=require("./forms/forms-view.component"),B=require("./progress-view/progress-view.component"),O=require("../../../src/progress/progress.component"),N=function(e,o,n,r){var t,i=arguments.length,p=i<3?o:null===r?r=Object.getOwnPropertyDescriptor(o,n):r;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)p=Reflect.decorate(e,o,n,r);else for(var c=e.length-1;c>=0;c--)(t=e[c])&&(p=(i<3?t(p):i>3?t(o,n,p):t(o,n))||p);return i>3&&p&&Object.defineProperty(o,n,p),p};let I=class{};exports.AppModule=I,exports.AppModule=I=N([(0,e.Module)({components:[i.RegularMarkdownComponent,c.AccordionViewComponent,t.AccordionComponent,a.RxImageComponent,d.GridComponent,s.BadgeComponent,w.ButtonComponent,l.ArticleComponent,R.DividerComponent,v.LabelComponent,C.DropdownComponent,P.NavComponent,q.CardComponent,O.ProgressComponent],imports:[g.ModalModule.forRoot({backdropClose:!0}),m.ReactiveUiModule.forRoot(),r.MarkdownReaderModule,x.NavModule.forRoot(),n.RouterModule.forRoot([{path:"/ui-kit",component:i.RegularMarkdownComponent},{path:"/ui-kit/markdown-reader/:namespace/:repo/:filePath",component:r.MarkdownReaderComponent},{path:"/ui-kit/responsive",component:p.ResponsiveViewComponent},{path:"/ui-kit/accordion",component:c.AccordionViewComponent},{path:"/ui-kit/image",component:u.ImageViewComponent},{path:"/ui-kit/badge",component:k.BadgeViewComponent},{path:"/ui-kit/modal",component:b.ModalViewComponent},{path:"/ui-kit/button",component:f.ButtonViewComponent},{path:"/ui-kit/article",component:h.ArticleViewComponent},{path:"/ui-kit/divider",component:M.DividerViewComponent},{path:"/ui-kit/label",component:V.LabelViewComponent},{path:"/ui-kit/dropdown",component:A.DropDownViewComponent},{path:"/ui-kit/nav",component:D.NavViewComponent},{path:"/ui-kit/card",component:y.CardViewComponent},{path:"/ui-kit/forms",component:j.FormsViewComponent},{path:"/ui-kit/progress",component:B.ProgressViewComponent}],{log:!0,baseUrl:"/ui-kit"})],bootstrap:[o.AppComponent]})],I);
-},{"@rxdi/core":"lhgc","./app.component":"XCbS","@rxdi/router":"tW8N","../../../src/markdown-reader":"X0WN","../../../src/accordion":"oj6B","./markdown-reader/markdown-regular.component":"SbH7","./responsive/responsive.component":"Onv4","./accordion-view/accordion-view.component":"cwfd","../../../src/image":"N7t6","../../../src":"fUdq","../../../src/grid/grid.component":"iXmO","./image-view/image-view.component":"bbMR","../../../src/badge/badge.component":"C2jj","../../../src/button/button.component":"Ofur","../../../src/article/article.component":"pT1A","../../../src/label/label.component":"lvFV","../../../src/card/card.component":"kpCZ","../../../src/dropdown/dropdown.component":"vZQS","../../../src/modal":"mF9g","./badge-view/badge-vew.component":"jitd","./modal/modal-view.component":"jCtu","./button-view/button-view.component":"DgQ9","./article-view/article-view.component":"XMfu","./divider-view/divider-view.component":"LW6G","../../../src/divider/divider.component":"OXJN","./label-view/label-view.component":"JKyV","./dropdown-view/dropdown-view.component":"B4BC","../../../src/nav":"e2p2","./nav-view/nav-view.component":"p3Sc","./nav-view/nav-component":"ynE3","./card-view/card-view.component":"wymD","./forms/forms-view.component":"ZY77","./progress-view/progress-view.component":"wuRl","../../../src/progress/progress.component":"aOBu"}],"ZCfc":[function(require,module,exports) {
+},{"@rxdi/lit-html":"R8ie","../settings":"oZ1d","./circle.css":"y5Oc"}],"U6nI":[function(require,module,exports) {
+"use strict";var t,e=this&&this.__decorate||function(t,e,o,s){var i,r=arguments.length,l=r<3?e:null===s?s=Object.getOwnPropertyDescriptor(e,o):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)l=Reflect.decorate(t,e,o,s);else for(var n=t.length-1;n>=0;n--)(i=t[n])&&(l=(r<3?i(l):r>3?i(e,o,l):i(e,o))||l);return r>3&&l&&Object.defineProperty(e,o,l),l},o=this&&this.__metadata||function(t,e){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(t,e)};Object.defineProperty(exports,"__esModule",{value:!0});const s=require("@rxdi/lit-html"),i=require("../settings");let r=class extends s.LitElement{constructor(){super(...arguments),this.stroke="#FFF",this.strokeWidth="1.4",this.width="20",this.height="20"}};e([s.property({type:String}),o("design:type","function"==typeof(t=void 0!==i.PalettesUnion&&i.PalettesUnion)?t:Object)],r.prototype,"palette",void 0),e([s.property(),o("design:type",Object)],r.prototype,"stroke",void 0),e([s.property(),o("design:type",Object)],r.prototype,"strokeWidth",void 0),e([s.property(),o("design:type",Object)],r.prototype,"width",void 0),e([s.property(),o("design:type",Object)],r.prototype,"height",void 0),r=e([s.Component({selector:"rx-close",template(){return s.html`
+      <style>
+        svg line {
+          stroke-width: ${this.strokeWidth};
+        }
+        svg:hover {
+          stroke: blue;
+        }
+      </style>
+      ${this.palette?s.html`
+            <style>
+              svg line {
+                stroke: var(--${this.palette}-bg-color);
+              }
+            </style>
+          `:s.html`
+            <style>
+              svg line {
+                stroke: ${this.stroke};
+              }
+            </style>
+          `}
+      ${s.svg`<svg
+        width=${this.width}
+        height=${this.height}
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+        data-svg="close-large">
+          <line x1="1" y1="1" x2="19" y2="19"></line>
+          <line x1="19" y1="1" x2="1" y2="19"></line>
+      </svg>`}
+    `}})],r),exports.CloseComponent=r;
+},{"@rxdi/lit-html":"R8ie","../settings":"oZ1d"}],"ynE3":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.NavComponent=void 0;var t,e=require("@rxdi/lit-html"),r=require("@rxdi/core"),a=require("../../../../src/nav"),o=function(t,e,r,a){var o,i=arguments.length,n=i<3?e:null===a?a=Object.getOwnPropertyDescriptor(e,r):a;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)n=Reflect.decorate(t,e,r,a);else for(var u=t.length-1;u>=0;u--)(o=t[u])&&(n=(i<3?o(n):i>3?o(e,r,n):o(e,r))||n);return i>3&&n&&Object.defineProperty(e,r,n),n},i=function(t,e){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(t,e)};let n=class extends e.LitElement{};exports.NavComponent=n,o([(0,r.Inject)(a.Nav),i("design:type","function"==typeof(t=void 0!==a.Nav&&a.Nav)?t:Object)],n.prototype,"nav",void 0),exports.NavComponent=n=o([(0,e.Component)({selector:"nav-component",template(){return e.html`
+      <style>
+        rx-button {
+          width: 200px;
+        }
+      </style>
+      <div style="top:0px;background: #1c1f24;display: grid">
+        <a href="/ui-kit/"><rx-button palette="primary">Markdown Link</rx-button> </a>
+        <a href="/ui-kit/markdown-reader/rxdi/ui-components/README.md"
+          ><rx-button palette="primary">Markdown Route Params</rx-button>
+        </a>
+        <a href="/ui-kit/responsive"
+          ><rx-button palette="primary">Responsive Service</rx-button>
+        </a>
+        <a href="/ui-kit/accordion"
+          ><rx-button palette="primary">Accordion</rx-button>
+        </a>
+        <a href="/ui-kit/image"><rx-button palette="primary">Image</rx-button> </a>
+        <a href="/ui-kit/badge"><rx-button palette="primary">Badge</rx-button> </a>
+        <a href="/ui-kit/modal"><rx-button palette="primary">Modal</rx-button> </a>
+        <a href="/ui-kit/button"><rx-button palette="primary">Button</rx-button> </a>
+        <a href="/ui-kit/article"><rx-button palette="primary">Article</rx-button> </a>
+        <a href="/ui-kit/divider"><rx-button palette="primary">Divider</rx-button> </a>
+        <a href="/ui-kit/label"><rx-button palette="primary">Label</rx-button> </a>
+        <a href="/ui-kit/nav"><rx-button palette="primary">Nav</rx-button> </a>
+        <a href="/ui-kit/dropdown"><rx-button palette="primary">Dropdown</rx-button> </a>
+        <a href="/ui-kit/card"><rx-button palette="primary">Card</rx-button> </a>
+        <a href="/ui-kit/forms"><rx-button palette="primary">Forms</rx-button> </a>
+        <a href="/ui-kit/progress"><rx-button palette="primary">Progress</rx-button> </a>
+
+        <!-- <rx-button
+          palette="danger"
+          @click=${()=>this.nav.setStylesSubject(e.css`
+              :host {
+                position: absolute;
+              }
+            `)}
+          >Absolute</rx-button
+        >
+
+        <rx-button
+          palette="danger"
+          @click=${()=>this.nav.setStylesSubject(e.css`
+              :host {
+                position: relative;
+              }
+            `)}
+          >Relative</rx-button
+        > -->
+      </div>
+    `}})],n);
+},{"@rxdi/lit-html":"R8ie","@rxdi/core":"lhgc","../../../../src/nav":"e2p2"}],"ThiH":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.AppComponentsModule=void 0;var e=require("@rxdi/core"),o=require("../../../src/accordion"),r=require("../../../src/image"),n=require("../../../src/grid/grid.component"),t=require("../../../src/badge/badge.component"),c=require("../../../src/button/button.component"),p=require("../../../src/article/article.component"),i=require("../../../src/label/label.component"),d=require("../../../src/card/card.component"),m=require("../../../src/dropdown/dropdown.component"),s=require("../../../src/if/if.component"),u=require("../../../src/divider/divider.component"),a=require("../../../src/progress/progress.component"),l=require("../../../src/close/close.component"),C=require("./markdown-reader/markdown-regular.component"),q=require("./accordion-view/accordion-view.component"),g=require("./nav-view/nav-component"),f=function(e,o,r,n){var t,c=arguments.length,p=c<3?o:null===n?n=Object.getOwnPropertyDescriptor(o,r):n;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)p=Reflect.decorate(e,o,r,n);else for(var i=e.length-1;i>=0;i--)(t=e[i])&&(p=(c<3?t(p):c>3?t(o,r,p):t(o,r))||p);return c>3&&p&&Object.defineProperty(o,r,p),p};let v=class{};exports.AppComponentsModule=v,exports.AppComponentsModule=v=f([(0,e.Module)({components:[C.RegularMarkdownComponent,q.AccordionViewComponent,o.AccordionComponent,r.RxImageComponent,n.GridComponent,t.BadgeComponent,c.ButtonComponent,p.ArticleComponent,u.DividerComponent,i.LabelComponent,m.DropdownComponent,g.NavComponent,d.CardComponent,a.ProgressComponent,s.IfComponent,l.CloseComponent]})],v);
+},{"@rxdi/core":"lhgc","../../../src/accordion":"oj6B","../../../src/image":"N7t6","../../../src/grid/grid.component":"iXmO","../../../src/badge/badge.component":"C2jj","../../../src/button/button.component":"Ofur","../../../src/article/article.component":"pT1A","../../../src/label/label.component":"lvFV","../../../src/card/card.component":"kpCZ","../../../src/dropdown/dropdown.component":"vZQS","../../../src/if/if.component":"fOvE","../../../src/divider/divider.component":"OXJN","../../../src/progress/progress.component":"aOBu","../../../src/close/close.component":"U6nI","./markdown-reader/markdown-regular.component":"SbH7","./accordion-view/accordion-view.component":"cwfd","./nav-view/nav-component":"ynE3"}],"Gsig":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.AppModule=void 0;var e=require("@rxdi/core"),o=require("./app.component"),r=require("../../../src/markdown-reader"),t=require("../../../src"),p=require("../../../src/modal"),u=require("../../../src/nav"),l=require("./app.routing.module"),d=require("./app.components.module"),n=function(e,o,r,t){var p,u=arguments.length,l=u<3?o:null===t?t=Object.getOwnPropertyDescriptor(o,r):t;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)l=Reflect.decorate(e,o,r,t);else for(var d=e.length-1;d>=0;d--)(p=e[d])&&(l=(u<3?p(l):u>3?p(o,r,l):p(o,r))||l);return u>3&&l&&Object.defineProperty(o,r,l),l};let c=class{};exports.AppModule=c,exports.AppModule=c=n([(0,e.Module)({imports:[d.AppComponentsModule,l.AppRoutingModule,p.ModalModule.forRoot({backdropClose:!0}),t.ReactiveUiModule.forRoot(),r.MarkdownReaderModule,u.NavModule.forRoot()],bootstrap:[o.AppComponent]})],c);
+},{"@rxdi/core":"lhgc","./app.component":"XCbS","../../../src/markdown-reader":"X0WN","../../../src":"fUdq","../../../src/modal":"mF9g","../../../src/nav":"e2p2","./app.routing.module":"MVQp","./app.components.module":"ThiH"}],"ZCfc":[function(require,module,exports) {
 "use strict";var e=require("@rxdi/core"),o=require("./src/app/app.module");window.addEventListener("load",()=>{(0,e.Bootstrap)(o.AppModule,{init:!1}).subscribe(()=>console.log("App Started!"),e=>console.error(e))}),module.hot&&module.hot.dispose(()=>document.body.innerHTML="");
 },{"@rxdi/core":"lhgc","./src/app/app.module":"Gsig"}]},{},["ZCfc"], null)
-//# sourceMappingURL=/ui-kit/main.f5ac3427.js.map
+//# sourceMappingURL=/ui-kit/main.06bee181.js.map
