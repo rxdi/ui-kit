@@ -60,6 +60,10 @@ import { ProgressComponent } from '../../../src/progress/progress.component';
     RouterModule.forRoot(
       [
         {
+          path: '/',
+          redirect: '/ui-kit'
+        },
+        {
           path: '/ui-kit',
           component: RegularMarkdownComponent
         },

@@ -42,8 +42,6 @@ import { InputErrorTemplate, EmailValidator } from './error';
           />
           ${InputErrorTemplate(this.form.get('password'))}
 
-          ${this['pesho'] ? this['pesho'].dirty : 'noo'}
-
           <div>
             <label>
               <input name="rememberMe" type="checkbox" required /> Remember me

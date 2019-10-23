@@ -1,11 +1,8 @@
 import { html } from '@rxdi/lit-html';
-import { InputErrorMessage } from '@rxdi/forms';
+import { InputErrorMessage, AbstractInput } from '@rxdi/forms';
 
-export function InputErrorTemplate(input: HTMLInputElement) {
-  if (
-    // (input && (input['dirty'] || input['touched'])) ||
-    (input && !input.checkValidity())
-  ) {
+export function InputErrorTemplate(input: AbstractInput) {
+  if (input && !input.valid && (input.dirty || input.touched)) {
     const message = input.validationMessage;
     // const key = Object.keys(InputValidityState).filter(o => input.validity[o])[0];
     // message = translate(key, 'bg_BG');
