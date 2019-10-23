@@ -16,6 +16,7 @@ import { ArticleComponent } from '../../../src/article/article.component';
 import { LabelComponent } from '../../../src/label/label.component';
 import { CardComponent } from '../../../src/card/card.component';
 import { DropdownComponent } from '../../../src/dropdown/dropdown.component';
+import { IfComponent } from '../../../src/if/if.component';
 import { ModalModule } from '../../../src/modal';
 import { BadgeViewComponent } from './badge-view/badge-vew.component';
 import { ModalViewComponent } from './modal/modal-view.component';
@@ -48,7 +49,8 @@ import { ProgressComponent } from '../../../src/progress/progress.component';
     DropdownComponent,
     NavComponent,
     CardComponent,
-    ProgressComponent
+    ProgressComponent,
+    IfComponent
   ],
   imports: [
     ModalModule.forRoot({

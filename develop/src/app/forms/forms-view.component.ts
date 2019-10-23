@@ -42,6 +42,8 @@ import { InputErrorTemplate, EmailValidator } from './error';
           />
           ${InputErrorTemplate(this.form.get('password'))}
 
+          <rx-if .exp=${() => this.form.get('password').invalid}>dadadaa</rx-if>
+
           <div>
             <label>
               <input name="rememberMe" type="checkbox" required /> Remember me
