@@ -1,5 +1,7 @@
 import { Component, html, LitElement, css } from '@rxdi/lit-html';
 import { ArticleData } from '../article-view/data';
+import { Inject } from '@rxdi/core';
+import { ModalService } from '../../../../src/modal/modal.service';
 
 @Component({
   selector: 'card-view',
@@ -46,4 +48,15 @@ import { ArticleData } from '../article-view/data';
     `;
   }
 })
-export class CardViewComponent extends LitElement {}
+export class CardViewComponent extends LitElement {
+  @Inject(ModalService) private modalService: ModalService;
+  openModalArticle() {
+    this.modalService
+      .openCustomModal({
+        template: html`
+          <rx-article .data=${ArticleData.call(this)}></rx-article>
+        `
+      })
+      .subscribe();
+  }
+}

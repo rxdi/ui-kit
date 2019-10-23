@@ -34,22 +34,22 @@ import { InputErrorTemplate, EmailValidator } from './error';
           <input
             style="margin-top: 20px;"
             type="password"
+            required
+            #pesho
             value=${this.form.value.password}
             name="password"
             placeholder="Password"
-            required=""
           />
           ${InputErrorTemplate(this.form.get('password'))}
 
+          ${this['pesho'] ? this['pesho'].dirty : 'noo'}
+
           <div>
             <label>
-              <input name="rememberMe" type="checkbox" /> Remember me
+              <input name="rememberMe" type="checkbox" required /> Remember me
             </label>
           </div>
-          <div>
-            ${InputErrorTemplate(this.form.get('rememberMe'))}
-          </div>
-
+          ${InputErrorTemplate(this.form.get('rememberMe'))}
           <rx-button type="submit" palette="primary">Submit</rx-button>
         </form>
       </div>

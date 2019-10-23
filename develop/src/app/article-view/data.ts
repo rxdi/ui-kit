@@ -1,7 +1,8 @@
 import { html } from '@rxdi/lit-html';
 import { ArticleViewComponent } from './article-view.component';
+import { CardViewComponent } from '../card-view/card-view.component';
 
-export function ArticleData(this: ArticleViewComponent) {
+export function ArticleData(this: ArticleViewComponent | CardViewComponent) {
   return {
     heading: 'My Super Heading',
     meta: html`
