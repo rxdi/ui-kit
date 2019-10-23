@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@rxdi/core@0.7.31":
-  version "0.7.31"
-  resolved "https://registry.yarnpkg.com/@rxdi/core/-/core-0.7.31.tgz#558bf73c72a81692cfa4442658804a5befd6c978"
-  integrity sha512-YCEaiL8MPDbKnWOsS+b/jhFn8M9gG5qh1g6YK1mHA3zxAWEULm5QEf6PeKDIrVZT/UNVBjyLDR7Oqu6J5aYKFw==
+"@rxdi/core@0.7.34":
+  version "0.7.34"
+  resolved "https://registry.yarnpkg.com/@rxdi/core/-/core-0.7.34.tgz#d9366f59af2857b3d63a0ef710f252f6a5f1cc24"
+  integrity sha512-e055WjV/ayjIkqKX3CwJXBxJ1wemxr8AevXNs6HN8OdiqunxSnmnDfAvy2Z5/DmwrspVcPHD8GkE6twtaP0DUA==
   dependencies:
     reflect-metadata "0.1.13"
     rxjs "6.5.2"
@@ -16,20 +16,20 @@
   resolved "https://registry.yarnpkg.com/@rxdi/firelink/-/firelink-0.0.21.tgz#4ff905fa781e52f6ab06c41dad5fd81e57e9a948"
   integrity sha512-RhaUSlTb18h09pJiMk8tQgc6ZF+wvvaREfZX7c3W+uutzcPPc8CS2e6Y5Hm5UQ8YFeAs4brTJT/y/pI+yNglrA==
 
-"@rxdi/forms@^0.7.31":
-  version "0.7.32"
-  resolved "https://registry.yarnpkg.com/@rxdi/forms/-/forms-0.7.32.tgz#285b71bbf60452eb04f1eb018f2324838260f437"
-  integrity sha512-pM2miadnfEyZIcCaSJy9y54ye/yF81w5U1EO3S9qIDsPKAeuqWGlV0W6Qk1KUY3vaB3hdOzqQ6YL9NZwooXRKw==
+"@rxdi/forms@^0.7.35":
+  version "0.7.36"
+  resolved "https://registry.yarnpkg.com/@rxdi/forms/-/forms-0.7.36.tgz#d62775147d45a50f05fd7f10b2a455a120b473a5"
+  integrity sha512-wuoNi3U+SsPPxd6wgfQ2SAjxudqFMk90XkGHdGKp0aHzFlWVdFll6Puby6udSPZ8sgVAos3MHdys7L9hj4QJ5A==
 
-"@rxdi/lit-html@0.7.31":
-  version "0.7.31"
-  resolved "https://registry.yarnpkg.com/@rxdi/lit-html/-/lit-html-0.7.31.tgz#a64521d0d63300620f5bf3b2af4c13f5600970ba"
-  integrity sha512-esmYU3MCb+RgGBiFuVLVmQdOv7KOsqLSqfNSp8lmPG+ZRNzNivtCFyxHezBxOr4rDeLaCR+IQ/9JZjwv7yyH6g==
+"@rxdi/lit-html@0.7.34":
+  version "0.7.34"
+  resolved "https://registry.yarnpkg.com/@rxdi/lit-html/-/lit-html-0.7.34.tgz#f1e2d3d5640c4d2b01d1006f203ac1ad74d7c840"
+  integrity sha512-tm/JauzZELpKjZkeFoB6j9OpuKeNF5bhy0RA7EHFl956wrd9TiCUry/2UoETf1WU2BIIVS5sy97GiP+jlA09Ew==
 
-"@rxdi/router@0.7.31":
-  version "0.7.31"
-  resolved "https://registry.yarnpkg.com/@rxdi/router/-/router-0.7.31.tgz#105ad404a570481c4be097ff43219f7212a79606"
-  integrity sha512-D3j3c0OheN/tY3mMHoxhWHuYKKXsPqm3TbaDEurlI+2NX/fV1puRuxSu1MFjKSm+OJ5/UmXSnBVccB0wFTDIyA==
+"@rxdi/router@0.7.34":
+  version "0.7.34"
+  resolved "https://registry.yarnpkg.com/@rxdi/router/-/router-0.7.34.tgz#454ae6bcb9c906f5c1c94607023423f373e28876"
+  integrity sha512-53t1xCbQ3MglZ8FUUnZWkKMZKxaR7am0OEOE1zn67DAUYufuZVrSjLipepGFztljkq5iqk7jtnifvoFgM0GskA==
   dependencies:
     "@vaadin/router" "^1.2.0"
 

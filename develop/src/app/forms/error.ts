@@ -7,7 +7,7 @@ export function InputErrorTemplate(input: AbstractInput) {
     // const key = Object.keys(InputValidityState).filter(o => input.validity[o])[0];
     // message = translate(key, 'bg_BG');
     return html`
-      <span style="color: #a94442;font-size: 13px;" class="validation-error">${message}</span>
+      <span style="color: #a94442;font-size: 13px;height: 50px;" class="validation-error">${message}</span>
     `;
   }
   return '';
