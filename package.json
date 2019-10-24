@@ -10,7 +10,7 @@
   },
   "scripts": {
     "start": "parcel ./develop/index.html --out-dir build/client",
-    "build-all": "npm run build && cp -r ./dist/* ./src && bolt ws exec -- npm run build",
+    "build-all": "npm run build && rm -rf ./docs && cp -r ./dist/* ./src && bolt ws exec -- npm run build && cp -r ./docs/index.html ./docs/404.html",
     "patch": "rm -rf dist && tsc && cp -r ./dist/* . && npm version patch && npm publish --update-readme --access public && npm run clean && bolt",
     "clean": "git clean -dxf",
     "build": "rm -rf dist && tsc && cp -r ./dist/* ./src"

@@ -1,4 +1,4 @@
-import { html, LitElement, Component, css } from '@rxdi/lit-html';
+import { html, LitElement, Component, css, styleMap } from '@rxdi/lit-html';
 import { FormGroup, Form } from '@rxdi/forms';
 import { InputErrorTemplate, EmailValidator } from './error';
 import { InputStyle } from '@rxdi/ui-kit/styles/form/input';
@@ -46,15 +46,27 @@ import { InputStyle } from '@rxdi/ui-kit/styles/form/input';
             ${InputErrorTemplate(this.form.get('email'))}
           </div>
           <input
+            name="number"
+            type="number"
+            value=${this.form.value.number}
+            placeholder="Email addressNumber"
+            class="rx-input"
+            required
+            autofocus
+          />
+          <div class="height">
+            ${InputErrorTemplate(this.form.get('number'))}
+          </div>
+          <input
             style="margin-top: 20px;"
             type="password"
             required
             class="rx-input"
-            #pesho
             value=${this.form.value.password}
             name="password"
             placeholder="Password"
           />
+
           <div class="height">
             ${InputErrorTemplate(this.form.get('password'))}
           </div>
@@ -67,37 +79,56 @@ import { InputStyle } from '@rxdi/ui-kit/styles/form/input';
           </select>
           <div class="height"></div>
           <input
-            class="rx-checkbox"
-            type="checkbox"
-            value=${this.form.value.checkbox}
-            name="checkbox"
+            style="margin-top: 20px;"
+            type="text"
+            class="rx-input"
+            value=${this.form.value.disabled}
+            name="disabled"
+            placeholder="Disabled input"
           />
           <div class="height"></div>
-          <input
-            class="rx-checkbox"
-            .checked=${true}
-            type="checkbox"
-            value=${this.form.value.checkbox}
-            name="checkbox"
-          />
+          <label>
+            <input
+              class="rx-checkbox"
+              type="checkbox"
+              value="free"
+              name="checkbox"
+            />
+            Free
+          </label>
           <div class="height"></div>
-          <input
-            class="rx-radio"
-            type="radio"
-            value=${this.form.value.checkbox}
-            name="checkbox"
-          />
+          <label>
+            <input
+              class="rx-checkbox"
+              type="checkbox"
+              value="monthly"
+              name="checkbox"
+            />
+            Monthly
+          </label>
           <div class="height"></div>
-          <input
-            class="rx-radio"
-            .checked=${true}
-            type="radio"
-            value=${this.form.value.checkbox}
-            name="checkbox"
-          />
+          <label>
+            <input
+              class="rx-checkbox"
+              type="checkbox"
+              value="premium"
+              name="checkbox"
+            />
+            Premium
+          </label>
+          <div class="height"></div>
+          <label>
+            <input class="rx-radio" type="radio" value="1" name="radio" />
+            Radio 1
+          </label>
+          <div class="height"></div>
+          <label>
+            <input class="rx-radio" type="radio" value="2" name="radio" />
+            Radio 2
+          </label>
 
           <div class="height">
-            ${InputErrorTemplate(this.form.get('select'))}
+            ${InputErrorTemplate(this.form.get('radio'))}
           </div>
           <textarea
             class="rx-textarea"
@@ -107,10 +138,9 @@ import { InputStyle } from '@rxdi/ui-kit/styles/form/input';
 
           <!-- <rx-if .exp=${() =>
             this.form.get('password').invalid}>dadadaa</rx-if> -->
-
           <div>
             <label>
-              <input name="rememberMe" type="checkbox" required /> Remember me
+              <input name="rememberMe" value="gosho" type="checkbox" required /> Remember me
             </label>
           </div>
           <div class="height">
@@ -133,13 +163,19 @@ export class FormsViewComponent extends LitElement {
   })
   private form = new FormGroup({
     password: '',
+    disabled: '',
     email: '',
     rememberMe: ['', [EmailValidator]],
     select: '',
-    checkbox: ''
+    checkbox: '',
+    radio: '',
+    number: 1
   });
 
-  OnUpdateFirst() {}
+  OnUpdateFirst() {
+    this.form.get('disabled').classList.add('rx-disabled');
+    this.form.get('disabled').disabled = true;
+  }
 
   onSubmit(event: Event) {
     console.log(this.form.value);

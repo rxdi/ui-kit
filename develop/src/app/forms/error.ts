@@ -3,13 +3,36 @@ import { InputErrorMessage, AbstractInput } from '@rxdi/forms';
 
 export function InputErrorTemplate(input: AbstractInput) {
   if (input && input.invalid && (input.dirty || input.touched)) {
-    const message = input.validationMessage;
-    // const key = Object.keys(InputValidityState).filter(o => input.validity[o])[0];
-    // message = translate(key, 'bg_BG');
-    return html`
-      <span style="color: #a94442;font-size: 13px;height: 50px;" class="validation-error">${message}</span>
-    `;
+
   }
+
+  if (input) {
+    if (input && input.invalid && (input.dirty || input.touched)) {
+      const message = input.validationMessage;
+      // const key = Object.keys(InputValidityState).filter(o => input.validity[o])[0];
+      // message = translate(key, 'bg_BG');
+      // input.classList.remove('rx-success');
+      input.classList.add('rx-danger');
+      input.classList.add('rx-outline');
+      return html`
+        <span
+          style="color: #a94442;font-size: 13px;height: 50px;"
+          class="validation-error"
+          >${message}</span
+        >
+      `;
+    } else if (input.valid) {
+      input.classList.remove('rx-danger');
+      input.classList.remove('rx-outline');
+      // input.classList.add('rx-success');
+    }
+    if (input.disabled) {
+      input.classList.add('rx-disabled');
+    } else {
+      input.classList.remove('rx-disabled');
+    }
+  }
+
   return '';
 }
 

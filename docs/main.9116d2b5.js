@@ -2931,24 +2931,40 @@ module.exports="/ui-kit/glyph.e72576d6.svg";
 },{}],"TqKC":[function(require,module,exports) {
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0});class e{constructor(){this.o=new Map}unsubscribe(){[...this.o.values()].forEach(e=>this.o.delete(e))}}exports.$Subscription=e;class t extends e{constructor(e){super(),this.init=!0,this.fn=e}subscribe(e){return this.o.set(e,e),"function"==typeof this.fn&&this.init&&(this.fn(this),this.init=!1),{unsubscribe:()=>{this.o.delete(e)}}}complete(){this.unsubscribe()}next(e){[...this.o.values()].forEach(t=>t(e))}}exports.$Observable=t;class r extends t{constructor(e){"function"==typeof e&&super(e),super(null),this.setValue(e)}setValue(e){this.v=e}next(e){this.setValue(e),super.next(e)}getValue(){return this.v}asObservable(){return this}}function s(){try{return require("rxjs").BehaviorSubject}catch(e){}return r}function n(){try{return require("rxjs").Observable}catch(e){}return t}function u(){try{return require("rxjs").Subscription}catch(t){}return e}function i(){}function o(e){return new(s())(e)}function c(e){return new(n())(e)}function h(){return new(u())}exports.$BehaviorSubject=r,exports.noop=i,exports.BehaviorSubject=o,exports.Observable=c,exports.Subscription=h;
 },{"rxjs":"iRqj"}],"pIiP":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const t=require("./form.tokens"),e=require("./rx-fake");class r{constructor(t,r){this.validators=new Map,this.valid=!0,this.invalid=!1,this.errors={},this.errorMap=new Map,this.inputs=new Map,this.options={},this._valueChanges=new e.BehaviorSubject(t)}init(){this.setFormElement(this.querySelectForm(this.parentElement.shadowRoot||this.parentElement)).setInputs(this.mapEventToInputs(this.querySelectorAllInputs()))}prepareValues(){return Object.keys(this.value).forEach(t=>{const e=this.value[t];if(this.errors[t]=this.errors[t]||{},e.constructor===Array){if(e[1]&&e[1].constructor===Array&&e[1].forEach(e=>{const r=this.validators.get(t)||[];this.validators.set(t,[...r,e])}),e[0].constructor!==String&&e[0].constructor!==Number&&e[0].constructor!==Boolean)throw new Error("Input value must be of type 'string', 'boolean' or 'number'");this.value[t]=e[0]}}),this}setParentElement(t){return this.parentElement=t,this}getParentElement(){return this.parentElement}setOptions(t){return this.options=t,this}getOptions(){return this.options}get valueChanges(){return this._valueChanges.asObservable()}updateValueAndValidity(){this.resetErrors();const t=this.querySelectorAllInputs().map(t=>(t.setCustomValidity(""),this.setElementValidity(t),this.setElementDirty(t),t)).map(t=>this.validate(t)).filter(t=>t.errors.length);return this.getParentElement().requestUpdate(),t}updateValueAndValidityOnEvent(t){const e=this;return function(r){e.setElementDirty(this);const s=[...e.getFormElement().querySelectorAll(`input[name="${this.name}"]`).values()].length;let i=this.value;1!==s||"checkbox"!==this.type&&"radio"!==this.type||(i=String(this.checked)),e.options.multi&&s>1&&([...e.getFormElement().querySelectorAll("input:checked").values()].forEach(t=>t.checked=!1),this.checked=!0),e.resetErrors();const n=e.applyValidationContext(e.validate(this));return e.options.strict?(n&&(e.setElementValidity(this,n),e.setValue(this.name,i)),e.parentElement.requestUpdate(),t.call(e.parentElement,r)):(e.setElementValidity(this,n),e.setValue(this.name,i),e.parentElement.requestUpdate(),t.call(e.parentElement,r))}}applyValidationContext({errors:t,element:e}){const r=this.getFormElement();return t.length?(this.invalid=r.invalid=!0,this.valid=r.valid=!1,!1):(this.errors[e.name]={},this.invalid=r.invalid=!1,this.valid=r.valid=!0,!0)}querySelectForm(t){const e=t.querySelector(`form[name="${this.options.name}"]`);if(!e)throw new Error(`Form element with name "${this.options.name}" not present inside ${this.getParentElement().outerHTML} component`);return e.addEventListener("submit",t=>{t.preventDefault(),t.stopPropagation()}),e}querySelectorAllInputs(){return[...this.form.querySelectorAll("input").values()].filter(t=>this.isInputPresentOnStage(t)).filter(t=>!!t.name)}mapEventToInputs(t=[]){return t.map(t=>{const e=`on${this.options.strategy}`;t[e]||(t[e]=function(){});const r=Object.keys(t.attributes).map(e=>t.attributes[e].name.startsWith("#")?t.attributes[e]:null).filter(t=>!!t);if(r.length){const e=r.find(t=>t.name.startsWith("#"));this.parentElement[e.name.replace("#","")]=t}return t.addEventListener("blur",()=>{this.setElementDirty(t),this.parentElement.requestUpdate(),this.setElementValidity(t)}),t[e]=this.updateValueAndValidityOnEvent(t[e]),t})}setElementValidity(t,e){const r=e||this.applyValidationContext(this.validate(t));t.valid=r,t.invalid=!r}setElementDirty(t){t.touched=!0,t.dirty=!0}isInputPresentOnStage(t){if('<input type="submit" style="display: none;">'===t.outerHTML)return;const e=Object.keys(this.value).filter(e=>e===t.name);if(!e.length)throw new Error(`Missing input element with name ${t.name} for form ${this.getFormElement().name}`);return e.length}validate(e){let r=[];return e.setCustomValidity(""),e.checkValidity()?(r=this.mapInputErrors(e)).length?(this.setFormValidity(!1),e.setCustomValidity(r[0].message),{element:e,errors:r}):{errors:[],element:e}:{errors:r.concat(Object.keys(t.InputValidityState).map(t=>e.validity[t]?{key:t,message:e.validationMessage}:null).filter(t=>!!t)),element:e}}mapInputErrors(t){return(this.validators.get(t.name)||[]).map(e=>{this.errors[t.name]=this.errors[t.name]||{};const r=e.bind(this.getParentElement())(t);if(r&&r.key)return this.errors[t.name][r.key]=r.message,this.errorMap.set(e,r.key),{key:r.key,message:r.message};this.errorMap.has(e)&&delete this.errors[t.name][this.errorMap.get(e)]}).filter(t=>!!t)}get(t){return this.inputs.get(t)}getError(t,e){return this.errors[t][e]}hasError(t,e){return!!this.getError(t,e)}reset(){this.form.reset(),this.resetErrors(),this.setFormValidity(),this.inputs.clear()}setFormValidity(t=!0){this.valid=t,this.invalid=!t}resetErrors(){this.errors=Object.keys(this.errors).reduce((t,e)=>(t[e]={},t),{}),this.errorMap.clear()}get value(){return this._valueChanges.getValue()}set value(t){this._valueChanges.next(t)}unsubscribe(){this.reset(),this._valueChanges.unsubscribe()}getValue(t){return this.value[t]}setValue(t,e){const r=this.value;return r[t]=e,this.value=r,r}setFormValue(t){this.value=t}setFormElement(t){return this.form=t,this}setInputs(t){this.inputs=new Map(t.map(t=>[t.name,t]))}getFormElement(){return this.form}}exports.FormGroup=r;
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const e=require("./form.tokens"),t=require("./rx-fake");class r{constructor(e,r){this.validators=new Map,this.valid=!0,this.invalid=!1,this.errors={},this.errorMap=new Map,this.inputs=new Map,this.options={},this._valueChanges=new t.BehaviorSubject(e)}init(){this.setFormElement(this.querySelectForm(this.parentElement.shadowRoot||this.parentElement)).setInputs(this.mapEventToInputs(this.querySelectorAllInputs()))}prepareValues(){return Object.keys(this.value).forEach(e=>{const t=this.value[e];if(this.errors[e]=this.errors[e]||{},t.constructor===Array){if(t[1]&&t[1].constructor===Array&&t[1].forEach(t=>{const r=this.validators.get(e)||[];this.validators.set(e,[...r,t])}),t[0].constructor!==String&&t[0].constructor!==Number&&t[0].constructor!==Boolean)throw new Error("Input value must be of type 'string', 'boolean' or 'number'");this.value[e]=t[0]}}),this}setParentElement(e){return this.parentElement=e,this}getParentElement(){return this.parentElement}setOptions(e){return this.options=e,this}getOptions(){return this.options}get valueChanges(){return this._valueChanges.asObservable()}updateValueAndValidity(){this.resetErrors();const e=this.querySelectorAllInputs().map(e=>(e.setCustomValidity(""),this.setElementValidity(e),this.setElementDirty(e),e)).map(e=>this.validate(e)).filter(e=>e.errors.length);return this.getParentElement().requestUpdate(),e}updateValueAndValidityOnEvent(e){const t=this;return function(r){t.setElementDirty(this);const s=[...t.getFormElement().querySelectorAll(`input[name="${this.name}"]`).values()].length;let i=this.value;1!==s||"checkbox"!==this.type&&"radio"!==this.type||(i=String(this.checked)),"number"===this.type&&(i=Number(i));const n=[...t.getFormElement().querySelectorAll(`input[name="${this.name}"]:checked`).values()];!t.options.multi&&s>1&&(i=n.map(e=>e.value)),t.options.multi&&s>1&&(n.forEach(e=>e.checked=!1),this.checked=!0),t.resetErrors();const a=t.applyValidationContext(t.validate(this));return t.options.strict?(a&&(t.setElementValidity(this,a),t.setValue(this.name,i)),t.parentElement.requestUpdate(),e.call(t.parentElement,r)):(t.setElementValidity(this,a),t.setValue(this.name,i),t.parentElement.requestUpdate(),e.call(t.parentElement,r))}}applyValidationContext({errors:e,element:t}){const r=this.getFormElement();return e.length?(this.invalid=r.invalid=!0,this.valid=r.valid=!1,!1):(this.errors[t.name]={},this.invalid=r.invalid=!1,this.valid=r.valid=!0,!0)}querySelectForm(e){const t=e.querySelector(`form[name="${this.options.name}"]`);if(!t)throw new Error(`Form element with name "${this.options.name}" not present inside ${this.getParentElement().outerHTML} component`);return t.addEventListener("submit",e=>{e.preventDefault(),e.stopPropagation()}),t}querySelectAll(e){return[...this.form.querySelectorAll(e).values()]}querySelectorAllInputs(){return[...this.querySelectAll("input"),...this.querySelectAll("select")].filter(e=>this.isInputPresentOnStage(e)).filter(e=>!!e.name)}mapEventToInputs(e=[]){return e.map(e=>{const t=`on${this.options.strategy}`;e[t]||(e[t]=function(){});const r=Object.keys(e.attributes).map(t=>e.attributes[t].name.startsWith("#")?e.attributes[t]:null).filter(e=>!!e);if(r.length){const t=r.find(e=>e.name.startsWith("#"));this.parentElement[t.name.replace("#","")]=e}return e.addEventListener("blur",()=>{this.setElementDirty(e),this.parentElement.requestUpdate(),this.setElementValidity(e)}),e[t]=this.updateValueAndValidityOnEvent(e[t]),e})}setElementValidity(e,t){const r=t||this.applyValidationContext(this.validate(e));e.valid=r,e.invalid=!r}setElementDirty(e){e.touched=!0,e.dirty=!0}isInputPresentOnStage(e){if('<input type="submit" style="display: none;">'===e.outerHTML)return;const t=Object.keys(this.value).filter(t=>t===e.name);if(!t.length)throw new Error(`Missing input element with name ${e.name} for form ${this.getFormElement().name}`);return t.length}validate(t){let r=[];return t.setCustomValidity(""),t.checkValidity()?(r=this.mapInputErrors(t)).length?(this.setFormValidity(!1),t.setCustomValidity(r[0].message),{element:t,errors:r}):{errors:[],element:t}:{errors:r.concat(Object.keys(e.InputValidityState).map(e=>t.validity[e]?{key:e,message:t.validationMessage}:null).filter(e=>!!e)),element:t}}mapInputErrors(e){return(this.validators.get(e.name)||[]).map(t=>{this.errors[e.name]=this.errors[e.name]||{};const r=t.bind(this.getParentElement())(e);if(r&&r.key)return this.errors[e.name][r.key]=r.message,this.errorMap.set(t,r.key),{key:r.key,message:r.message};this.errorMap.has(t)&&delete this.errors[e.name][this.errorMap.get(t)]}).filter(e=>!!e)}get(e){return this.inputs.get(e)}getError(e,t){return this.errors[e][t]}hasError(e,t){return!!this.getError(e,t)}reset(){this.form.reset(),this.resetErrors(),this.setFormValidity(),this.inputs.clear()}setFormValidity(e=!0){this.valid=e,this.invalid=!e}resetErrors(){this.errors=Object.keys(this.errors).reduce((e,t)=>(e[t]={},e),{}),this.errorMap.clear()}get value(){return this._valueChanges.getValue()}set value(e){this._valueChanges.next(e)}unsubscribe(){this.reset(),this._valueChanges.unsubscribe()}getValue(e){return this.value[e]}setValue(e,t){const r=this.value;return r[e]=t,this.value=r,r}setFormValue(e){this.value=e}setFormElement(e){return this.form=e,this}setInputs(e){this.inputs=new Map(e.map(e=>[e.name,e]))}getFormElement(){return this.form}}exports.FormGroup=r;
 },{"./form.tokens":"vjjz","./rx-fake":"TqKC"}],"bc55":[function(require,module,exports) {
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0});const t=require("./form.group"),o=require("./rx-fake");function r(r={strategy:"none"}){return function(e,n){if(!r.name)throw new Error("Missing form name");const c=e.constructor.prototype.disconnectedCallback||o.noop,s=e.constructor.prototype.firstUpdated||o.noop,i=e.constructor.prototype.connectedCallback||o.noop;e.constructor.prototype.connectedCallback=function(){if(!(this[n]instanceof t.FormGroup))throw new Error("Value provided is not an instance of FormGroup!");return this[n].setParentElement(this).setOptions(r).prepareValues(),i.call(this)},e.constructor.prototype.firstUpdated=function(){return this[n].init(),s.call(this)},e.constructor.prototype.disconnectedCallback=function(){return this[n].unsubscribe(),c.call(this)}}}exports.Form=r;
 },{"./form.group":"pIiP","./rx-fake":"TqKC"}],"DQYs":[function(require,module,exports) {
 "use strict";function r(r){for(var e in r)exports.hasOwnProperty(e)||(exports[e]=r[e])}Object.defineProperty(exports,"__esModule",{value:!0}),r(require("./form.decorator")),r(require("./form.group")),r(require("./form.tokens"));
 },{"./form.decorator":"bc55","./form.group":"pIiP","./form.tokens":"vjjz"}],"L3LI":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.InputErrorTemplate=r,exports.EmailValidator=i;var e=require("@rxdi/lit-html");function r(r){if(r&&r.invalid&&(r.dirty||r.touched)){const i=r.validationMessage;return e.html`
-      <span style="color: #a94442;font-size: 13px;" class="validation-error">${i}</span>
-    `}return""}function i(e){if(!e.checked)return e.classList.add("is-invalid"),{key:"remember-me",message:"Please check remember me"};e.classList.remove("is-invalid")}
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.InputErrorTemplate=s,exports.EmailValidator=i;var e=require("@rxdi/lit-html");function s(s){if(s&&s.invalid&&(s.dirty||s.touched),s){if(s&&s.invalid&&(s.dirty||s.touched)){const i=s.validationMessage;return s.classList.add("rx-danger"),s.classList.add("rx-outline"),e.html`
+        <span
+          style="color: #a94442;font-size: 13px;height: 50px;"
+          class="validation-error"
+          >${i}</span
+        >
+      `}s.valid&&(s.classList.remove("rx-danger"),s.classList.remove("rx-outline")),s.disabled?s.classList.add("rx-disabled"):s.classList.remove("rx-disabled")}return""}function i(e){if(!e.checked)return e.classList.add("is-invalid"),{key:"remember-me",message:"Please check remember me"};e.classList.remove("is-invalid")}
+},{"@rxdi/lit-html":"R8ie"}],"aTj8":[function(require,module,exports) {
+"use strict";var n=this&&this.__makeTemplateObject||function(n,r){return Object.defineProperty?Object.defineProperty(n,"raw",{value:r}):n.raw=r,n};Object.defineProperty(exports,"__esModule",{value:!0});var r,o=require("@rxdi/lit-html");exports.InputStyle=o.css(r||(r=n(['\n\n  .rx-input,\n  .rx-select,\n  .rx-textarea {\n    max-width: 100%;\n    width: 100%;\n    padding: 0 10px;\n    background: #fff;\n    color: #666;\n    border: 1px solid #e5e5e5;\n    transition: 0.2s ease-in-out;\n    transition-property: color, background-color, border;\n  }\n  .rx-radio,\n  .rx-checkbox {\n    display: inline-block;\n    height: 16px;\n    width: 16px;\n    overflow: hidden;\n    margin-top: -4px;\n    vertical-align: middle;\n    -webkit-appearance: none;\n    -moz-appearance: none;\n    outline: none;\n    background-color: transparent;\n    background-repeat: no-repeat;\n    background-position: 50% 50%;\n    border: 1px solid #ccc;\n    transition: 0.2s ease-in-out;\n    transition-property: background-color, border;\n    cursor: pointer;\n  }\n  .rx-checkbox:checked {\n    background-color: #1e87f0;\n    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2214%22%20height%3D%2211%22%20viewBox%3D%220%200%2014%2011%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Cpolygon%20fill%3D%22%23fff%22%20points%3D%2212%201%205%207.5%202%205%201%205.5%205%2010%2013%201.5%22%20%2F%3E%0A%3C%2Fsvg%3E%0A")\n  }\n  .rx-radio {\n    border-radius: 50%;\n  }\n  .rx-radio:checked {\n    background-color: #1e87f0;\n    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Ccircle%20fill%3D%22%23fff%22%20cx%3D%228%22%20cy%3D%228%22%20r%3D%222%22%20%2F%3E%0A%3C%2Fsvg%3E")\n  }\n  .rx-select {\n    height: 40px;\n    vertical-align: middle;\n    display: inline-block;\n  }\n  .rx-input {\n    height: 40px;\n    vertical-align: middle;\n    display: inline-block;\n  }\n  .rx-textarea {\n    padding-top: 4px;\n    padding-bottom: 4px;\n    padding: 15px;\n    vertical-align: top;\n  }\n  .rx-danger {\n    color: #a94442;\n    border-color: #a94442;\n  }\n  .rx-success {\n    color: #32d296;\n    border-color: #32d296;\n  }\n  .rx-outline:focus {\n    outline: none;\n    /* outline-color: blue; */\n  }\n  .rx-disabled {\n    background-color: #f8f8f8;\n    color: #999;\n    border-color: #e5e5e5;\n  }\n\n'],['\n\n  .rx-input,\n  .rx-select,\n  .rx-textarea {\n    max-width: 100%;\n    width: 100%;\n    padding: 0 10px;\n    background: #fff;\n    color: #666;\n    border: 1px solid #e5e5e5;\n    transition: 0.2s ease-in-out;\n    transition-property: color, background-color, border;\n  }\n  .rx-radio,\n  .rx-checkbox {\n    display: inline-block;\n    height: 16px;\n    width: 16px;\n    overflow: hidden;\n    margin-top: -4px;\n    vertical-align: middle;\n    -webkit-appearance: none;\n    -moz-appearance: none;\n    outline: none;\n    background-color: transparent;\n    background-repeat: no-repeat;\n    background-position: 50% 50%;\n    border: 1px solid #ccc;\n    transition: 0.2s ease-in-out;\n    transition-property: background-color, border;\n    cursor: pointer;\n  }\n  .rx-checkbox:checked {\n    background-color: #1e87f0;\n    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2214%22%20height%3D%2211%22%20viewBox%3D%220%200%2014%2011%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Cpolygon%20fill%3D%22%23fff%22%20points%3D%2212%201%205%207.5%202%205%201%205.5%205%2010%2013%201.5%22%20%2F%3E%0A%3C%2Fsvg%3E%0A")\n  }\n  .rx-radio {\n    border-radius: 50%;\n  }\n  .rx-radio:checked {\n    background-color: #1e87f0;\n    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Ccircle%20fill%3D%22%23fff%22%20cx%3D%228%22%20cy%3D%228%22%20r%3D%222%22%20%2F%3E%0A%3C%2Fsvg%3E")\n  }\n  .rx-select {\n    height: 40px;\n    vertical-align: middle;\n    display: inline-block;\n  }\n  .rx-input {\n    height: 40px;\n    vertical-align: middle;\n    display: inline-block;\n  }\n  .rx-textarea {\n    padding-top: 4px;\n    padding-bottom: 4px;\n    padding: 15px;\n    vertical-align: top;\n  }\n  .rx-danger {\n    color: #a94442;\n    border-color: #a94442;\n  }\n  .rx-success {\n    color: #32d296;\n    border-color: #32d296;\n  }\n  .rx-outline:focus {\n    outline: none;\n    /* outline-color: blue; */\n  }\n  .rx-disabled {\n    background-color: #f8f8f8;\n    color: #999;\n    border-color: #e5e5e5;\n  }\n\n'])));
 },{"@rxdi/lit-html":"R8ie"}],"ZY77":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.FormsViewComponent=void 0;var e=require("@rxdi/lit-html"),t=require("@rxdi/forms"),r=require("./error"),o=function(e,t,r,o){var i,a=arguments.length,s=a<3?t:null===o?o=Object.getOwnPropertyDescriptor(t,r):o;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)s=Reflect.decorate(e,t,r,o);else for(var m=e.length-1;m>=0;m--)(i=e[m])&&(s=(a<3?i(s):a>3?i(t,r,s):i(t,r))||s);return a>3&&s&&Object.defineProperty(t,r,s),s},i=function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)};let a=class extends e.LitElement{constructor(){super(...arguments),this.form=new t.FormGroup({password:"",email:"",rememberMe:["",[r.EmailValidator]]})}OnUpdateFirst(){}onSubmit(e){console.log(this.form.value)}hasErrors(){return this.form.updateValueAndValidity().length}};exports.FormsViewComponent=a,o([(0,t.Form)({strategy:"input",name:"my-form"}),i("design:type",Object)],a.prototype,"form",void 0),exports.FormsViewComponent=a=o([(0,e.Component)({selector:"forms-view-component",style:e.css`
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.FormsViewComponent=void 0;var e=require("@rxdi/lit-html"),t=require("@rxdi/forms"),r=require("./error"),a=require("@rxdi/ui-kit/styles/form/input"),i=function(e,t,r,a){var i,o=arguments.length,l=o<3?t:null===a?a=Object.getOwnPropertyDescriptor(t,r):a;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)l=Reflect.decorate(e,t,r,a);else for(var s=e.length-1;s>=0;s--)(i=e[s])&&(l=(o<3?i(l):o>3?i(t,r,l):i(t,r))||l);return o>3&&l&&Object.defineProperty(t,r,l),l},o=function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)};let l=class extends e.LitElement{constructor(){super(...arguments),this.form=new t.FormGroup({password:"",disabled:"",email:"",rememberMe:["",[r.EmailValidator]],select:"",checkbox:"",radio:"",number:1})}OnUpdateFirst(){this.form.get("disabled").classList.add("rx-disabled"),this.form.get("disabled").disabled=!0}onSubmit(e){console.log(this.form.value)}hasErrors(){return this.form.updateValueAndValidity().length}};exports.FormsViewComponent=l,i([(0,t.Form)({strategy:"input",name:"my-form"}),o("design:type",Object)],l.prototype,"form",void 0),exports.FormsViewComponent=l=i([(0,e.Component)({selector:"forms-view-component",style:e.css`
+    ${a.InputStyle}
     .container {
       margin: 0 auto;
-      width: 430px;
+      width: 630px;
+      padding: 50px;
+      background-color: white;
+    }
+    .height {
+      height: 30px;
+    }
+    label {
+      color: #666;
     }
   `,template(){return e.html`
       <div class="container">
         <form
+          id="my-form"
           name="my-form"
           style="display: grid; margin-top: 50px;"
           @submit=${e=>!this.hasErrors()&&this.onSubmit(e)}
@@ -2959,33 +2975,111 @@ module.exports="/ui-kit/glyph.e72576d6.svg";
             type="email"
             value=${this.form.value.email}
             placeholder="Email address"
+            class="rx-input"
             required
             autofocus
           />
-          <div style="height:20px;">
+          <div class="height">
             ${(0,r.InputErrorTemplate)(this.form.get("email"))}
+          </div>
+          <input
+            name="number"
+            type="number"
+            value=${this.form.value.number}
+            placeholder="Email addressNumber"
+            class="rx-input"
+            required
+            autofocus
+          />
+          <div class="height">
+            ${(0,r.InputErrorTemplate)(this.form.get("number"))}
           </div>
           <input
             style="margin-top: 20px;"
             type="password"
             required
-            #pesho
+            class="rx-input"
             value=${this.form.value.password}
             name="password"
             placeholder="Password"
           />
-          <div style="height:20px;">
+
+          <div class="height">
             ${(0,r.InputErrorTemplate)(this.form.get("password"))}
           </div>
+          <div class="height"></div>
+          <select form="my-form" name="select" class="rx-select">
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="opel">Opel</option>
+            <option value="audi">Audi</option>
+          </select>
+          <div class="height"></div>
+          <input
+            style="margin-top: 20px;"
+            type="text"
+            class="rx-input"
+            value=${this.form.value.disabled}
+            name="disabled"
+            placeholder="Disabled input"
+          />
+          <div class="height"></div>
+          <label>
+            <input
+              class="rx-checkbox"
+              type="checkbox"
+              value="free"
+              name="checkbox"
+            />
+            Free
+          </label>
+          <div class="height"></div>
+          <label>
+            <input
+              class="rx-checkbox"
+              type="checkbox"
+              value="monthly"
+              name="checkbox"
+            />
+            Monthly
+          </label>
+          <div class="height"></div>
+          <label>
+            <input
+              class="rx-checkbox"
+              type="checkbox"
+              value="premium"
+              name="checkbox"
+            />
+            Premium
+          </label>
+          <div class="height"></div>
+          <label>
+            <input class="rx-radio" type="radio" value="1" name="radio" />
+            Radio 1
+          </label>
+          <div class="height"></div>
+          <label>
+            <input class="rx-radio" type="radio" value="2" name="radio" />
+            Radio 2
+          </label>
+
+          <div class="height">
+            ${(0,r.InputErrorTemplate)(this.form.get("radio"))}
+          </div>
+          <textarea
+            class="rx-textarea"
+            rows="5"
+            placeholder="Textarea"
+          ></textarea>
 
           <!-- <rx-if .exp=${()=>this.form.get("password").invalid}>dadadaa</rx-if> -->
-
           <div>
             <label>
-              <input name="rememberMe" type="checkbox" required /> Remember me
+              <input name="rememberMe" value="gosho" type="checkbox" required /> Remember me
             </label>
           </div>
-          <div style="height:20px;">
+          <div class="height">
             ${(0,r.InputErrorTemplate)(this.form.get("rememberMe"))}
           </div>
           <rx-button type="submit" palette="primary">Submit</rx-button>
@@ -2995,8 +3089,8 @@ module.exports="/ui-kit/glyph.e72576d6.svg";
       <markdown-reader
         link="https://raw.githubusercontent.com/rxdi/forms/master/README.md"
       ></markdown-reader>
-    `}})],a);
-},{"@rxdi/lit-html":"R8ie","@rxdi/forms":"DQYs","./error":"L3LI"}],"wuRl":[function(require,module,exports) {
+    `}})],l);
+},{"@rxdi/lit-html":"R8ie","@rxdi/forms":"DQYs","./error":"L3LI","@rxdi/ui-kit/styles/form/input":"aTj8"}],"wuRl":[function(require,module,exports) {
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.ProgressViewComponent=void 0;var e=require("@rxdi/lit-html"),r=require("rxjs"),t=require("rxjs/operators"),s=function(e,r,t,s){var o,p=arguments.length,i=p<3?r:null===s?s=Object.getOwnPropertyDescriptor(r,t):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)i=Reflect.decorate(e,r,t,s);else for(var l=e.length-1;l>=0;l--)(o=e[l])&&(i=(p<3?o(i):p>3?o(r,t,i):o(r,t))||i);return p>3&&i&&Object.defineProperty(r,t,i),i};let o=class extends e.LitElement{constructor(){super(...arguments),this.reset$=new r.BehaviorSubject(0),this.progressValue$=this.reset$.pipe((0,t.switchMap)(()=>(0,r.interval)(100).pipe((0,t.take)(101))))}reset(){this.reset$.next(0)}};exports.ProgressViewComponent=o,exports.ProgressViewComponent=o=s([(0,e.Component)({selector:"progress-view-component",template(){return e.html`
       <style>
         :host {
@@ -4862,4 +4956,4 @@ module.exports="/ui-kit/plus.e6cef85c.svg";
 },{"@rxdi/core":"lhgc","./app.component":"XCbS","../../../src/markdown-reader":"X0WN","../../../src":"fUdq","../../../src/modal":"mF9g","../../../src/nav":"e2p2","./app.routing.module":"MVQp","./app.components.module":"ThiH"}],"ZCfc":[function(require,module,exports) {
 "use strict";var e=require("@rxdi/core"),o=require("./src/app/app.module");window.addEventListener("load",()=>{(0,e.Bootstrap)(o.AppModule,{init:!1}).subscribe(()=>console.log("App Started!"),e=>console.error(e))}),module.hot&&module.hot.dispose(()=>document.body.innerHTML="");
 },{"@rxdi/core":"lhgc","./src/app/app.module":"Gsig"}]},{},["ZCfc"], null)
-//# sourceMappingURL=/ui-kit/main.06bee181.js.map
+//# sourceMappingURL=/ui-kit/main.9116d2b5.js.map
