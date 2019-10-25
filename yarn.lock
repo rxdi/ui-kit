@@ -16,10 +16,10 @@
   resolved "https://registry.yarnpkg.com/@rxdi/firelink/-/firelink-0.0.21.tgz#4ff905fa781e52f6ab06c41dad5fd81e57e9a948"
   integrity sha512-RhaUSlTb18h09pJiMk8tQgc6ZF+wvvaREfZX7c3W+uutzcPPc8CS2e6Y5Hm5UQ8YFeAs4brTJT/y/pI+yNglrA==
 
-"@rxdi/forms@^0.7.35":
-  version "0.7.36"
-  resolved "https://registry.yarnpkg.com/@rxdi/forms/-/forms-0.7.36.tgz#d62775147d45a50f05fd7f10b2a455a120b473a5"
-  integrity sha512-wuoNi3U+SsPPxd6wgfQ2SAjxudqFMk90XkGHdGKp0aHzFlWVdFll6Puby6udSPZ8sgVAos3MHdys7L9hj4QJ5A==
+"@rxdi/forms@^0.7.36":
+  version "0.7.37"
+  resolved "https://registry.yarnpkg.com/@rxdi/forms/-/forms-0.7.37.tgz#53692088c934b803c3044a52c21dc58c36ef8905"
+  integrity sha512-Tp9vA0zysgQR6ww8pJIj6CgGoug4/XhBjypgG7Wqc2mxMMaac3vtCcADmKw3U+ffdjktOogg3rOQgvntQyVIIg==
 
 "@rxdi/lit-html@0.7.34":
   version "0.7.34"

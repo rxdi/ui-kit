@@ -159,7 +159,8 @@ import { InputStyle } from '@rxdi/ui-kit/styles/form/input';
 export class FormsViewComponent extends LitElement {
   @Form({
     strategy: 'input',
-    name: 'my-form'
+    name: 'my-form',
+    multi: false
   })
   private form = new FormGroup({
     password: '',
