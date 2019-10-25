@@ -71,7 +71,8 @@ type InputType =
           color: var(--${this.palette}-color);
         }
       </style>
-      <slot></slot>
+      ${this.shadow ? html`<style>:host {box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 3px, rgba(0, 0, 0, 0.14) 0px 1px 2px;}</style>` : ''}
+      <slot part="text"></slot>
     `;
   }
 })
@@ -81,6 +82,9 @@ export class ButtonComponent extends LitElement {
 
   @property({ type: String })
   public type: InputType;
+
+  @property({ type: Boolean })
+  public shadow: boolean;
 
   OnUpdateFirst() {
     if (this.type === 'submit') {
@@ -100,7 +104,7 @@ export class ButtonComponent extends LitElement {
     let selector = '';
     let form: HTMLElement;
 
-    for (const k of Array(1000).fill(defaultKey)) {
+    for (const k of Array(100).fill(defaultKey)) {
       const formElement = this.findForm(selector);
       if (formElement) {
         form = formElement;

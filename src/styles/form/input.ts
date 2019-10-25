@@ -8,6 +8,7 @@ export const InputStyle = css`
     max-width: 100%;
     width: 100%;
     padding: 0 10px;
+    box-sizing : border-box;
     background: #fff;
     color: #666;
     border: 1px solid #e5e5e5;
