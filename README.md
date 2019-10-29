@@ -74,6 +74,7 @@ export class AppModule {}
 * [Close](/src/close/README.md)
 * [Alert](/src/alert/README.md)
 * [Description List](/src/description-list/README.md)
+* [Dotnav](/src/dotnav/README.md)
 
 ### In Progress
 
@@ -88,7 +89,6 @@ export class AppModule {}
 * [Container](/src//README.md)
 * [Countdown](/src//README.md)
 * [Cover](/src//README.md)
-* [Dotnav](/src//README.md)
 * [Drop](/src//README.md)
 * [Filter](/src//README.md)
 * [Flex](/src//README.md)

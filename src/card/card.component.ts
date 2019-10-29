@@ -53,7 +53,7 @@ import { PalettesUnion } from '../settings';
           background-color:  var(--${this.palette}-bg-color);;
         }
       </style>
-      <div class="card card-${this.shadow}${this.invert ? ' black' : ''}">
+      <div part="card" class="card card-${this.shadow}${this.invert ? ' black' : ''}">
         <slot></slot>
       </div>
     `;

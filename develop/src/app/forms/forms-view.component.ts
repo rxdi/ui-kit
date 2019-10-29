@@ -138,13 +138,37 @@ import { InputStyle } from '@rxdi/ui-kit/styles/form/input';
 
           <!-- <rx-if .exp=${() =>
             this.form.get('password').invalid}>dadadaa</rx-if> -->
+          <div class="height"></div>
+
           <div>
             <label>
-              <input name="rememberMe" value="gosho" type="checkbox" required /> Remember me
+              <input
+                class="rx-checkbox"
+                name="rememberMe"
+                value="gosho"
+                type="checkbox"
+                required
+              />
+              Remember me
             </label>
           </div>
           <div class="height">
             ${InputErrorTemplate(this.form.get('rememberMe'))}
+          </div>
+
+          <div>
+            <input
+              class="rx-range"
+              type="range"
+              name="range"
+              value="2"
+              min="0"
+              max="10"
+              step="0.1"
+            />
+          </div>
+          <div class="height">
+            ${InputErrorTemplate(this.form.get('range'))}
           </div>
           <rx-button type="submit" palette="primary">Submit</rx-button>
         </form>
@@ -160,6 +184,7 @@ export class FormsViewComponent extends LitElement {
   @Form({
     strategy: 'input',
     name: 'my-form',
+    strict: true,
     multi: false
   })
   private form = new FormGroup({
@@ -170,12 +195,14 @@ export class FormsViewComponent extends LitElement {
     select: '',
     checkbox: '',
     radio: '',
-    number: 1
+    number: 1,
+    range: ''
   });
 
   OnUpdateFirst() {
     this.form.get('disabled').classList.add('rx-disabled');
     this.form.get('disabled').disabled = true;
+    this.form.valueChanges.subscribe(console.log.bind(console));
   }
 
   onSubmit(event: Event) {

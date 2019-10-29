@@ -2885,9 +2885,9 @@ module.exports="/ui-kit/glyph.e72576d6.svg";
       ></markdown-reader>
     `}})],a);
 },{"@rxdi/lit-html":"R8ie","@rxdi/core":"lhgc","../../../../src/nav":"e2p2"}],"wymD":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.CardViewComponent=void 0;var e,r=require("@rxdi/lit-html"),t=require("../article-view/data"),a=require("@rxdi/core"),i=require("../../../../src/modal/modal.service"),d=function(e,r,t,a){var i,d=arguments.length,c=d<3?r:null===a?a=Object.getOwnPropertyDescriptor(r,t):a;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)c=Reflect.decorate(e,r,t,a);else for(var n=e.length-1;n>=0;n--)(i=e[n])&&(c=(d<3?i(c):d>3?i(r,t,c):i(r,t))||c);return d>3&&c&&Object.defineProperty(r,t,c),c},c=function(e,r){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,r)};let n=class extends r.LitElement{openModalArticle(){this.modalService.openCustomModal({template:r.html`
-          <rx-article .data=${t.ArticleData.call(this)}></rx-article>
-        `}).subscribe()}};exports.CardViewComponent=n,d([(0,a.Inject)(i.ModalService),c("design:type","function"==typeof(e=void 0!==i.ModalService&&i.ModalService)?e:Object)],n.prototype,"modalService",void 0),exports.CardViewComponent=n=d([(0,r.Component)({selector:"card-view",style:r.css`
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.CardViewComponent=void 0;var e,t=require("@rxdi/lit-html"),r=require("../article-view/data"),a=require("@rxdi/core"),i=require("../../../../src/modal/modal.service"),d=function(e,t,r,a){var i,d=arguments.length,o=d<3?t:null===a?a=Object.getOwnPropertyDescriptor(t,r):a;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,a);else for(var c=e.length-1;c>=0;c--)(i=e[c])&&(o=(d<3?i(o):d>3?i(t,r,o):i(t,r))||o);return d>3&&o&&Object.defineProperty(t,r,o),o},o=function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)};let c=class extends t.LitElement{openModalArticle(){this.modalService.openCustomModal({template:t.html`
+          <rx-article .data=${r.ArticleData.call(this)}></rx-article>
+        `}).subscribe()}};exports.CardViewComponent=c,d([(0,a.Inject)(i.ModalService),o("design:type","function"==typeof(e=void 0!==i.ModalService&&i.ModalService)?e:Object)],c.prototype,"modalService",void 0),exports.CardViewComponent=c=d([(0,t.Component)({selector:"card-view",style:t.css`
     .container {
       max-width: 800px;
       margin-bottom: 20px;
@@ -2899,7 +2899,35 @@ module.exports="/ui-kit/glyph.e72576d6.svg";
     .padding {
       padding: 50px;
     }
-  `,template(){return r.html`
+
+    .padding-30 {
+      padding: 30px;
+    }
+    .flex {
+      display: flex;
+    }
+    .flex div {
+      margin-right: 10px;
+    }
+    .button::part(text) {
+      color: white;
+    }
+    .button-text::part(text) {
+      color: black;
+    }
+    .rx-card::part(card) {
+      background-color: #f8f8f8;
+    }
+    h3 {
+      font-size: 24px;
+      line-height: 1.4;
+      margin: 0 0 20px 0;
+      font-weight: 300;
+    }
+    p {
+      line-height: 1.5;
+    }
+  `,template(){return t.html`
       <div class="container padding">
         <rx-card>
           <div class="margin padding">Default</div>
@@ -2916,16 +2944,42 @@ module.exports="/ui-kit/glyph.e72576d6.svg";
         <rx-card palette="danger">
           <div class="margin padding">Danger</div>
         </rx-card>
+        <div class="flex margin">
+          <div>
+            <rx-card palette="secondary">
+              <div class="padding-30 padding">
+                <h3>Light</h3>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+                <rx-button class="button">BUTTON</rx-button>
+              </div>
+            </rx-card>
+          </div>
+          <div>
+            <rx-card class="rx-card" palette="secondary">
+              <div class="padding-30 padding">
+                <h3 style="color: #222">Light</h3>
+                <p style="color: #666">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+                <rx-button class="button button-text">BUTTON</rx-button>
+              </div>
+            </rx-card>
+          </div>
+        </div>
         <rx-card>
           <div class="margin padding">
-            <rx-article .data=${t.ArticleData.call(this)}></rx-article>
+            <rx-article .data=${r.ArticleData.call(this)}></rx-article>
           </div>
         </rx-card>
       </div>
       <markdown-reader
         link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/card/README.md"
       ></markdown-reader>
-    `}})],n);
+    `}})],c);
 },{"@rxdi/lit-html":"R8ie","../article-view/data":"iAp7","@rxdi/core":"lhgc","../../../../src/modal/modal.service":"D8DB"}],"vjjz":[function(require,module,exports) {
 "use strict";function t(t){return t.reduce((t,e)=>(t[e]=e,t),Object.create(null))}Object.defineProperty(exports,"__esModule",{value:!0}),exports.InputValidityState=t(["badInput","customError","patternMismatch","rangeOverflow","rangeUnderflow","stepMismatch","tooLong","tooShort","typeMismatch","valid","valueMissing"]);
 },{}],"TqKC":[function(require,module,exports) {
@@ -2945,9 +2999,9 @@ module.exports="/ui-kit/glyph.e72576d6.svg";
         >
       `}s.valid&&(s.classList.remove("rx-danger"),s.classList.remove("rx-outline")),s.disabled?s.classList.add("rx-disabled"):s.classList.remove("rx-disabled")}return""}function i(e){if(!e.checked)return e.classList.add("is-invalid"),{key:"remember-me",message:"Please check remember me"};e.classList.remove("is-invalid")}
 },{"@rxdi/lit-html":"R8ie"}],"aTj8":[function(require,module,exports) {
-"use strict";var n=this&&this.__makeTemplateObject||function(n,r){return Object.defineProperty?Object.defineProperty(n,"raw",{value:r}):n.raw=r,n};Object.defineProperty(exports,"__esModule",{value:!0});var r,o=require("@rxdi/lit-html");exports.InputStyle=o.css(r||(r=n(['\n\n  .rx-input,\n  .rx-select,\n  .rx-textarea {\n    max-width: 100%;\n    width: 100%;\n    padding: 0 10px;\n    box-sizing : border-box;\n    background: #fff;\n    color: #666;\n    border: 1px solid #e5e5e5;\n    transition: 0.2s ease-in-out;\n    transition-property: color, background-color, border;\n  }\n  .rx-radio,\n  .rx-checkbox {\n    display: inline-block;\n    height: 16px;\n    width: 16px;\n    overflow: hidden;\n    margin-top: -4px;\n    vertical-align: middle;\n    -webkit-appearance: none;\n    -moz-appearance: none;\n    outline: none;\n    background-color: transparent;\n    background-repeat: no-repeat;\n    background-position: 50% 50%;\n    border: 1px solid #ccc;\n    transition: 0.2s ease-in-out;\n    transition-property: background-color, border;\n    cursor: pointer;\n  }\n  .rx-checkbox:checked {\n    background-color: #1e87f0;\n    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2214%22%20height%3D%2211%22%20viewBox%3D%220%200%2014%2011%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Cpolygon%20fill%3D%22%23fff%22%20points%3D%2212%201%205%207.5%202%205%201%205.5%205%2010%2013%201.5%22%20%2F%3E%0A%3C%2Fsvg%3E%0A")\n  }\n  .rx-radio {\n    border-radius: 50%;\n  }\n  .rx-radio:checked {\n    background-color: #1e87f0;\n    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Ccircle%20fill%3D%22%23fff%22%20cx%3D%228%22%20cy%3D%228%22%20r%3D%222%22%20%2F%3E%0A%3C%2Fsvg%3E")\n  }\n  .rx-select {\n    height: 40px;\n    vertical-align: middle;\n    display: inline-block;\n  }\n  .rx-input {\n    height: 40px;\n    vertical-align: middle;\n    display: inline-block;\n  }\n  .rx-textarea {\n    padding-top: 4px;\n    padding-bottom: 4px;\n    padding: 15px;\n    vertical-align: top;\n  }\n  .rx-danger {\n    color: #a94442;\n    border-color: #a94442;\n  }\n  .rx-success {\n    color: #32d296;\n    border-color: #32d296;\n  }\n  .rx-outline:focus {\n    outline: none;\n    /* outline-color: blue; */\n  }\n  .rx-disabled {\n    background-color: #f8f8f8;\n    color: #999;\n    border-color: #e5e5e5;\n  }\n\n'],['\n\n  .rx-input,\n  .rx-select,\n  .rx-textarea {\n    max-width: 100%;\n    width: 100%;\n    padding: 0 10px;\n    box-sizing : border-box;\n    background: #fff;\n    color: #666;\n    border: 1px solid #e5e5e5;\n    transition: 0.2s ease-in-out;\n    transition-property: color, background-color, border;\n  }\n  .rx-radio,\n  .rx-checkbox {\n    display: inline-block;\n    height: 16px;\n    width: 16px;\n    overflow: hidden;\n    margin-top: -4px;\n    vertical-align: middle;\n    -webkit-appearance: none;\n    -moz-appearance: none;\n    outline: none;\n    background-color: transparent;\n    background-repeat: no-repeat;\n    background-position: 50% 50%;\n    border: 1px solid #ccc;\n    transition: 0.2s ease-in-out;\n    transition-property: background-color, border;\n    cursor: pointer;\n  }\n  .rx-checkbox:checked {\n    background-color: #1e87f0;\n    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2214%22%20height%3D%2211%22%20viewBox%3D%220%200%2014%2011%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Cpolygon%20fill%3D%22%23fff%22%20points%3D%2212%201%205%207.5%202%205%201%205.5%205%2010%2013%201.5%22%20%2F%3E%0A%3C%2Fsvg%3E%0A")\n  }\n  .rx-radio {\n    border-radius: 50%;\n  }\n  .rx-radio:checked {\n    background-color: #1e87f0;\n    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Ccircle%20fill%3D%22%23fff%22%20cx%3D%228%22%20cy%3D%228%22%20r%3D%222%22%20%2F%3E%0A%3C%2Fsvg%3E")\n  }\n  .rx-select {\n    height: 40px;\n    vertical-align: middle;\n    display: inline-block;\n  }\n  .rx-input {\n    height: 40px;\n    vertical-align: middle;\n    display: inline-block;\n  }\n  .rx-textarea {\n    padding-top: 4px;\n    padding-bottom: 4px;\n    padding: 15px;\n    vertical-align: top;\n  }\n  .rx-danger {\n    color: #a94442;\n    border-color: #a94442;\n  }\n  .rx-success {\n    color: #32d296;\n    border-color: #32d296;\n  }\n  .rx-outline:focus {\n    outline: none;\n    /* outline-color: blue; */\n  }\n  .rx-disabled {\n    background-color: #f8f8f8;\n    color: #999;\n    border-color: #e5e5e5;\n  }\n\n'])));
+"use strict";var n=this&&this.__makeTemplateObject||function(n,r){return Object.defineProperty?Object.defineProperty(n,"raw",{value:r}):n.raw=r,n};Object.defineProperty(exports,"__esModule",{value:!0});var r,e=require("@rxdi/lit-html");exports.InputStyle=e.css(r||(r=n(['\n\n\n  input[type="range"] {\n    -webkit-appearance: slider-horizontal;\n    color: rgb(157, 150, 142);\n    border: initial;\n  }\n\n  .rx-input,\n  .rx-select,\n  .rx-textarea {\n    max-width: 100%;\n    width: 100%;\n    padding: 0 10px;\n    box-sizing : border-box;\n    background: #fff;\n    color: #666;\n    border: 1px solid #e5e5e5;\n    transition: 0.2s ease-in-out;\n    transition-property: color, background-color, border;\n  }\n  .rx-radio,\n  .rx-checkbox {\n    display: inline-block;\n    height: 16px;\n    width: 16px;\n    overflow: hidden;\n    margin-top: -4px;\n    vertical-align: middle;\n    -webkit-appearance: none;\n    -moz-appearance: none;\n    outline: none;\n    background-color: transparent;\n    background-repeat: no-repeat;\n    background-position: 50% 50%;\n    border: 1px solid #ccc;\n    transition: 0.2s ease-in-out;\n    transition-property: background-color, border;\n    cursor: pointer;\n  }\n  .rx-range {\n    box-sizing: border-box;\n    margin: 0;\n    vertical-align: middle;\n    max-width: 100%;\n    width: 100%;\n    -webkit-appearance: none;\n    background: transparent;\n    padding: 0;\n  }\n\n  .rx-checkbox:checked {\n    background-color: #1e87f0;\n    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2214%22%20height%3D%2211%22%20viewBox%3D%220%200%2014%2011%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Cpolygon%20fill%3D%22%23fff%22%20points%3D%2212%201%205%207.5%202%205%201%205.5%205%2010%2013%201.5%22%20%2F%3E%0A%3C%2Fsvg%3E%0A")\n  }\n  .rx-radio {\n    border-radius: 50%;\n  }\n  .rx-radio:checked {\n    background-color: #1e87f0;\n    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Ccircle%20fill%3D%22%23fff%22%20cx%3D%228%22%20cy%3D%228%22%20r%3D%222%22%20%2F%3E%0A%3C%2Fsvg%3E")\n  }\n  .rx-select {\n    height: 40px;\n    vertical-align: middle;\n    display: inline-block;\n  }\n  .rx-input {\n    height: 40px;\n    vertical-align: middle;\n    display: inline-block;\n  }\n  .rx-textarea {\n    padding-top: 4px;\n    padding-bottom: 4px;\n    padding: 15px;\n    vertical-align: top;\n  }\n  .rx-danger {\n    color: #a94442;\n    border-color: #a94442;\n  }\n  .rx-success {\n    color: #32d296;\n    border-color: #32d296;\n  }\n  .rx-outline:focus {\n    outline: none;\n    /* outline-color: blue; */\n  }\n  .rx-disabled {\n    background-color: #f8f8f8;\n    color: #999;\n    border-color: #e5e5e5;\n  }\n\n'],['\n\n\n  input[type="range"] {\n    -webkit-appearance: slider-horizontal;\n    color: rgb(157, 150, 142);\n    border: initial;\n  }\n\n  .rx-input,\n  .rx-select,\n  .rx-textarea {\n    max-width: 100%;\n    width: 100%;\n    padding: 0 10px;\n    box-sizing : border-box;\n    background: #fff;\n    color: #666;\n    border: 1px solid #e5e5e5;\n    transition: 0.2s ease-in-out;\n    transition-property: color, background-color, border;\n  }\n  .rx-radio,\n  .rx-checkbox {\n    display: inline-block;\n    height: 16px;\n    width: 16px;\n    overflow: hidden;\n    margin-top: -4px;\n    vertical-align: middle;\n    -webkit-appearance: none;\n    -moz-appearance: none;\n    outline: none;\n    background-color: transparent;\n    background-repeat: no-repeat;\n    background-position: 50% 50%;\n    border: 1px solid #ccc;\n    transition: 0.2s ease-in-out;\n    transition-property: background-color, border;\n    cursor: pointer;\n  }\n  .rx-range {\n    box-sizing: border-box;\n    margin: 0;\n    vertical-align: middle;\n    max-width: 100%;\n    width: 100%;\n    -webkit-appearance: none;\n    background: transparent;\n    padding: 0;\n  }\n\n  .rx-checkbox:checked {\n    background-color: #1e87f0;\n    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2214%22%20height%3D%2211%22%20viewBox%3D%220%200%2014%2011%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Cpolygon%20fill%3D%22%23fff%22%20points%3D%2212%201%205%207.5%202%205%201%205.5%205%2010%2013%201.5%22%20%2F%3E%0A%3C%2Fsvg%3E%0A")\n  }\n  .rx-radio {\n    border-radius: 50%;\n  }\n  .rx-radio:checked {\n    background-color: #1e87f0;\n    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Ccircle%20fill%3D%22%23fff%22%20cx%3D%228%22%20cy%3D%228%22%20r%3D%222%22%20%2F%3E%0A%3C%2Fsvg%3E")\n  }\n  .rx-select {\n    height: 40px;\n    vertical-align: middle;\n    display: inline-block;\n  }\n  .rx-input {\n    height: 40px;\n    vertical-align: middle;\n    display: inline-block;\n  }\n  .rx-textarea {\n    padding-top: 4px;\n    padding-bottom: 4px;\n    padding: 15px;\n    vertical-align: top;\n  }\n  .rx-danger {\n    color: #a94442;\n    border-color: #a94442;\n  }\n  .rx-success {\n    color: #32d296;\n    border-color: #32d296;\n  }\n  .rx-outline:focus {\n    outline: none;\n    /* outline-color: blue; */\n  }\n  .rx-disabled {\n    background-color: #f8f8f8;\n    color: #999;\n    border-color: #e5e5e5;\n  }\n\n'])));
 },{"@rxdi/lit-html":"R8ie"}],"ZY77":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.FormsViewComponent=void 0;var e=require("@rxdi/lit-html"),t=require("@rxdi/forms"),r=require("./error"),a=require("@rxdi/ui-kit/styles/form/input"),i=function(e,t,r,a){var i,o=arguments.length,l=o<3?t:null===a?a=Object.getOwnPropertyDescriptor(t,r):a;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)l=Reflect.decorate(e,t,r,a);else for(var s=e.length-1;s>=0;s--)(i=e[s])&&(l=(o<3?i(l):o>3?i(t,r,l):i(t,r))||l);return o>3&&l&&Object.defineProperty(t,r,l),l},o=function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)};let l=class extends e.LitElement{constructor(){super(...arguments),this.form=new t.FormGroup({password:"",disabled:"",email:"",rememberMe:["",[r.EmailValidator]],select:"",checkbox:"",radio:"",number:1})}OnUpdateFirst(){this.form.get("disabled").classList.add("rx-disabled"),this.form.get("disabled").disabled=!0}onSubmit(e){console.log(this.form.value)}hasErrors(){return this.form.updateValueAndValidity().length}};exports.FormsViewComponent=l,i([(0,t.Form)({strategy:"input",name:"my-form",multi:!1}),o("design:type",Object)],l.prototype,"form",void 0),exports.FormsViewComponent=l=i([(0,e.Component)({selector:"forms-view-component",style:e.css`
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.FormsViewComponent=void 0;var e=require("@rxdi/lit-html"),t=require("@rxdi/forms"),r=require("./error"),a=require("@rxdi/ui-kit/styles/form/input"),i=function(e,t,r,a){var i,o=arguments.length,s=o<3?t:null===a?a=Object.getOwnPropertyDescriptor(t,r):a;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)s=Reflect.decorate(e,t,r,a);else for(var l=e.length-1;l>=0;l--)(i=e[l])&&(s=(o<3?i(s):o>3?i(t,r,s):i(t,r))||s);return o>3&&s&&Object.defineProperty(t,r,s),s},o=function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)};let s=class extends e.LitElement{constructor(){super(...arguments),this.form=new t.FormGroup({password:"",disabled:"",email:"",rememberMe:["",[r.EmailValidator]],select:"",checkbox:"",radio:"",number:1,range:""})}OnUpdateFirst(){this.form.get("disabled").classList.add("rx-disabled"),this.form.get("disabled").disabled=!0,this.form.valueChanges.subscribe(console.log.bind(console))}onSubmit(e){console.log(this.form.value)}hasErrors(){return this.form.updateValueAndValidity().length}};exports.FormsViewComponent=s,i([(0,t.Form)({strategy:"input",name:"my-form",strict:!0,multi:!1}),o("design:type",Object)],s.prototype,"form",void 0),exports.FormsViewComponent=s=i([(0,e.Component)({selector:"forms-view-component",style:e.css`
     ${a.InputStyle}
     .container {
       margin: 0 auto;
@@ -3074,13 +3128,37 @@ module.exports="/ui-kit/glyph.e72576d6.svg";
           ></textarea>
 
           <!-- <rx-if .exp=${()=>this.form.get("password").invalid}>dadadaa</rx-if> -->
+          <div class="height"></div>
+
           <div>
             <label>
-              <input name="rememberMe" value="gosho" type="checkbox" required /> Remember me
+              <input
+                class="rx-checkbox"
+                name="rememberMe"
+                value="gosho"
+                type="checkbox"
+                required
+              />
+              Remember me
             </label>
           </div>
           <div class="height">
             ${(0,r.InputErrorTemplate)(this.form.get("rememberMe"))}
+          </div>
+
+          <div>
+            <input
+              class="rx-range"
+              type="range"
+              name="range"
+              value="2"
+              min="0"
+              max="10"
+              step="0.1"
+            />
+          </div>
+          <div class="height">
+            ${(0,r.InputErrorTemplate)(this.form.get("range"))}
           </div>
           <rx-button type="submit" palette="primary">Submit</rx-button>
         </form>
@@ -3089,7 +3167,7 @@ module.exports="/ui-kit/glyph.e72576d6.svg";
       <markdown-reader
         link="https://raw.githubusercontent.com/rxdi/forms/master/README.md"
       ></markdown-reader>
-    `}})],l);
+    `}})],s);
 },{"@rxdi/lit-html":"R8ie","@rxdi/forms":"DQYs","./error":"L3LI","@rxdi/ui-kit/styles/form/input":"aTj8"}],"wuRl":[function(require,module,exports) {
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.ProgressViewComponent=void 0;var e=require("@rxdi/lit-html"),r=require("rxjs"),t=require("rxjs/operators"),s=function(e,r,t,s){var o,p=arguments.length,i=p<3?r:null===s?s=Object.getOwnPropertyDescriptor(r,t):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)i=Reflect.decorate(e,r,t,s);else for(var l=e.length-1;l>=0;l--)(o=e[l])&&(i=(p<3?o(i):p>3?o(r,t,i):o(r,t))||i);return p>3&&i&&Object.defineProperty(r,t,i),i};let o=class extends e.LitElement{constructor(){super(...arguments),this.reset$=new r.BehaviorSubject(0),this.progressValue$=this.reset$.pipe((0,t.switchMap)(()=>(0,r.interval)(100).pipe((0,t.take)(101))))}reset(){this.reset$.next(0)}};exports.ProgressViewComponent=o,exports.ProgressViewComponent=o=s([(0,e.Component)({selector:"progress-view-component",template(){return e.html`
       <style>
@@ -3188,6 +3266,13 @@ module.exports="/ui-kit/glyph.e72576d6.svg";
       margin: 0px auto;
       background-color: white;
     }
+    rx-description.orange::part(description) {
+      color: orange;
+    }
+    rx-description::part(border) {
+      /* padding:0px; */
+      /* margin: 0px; */
+    }
   `,template:()=>i.html`
       <div class="container">
         <rx-description>
@@ -3222,16 +3307,53 @@ module.exports="/ui-kit/glyph.e72576d6.svg";
           </div>
         </rx-description>
         <rx-description>
-          <div slot="description">DESCRIPTION TERM</div>
           <div slot="text">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </div>
         </rx-description>
+        <rx-description>
+          <div slot="text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </div>
+        </rx-description>
+        <rx-description>
+          <div slot="text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </div>
+        </rx-description>
+        <rx-description class="orange">
+          <div slot="description">DESCRIPTION TERM</div>
+        </rx-description>
       </div>
     `})],e);
+},{"@rxdi/lit-html":"R8ie"}],"whxV":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.DotnavViewComponent=void 0;var e=require("@rxdi/lit-html"),t=function(e,t,o,n){var a,r=arguments.length,i=r<3?t:null===n?n=Object.getOwnPropertyDescriptor(t,o):n;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)i=Reflect.decorate(e,t,o,n);else for(var c=e.length-1;c>=0;c--)(a=e[c])&&(i=(r<3?a(i):r>3?a(t,o,i):a(t,o))||i);return r>3&&i&&Object.defineProperty(t,o,i),i};let o=class extends e.LitElement{};exports.DotnavViewComponent=o,exports.DotnavViewComponent=o=t([(0,e.Component)({selector:"dotnav-view-component",style:e.css`
+    .container {
+      padding: 50px;
+      background: white;
+      color: #666;
+    }
+  `,template:()=>e.html`
+      <div class="container">
+      <h1>Horizontal</h1>
+        <rx-dotnav orientation="row">
+          <a></a>
+          <a></a>
+          <a></a>
+          <a></a>
+        </rx-dotnav>
+        <h1>Vertical</h1>
+        <rx-dotnav orientation="column">
+          <a></a>
+          <a></a>
+          <a></a>
+          <a></a>
+        </rx-dotnav>
+      </div>
+    `})],o);
 },{"@rxdi/lit-html":"R8ie"}],"MVQp":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.AppRoutingModule=void 0;var e=require("@rxdi/core"),o=require("@rxdi/router"),i=require("./markdown-reader/markdown-regular.component"),t=require("./responsive/responsive.component"),n=require("./accordion-view/accordion-view.component"),r=require("./image-view/image-view.component"),p=require("./badge-view/badge-vew.component"),a=require("./modal/modal-view.component"),c=require("./button-view/button-view.component"),m=require("./article-view/article-view.component"),u=require("./divider-view/divider-view.component"),d=require("./label-view/label-view.component"),w=require("./dropdown-view/dropdown-view.component"),v=require("./nav-view/nav-view.component"),l=require("./card-view/card-view.component"),s=require("./forms/forms-view.component"),k=require("./progress-view/progress-view.component"),h=require("../../../src/markdown-reader"),g=require("./alert-view/alert-view.component"),q=require("./description-list-view/description-list-view.component"),C=function(e,o,i,t){var n,r=arguments.length,p=r<3?o:null===t?t=Object.getOwnPropertyDescriptor(o,i):t;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)p=Reflect.decorate(e,o,i,t);else for(var a=e.length-1;a>=0;a--)(n=e[a])&&(p=(r<3?n(p):r>3?n(o,i,p):n(o,i))||p);return r>3&&p&&Object.defineProperty(o,i,p),p};let f=class{};exports.AppRoutingModule=f,exports.AppRoutingModule=f=C([(0,e.Module)({imports:[o.RouterModule.forRoot([{path:"/",redirect:"/ui-kit"},{path:"/ui-kit",component:i.RegularMarkdownComponent},{path:"/ui-kit/markdown-reader/:namespace/:repo/:filePath",component:h.MarkdownReaderComponent},{path:"/ui-kit/responsive",component:t.ResponsiveViewComponent},{path:"/ui-kit/accordion",component:n.AccordionViewComponent},{path:"/ui-kit/image",component:r.ImageViewComponent},{path:"/ui-kit/badge",component:p.BadgeViewComponent},{path:"/ui-kit/modal",component:a.ModalViewComponent},{path:"/ui-kit/button",component:c.ButtonViewComponent},{path:"/ui-kit/article",component:m.ArticleViewComponent},{path:"/ui-kit/divider",component:u.DividerViewComponent},{path:"/ui-kit/label",component:d.LabelViewComponent},{path:"/ui-kit/dropdown",component:w.DropDownViewComponent},{path:"/ui-kit/nav",component:v.NavViewComponent},{path:"/ui-kit/card",component:l.CardViewComponent},{path:"/ui-kit/forms",component:s.FormsViewComponent},{path:"/ui-kit/progress",component:k.ProgressViewComponent},{path:"/ui-kit/alert",component:g.AlertViewComponent},{path:"/ui-kit/description",component:q.DescriptionListViewComponent}],{log:!0,baseUrl:"/ui-kit"})]})],f);
-},{"@rxdi/core":"lhgc","@rxdi/router":"tW8N","./markdown-reader/markdown-regular.component":"SbH7","./responsive/responsive.component":"Onv4","./accordion-view/accordion-view.component":"cwfd","./image-view/image-view.component":"bbMR","./badge-view/badge-vew.component":"jitd","./modal/modal-view.component":"jCtu","./button-view/button-view.component":"DgQ9","./article-view/article-view.component":"XMfu","./divider-view/divider-view.component":"LW6G","./label-view/label-view.component":"JKyV","./dropdown-view/dropdown-view.component":"B4BC","./nav-view/nav-view.component":"p3Sc","./card-view/card-view.component":"wymD","./forms/forms-view.component":"ZY77","./progress-view/progress-view.component":"wuRl","../../../src/markdown-reader":"X0WN","./alert-view/alert-view.component":"NuJt","./description-list-view/description-list-view.component":"adJr"}],"GZ5L":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.AppRoutingModule=void 0;var e=require("@rxdi/core"),o=require("@rxdi/router"),t=require("./markdown-reader/markdown-regular.component"),n=require("./responsive/responsive.component"),i=require("./accordion-view/accordion-view.component"),r=require("./image-view/image-view.component"),p=require("./badge-view/badge-vew.component"),a=require("./modal/modal-view.component"),c=require("./button-view/button-view.component"),m=require("./article-view/article-view.component"),u=require("./divider-view/divider-view.component"),d=require("./label-view/label-view.component"),w=require("./dropdown-view/dropdown-view.component"),v=require("./nav-view/nav-view.component"),l=require("./card-view/card-view.component"),s=require("./forms/forms-view.component"),k=require("./progress-view/progress-view.component"),h=require("../../../src/markdown-reader"),g=require("./alert-view/alert-view.component"),q=require("./description-list-view/description-list-view.component"),C=require("./dotnav-view/dotnav-view.component"),V=function(e,o,t,n){var i,r=arguments.length,p=r<3?o:null===n?n=Object.getOwnPropertyDescriptor(o,t):n;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)p=Reflect.decorate(e,o,t,n);else for(var a=e.length-1;a>=0;a--)(i=e[a])&&(p=(r<3?i(p):r>3?i(o,t,p):i(o,t))||p);return r>3&&p&&Object.defineProperty(o,t,p),p};let f=class{};exports.AppRoutingModule=f,exports.AppRoutingModule=f=V([(0,e.Module)({imports:[o.RouterModule.forRoot([{path:"/",redirect:"/ui-kit"},{path:"/ui-kit",component:t.RegularMarkdownComponent},{path:"/ui-kit/markdown-reader/:namespace/:repo/:filePath",component:h.MarkdownReaderComponent},{path:"/ui-kit/responsive",component:n.ResponsiveViewComponent},{path:"/ui-kit/accordion",component:i.AccordionViewComponent},{path:"/ui-kit/image",component:r.ImageViewComponent},{path:"/ui-kit/badge",component:p.BadgeViewComponent},{path:"/ui-kit/modal",component:a.ModalViewComponent},{path:"/ui-kit/button",component:c.ButtonViewComponent},{path:"/ui-kit/article",component:m.ArticleViewComponent},{path:"/ui-kit/divider",component:u.DividerViewComponent},{path:"/ui-kit/label",component:d.LabelViewComponent},{path:"/ui-kit/dropdown",component:w.DropDownViewComponent},{path:"/ui-kit/nav",component:v.NavViewComponent},{path:"/ui-kit/card",component:l.CardViewComponent},{path:"/ui-kit/forms",component:s.FormsViewComponent},{path:"/ui-kit/progress",component:k.ProgressViewComponent},{path:"/ui-kit/alert",component:g.AlertViewComponent},{path:"/ui-kit/description",component:q.DescriptionListViewComponent},{path:"/ui-kit/dotnav",component:C.DotnavViewComponent}],{log:!0,baseUrl:"/ui-kit"})]})],f);
+},{"@rxdi/core":"lhgc","@rxdi/router":"tW8N","./markdown-reader/markdown-regular.component":"SbH7","./responsive/responsive.component":"Onv4","./accordion-view/accordion-view.component":"cwfd","./image-view/image-view.component":"bbMR","./badge-view/badge-vew.component":"jitd","./modal/modal-view.component":"jCtu","./button-view/button-view.component":"DgQ9","./article-view/article-view.component":"XMfu","./divider-view/divider-view.component":"LW6G","./label-view/label-view.component":"JKyV","./dropdown-view/dropdown-view.component":"B4BC","./nav-view/nav-view.component":"p3Sc","./card-view/card-view.component":"wymD","./forms/forms-view.component":"ZY77","./progress-view/progress-view.component":"wuRl","../../../src/markdown-reader":"X0WN","./alert-view/alert-view.component":"NuJt","./description-list-view/description-list-view.component":"adJr","./dotnav-view/dotnav-view.component":"whxV"}],"GZ5L":[function(require,module,exports) {
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0});const e=require("@rxdi/lit-html");exports.FLEX=e.css`
   .flex {
     display: flex;
@@ -3719,7 +3841,7 @@ module.exports="/ui-kit/plus.e6cef85c.svg";
           background-color:  var(--${this.palette}-bg-color);;
         }
       </style>
-      <div class="card card-${this.shadow}${this.invert?" black":""}">
+      <div part="card" class="card card-${this.shadow}${this.invert?" black":""}">
         <slot></slot>
       </div>
     `}})],p),exports.CardComponent=p;
@@ -4992,7 +5114,51 @@ module.exports="/ui-kit/plus.e6cef85c.svg";
           <line x1="19" y1="1" x2="1" y2="19"></line>
       </svg>`}
     `}})],r),exports.CloseComponent=r;
-},{"@rxdi/lit-html":"R8ie","../settings":"oZ1d"}],"xViC":[function(require,module,exports) {
+},{"@rxdi/lit-html":"R8ie","../settings":"oZ1d"}],"Sovf":[function(require,module,exports) {
+"use strict";var t=this&&this.__decorate||function(t,e,r,o){var s,i=arguments.length,n=i<3?e:null===o?o=Object.getOwnPropertyDescriptor(e,r):o;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)n=Reflect.decorate(t,e,r,o);else for(var a=t.length-1;a>=0;a--)(s=t[a])&&(n=(i<3?s(n):i>3?s(e,r,n):s(e,r))||n);return i>3&&n&&Object.defineProperty(e,r,n),n},e=this&&this.__metadata||function(t,e){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(t,e)};Object.defineProperty(exports,"__esModule",{value:!0});const r=require("@rxdi/lit-html");let o=class extends r.LitElement{constructor(){super(...arguments),this.orientation="row"}OnUpdateFirst(){this.dots=this.selectAllHrefs(),this.attachListeners()}selectAllHrefs(){return[...Array.from(this.querySelectorAll("a"))]}attachListeners(){this.dots.forEach(t=>this.attachListener(t))}attachListener(t){t.addEventListener("click",()=>this.focusElement(t))}focusElement(t){this.dots.forEach(t=>t.classList.remove("focus")),t.classList.add("focus")}};t([r.property({type:String}),e("design:type",String)],o.prototype,"orientation",void 0),t([r.property({type:Array}),e("design:type",Array)],o.prototype,"dots",void 0),o=t([r.Component({selector:"rx-dotnav",style:r.css`
+    a {
+      display: block;
+      cursor: pointer;
+      box-sizing: border-box;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: transparent;
+      text-indent: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      border: 1px solid rgba(102, 102, 102, 0.4);
+      transition: 0.2s ease-in-out;
+      transition-property: background-color, border-color;
+    }
+    .focus {
+      background-color: rgba(102, 102, 102, 0.6);
+      outline: none;
+      border-color: transparent;
+    }
+  `,template(){return r.html`
+      ${"row"===this.orientation?r.html`
+            <style>
+              a {
+                margin-top: 0px;
+                margin-right: 12px;
+              }
+            </style>
+          `:r.html`
+            <style>
+              a {
+                margin-top: 12px;
+                margin-right: 0px;
+              }
+            </style>
+          `}
+      <div
+        style=${r.styleMap({display:"flex","flex-direction":this.orientation})}
+      >
+        ${this.dots}
+      </div>
+    `}})],o),exports.DotnavComponent=o;
+},{"@rxdi/lit-html":"R8ie"}],"xViC":[function(require,module,exports) {
 "use strict";var t,e=this&&this.__decorate||function(t,e,i,o){var n,s=arguments.length,l=s<3?e:null===o?o=Object.getOwnPropertyDescriptor(e,i):o;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)l=Reflect.decorate(t,e,i,o);else for(var r=t.length-1;r>=0;r--)(n=t[r])&&(l=(s<3?n(l):s>3?n(e,i,l):n(e,i))||l);return s>3&&l&&Object.defineProperty(e,i,l),l},i=this&&this.__metadata||function(t,e){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(t,e)},o=this&&this.__awaiter||function(t,e,i,o){return new(i||(i=Promise))(function(n,s){function l(t){try{a(o.next(t))}catch(e){s(e)}}function r(t){try{a(o.throw(t))}catch(e){s(e)}}function a(t){var e;t.done?n(t.value):(e=t.value,e instanceof i?e:new i(function(t){t(e)})).then(l,r)}a((o=o.apply(t,e||[])).next())})};Object.defineProperty(exports,"__esModule",{value:!0});const n=require("@rxdi/lit-html");let s=class extends n.LitElement{onClose(){this.dispatchEvent(new CustomEvent("onClose",{detail:this})),this.remove()}OnUpdateFirst(){"primary"===this.palette?this.setPaletteStyle("#d8eafc","#1e87f0"):"success"===this.palette?this.setPaletteStyle("#edfbf6","#32d296"):"warning"===this.palette?this.setPaletteStyle("#fff6ee","#faa05a"):"danger"===this.palette?this.setPaletteStyle("#fef4f6","#f0506e"):"default"===this.palette&&this.setPaletteStyle("#f8f8f8","#666")}setPaletteStyle(t,e){this.paletteStyle=n.css`
       :host {
         background: ${n.unsafeCSS(t)};
@@ -5063,7 +5229,7 @@ module.exports="/ui-kit/plus.e6cef85c.svg";
       <div class="container" part="container">
         <slot name="description" class="description" part="description"></slot>
         <slot name="text" class="text" part="text"></slot>
-        <div class="border"></div>
+        <div class="border" part="border"></div>
       </div>
     `})],o),exports.DescriptionListComponent=o;
 },{"@rxdi/lit-html":"R8ie"}],"ynE3":[function(require,module,exports) {
@@ -5098,6 +5264,7 @@ module.exports="/ui-kit/plus.e6cef85c.svg";
         <a href="/ui-kit/progress"><rx-button palette="primary">Progress</rx-button> </a>
         <a href="/ui-kit/alert"><rx-button palette="primary">Alert</rx-button> </a>
         <a href="/ui-kit/description"><rx-button palette="primary">Description List</rx-button> </a>
+        <a href="/ui-kit/dotnav"><rx-button palette="primary">Dotnav</rx-button> </a>
 
         <!-- <rx-button
           palette="danger"
@@ -5121,10 +5288,10 @@ module.exports="/ui-kit/plus.e6cef85c.svg";
       </div>
     `}})],n);
 },{"@rxdi/lit-html":"R8ie","@rxdi/core":"lhgc","../../../../src/nav":"e2p2"}],"ThiH":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.AppComponentsModule=void 0;var e=require("@rxdi/core"),o=require("../../../src/accordion"),r=require("../../../src/image"),n=require("../../../src/grid/grid.component"),t=require("../../../src/badge/badge.component"),c=require("../../../src/button/button.component"),p=require("../../../src/article/article.component"),i=require("../../../src/label/label.component"),s=require("../../../src/card/card.component"),m=require("../../../src/dropdown/dropdown.component"),d=require("../../../src/if/if.component"),u=require("../../../src/divider/divider.component"),a=require("../../../src/progress/progress.component"),l=require("../../../src/close/close.component"),C=require("../../../src/alert/alert.component"),q=require("../../../src/description-list/description-list.component"),g=require("./markdown-reader/markdown-regular.component"),f=require("./accordion-view/accordion-view.component"),v=require("./nav-view/nav-component"),b=function(e,o,r,n){var t,c=arguments.length,p=c<3?o:null===n?n=Object.getOwnPropertyDescriptor(o,r):n;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)p=Reflect.decorate(e,o,r,n);else for(var i=e.length-1;i>=0;i--)(t=e[i])&&(p=(c<3?t(p):c>3?t(o,r,p):t(o,r))||p);return c>3&&p&&Object.defineProperty(o,r,p),p};let w=class{};exports.AppComponentsModule=w,exports.AppComponentsModule=w=b([(0,e.Module)({components:[g.RegularMarkdownComponent,f.AccordionViewComponent,o.AccordionComponent,r.RxImageComponent,n.GridComponent,t.BadgeComponent,c.ButtonComponent,p.ArticleComponent,u.DividerComponent,i.LabelComponent,m.DropdownComponent,v.NavComponent,s.CardComponent,a.ProgressComponent,d.IfComponent,l.CloseComponent,C.AlertComponent,q.DescriptionListComponent]})],w);
-},{"@rxdi/core":"lhgc","../../../src/accordion":"oj6B","../../../src/image":"N7t6","../../../src/grid/grid.component":"iXmO","../../../src/badge/badge.component":"C2jj","../../../src/button/button.component":"Ofur","../../../src/article/article.component":"pT1A","../../../src/label/label.component":"lvFV","../../../src/card/card.component":"kpCZ","../../../src/dropdown/dropdown.component":"vZQS","../../../src/if/if.component":"fOvE","../../../src/divider/divider.component":"OXJN","../../../src/progress/progress.component":"aOBu","../../../src/close/close.component":"U6nI","../../../src/alert/alert.component":"xViC","../../../src/description-list/description-list.component":"Toop","./markdown-reader/markdown-regular.component":"SbH7","./accordion-view/accordion-view.component":"cwfd","./nav-view/nav-component":"ynE3"}],"Gsig":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.AppComponentsModule=void 0;var e=require("@rxdi/core"),o=require("../../../src/accordion"),r=require("../../../src/image"),n=require("../../../src/grid/grid.component"),t=require("../../../src/badge/badge.component"),c=require("../../../src/button/button.component"),p=require("../../../src/article/article.component"),i=require("../../../src/label/label.component"),s=require("../../../src/card/card.component"),m=require("../../../src/dropdown/dropdown.component"),d=require("../../../src/if/if.component"),a=require("../../../src/divider/divider.component"),u=require("../../../src/progress/progress.component"),l=require("../../../src/close/close.component"),C=require("../../../src/dotnav/dotnav.component"),q=require("../../../src/alert/alert.component"),v=require("../../../src/description-list/description-list.component"),g=require("./markdown-reader/markdown-regular.component"),f=require("./accordion-view/accordion-view.component"),b=require("./nav-view/nav-component"),w=function(e,o,r,n){var t,c=arguments.length,p=c<3?o:null===n?n=Object.getOwnPropertyDescriptor(o,r):n;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)p=Reflect.decorate(e,o,r,n);else for(var i=e.length-1;i>=0;i--)(t=e[i])&&(p=(c<3?t(p):c>3?t(o,r,p):t(o,r))||p);return c>3&&p&&Object.defineProperty(o,r,p),p};let A=class{};exports.AppComponentsModule=A,exports.AppComponentsModule=A=w([(0,e.Module)({components:[g.RegularMarkdownComponent,f.AccordionViewComponent,o.AccordionComponent,r.RxImageComponent,n.GridComponent,t.BadgeComponent,c.ButtonComponent,p.ArticleComponent,a.DividerComponent,i.LabelComponent,m.DropdownComponent,b.NavComponent,s.CardComponent,u.ProgressComponent,d.IfComponent,l.CloseComponent,q.AlertComponent,v.DescriptionListComponent,C.DotnavComponent]})],A);
+},{"@rxdi/core":"lhgc","../../../src/accordion":"oj6B","../../../src/image":"N7t6","../../../src/grid/grid.component":"iXmO","../../../src/badge/badge.component":"C2jj","../../../src/button/button.component":"Ofur","../../../src/article/article.component":"pT1A","../../../src/label/label.component":"lvFV","../../../src/card/card.component":"kpCZ","../../../src/dropdown/dropdown.component":"vZQS","../../../src/if/if.component":"fOvE","../../../src/divider/divider.component":"OXJN","../../../src/progress/progress.component":"aOBu","../../../src/close/close.component":"U6nI","../../../src/dotnav/dotnav.component":"Sovf","../../../src/alert/alert.component":"xViC","../../../src/description-list/description-list.component":"Toop","./markdown-reader/markdown-regular.component":"SbH7","./accordion-view/accordion-view.component":"cwfd","./nav-view/nav-component":"ynE3"}],"Gsig":[function(require,module,exports) {
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.AppModule=void 0;var e=require("@rxdi/core"),o=require("./app.component"),r=require("../../../src/markdown-reader"),t=require("../../../src"),p=require("../../../src/modal"),u=require("../../../src/nav"),l=require("./app.routing.module"),d=require("./app.components.module"),n=function(e,o,r,t){var p,u=arguments.length,l=u<3?o:null===t?t=Object.getOwnPropertyDescriptor(o,r):t;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)l=Reflect.decorate(e,o,r,t);else for(var d=e.length-1;d>=0;d--)(p=e[d])&&(l=(u<3?p(l):u>3?p(o,r,l):p(o,r))||l);return u>3&&l&&Object.defineProperty(o,r,l),l};let c=class{};exports.AppModule=c,exports.AppModule=c=n([(0,e.Module)({imports:[d.AppComponentsModule,l.AppRoutingModule,p.ModalModule.forRoot({backdropClose:!0}),t.ReactiveUiModule.forRoot(),r.MarkdownReaderModule,u.NavModule.forRoot()],bootstrap:[o.AppComponent]})],c);
 },{"@rxdi/core":"lhgc","./app.component":"XCbS","../../../src/markdown-reader":"X0WN","../../../src":"fUdq","../../../src/modal":"mF9g","../../../src/nav":"e2p2","./app.routing.module":"MVQp","./app.components.module":"ThiH"}],"ZCfc":[function(require,module,exports) {
 "use strict";var e=require("@rxdi/core"),o=require("./src/app/app.module");window.addEventListener("load",()=>{(0,e.Bootstrap)(o.AppModule,{init:!1}).subscribe(()=>console.log("App Started!"),e=>console.error(e))}),module.hot&&module.hot.dispose(()=>document.body.innerHTML="");
 },{"@rxdi/core":"lhgc","./src/app/app.module":"Gsig"}]},{},["ZCfc"], null)
-//# sourceMappingURL=/ui-kit/main.6eef846b.js.map
+//# sourceMappingURL=/ui-kit/main.f56ae03e.js.map

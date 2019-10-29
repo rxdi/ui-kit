@@ -8,6 +8,13 @@ import { Component, LitElement, html, css } from '@rxdi/lit-html';
       margin: 0px auto;
       background-color: white;
     }
+    rx-description.orange::part(description) {
+      color: orange;
+    }
+    rx-description::part(border) {
+      /* padding:0px; */
+      /* margin: 0px; */
+    }
   `,
   template(this: DescriptionListViewComponent) {
     return html`
@@ -44,10 +51,22 @@ import { Component, LitElement, html, css } from '@rxdi/lit-html';
           </div>
         </rx-description>
         <rx-description>
-          <div slot="description">DESCRIPTION TERM</div>
           <div slot="text">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </div>
+        </rx-description>
+        <rx-description>
+          <div slot="text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </div>
+        </rx-description>
+        <rx-description>
+          <div slot="text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </div>
+        </rx-description>
+        <rx-description class="orange">
+          <div slot="description">DESCRIPTION TERM</div>
         </rx-description>
       </div>
     `;

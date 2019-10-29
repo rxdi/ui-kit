@@ -1,5 +1,8 @@
 import { LitElement, Component, html, css } from '@rxdi/lit-html';
 
+/**
+ * @customElement rx-description
+ */
 @Component({
   selector: 'rx-description',
   style: css`
@@ -28,7 +31,7 @@ import { LitElement, Component, html, css } from '@rxdi/lit-html';
       <div class="container" part="container">
         <slot name="description" class="description" part="description"></slot>
         <slot name="text" class="text" part="text"></slot>
-        <div class="border"></div>
+        <div class="border" part="border"></div>
       </div>
     `;
   }

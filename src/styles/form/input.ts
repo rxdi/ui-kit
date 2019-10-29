@@ -2,6 +2,13 @@ import { css } from '@rxdi/lit-html';
 
 export const InputStyle = css`
 
+
+  input[type="range"] {
+    -webkit-appearance: slider-horizontal;
+    color: rgb(157, 150, 142);
+    border: initial;
+  }
+
   .rx-input,
   .rx-select,
   .rx-textarea {
@@ -34,6 +41,17 @@ export const InputStyle = css`
     transition-property: background-color, border;
     cursor: pointer;
   }
+  .rx-range {
+    box-sizing: border-box;
+    margin: 0;
+    vertical-align: middle;
+    max-width: 100%;
+    width: 100%;
+    -webkit-appearance: none;
+    background: transparent;
+    padding: 0;
+  }
+
   .rx-checkbox:checked {
     background-color: #1e87f0;
     background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2214%22%20height%3D%2211%22%20viewBox%3D%220%200%2014%2011%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Cpolygon%20fill%3D%22%23fff%22%20points%3D%2212%201%205%207.5%202%205%201%205.5%205%2010%2013%201.5%22%20%2F%3E%0A%3C%2Fsvg%3E%0A")
