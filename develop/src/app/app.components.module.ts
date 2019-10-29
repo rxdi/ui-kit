@@ -14,11 +14,11 @@ import { ProgressComponent } from '../../../src/progress/progress.component';
 import { CloseComponent } from '../../../src/close/close.component';
 
 import { AlertComponent } from '../../../src/alert/alert.component';
+import { DescriptionListComponent } from '../../../src/description-list/description-list.component';
 
 import { RegularMarkdownComponent } from './markdown-reader/markdown-regular.component';
 import { AccordionViewComponent } from './accordion-view/accordion-view.component';
 import { NavComponent } from './nav-view/nav-component';
-import { AlertViewComponent } from './alert-view/alert-view.component';
 
 @Module({
   components: [
@@ -38,7 +38,8 @@ import { AlertViewComponent } from './alert-view/alert-view.component';
     ProgressComponent,
     IfComponent,
     CloseComponent,
-    AlertComponent
+    AlertComponent,
+    DescriptionListComponent
   ]
 })
 export class AppComponentsModule {}

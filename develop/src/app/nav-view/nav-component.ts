@@ -37,6 +37,7 @@ import { Nav } from '../../../../src/nav';
         <a href="/ui-kit/forms"><rx-button palette="primary">Forms</rx-button> </a>
         <a href="/ui-kit/progress"><rx-button palette="primary">Progress</rx-button> </a>
         <a href="/ui-kit/alert"><rx-button palette="primary">Alert</rx-button> </a>
+        <a href="/ui-kit/description"><rx-button palette="primary">Description List</rx-button> </a>
 
         <!-- <rx-button
           palette="danger"

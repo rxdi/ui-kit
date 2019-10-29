@@ -22,6 +22,7 @@ import { ProgressViewComponent } from './progress-view/progress-view.component';
 
 import { MarkdownReaderComponent } from '../../../src/markdown-reader';
 import { AlertViewComponent } from './alert-view/alert-view.component';
+import { DescriptionListViewComponent } from './description-list-view/description-list-view.component';
 
 @Module({
   imports: [
@@ -98,6 +99,10 @@ import { AlertViewComponent } from './alert-view/alert-view.component';
         {
           path: '/ui-kit/alert',
           component: AlertViewComponent
+        },
+        {
+          path: '/ui-kit/description',
+          component: DescriptionListViewComponent
         },
       ],
       { log: true, baseUrl: '/ui-kit' }
