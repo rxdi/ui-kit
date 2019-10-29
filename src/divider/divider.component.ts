@@ -1,9 +1,7 @@
 import {
-  unsafeCSS,
   Component,
   LitElement,
   html,
-  css,
   property
 } from '@rxdi/lit-html';
 import { style } from './style';

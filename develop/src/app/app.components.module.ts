@@ -12,6 +12,7 @@ import { IfComponent } from '../../../src/if/if.component';
 import { DividerComponent } from '../../../src/divider/divider.component';
 import { ProgressComponent } from '../../../src/progress/progress.component';
 import { CloseComponent } from '../../../src/close/close.component';
+import { DotnavComponent } from '../../../src/dotnav/dotnav.component';
 
 import { AlertComponent } from '../../../src/alert/alert.component';
 import { DescriptionListComponent } from '../../../src/description-list/description-list.component';
@@ -39,7 +40,8 @@ import { NavComponent } from './nav-view/nav-component';
     IfComponent,
     CloseComponent,
     AlertComponent,
-    DescriptionListComponent
+    DescriptionListComponent,
+    DotnavComponent
   ]
 })
 export class AppComponentsModule {}
