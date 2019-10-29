@@ -72,10 +72,11 @@ export class AppModule {}
 * [Card](/src/card/README.md)
 * [Progress](/src/progress/README.md)
 * [Close](/src/close/README.md)
+* [Alert](/src/alert/README.md)
 
 ### In Progress
 
-* [Alert](/src//README.md)
+
 * [Align](/src//README.md)
 * [Animation](/src//README.md)
 * [Background](/src//README.md)
