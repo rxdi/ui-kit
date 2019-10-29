@@ -37,7 +37,7 @@
     "@types/node": "^12.0.8",
     "@rxdi/firelink": "^0.0.21",
     "cssnano": "^4.1.10",
-    "typescript": "^3.5.1"
+    "typescript": "^3.6.4"
   },
   "browserslist": [
     "last 1 chrome versions"

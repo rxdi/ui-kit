@@ -13,9 +13,12 @@ import { DividerComponent } from '../../../src/divider/divider.component';
 import { ProgressComponent } from '../../../src/progress/progress.component';
 import { CloseComponent } from '../../../src/close/close.component';
 
+import { AlertComponent } from '../../../src/alert/alert.component';
+
 import { RegularMarkdownComponent } from './markdown-reader/markdown-regular.component';
 import { AccordionViewComponent } from './accordion-view/accordion-view.component';
 import { NavComponent } from './nav-view/nav-component';
+import { AlertViewComponent } from './alert-view/alert-view.component';
 
 @Module({
   components: [
@@ -34,7 +37,8 @@ import { NavComponent } from './nav-view/nav-component';
     CardComponent,
     ProgressComponent,
     IfComponent,
-    CloseComponent
+    CloseComponent,
+    AlertComponent
   ]
 })
 export class AppComponentsModule {}

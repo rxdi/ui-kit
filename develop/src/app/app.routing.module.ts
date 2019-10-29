@@ -21,6 +21,7 @@ import { FormsViewComponent } from './forms/forms-view.component';
 import { ProgressViewComponent } from './progress-view/progress-view.component';
 
 import { MarkdownReaderComponent } from '../../../src/markdown-reader';
+import { AlertViewComponent } from './alert-view/alert-view.component';
 
 @Module({
   imports: [
@@ -93,7 +94,11 @@ import { MarkdownReaderComponent } from '../../../src/markdown-reader';
         {
           path: '/ui-kit/progress',
           component: ProgressViewComponent
-        }
+        },
+        {
+          path: '/ui-kit/alert',
+          component: AlertViewComponent
+        },
       ],
       { log: true, baseUrl: '/ui-kit' }
     )

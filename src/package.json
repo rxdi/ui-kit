@@ -6,5 +6,8 @@
   },
   "browserslist": [
     "last 1 chrome versions"
-  ]
+  ],
+  "devDependencies": {
+    "typescript": "^3.6.4"
+  }
 }
