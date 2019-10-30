@@ -1,5 +1,8 @@
 import { Component, html, LitElement, css } from '@rxdi/lit-html';
 
+/**
+ * @customElement label-view-component
+ */
 @Component({
   selector: 'label-view-component',
   style: css`

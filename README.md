@@ -67,6 +67,7 @@ export class AppModule {}
 * [Article](/src/article/README.md)
 * [Divider](/src/divider/README.md)
 * [Label](/src/label/README.md)
+* [Loading](/src/loading/README.md)
 * [Dropdown](/src/dropdown/README.md)
 * [Off-canvas-nav](/src/nav/README.md)
 * [Card](/src/card/README.md)
