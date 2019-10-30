@@ -77,6 +77,7 @@ export class AppModule {}
 * [Alert](/src/alert/README.md)
 * [Description List](/src/description-list/README.md)
 * [Dotnav](/src/dotnav/README.md)
+* [Tabs](/src/tabs/README.md)
 
 ### In Progress
 
