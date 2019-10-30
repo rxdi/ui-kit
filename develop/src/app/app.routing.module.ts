@@ -24,6 +24,7 @@ import { MarkdownReaderComponent } from '../../../src/markdown-reader';
 import { AlertViewComponent } from './alert-view/alert-view.component';
 import { DescriptionListViewComponent } from './description-list-view/description-list-view.component';
 import { DotnavViewComponent } from './dotnav-view/dotnav-view.component';
+import { LoadingViewComponent } from './loading-view/loading-view.component';
 
 @Module({
   imports: [
@@ -108,6 +109,10 @@ import { DotnavViewComponent } from './dotnav-view/dotnav-view.component';
         {
           path: '/ui-kit/dotnav',
           component: DotnavViewComponent
+        },
+        {
+          path: '/ui-kit/loading',
+          component: LoadingViewComponent
         },
       ],
       { log: true, baseUrl: '/ui-kit' }
