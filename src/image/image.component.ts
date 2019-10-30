@@ -60,27 +60,21 @@ export class RxImageComponent extends LitElement {
   private onErrorSubscription: Subscription;
 
   OnUpdateFirst() {
-    this.onLoadSubscription = fromEvent<HTMLImageElement>(this.element, 'load')
-      .pipe(
-        map(detail =>
-          this.dispatchEvent(
-            new CustomEvent<HTMLImageElement>('onLoad', { detail })
+    this.onLoadSubscription = this.createSubscription('load').subscribe();
+    this.onErrorSubscription = this.createSubscription('error').subscribe();
+  }
+
+  createSubscription(type: 'error' | 'load') {
+    return fromEvent<HTMLImageElement>(this.element, type).pipe(
+      map(detail =>
+        this.dispatchEvent(
+          new CustomEvent<HTMLImageElement>(
+            type === 'error' ? 'onError' : 'onLoad',
+            { detail }
           )
         )
       )
-      .subscribe();
-    this.onErrorSubscription = fromEvent<HTMLImageElement>(
-      this.element,
-      'error'
-    )
-      .pipe(
-        map(detail =>
-          this.dispatchEvent(
-            new CustomEvent<HTMLImageElement>('onError', { detail })
-          )
-        )
-      )
-      .subscribe();
+    );
   }
 
   OnDestroy() {

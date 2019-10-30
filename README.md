@@ -45,7 +45,65 @@ import { BadgeComponent } from '@rxdi/ui-kit/badge';
     GridComponent,
     BadgeComponent
   ],
-  imports: [ReactiveUiModule.forRoot()],
+  imports: [
+    ReactiveUiModule.forRoot({
+      palettes: {
+        root: css`
+          :root {
+            --bp-s: 640px;
+            --bp-m: 960px;
+            --bp-l: 1200px;
+            --bp-xl: 1600px;
+          }
+        `,
+        danger: css`
+          :root {
+            --danger-bg-color: #f0506e;
+            --danger-color: #fff;
+            --danger-border: 1px solid transparent;
+            --danger-hover-color: #ee395b;
+            --danger-active-color: #ec2147;
+          }
+        `,
+        default: css`
+          :root {
+            --default-bg-color: transparent;
+            --default-color: #222;
+            --default-border: 1px solid #e5e5e5;
+            --default-hover-color: transparent;
+            --default-hover-border: 1px solid #999;
+          }
+        `,
+        primary: css`
+          :root {
+            --primary-bg-color: #1e87f0;
+            --primary-color: #fff;
+            --primary-border: 1px solid transparent;
+            --primary-hover-color: #0f7ae5;
+            --primary-active-color: #0e6dcd;
+          }
+        `,
+        secondary: css`
+          :root {
+            --secondary-bg-color: #222;
+            --secondary-color: #fff;
+            --secondary-border: 1px solid transparent;
+            --secondary-hover-color: #333;
+            --secondary-active-color: #000;
+          }
+        `,
+        warning: css`
+          :root {
+            --warning-bg-color: #faa05a;
+            --warning-color: #fff;
+            --warning-border: 1px solid transparent;
+            --warning-hover-color: #e19457;
+            --warning-active-color: #ef9a56;
+          }
+        `
+      }
+    }),
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
@@ -77,6 +135,7 @@ export class AppModule {}
 * [Alert](/src/alert/README.md)
 * [Description List](/src/description-list/README.md)
 * [Dotnav](/src/dotnav/README.md)
+* [Tabs](/src/tabs/README.md)
 
 ### In Progress
 
@@ -131,7 +190,6 @@ export class AppModule {}
 * [Subnav](/src//README.md)
 * [SVG](/src//README.md)
 * [Switcher](/src//README.md)
-* [Tab](/src//README.md)
 * [Table](/src//README.md)
 * [Text](/src//README.md)
 * [Thumbnav](/src//README.md)
