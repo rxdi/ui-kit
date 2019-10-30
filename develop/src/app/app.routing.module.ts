@@ -27,6 +27,7 @@ import { DotnavViewComponent } from './dotnav-view/dotnav-view.component';
 import { LoadingViewComponent } from './loading-view/loading-view.component';
 import { SpinnerViewComponent } from './spinner-view/spinner-view.component';
 import { TabsViewComponent } from './tabs-view/tabs-view.component';
+import { TableViewComponent } from './table-view/table-view.component';
 
 @Module({
   imports: [
@@ -123,6 +124,10 @@ import { TabsViewComponent } from './tabs-view/tabs-view.component';
         {
           path: '/ui-kit/tabs',
           component: TabsViewComponent
+        },
+        {
+          path: '/ui-kit/table',
+          component: TableViewComponent
         },
       ],
       { log: true, baseUrl: '/ui-kit' }

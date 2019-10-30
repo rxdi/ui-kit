@@ -136,6 +136,7 @@ export class AppModule {}
 * [Description List](/src/description-list/README.md)
 * [Dotnav](/src/dotnav/README.md)
 * [Tabs](/src/tabs/README.md)
+* [Table](/src/table/README.md)
 
 ### In Progress
 
@@ -190,7 +191,6 @@ export class AppModule {}
 * [Subnav](/src//README.md)
 * [SVG](/src//README.md)
 * [Switcher](/src//README.md)
-* [Table](/src//README.md)
 * [Text](/src//README.md)
 * [Thumbnav](/src//README.md)
 * [Tile](/src//README.md)
