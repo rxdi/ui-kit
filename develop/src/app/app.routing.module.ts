@@ -25,6 +25,7 @@ import { AlertViewComponent } from './alert-view/alert-view.component';
 import { DescriptionListViewComponent } from './description-list-view/description-list-view.component';
 import { DotnavViewComponent } from './dotnav-view/dotnav-view.component';
 import { LoadingViewComponent } from './loading-view/loading-view.component';
+import { SpinnerViewComponent } from './spinner-view/spinner-view.component';
 
 @Module({
   imports: [
@@ -113,6 +114,10 @@ import { LoadingViewComponent } from './loading-view/loading-view.component';
         {
           path: '/ui-kit/loading',
           component: LoadingViewComponent
+        },
+        {
+          path: '/ui-kit/spinner',
+          component: SpinnerViewComponent
         },
       ],
       { log: true, baseUrl: '/ui-kit' }

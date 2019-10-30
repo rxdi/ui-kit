@@ -21,6 +21,9 @@ import { Component, LitElement, html, css, property } from '@rxdi/lit-html';
         <h3>Infinite</h3>
         <rx-loading></rx-loading>
       </div>
+      <markdown-reader
+        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/loading/README.md"
+      ></markdown-reader>
     `;
   }
 })

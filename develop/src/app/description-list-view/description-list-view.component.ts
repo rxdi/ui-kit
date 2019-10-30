@@ -69,6 +69,9 @@ import { Component, LitElement, html, css } from '@rxdi/lit-html';
           <div slot="description">DESCRIPTION TERM</div>
         </rx-description>
       </div>
+      <markdown-reader
+        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/description-list/README.md"
+      ></markdown-reader>
     `;
   }
 })

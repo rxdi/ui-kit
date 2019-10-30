@@ -1,5 +1,5 @@
 
-# Divider Component
+# Dotnav Component
 
 Pull request: https://github.com/rxdi/ui-kit/pull/30
 

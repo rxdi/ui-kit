@@ -12,7 +12,6 @@ import { LitElement, html, Component, css } from '@rxdi/lit-html';
     rx-alert {
       margin-top: 10px;
     }
-
   `,
   template(this: AlertViewComponent) {
     return html`
@@ -46,8 +45,10 @@ import { LitElement, html, Component, css } from '@rxdi/lit-html';
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </rx-alert>
-
       </div>
+      <markdown-reader
+        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/alert/README.md"
+      ></markdown-reader>
     `;
   }
 })

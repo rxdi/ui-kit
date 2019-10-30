@@ -72,6 +72,7 @@ export class AppModule {}
 * [Off-canvas-nav](/src/nav/README.md)
 * [Card](/src/card/README.md)
 * [Progress](/src/progress/README.md)
+* [Spinner](/src/spinner/README.md)
 * [Close](/src/close/README.md)
 * [Alert](/src/alert/README.md)
 * [Description List](/src/description-list/README.md)
