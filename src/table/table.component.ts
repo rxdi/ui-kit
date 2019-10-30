@@ -1,4 +1,11 @@
-import { Component, LitElement, html, css, property, unsafeCSS } from '@rxdi/lit-html';
+import {
+  Component,
+  LitElement,
+  html,
+  css,
+  property,
+  unsafeCSS
+} from '@rxdi/lit-html';
 
 /**
  * @customElement rx-table
@@ -122,11 +129,11 @@ import { Component, LitElement, html, css, property, unsafeCSS } from '@rxdi/lit
   `,
   template(this: TableComponent) {
     return html`
-    <style>
+      <style>
         .flex-row {
-      width: calc(100% / ${unsafeCSS(this.columns.length)});
-    }
-    </style>
+          width: calc(100% / ${unsafeCSS(this.columns.length)});
+        }
+      </style>
       <div class="table-container" role="table" aria-label="Destinations">
         <div class="flex-table header" role="rowgroup">
           ${this.columns.map((c, index) => {

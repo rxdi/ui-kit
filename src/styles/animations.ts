@@ -1,4 +1,6 @@
 import { css } from '@rxdi/lit-html';
+import { Observable, from } from 'rxjs';
+import { concatMap } from 'rxjs/operators';
 
 export const Animations = css`
 @charset "UTF-8";
@@ -3299,7 +3301,8 @@ export const Animations = css`
 }
 `;
 
-export type Animations = 'slideOutDown'
+
+export type AnimationsType = 'slideOutDown'
 | 'slideOutLeft'
 | 'slideOutRight'
 | 'slideOutUp'
@@ -3379,17 +3382,27 @@ export type Animations = 'slideOutDown'
 | 'bounce'
 ;
 
-export function animateElement(node: HTMLElement, animationName: Animations) {
-  return new Promise((resolve, reject) => {
+
+export function animateElement(node: HTMLElement, animationName: AnimationsType) {
+  return new Observable((observable) => {
     if (!node) {
-       reject('Missing element');
+       observable.error('Missing element');
     }
     node.classList.add('animated', animationName);
     function handleAnimationEnd() {
       node.classList.remove('animated', animationName);
       node.removeEventListener('animationend', handleAnimationEnd);
-      resolve();
+      observable.next(true);
+      observable.complete();
     }
     node.addEventListener('animationend', handleAnimationEnd);
   });
+}
+
+
+
+export function animateChain(element: HTMLElement, animations: AnimationsType[]) {
+  return from(animations).pipe(
+    concatMap(a => animateElement(element, a))
+  );
 }

@@ -6,8 +6,16 @@ import {
   query,
   OnUpdateFirst
 } from '@rxdi/lit-html';
-import { Animations, animateElement } from '../../../../src/styles/animations';
+import {
+  Animations,
+  animateElement,
+  AnimationsType,
+  animateChain
+} from '../../../../src/styles/animations';
 import { DATA } from './data';
+import { switchMap, concatMap } from 'rxjs/operators';
+import { of, from } from 'rxjs';
+type AnimationsUnion = keyof typeof Animations;
 
 /**
  * @customElement table-view-component
@@ -35,10 +43,16 @@ import { DATA } from './data';
   }
 })
 export class TableViewComponent extends LitElement implements OnUpdateFirst {
-  @query('div')
+  @query('.container')
   private container: HTMLElement;
 
   OnUpdateFirst() {
-    animateElement(this.container, 'bounceInDown');
+    animateChain(this.container, [
+      'zoomOut',
+      'zoomIn',
+      'bounce',
+      'bounceInDown',
+      'zoomOutLeft'
+    ] as AnimationsType[]).subscribe();
   }
 }
