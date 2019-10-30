@@ -15,6 +15,8 @@ import { CloseComponent } from '../../../src/close/close.component';
 import { DotnavComponent } from '../../../src/dotnav/dotnav.component';
 import { LoadingComponent } from '../../../src/loading/loading.component';
 import { AlertComponent } from '../../../src/alert/alert.component';
+import { SpinnerComponent } from '../../../src/spinner/spinner.component';
+
 import { DescriptionListComponent } from '../../../src/description-list/description-list.component';
 import { RegularMarkdownComponent } from './markdown-reader/markdown-regular.component';
 import { AccordionViewComponent } from './accordion-view/accordion-view.component';
@@ -41,7 +43,8 @@ import { NavComponent } from './nav-view/nav-component';
     AlertComponent,
     DescriptionListComponent,
     DotnavComponent,
-    LoadingComponent
+    LoadingComponent,
+    SpinnerComponent
   ]
 })
 export class AppComponentsModule {}

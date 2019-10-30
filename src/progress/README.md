@@ -1,5 +1,7 @@
 # Progress Component
 
+Pull request: https://github.com/rxdi/ui-kit/pull/23
+
 ##### Usage
 
 ```typescript
