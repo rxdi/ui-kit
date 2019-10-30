@@ -17,6 +17,7 @@ import { LoadingComponent } from '../../../src/loading/loading.component';
 import { AlertComponent } from '../../../src/alert/alert.component';
 import { SpinnerComponent } from '../../../src/spinner/spinner.component';
 import { TabsComponent } from '../../../src/tabs/tabs.component';
+import { TableComponent } from '../../../src/table/table.component';
 
 import { DescriptionListComponent } from '../../../src/description-list/description-list.component';
 import { RegularMarkdownComponent } from './markdown-reader/markdown-regular.component';
@@ -46,7 +47,8 @@ import { NavComponent } from './nav-view/nav-component';
     DotnavComponent,
     LoadingComponent,
     SpinnerComponent,
-    TabsComponent
+    TabsComponent,
+    TableComponent
   ]
 })
 export class AppComponentsModule {}
