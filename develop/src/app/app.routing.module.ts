@@ -29,6 +29,7 @@ import { SpinnerViewComponent } from './spinner-view/spinner-view.component';
 import { TabsViewComponent } from './tabs-view/tabs-view.component';
 import { TableViewComponent } from './table-view/table-view.component';
 import { DraggableViewComponent } from './draggable-view/draggble-view.component';
+import { IntrospectViewComponent } from './client-introspect-view/introspect-view.component';
 
 @Module({
   imports: [
@@ -133,6 +134,10 @@ import { DraggableViewComponent } from './draggable-view/draggble-view.component
         {
           path: '/ui-kit/draggable',
           component: DraggableViewComponent
+        },
+        {
+          path: '/ui-kit/introspect',
+          component: IntrospectViewComponent
         },
       ],
       { log: true, baseUrl: '/ui-kit' }
