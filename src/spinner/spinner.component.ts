@@ -24,7 +24,7 @@ import { Spinner } from './spinner.svg';
       stroke-dashoffset: 0;
       transform-origin: center;
 
-      stroke: #666;
+
       stroke-linecap: round;
     }
 
@@ -72,6 +72,7 @@ import { Spinner } from './spinner.svg';
           stroke-width: ${unsafeCSS(this.stroke)};
           animation: uk-spinner-dash ${unsafeCSS(this.speed)}s ease-in-out
             infinite;
+          stroke: ${unsafeCSS(this.color)};
         }
       </style>
       <div uk-spinner="" class="uk-icon uk-spinner">
@@ -83,6 +84,9 @@ import { Spinner } from './spinner.svg';
 export class SpinnerComponent extends LitElement {
   @property({ type: Number })
   public speed = 2.4;
+
+  @property({ type: String })
+  public color = '#666';
 
   @property({ type: Number })
   public width = 30;

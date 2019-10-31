@@ -43,6 +43,7 @@ import { Nav } from '../../../../src/nav';
         <a href="/ui-kit/spinner"><rx-button palette="primary">Spinner</rx-button> </a>
         <a href="/ui-kit/tabs"><rx-button palette="primary">Tabs</rx-button> </a>
         <a href="/ui-kit/table"><rx-button palette="primary">Table</rx-button> </a>
+        <a href="/ui-kit/draggable"><rx-button palette="primary">Draggable</rx-button> </a>
 
         <!-- <rx-button
           palette="danger"

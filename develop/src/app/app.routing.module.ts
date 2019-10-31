@@ -28,6 +28,7 @@ import { LoadingViewComponent } from './loading-view/loading-view.component';
 import { SpinnerViewComponent } from './spinner-view/spinner-view.component';
 import { TabsViewComponent } from './tabs-view/tabs-view.component';
 import { TableViewComponent } from './table-view/table-view.component';
+import { DraggableViewComponent } from './draggable-view/draggble-view.component';
 
 @Module({
   imports: [
@@ -128,6 +129,10 @@ import { TableViewComponent } from './table-view/table-view.component';
         {
           path: '/ui-kit/table',
           component: TableViewComponent
+        },
+        {
+          path: '/ui-kit/draggable',
+          component: DraggableViewComponent
         },
       ],
       { log: true, baseUrl: '/ui-kit' }

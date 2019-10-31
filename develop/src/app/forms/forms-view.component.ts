@@ -1,4 +1,4 @@
-import { html, LitElement, Component, css, styleMap } from '@rxdi/lit-html';
+import { html, LitElement, Component, css, styleMap, property } from '@rxdi/lit-html';
 import { FormGroup, Form } from '@rxdi/forms';
 import { InputErrorTemplate, EmailValidator } from './error';
 import { InputStyle } from '@rxdi/ui-kit/styles/form/input';
@@ -170,7 +170,7 @@ import { InputStyle } from '@rxdi/ui-kit/styles/form/input';
           <div class="height">
             ${InputErrorTemplate(this.form.get('range'))}
           </div>
-          <rx-button type="submit" palette="primary">Submit</rx-button>
+          <rx-button type="submit" palette="primary">${this.loading ? html`<rx-spinner color="white"></rx-spinner>` : 'Submit'}</rx-button>
         </form>
       </div>
 
@@ -181,6 +181,8 @@ import { InputStyle } from '@rxdi/ui-kit/styles/form/input';
   }
 })
 export class FormsViewComponent extends LitElement {
+  @property()
+  loading: boolean;
   @Form({
     strategy: 'input',
     name: 'my-form',
@@ -206,6 +208,8 @@ export class FormsViewComponent extends LitElement {
   }
 
   onSubmit(event: Event) {
+    this.loading = true;
+    setTimeout(() => this.loading = false, 3000);
     console.log(this.form.value);
   }
 

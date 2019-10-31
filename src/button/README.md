@@ -3,8 +3,6 @@
 
 Pull request: https://github.com/rxdi/ui-kit/pull/10
 
-![Screenshot from 2019-10-18 13-36-58](https://user-images.githubusercontent.com/19847933/67087827-6274c700-f1ac-11e9-83c0-f311a7be5cb0.png)
-
 ##### Usage
 
 

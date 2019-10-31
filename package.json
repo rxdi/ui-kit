@@ -29,13 +29,13 @@
   "license": "MIT",
   "devDependencies": {
     "@rxdi/core": "0.7.34",
+    "@rxdi/firelink": "^0.0.21",
     "@rxdi/forms": "^0.7.36",
     "@rxdi/lit-html": "0.7.34",
     "@rxdi/router": "0.7.34",
     "@types/js-yaml": "^3.12.1",
     "@types/marked": "^0.6.5",
     "@types/node": "^12.0.8",
-    "@rxdi/firelink": "^0.0.21",
     "cssnano": "^4.1.10",
     "typescript": "^3.6.4"
   },
@@ -46,6 +46,7 @@
   "module": "./index.js",
   "typings": "./index.d.ts",
   "dependencies": {
+    "interactjs": "^1.6.3",
     "js-yaml": "^3.13.1",
     "marked": "^0.6.2"
   }

@@ -9,7 +9,8 @@
   ],
   "dependencies": {
     "@rxdi/forms": "^0.7.36",
-    "@rxdi/ui-kit": "1.0.0"
+    "@rxdi/ui-kit": "1.0.0",
+    "interactjs": "^1.6.3"
   },
   "fireConfig": {
     "runner": "parcel"
