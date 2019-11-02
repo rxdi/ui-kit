@@ -1,31 +1,22 @@
 
 # Draggable Service
 
-
 ##### Usage
 
 ```typescript
-    const events = this.draggableService.draggableElement(this.shadowRoot.getElementById('container'), {
-        myCustomElement: i
-      });
-      events.dragstart.subscribe();
-
-    this.draggableService
-        .createDropArea(this.shadowRoot.getElementById('drop-area'))
-        .subscribe(data => console.log(`Target ${i}`, data.metadata));
-
-    this.draggableService
-      .createDropArea(this.shadowRoot.getElementById('initial-container'))
-      .subscribe(data => console.log('Initial', data.metadata));
-```
-
-
-```typescript
-import { LitElement, Component, html, css, queryAll } from '@rxdi/lit-html';
-import interact from 'interactjs';
-import { Inject, Container } from '@rxdi/core';
-import { DraggableService } from './draggable.service';
-import { Observable } from 'rxjs';
+import {
+  LitElement,
+  Component,
+  html,
+  css,
+  queryAll,
+  property,
+  query,
+  classMap
+} from '@rxdi/lit-html';
+import { Inject } from '@rxdi/core';
+import { DraggableService } from '@rxdi/ui-kit/draggable/draggable.service';
+import { MultiDrag } from 'sortablejs';
 
 @Component({
   selector: 'draggable-view-component',
@@ -34,67 +25,84 @@ import { Observable } from 'rxjs';
       background: white;
       color: #666;
     }
-    .draggableArea {
+
+    .dropdownArea {
       background-color: green;
       padding: 50px;
+      min-height: 60px;
       color: white;
     }
-    .target {
+    .dropdownAreaWhenDragged {
       opacity: 0.7;
     }
     rx-button {
       cursor: move;
     }
-    #container {
-      min-height: 50px;
+    .draggable-container {
+      min-height: 100px;
+    }
+    .blue-background-class {
+      opacity: 0.5;
+    }
+    .sortable-selected {
+      background: #666;
     }
   `,
   template(this: DraggableViewComponent) {
     return html`
       <div class="container">
-        <div id="initial-container">
-          <rx-button palette="primary" draggable="true">
+        <div class="draggable-container">
+          <rx-button palette="primary">
             This element is draggable.
           </rx-button>
-          <rx-button palette="danger" draggable="true">
+          <rx-button palette="danger">
             This element is draggable.
           </rx-button>
-          <rx-button palette="warning" draggable="true">
+          <rx-button palette="warning">
             This element is draggable.
           </rx-button>
-          <rx-button palette="primary" draggable="true">
+          <rx-button palette="primary">
             This element is draggable.
           </rx-button>
-          <rx-button palette="danger" draggable="true">
+          <rx-button palette="danger">
             This element is draggable.
           </rx-button>
-          <rx-button palette="warning" draggable="true">
+          <rx-button palette="warning">
             This element is draggable.
           </rx-button>
-          <rx-button palette="primary" draggable="true">
+          <rx-button palette="primary">
             This element is draggable.
           </rx-button>
-          <rx-button palette="danger" draggable="true">
+          <rx-button palette="danger">
             This element is draggable.
           </rx-button>
-          <rx-button palette="warning" draggable="true">
+          <rx-button palette="warning">
             This element is draggable.
           </rx-button>
         </div>
 
-        <div class="draggableArea">
+        <div class="dropdownArea">
+          <rx-button palette="danger">dada</rx-button>
+          <rx-button palette="danger">dada</rx-button>
+          <rx-button palette="danger">dada</rx-button>
+          <rx-button palette="danger">dada</rx-button>
+        </div>
+
+        <div class="dropdownArea">
           Return area1
         </div>
 
-        <div class="draggableArea">
+        <div class="dropdownArea">
           Drop Zone2
         </div>
 
-        <div class="draggableArea">
+        <div class="dropdownArea">
           Drop Zone3
         </div>
-
       </div>
+      <markdown-reader
+        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/draggable/README.md"
+      ></markdown-reader>
     `;
   },
   providers: [DraggableService]
@@ -103,28 +111,28 @@ export class DraggableViewComponent extends LitElement {
   @Inject(DraggableService)
   private draggableService: DraggableService;
 
-  @queryAll('rx-button')
-  private els: HTMLElement[];
+  @query('.draggable-container')
+  private container: HTMLElement;
 
-  @queryAll('.draggableArea')
+  @queryAll('.dropdownArea')
   private targets: HTMLElement[];
 
   OnUpdateFirst() {
-    this.els.forEach((e, i) => {
-      this.draggableService.draggableElement(e, {
-        myCustomElement: i
-      }).dragstart.subscribe();
+    this.draggableService.setPlugins([MultiDrag]);
+    this.draggableService.createSortable(this.container, {
+      group: 'shared',
+      multiDrag: true,
+      ghostClass: 'blue-background-class',
+      animation: 150
     });
-    this.targets.forEach((t, i) => {
-      this.draggableService
-        .createDropArea(t)
-        .subscribe(data => console.log(`Target ${i}`, data.metadata));
+    this.targets.forEach(target => {
+      this.draggableService.createSortable(target, {
+        group: 'shared',
+        multiDrag: true,
+        ghostClass: 'blue-background-class',
+        animation: 150
+      });
     });
-
-    this.draggableService
-      .createDropArea(this.shadowRoot.getElementById('initial-container'))
-      .subscribe(data => console.log('Initial', data.metadata));
   }
-
 }
 ```

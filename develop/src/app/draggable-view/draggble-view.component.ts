@@ -4,13 +4,13 @@ import {
   html,
   css,
   queryAll,
-  property
+  property,
+  query,
+  classMap
 } from '@rxdi/lit-html';
-import interact from 'interactjs';
 import { Inject } from '@rxdi/core';
 import { DraggableService } from '@rxdi/ui-kit/draggable/draggable.service';
-import { switchMap, map } from 'rxjs/operators';
-import { combineLatest, of } from 'rxjs';
+import { MultiDrag } from 'sortablejs';
 
 @Component({
   selector: 'draggable-view-component',
@@ -19,79 +19,69 @@ import { combineLatest, of } from 'rxjs';
       background: white;
       color: #666;
     }
-    #grid-snap {
-      width: 40%;
-      background-color: #29e;
-      color: #fff;
-      font-size: 1.2em;
-      border-radius: 4px;
-      padding: 2%;
-      margin: 5%;
-      touch-action: none;
-    }
-    .dropdownArea {
+    .dropZone {
       background-color: green;
       padding: 50px;
       min-height: 60px;
+      border: 1px solid white;
       color: white;
     }
-    .dropdownAreaWhenDragged {
+    .dropZoneWhenDragged {
       opacity: 0.7;
     }
     rx-button {
       cursor: move;
     }
-    #container {
+    .draggable-container {
       min-height: 100px;
+    }
+    .blue-background-class {
+      opacity: 0.6;
+    }
+    .sortable-selected {
+      opacity: 0.6;
     }
   `,
   template(this: DraggableViewComponent) {
     return html`
       <div class="container">
-        <div id="container">
-          <rx-button palette="primary" draggable="true">
+        <div class="draggable-container">
+          <rx-button palette="primary">
             This element is draggable.
           </rx-button>
-          <rx-button palette="danger" draggable="true">
+          <rx-button palette="danger">
             This element is draggable.
           </rx-button>
-          <rx-button palette="warning" draggable="true">
+          <rx-button palette="warning">
             This element is draggable.
           </rx-button>
-          <rx-button palette="primary" draggable="true">
+          <rx-button palette="primary">
             This element is draggable.
           </rx-button>
-          <rx-button palette="danger" draggable="true">
+          <rx-button palette="danger">
             This element is draggable.
           </rx-button>
-          <rx-button palette="warning" draggable="true">
+          <rx-button palette="warning">
             This element is draggable.
           </rx-button>
-          <rx-button palette="primary" draggable="true">
+          <rx-button palette="primary">
             This element is draggable.
           </rx-button>
-          <rx-button palette="danger" draggable="true">
+          <rx-button palette="danger">
             This element is draggable.
           </rx-button>
-          <rx-button palette="warning" draggable="true">
+          <rx-button palette="warning">
             This element is draggable.
           </rx-button>
         </div>
 
-        <div class="dropdownArea">
-          Return area1
+        <div class="dropZone">
         </div>
 
-        <div class="dropdownArea">
-          Drop Zone2
+        <div class="dropZone">
         </div>
 
-        <div class="dropdownArea">
-          Drop Zone3
-        </div>
-
-        <div id="grid-snap">
-          ${this.droppedItem}
+        <div class="dropZone">
         </div>
       </div>
       <markdown-reader
@@ -102,91 +92,30 @@ import { combineLatest, of } from 'rxjs';
   providers: [DraggableService]
 })
 export class DraggableViewComponent extends LitElement {
-  @Inject(DraggableService) private draggableService: DraggableService;
+  @Inject(DraggableService)
+  private draggableService: DraggableService;
 
-  @queryAll('rx-button') private els: HTMLElement[];
-  @queryAll('.dropdownArea') private targets: HTMLElement[];
+  @query('.draggable-container')
+  private container: HTMLElement;
 
-  @property()
-  droppedItem;
+  @queryAll('.dropZone')
+  private targets: HTMLElement[];
 
   OnUpdateFirst() {
-    this.customDropArea(this.els);
-    this.getElement();
-  }
-
-  customDropArea(elements: HTMLElement[]) {
-    elements.forEach((e, i) => {
-      const events = this.draggableService.draggableElement(e, {
-        myCustomElement: i
-      });
-      events.dragstart.subscribe();
-      events.dragend.subscribe();
-      events.drag.subscribe();
+    this.draggableService.setPlugins([MultiDrag]);
+    this.draggableService.createSortable(this.container, {
+      group: 'shared',
+      multiDrag: true,
+      ghostClass: 'blue-background-class',
+      animation: 150
     });
-    this.targets.forEach((t, i) => {
-      this.draggableService
-        .createDropArea(t, { style: 'dropdownAreaWhenDragged' })
-        .pipe(map(
-          (data) =>
-            (this.droppedItem = html`
-            <p>Item: ${data.target.tagName}</p>
-            <p>Palette: ${data.target['palette']}</p>
-              ${t.cloneNode(true)}
-            `)
-        ),
-        )
-        .subscribe();
-    });
-
-    this.draggableService
-      .createDropArea(this.shadowRoot.getElementById('container'))
-      .subscribe(
-        data =>
-          (this.droppedItem = html`
-            Initial container ${data.metadata.myCustomElement}
-          `)
-      );
-  }
-
-  getElement() {
-    const element = this.shadowRoot.querySelector('#grid-snap');
-    let x = 0;
-    let y = 0;
-
-    interact(element as any)
-      .draggable({
-        modifiers: [
-          interact.modifiers.snap({
-            targets: [
-              interact.createSnapGrid({
-                x: 20,
-                y: 20
-              })
-            ],
-            range: Infinity,
-            relativePoints: [{ x: 0, y: 0 }]
-          }),
-          interact.modifiers.restrict({
-            restriction: element.parentNode as any,
-            elementRect: { top: 0, left: 0, bottom: 1, right: 1 },
-            endOnly: true
-          })
-        ],
-        inertia: true
-      })
-      .on('dragmove', function(event) {
-        x += event.dx;
-        y += event.dy;
-
-        event.target.style.webkitTransform = event.target.style.transform =
-          'translate(' + x + 'px, ' + y + 'px)';
+    this.targets.forEach(target => {
+      this.draggableService.createSortable(target, {
+        group: 'shared',
+        multiDrag: true,
+        ghostClass: 'blue-background-class',
+        animation: 150
       });
+    });
   }
 }
-
-//   target.setAttribute(
-//     'style',
-//     `transform: translate(${e.clientX}px, ${e.clientY}px); cursor: move;`
-//   );
-//   target.remove()
