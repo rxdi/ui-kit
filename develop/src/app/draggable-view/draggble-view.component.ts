@@ -4,9 +4,7 @@ import {
   html,
   css,
   queryAll,
-  property,
-  query,
-  classMap
+  query
 } from '@rxdi/lit-html';
 import { Inject } from '@rxdi/core';
 import { DraggableService } from '@rxdi/ui-kit/draggable/draggable.service';
@@ -75,14 +73,11 @@ import { MultiDrag } from 'sortablejs';
           </rx-button>
         </div>
 
-        <div class="dropZone">
-        </div>
+        <div class="dropZone"></div>
 
-        <div class="dropZone">
-        </div>
+        <div class="dropZone"></div>
 
-        <div class="dropZone">
-        </div>
+        <div class="dropZone"></div>
       </div>
       <markdown-reader
         link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/draggable/README.md"
@@ -104,7 +99,6 @@ export class DraggableViewComponent extends LitElement {
   OnUpdateFirst() {
     this.draggableService.setPlugins([MultiDrag]);
     this.draggableService.createSortable(this.container, {
-      group: 'shared',
       multiDrag: true,
       ghostClass: 'blue-background-class',
       animation: 150

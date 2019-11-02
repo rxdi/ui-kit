@@ -10,9 +10,7 @@ import {
   html,
   css,
   queryAll,
-  property,
-  query,
-  classMap
+  query
 } from '@rxdi/lit-html';
 import { Inject } from '@rxdi/core';
 import { DraggableService } from '@rxdi/ui-kit/draggable/draggable.service';
@@ -25,14 +23,14 @@ import { MultiDrag } from 'sortablejs';
       background: white;
       color: #666;
     }
-
-    .dropdownArea {
+    .dropZone {
       background-color: green;
       padding: 50px;
       min-height: 60px;
+      border: 1px solid white;
       color: white;
     }
-    .dropdownAreaWhenDragged {
+    .dropZoneWhenDragged {
       opacity: 0.7;
     }
     rx-button {
@@ -42,10 +40,10 @@ import { MultiDrag } from 'sortablejs';
       min-height: 100px;
     }
     .blue-background-class {
-      opacity: 0.5;
+      opacity: 0.6;
     }
     .sortable-selected {
-      background: #666;
+      opacity: 0.6;
     }
   `,
   template(this: DraggableViewComponent) {
@@ -81,24 +79,11 @@ import { MultiDrag } from 'sortablejs';
           </rx-button>
         </div>
 
-        <div class="dropdownArea">
-          <rx-button palette="danger">dada</rx-button>
-          <rx-button palette="danger">dada</rx-button>
-          <rx-button palette="danger">dada</rx-button>
-          <rx-button palette="danger">dada</rx-button>
-        </div>
+        <div class="dropZone"></div>
 
-        <div class="dropdownArea">
-          Return area1
-        </div>
+        <div class="dropZone"></div>
 
-        <div class="dropdownArea">
-          Drop Zone2
-        </div>
-
-        <div class="dropdownArea">
-          Drop Zone3
-        </div>
+        <div class="dropZone"></div>
       </div>
       <markdown-reader
         link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/draggable/README.md"
@@ -114,7 +99,7 @@ export class DraggableViewComponent extends LitElement {
   @query('.draggable-container')
   private container: HTMLElement;
 
-  @queryAll('.dropdownArea')
+  @queryAll('.dropZone')
   private targets: HTMLElement[];
 
   OnUpdateFirst() {
