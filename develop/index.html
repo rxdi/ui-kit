@@ -21,11 +21,56 @@
       }
     </style>
     <base href="/" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+
     <!-- iOS -->
+    <link rel="apple-touch-icon" href="./src/assets/images/icons/icon-144x144.png" />
+
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-status-bar-style" content="black" />
     <meta name="mobile-web-app-title" content="Expenses" />
 
+    <script async>
+      // Load and register pre-caching Service Worker
+      const main = async () => {
+        function getExcludedOrigins() {
+          return (
+            window.origin.includes('localhost')
+          );
+        }
+
+        if ('serviceWorker' in navigator) {
+          if (getExcludedOrigins()) {
+            const workers = await navigator.serviceWorker.getRegistrations();
+            for (let worker of workers) {
+              await worker.unregister();
+            }
+          } else {
+            window.addEventListener('load', function() {
+              navigator.serviceWorker
+                .register('service-worker.js', {
+                  scope: '/ui-kit'
+                })
+                .then(async function(registration) {
+                  console.log(
+                    'Registration successful, scope is:',
+                    registration.scope
+                  );
+                  await registration.update();
+                  await registration.unregister();
+                })
+                .catch(function(error) {
+                  console.log(
+                    'Service worker registration failed, error:',
+                    error
+                  );
+                });
+            });
+          }
+        }
+      };
+      main();
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     <script async>
       window.onerror = (text, url, lineNumber) => {

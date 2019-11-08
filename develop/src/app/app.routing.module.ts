@@ -30,6 +30,7 @@ import { TabsViewComponent } from './tabs-view/tabs-view.component';
 import { TableViewComponent } from './table-view/table-view.component';
 import { DraggableViewComponent } from './draggable-view/draggble-view.component';
 import { IntrospectViewComponent } from './client-introspect-view/introspect-view.component';
+import { PwaInstallViewComponent } from './pwa-install/pwa-install-view.component';
 
 @Module({
   imports: [
@@ -138,6 +139,10 @@ import { IntrospectViewComponent } from './client-introspect-view/introspect-vie
         {
           path: '/ui-kit/introspect',
           component: IntrospectViewComponent
+        },
+        {
+          path: '/ui-kit/pwa',
+          component: PwaInstallViewComponent
         },
       ],
       { log: true, baseUrl: '/ui-kit' }
