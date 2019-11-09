@@ -47,6 +47,7 @@ import { Nav } from '../../../../src/nav';
         <a href="/ui-kit/introspect"><rx-button palette="primary">Introspect</rx-button> </a>
         <a href="/ui-kit/pwa"><rx-button palette="primary">PWA</rx-button> </a>
         <a href="/ui-kit/graph"><rx-button palette="primary">Graph</rx-button> </a>
+        <a href="/ui-kit/animation"><rx-button palette="primary">Animation</rx-button> </a>
 
         <!-- <rx-button
           palette="danger"

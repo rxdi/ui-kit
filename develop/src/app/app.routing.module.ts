@@ -32,6 +32,7 @@ import { DraggableViewComponent } from './draggable-view/draggble-view.component
 import { IntrospectViewComponent } from './client-introspect-view/introspect-view.component';
 import { PwaInstallViewComponent } from './pwa-install/pwa-install-view.component';
 import { GraphViewComponent } from './graph-view/graph-view.component';
+import { AnimationViewComponent } from './animation-view/animation-view.component';
 
 @Module({
   imports: [
@@ -148,6 +149,10 @@ import { GraphViewComponent } from './graph-view/graph-view.component';
         {
           path: '/ui-kit/graph',
           component: GraphViewComponent
+        },
+        {
+          path: '/ui-kit/animation',
+          component: AnimationViewComponent
         },
       ],
       { log: true, baseUrl: '/ui-kit' }
