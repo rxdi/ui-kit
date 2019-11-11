@@ -82,7 +82,7 @@ import { BadgeComponent } from '@rxdi/ui-kit/badge';
             --primary-hover-color: #0f7ae5;
             --primary-active-color: #0e6dcd;
           }
-        `,
+        `, 
         secondary: css`
           :root {
             --secondary-bg-color: #222;
