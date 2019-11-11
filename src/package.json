@@ -8,6 +8,6 @@
     "last 1 chrome versions"
   ],
   "devDependencies": {
-    "typescript": "^3.6.4"
+    "typescript": "^3.5.3"
   }
 }

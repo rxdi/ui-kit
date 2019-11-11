@@ -28,17 +28,17 @@
   "author": "Kristiyan Tachev",
   "license": "MIT",
   "devDependencies": {
-    "@rxdi/core": "0.7.34",
+    "@rxdi/core": "0.7.38",
     "@rxdi/firelink": "^0.0.21",
     "@rxdi/forms": "^0.7.36",
-    "@rxdi/lit-html": "0.7.34",
-    "@rxdi/router": "0.7.34",
+    "@rxdi/lit-html": "0.7.38",
+    "@rxdi/router": "0.7.39",
     "@types/js-yaml": "^3.12.1",
-    "@types/marked": "^0.6.5",
-    "@types/node": "^12.0.8",
+    "@types/marked": "^0.7.0",
+    "@types/node": "^12.0.10",
     "@types/sortablejs": "^1.10.0",
     "cssnano": "^4.1.10",
-    "typescript": "^3.6.4"
+    "typescript": "^3.5.3"
   },
   "browserslist": [
     "last 1 chrome versions"
