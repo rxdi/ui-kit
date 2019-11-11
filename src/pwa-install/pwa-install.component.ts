@@ -473,7 +473,7 @@ import { LitElement, html, property, Component, css } from '@rxdi/lit-html';
 })
 export class PwaInstallComponent extends LitElement {
   @property() deferredprompt: any;
-  @property() manifestpath = 'manifest.json';
+  @property() manifestpath = '';
   @property() iconpath: string;
   @property() manifestdata: any;
   @property({ type: Boolean }) openmodal: boolean;
@@ -482,9 +482,7 @@ export class PwaInstallComponent extends LitElement {
   explainer = ``;
 
   async firstUpdated(): Promise<void> {
-    if (this.manifestpath) {
-      await this.getManifestData();
-    }
+    await this.getManifestData();
 
     window.addEventListener('beforeinstallprompt', e => {
       // Prevent Chrome 67 and earlier from automatically showing the prompt
@@ -501,11 +499,14 @@ export class PwaInstallComponent extends LitElement {
   }
 
   async getManifestData() {
-    const response = await fetch(this.manifestpath);
-    const data = await response.json();
-    this.manifestdata = data;
     if (this.manifestdata) {
       this.updateButtonColor(this.manifestdata);
+      return;
+    }
+    if (this.manifestpath) {
+      const response = await fetch(this.manifestpath);
+      const data = await response.json();
+      this.manifestdata = data;
     }
   }
 

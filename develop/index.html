@@ -49,7 +49,7 @@
             window.addEventListener('load', function() {
               navigator.serviceWorker
                 .register('service-worker.js', {
-                  scope: '/ui-kit'
+                  scope: '/ui-kit/'
                 })
                 .then(async function(registration) {
                   console.log(
@@ -57,7 +57,7 @@
                     registration.scope
                   );
                   await registration.update();
-                  await registration.unregister();
+                  // await registration.unregister();
                 })
                 .catch(function(error) {
                   console.log(
