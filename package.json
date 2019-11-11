@@ -39,7 +39,7 @@
     "@types/sortablejs": "^1.10.0",
     "cssnano": "^4.1.10",
     "typescript": "^3.5.3"
-  },
+  }, 
   "browserslist": [
     "last 1 chrome versions"
   ],
