@@ -91,7 +91,7 @@ import { BadgeComponent } from '@rxdi/ui-kit/badge';
             --secondary-hover-color: #333;
             --secondary-active-color: #000;
           }
-        `,
+        `, 
         warning: css`
           :root {
             --warning-bg-color: #faa05a;
