@@ -28,8 +28,8 @@
   "author": "Kristiyan Tachev",
   "license": "MIT",
   "devDependencies": {
-    "@rxdi/core": "0.7.38",
-    "@rxdi/firelink": "^0.0.21",
+    "@rxdi/core": "0.7.39",
+    "@rxdi/firelink": "^0.7.38",
     "@rxdi/forms": "^0.7.36",
     "@rxdi/lit-html": "0.7.38",
     "@rxdi/router": "0.7.39",
