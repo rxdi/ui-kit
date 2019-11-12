@@ -19,11 +19,8 @@ import { GraphModule } from '../../../src/graph';
     MarkdownReaderModule,
     NavModule.forRoot(),
     GraphModule.forRoot({
-      uri: 'https://questups.com/api/graphql',
-      pubsub: 'https://questups.com/api/graphql',
-      async onRequest() {
-        return new Headers();
-      }
+      uri: 'https://staging.questups.com/api/graphql',
+      pubsub: 'wss://staging.questups.com/api/subscriptions'
     })
   ],
   bootstrap: [AppComponent]

@@ -6,6 +6,7 @@ import {
   SubscriptionOptions
 } from '@rxdi/graphql-client';
 import { from, Observable } from 'rxjs';
+import { WatchQueryOptions } from 'apollo-client';
 
 @Injectable()
 export class BaseService {
@@ -13,28 +14,24 @@ export class BaseService {
   public graphql: ApolloClient;
 
   query<T>(options: QueryOptions) {
-    return from(
-      this.graphql.query.bind(
-        this.graphql
-      )(options) as any
-    ) as Observable<{ data: T }>;
+    return from(this.graphql.query.bind(this.graphql)(options)) as Observable<{
+      data: T;
+    }>;
   }
 
   mutate<T>(options: MutationOptions) {
-    return from(
-      this.graphql.mutate.bind(
-        this.graphql
-      )(options) as any
-    ) as Observable<{ data: T }>;
+    return from(this.graphql.mutate.bind(this.graphql)(options)) as Observable<{
+      data: T;
+    }>;
   }
 
-  subscribe<T>(
-    options: SubscriptionOptions
-  ) {
+  watchQuery(options: WatchQueryOptions) {
+    return this.graphql.watchQuery(options);
+  }
+
+  subscribe<T>(options: SubscriptionOptions) {
     return from(
-      this.graphql.subscribe.bind(
-        this.graphql
-      )(options) as any
+      this.graphql.subscribe.bind(this.graphql)(options)
     ) as Observable<{ data: T }>;
   }
 }

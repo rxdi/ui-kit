@@ -9,5 +9,8 @@
   ],
   "devDependencies": {
     "typescript": "^3.5.3"
+  },
+  "dependencies": {
+    "animejs": "^3.1.0"
   }
 }

@@ -18,6 +18,10 @@ import { GraphOptions } from './types';
 @Component({
   selector: 'rx-graph',
   template(this: GraphComponent) {
+    console.log(this.options.fetch);
+    if (!this.options.fetch) {
+      return html``;
+    }
     return html`
       ${async(
         this.query().pipe(
@@ -63,20 +67,20 @@ export class GraphComponent extends LitElement {
   private error = '';
 
   private query(): Observable<{ data: any }> {
-    let fetch: any;
-    if (this.options.fetch.loc) {
+    let fetch: any = this.options.fetch;
+    if (this.options.fetch.loc && this.options.fetch.loc.source) {
       fetch = this.options.fetch.loc.source.body;
     }
-    if (fetch.includes('mutation')) {
+    if (typeof fetch === 'string' && fetch.includes('mutation')) {
       this.options.settings.mutation = gql`
         ${fetch}
       `;
       return this.graphql.mutate(this.options.settings as MutationOptions);
     }
-    this.options.settings.query = gql`
+    this.options.settings.query = typeof fetch !== 'string' ? fetch : gql`
       ${fetch}
     `;
-    if (fetch.includes('subscription')) {
+    if (typeof fetch === 'string' && fetch.includes('subscription')) {
       return this.graphql.subscribe(
         this.options.settings as SubscriptionOptions
       );

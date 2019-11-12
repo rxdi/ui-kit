@@ -1,0 +1,5 @@
+query status {
+  status {
+    status
+  }
+}

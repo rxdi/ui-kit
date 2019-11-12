@@ -34,6 +34,12 @@ declare module '*.svg' {
 }
 
 
+declare module '*.graphql' {
+  const value: string;
+  export default value;
+}
+
+
 declare module '@rxdi/ui-kit/images/glyph.svg' {
   const value: string;
   export default value;

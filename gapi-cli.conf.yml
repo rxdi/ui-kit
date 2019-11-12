@@ -3,5 +3,5 @@ config:
     local:
       INTROSPECTION_FOLDER: ./src/introspection/
   schema:
-    introspectionEndpoint: http://localhost:9000/graphql
-    introspectionOutputFolder: ./src/introspection
+    introspectionEndpoint: https://staging.questups.com/api/graphql
+    introspectionOutputFolder: ./develop/src/introspection
