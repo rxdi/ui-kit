@@ -19,8 +19,8 @@ import { GraphModule } from '../../../src/graph';
     MarkdownReaderModule,
     NavModule.forRoot(),
     GraphModule.forRoot({
-      uri: 'https://staging.questups.com/api/graphql',
-      pubsub: 'wss://staging.questups.com/api/subscriptions'
+      uri: 'https://countries.trevorblades.com/',
+      pubsub: 'wss://countries.trevorblades.com/'
     })
   ],
   bootstrap: [AppComponent]

@@ -3,5 +3,5 @@ config:
     local:
       INTROSPECTION_FOLDER: ./src/introspection/
   schema:
-    introspectionEndpoint: https://staging.questups.com/api/graphql
+    introspectionEndpoint: https://countries.trevorblades.com/
     introspectionOutputFolder: ./develop/src/introspection
