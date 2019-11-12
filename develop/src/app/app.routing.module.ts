@@ -31,6 +31,7 @@ import { TableViewComponent } from './table-view/table-view.component';
 import { DraggableViewComponent } from './draggable-view/draggble-view.component';
 import { IntrospectViewComponent } from './client-introspect-view/introspect-view.component';
 import { PwaInstallViewComponent } from './pwa-install/pwa-install-view.component';
+import { GraphViewComponent } from './graph-view/graph-view.component';
 
 @Module({
   imports: [
@@ -143,6 +144,10 @@ import { PwaInstallViewComponent } from './pwa-install/pwa-install-view.componen
         {
           path: '/ui-kit/pwa',
           component: PwaInstallViewComponent
+        },
+        {
+          path: '/ui-kit/graph',
+          component: GraphViewComponent
         },
       ],
       { log: true, baseUrl: '/ui-kit' }

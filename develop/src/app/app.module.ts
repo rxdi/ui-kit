@@ -6,6 +6,7 @@ import { ModalModule } from '../../../src/modal';
 import { NavModule } from '../../../src/nav';
 import { AppRoutingModule } from './app.routing.module';
 import { AppComponentsModule } from './app.components.module';
+import { GraphModule } from '../../../src/graph';
 
 @Module({
   imports: [
@@ -16,7 +17,14 @@ import { AppComponentsModule } from './app.components.module';
     }),
     ReactiveUiModule.forRoot(),
     MarkdownReaderModule,
-    NavModule.forRoot()
+    NavModule.forRoot(),
+    GraphModule.forRoot({
+      uri: 'https://questups.com/api/graphql',
+      pubsub: 'https://questups.com/api/graphql',
+      async onRequest() {
+        return new Headers();
+      }
+    })
   ],
   bootstrap: [AppComponent]
 })

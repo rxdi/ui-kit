@@ -5,11 +5,11 @@ import { LitElement, Component, html } from '@rxdi/lit-html';
   template(this: PwaInstallViewComponent) {
     return html`
       <rx-pwa-install
-        .explainer=${`Simple app
-      `}
+        .explainer=${`Simple app`}
         .showopen=${true}
         .manifestdata=${this.webmanifestData}
       ></rx-pwa-install>
+
     `;
   }
 })
