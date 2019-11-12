@@ -1,5 +1,6 @@
 import { Component, LitElement, html } from '@rxdi/lit-html';
-import { GraphOptions } from '@rxdi/ui-kit/graph';
+import { Settings } from '@rxdi/ui-kit/graph';
+import gql from 'graphql-tag';
 
 interface StatusType {
   data: { status: { status: string } };
@@ -11,29 +12,45 @@ interface StatusType {
     return html`
       <rx-graph
         .options=${{
-          settings: {
-            fetchPolicy: 'cache-first'
-          },
-          fetch: `
-            query status {
-              status {
-                status
-              }
-            }
-          `,
-          template: (res: StatusType) => html`
-            Status is ${res.data.status.status}
-          `,
-          loading: html`
-            <rx-loading></rx-loading>
-          `
-        } as GraphOptions}
+          settings: this.settings,
+          fetch: this.fetch,
+          template: this.template,
+          loading: this.loading,
+          error: this.error
+        }}
       >
       </rx-graph>
-      <markdown-reader
-        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/graph/README.md"
-      ></markdown-reader>
     `;
   }
 })
-export class GraphViewComponent extends LitElement {}
+export class GraphViewComponent extends LitElement {
+  private settings: Settings = {
+    fetchPolicy: 'cache-first'
+  };
+
+  private fetch = gql`
+    query status {
+      status {
+        status
+      }
+    }
+  `;
+
+  private template = (res: StatusType) => {
+    return html`
+      Status is ${res.data.status.status}
+    `;
+  }
+
+  private loading = () => {
+    return html`
+      <rx-loading></rx-loading>
+    `;
+  }
+
+  private error = e => {
+    return html`
+      ${e}
+    `;
+  }
+}

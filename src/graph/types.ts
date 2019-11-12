@@ -13,8 +13,9 @@ export interface Settings {
   context?: any;
 }
 export interface GraphOptions {
-  fetch: string;
+  error?: (e) => TemplateResult;
+  fetch: any;
   settings?: Settings;
   template: <T>(res: { data: T }) => TemplateResult;
-  loading: TemplateResult;
+  loading?: () => TemplateResult;
 }

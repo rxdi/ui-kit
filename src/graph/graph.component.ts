@@ -1,16 +1,15 @@
-import {
-  Component,
-  html,
-  property,
-  LitElement,
-  async
-} from '@rxdi/lit-html';
+import { Component, html, property, LitElement, async } from '@rxdi/lit-html';
 import gql from 'graphql-tag';
 import { BaseService } from './base.service';
 import { Inject } from '@rxdi/core';
-import { map, tap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { MutationOptions, QueryOptions, QueryBaseOptions } from 'apollo-client';
+import { map, tap, catchError } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import {
+  MutationOptions,
+  QueryOptions,
+  QueryBaseOptions,
+  SubscriptionOptions
+} from 'apollo-client';
 import { GraphOptions } from './types';
 
 /**
@@ -18,47 +17,70 @@ import { GraphOptions } from './types';
  */
 @Component({
   selector: 'rx-graph',
-  template<T>(this: GraphComponent) {
+  template(this: GraphComponent) {
     return html`
-      ${this.loading
-        ? html`
-            ${this.options.loading}
-          `
-        : ''}
       ${async(
-        this.realQuery<T>().pipe(
+        this.query().pipe(
           map(res => this.options.template(res)),
-          tap(() => (this.loading = false))
+          tap(() => (this.loading = false)),
+          catchError(e => {
+            this.error = e;
+            this.loading = false;
+            return of('');
+          })
         )
       )}
+      ${this.loading
+        ? html`
+            ${this.options.loading()}
+          `
+        : ''}
+      ${this.error
+        ? html`
+            ${this.options.error(this.error)}
+          `
+        : ''}
     `;
   }
 })
 export class GraphComponent extends LitElement {
-  @Inject(BaseService)
-  public graphql: BaseService;
-
   @property({ type: Object })
   public options: GraphOptions = {
     fetch: '',
     template: () => html``,
-    loading: html``,
+    loading: () => html``,
+    error: () => html``,
     settings: {} as QueryBaseOptions
   };
 
-  @property({ type: Boolean })
-  public loading = true;
+  @Inject(BaseService)
+  private graphql: BaseService;
 
-  realQuery<T>(): Observable<{ data: T }> {
-    if (this.options.fetch.includes('mutation')) {
+  @property({ type: Boolean })
+  private loading = true;
+
+  @property({ type: String })
+  private error = '';
+
+  private query(): Observable<{ data: any }> {
+    let fetch: any;
+    if (this.options.fetch.loc) {
+      fetch = this.options.fetch.loc.source.body;
+    }
+    if (fetch.includes('mutation')) {
       this.options.settings.mutation = gql`
-        ${this.options.fetch}
+        ${fetch}
       `;
       return this.graphql.mutate(this.options.settings as MutationOptions);
     }
     this.options.settings.query = gql`
-      ${this.options.fetch}
+      ${fetch}
     `;
+    if (fetch.includes('subscription')) {
+      return this.graphql.subscribe(
+        this.options.settings as SubscriptionOptions
+      );
+    }
     return this.graphql.query(this.options.settings as QueryOptions);
   }
 }

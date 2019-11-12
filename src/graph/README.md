@@ -47,12 +47,9 @@ interface StatusType {
               }
             }
           `,
-          template: (res: StatusType) => html`
-            Status is ${res.data.status.status}
-          `,
-          loading: html`
-            <rx-loading></rx-loading>
-          `
+          template: (res: StatusType) => html`Status is ${res.data.status.status}`,
+          loading: () => html`<rx-loading></rx-loading>`,
+          error: (e) => html`${e}`
         } as GraphOptions}
       >
       </rx-graph>
@@ -78,9 +75,10 @@ export class GraphViewComponent extends LitElement {}
     template: (res: StatusType) => html`
       Status is ${res.data.status.status}
     `,
-    loading: html`
+    loading: () => html`
       <rx-loading></rx-loading>
-    `
+    `,
+    error: (e) => html`${e}`
   } as GraphOptions}
 >
 </rx-graph>

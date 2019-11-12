@@ -57,7 +57,7 @@
                     registration.scope
                   );
                   await registration.update();
-                  // await registration.unregister();
+                  await registration.unregister();
                 })
                 .catch(function(error) {
                   console.log(
