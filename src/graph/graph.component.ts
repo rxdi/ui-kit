@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import { BaseService } from './base.service';
 import { Inject } from '@rxdi/core';
 import { map, tap, catchError } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subscription, Subject, ReplaySubject } from 'rxjs';
 import {
   MutationOptions,
   QueryOptions,
@@ -24,7 +24,7 @@ import { GraphOptions } from './types';
     }
     return html`
       ${async(
-        this.query().pipe(
+        this.result.pipe(
           map(res => this.options.template(res)),
           tap(() => (this.loading = false)),
           catchError(e => {
@@ -66,6 +66,12 @@ export class GraphComponent extends LitElement {
   @property({ type: String })
   private error = '';
 
+  private subscription: Subscription;
+
+  private result: ReplaySubject<any> = new ReplaySubject();
+  OnUpdateFirst() {
+    this.subscription = this.query().subscribe(s => this.result.next(s));
+  }
   private query(): Observable<{ data: any }> {
     let fetch: any = this.options.fetch;
     if (this.options.fetch.loc && this.options.fetch.loc.source) {
@@ -77,14 +83,23 @@ export class GraphComponent extends LitElement {
       `;
       return this.graphql.mutate(this.options.settings as MutationOptions);
     }
-    this.options.settings.query = typeof fetch !== 'string' ? fetch : gql`
-      ${fetch}
-    `;
+    this.options.settings.query =
+      typeof fetch !== 'string'
+        ? fetch
+        : gql`
+            ${fetch}
+          `;
     if (typeof fetch === 'string' && fetch.includes('subscription')) {
       return this.graphql.subscribe(
         this.options.settings as SubscriptionOptions
       );
     }
     return this.graphql.query(this.options.settings as QueryOptions);
+  }
+
+  OnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }

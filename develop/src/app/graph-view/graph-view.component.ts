@@ -1,14 +1,14 @@
 import { Component, LitElement, html, css, property } from '@rxdi/lit-html';
-import { Settings } from '@rxdi/ui-kit/graph';
+import { GraphOptions } from '@rxdi/ui-kit/graph';
 import { IQuery } from '../../introspection';
+import { animate } from '../../../../src/animation';
+// import fetch from './get-continents.graphql';
 
 @Component({
   selector: 'graph-view-component',
   style: css`
     .container {
       margin: 0 auto;
-      width: 630px;
-      padding: 50px;
       background-color: white;
     }
   `,
@@ -16,8 +16,8 @@ import { IQuery } from '../../introspection';
     return html`
       <div class="container">
         <rx-graph
-          .options=${{
-            settings: <Settings>{
+          .options=${<GraphOptions>{
+            settings: {
               fetchPolicy: 'cache-first'
             },
             fetch: `
@@ -35,98 +35,100 @@ import { IQuery } from '../../introspection';
             `,
             template: (res: { data: IQuery }) => {
               return html`
-                <rx-animation
-                  style="overflow: hidden;"
-                  .options=${({ stagger }) => ({
-                    delay: stagger(200),
-                    translateX: 0,
-                    easing: 'spring(1, 80, 10, 0)'
-                  })}
-                >
-                  ${res.data.continents.map(
-                    continent =>
-                      html`
-                        <rx-description
-                          style="display: block; transform: translateX(-100%);"
-                        >
-                          <div
-                            slot="description"
-                            style="background-color: rgba(0, 0, 0, 0.1);"
+                ${animate(
+                  this.animation,
+                  html`
+                    ${res.data.continents.map(
+                      continent =>
+                        html`
+                          <rx-description
+                            style="display: block; transform: translateX(-100%);padding: 50px;"
                           >
-                            <p>
-                              ${continent.name} Countries:
-                              ${continent.countries.length}
-                            </p>
-                          </div>
-                          <div slot="text">
-                            ${this.expandedCountries[continent.name]
-                              ? html`
-                                  <rx-button
-                                    palette="danger"
-                                    @click=${() =>
-                                      this.setActiveExpand(
-                                        continent.name,
-                                        false
-                                      )}
-                                    >Collapse</rx-button
-                                  >
-                                  <rx-animation
-                                    style="overflow: hidden;"
-                                    .options=${({ stagger }) => ({
-                                      delay: stagger(200),
-                                      translateX: 0,
-                                      easing: 'spring(1, 80, 10, 0)'
-                                    })}
-                                  >
-                                    ${continent.countries.map(
-                                      country =>
-                                        html`
-                                          <div
-                                            style="padding: 10px;display: block; transform: translateX(-100%);"
-                                          >
-                                            <rx-card palette="secondary">
-                                              <div style="padding: 50px;">
-                                                <p>Name: ${country.name}</p>
-                                                <p>
-                                                  Country code: ${country.code}
-                                                </p>
-                                                <p>
-                                                  Currency: ${country.currency}
-                                                </p>
-                                                <p>Emojy: ${country.emoji}</p>
+                            <div
+                              slot="description"
+                              style="background-color: rgba(0, 0, 0, 0.1);"
+                            >
+                              <p>
+                                ${continent.name} Countries:
+                                ${continent.countries.length}
+                              </p>
+                            </div>
+                            <div slot="text">
+                              ${this.expandedCountries[continent.name]
+                                ? html`
+                                    <rx-button
+                                      palette="danger"
+                                      @click=${() =>
+                                        this.setActiveExpand(
+                                          continent.name,
+                                          false
+                                        )}
+                                      >Collapse</rx-button
+                                    >
+                                    ${animate(
+                                      this.animation,
+                                      html`
+                                        ${continent.countries.map(
+                                          country =>
+                                            html`
+                                              <div
+                                                style="padding: 50px;display: block; transform: translateX(-100%);text-align: center"
+                                              >
+                                                <rx-card palette="secondary">
+                                                  <div style="padding: 50px;">
+                                                    <p>
+                                                      Name: ${country.name}
+                                                    </p>
+                                                    <p>
+                                                      Country code:
+                                                      ${country.code}
+                                                    </p>
+                                                    <p>
+                                                      Currency:
+                                                      ${country.currency}
+                                                    </p>
+                                                    <p>
+                                                      Emojy: ${country.emoji}
+                                                    </p>
+                                                  </div>
+                                                </rx-card>
                                               </div>
-                                            </rx-card>
-                                          </div>
-                                        `
+                                            `
+                                        )}
+                                      `
                                     )}
-                                  </rx-animation>
-                                `
-                              : html`
-                                  <rx-button
-                                    palette="primary"
-                                    @click=${() =>
-                                      this.setActiveExpand(
-                                        continent.name,
-                                        true
-                                      )}
-                                    >Expand</rx-button
-                                  >
-                                `}
-                          </div>
-                        </rx-description>
-                      `
-                  )}
-                </rx-animation>
+                                  `
+                                : html`
+                                    <rx-button
+                                      palette="primary"
+                                      @click=${() =>
+                                        this.setActiveExpand(
+                                          continent.name,
+                                          true
+                                        )}
+                                      >Expand</rx-button
+                                    >
+                                  `}
+                            </div>
+                          </rx-description>
+                        `
+                    )}
+                  `
+                )}
               `;
             },
             loading: () => {
               return html`
-                <rx-loading></rx-loading>
+                <div style="text-align: center;">
+                  <rx-loading palette="danger"></rx-loading>
+                </div>
               `;
             },
             error: e => {
               return html`
-                ${e}
+                <p style="color: black">
+                  ${e}
+                </p>
               `;
             }
           }}
@@ -137,10 +139,22 @@ import { IQuery } from '../../introspection';
   }
 })
 export class GraphViewComponent extends LitElement {
-  @property({ attribute: false })
-  private expandedCountries: { [key: string]: boolean } = {};
+  @property({
+    attribute: false
+  })
+  private expandedCountries: {
+    [key: string]: boolean;
+  } = {};
 
-  setActiveExpand(name: string, status: boolean) {
-    this.expandedCountries = { [name]: status };
+  private animation = ({ stagger }) => ({
+    delay: stagger(200),
+    translateX: 0,
+    easing: 'spring(1, 80, 10, 0)'
+  })
+
+  private setActiveExpand(name: string, status: boolean) {
+    this.expandedCountries = {
+      [name]: status
+    };
   }
 }

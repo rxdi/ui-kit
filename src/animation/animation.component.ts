@@ -1,34 +1,6 @@
 import { Component, LitElement, html, property, css } from '@rxdi/lit-html';
-import anime, {
-  AnimeParams,
-  AnimeInstance,
-  AnimeTimelineInstance,
-  StaggerOptions
-} from 'animejs';
-
-export interface AnimationOptions extends anime.AnimeParams {}
-type AnimeTarget = string | object | HTMLElement | SVGElement | NodeList | null;
-type FunctionBasedParameter = (
-  element: HTMLElement,
-  index: number,
-  length: number
-) => number;
-
-interface Options {
-  bezier(x1: number, y1: number, x2: number, y2: number): (t: number) => number;
-  stagger(
-    value: number | string | ReadonlyArray<number | string>,
-    options?: StaggerOptions
-  ): FunctionBasedParameter;
-  set(
-    targets: AnimeTarget,
-    value: { [AnyAnimatedProperty: string]: any }
-  ): void;
-  timeline(
-    params?: AnimeParams | ReadonlyArray<AnimeInstance>
-  ): AnimeTimelineInstance;
-  random(min: number, max: number): number;
-}
+import anime from 'animejs';
+import { Options } from './interface';
 
 /**
  * @customElement rx-animation
@@ -48,7 +20,7 @@ interface Options {
 })
 export class AnimationComponent extends LitElement {
   @property({ type: Object })
-  public options: (anime: Options) => AnimationOptions;
+  public options: (anime: Options) => anime.AnimeParams;
 
   private instance: anime.AnimeInstance;
 

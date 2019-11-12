@@ -1,4 +1,5 @@
-import { Component, css, html, LitElement, property } from '@rxdi/lit-html';
+import { Component, css, html, LitElement, property, unsafeCSS } from '@rxdi/lit-html';
+import { PalettesUnion } from '../settings';
 
 type IFCondition = () => boolean;
 
@@ -20,7 +21,7 @@ type IFCondition = () => boolean;
       width: 11px;
       height: 11px;
       border-radius: 50%;
-      background: #fff;
+
       animation-timing-function: cubic-bezier(0, 1, 1, 0);
     }
     .lds-ellipsis div:nth-child(1) {
@@ -66,18 +67,31 @@ type IFCondition = () => boolean;
   `,
   template(this: LoadingComponent) {
     return html`
-      ${this.if() ? html`
-        <div class="lds-ellipsis">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-      ` : ''}
+      <style>
+        .lds-ellipsis div {
+          background: ${unsafeCSS(this.palette ? `var(--${this.palette}-bg-color)` : this.color)};
+        }
+      </style>
+      ${this.if()
+        ? html`
+            <div class="lds-ellipsis">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          `
+        : ''}
     `;
   }
 })
 export class LoadingComponent extends LitElement {
+
+  @property({ type: String })
+  public palette: PalettesUnion;
+
+  @property({ type: String })
+  color = '#fff';
   @property({ attribute: false })
   if: IFCondition = () => true
 }

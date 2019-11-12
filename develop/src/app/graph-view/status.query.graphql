@@ -1,5 +1,0 @@
-query status {
-  status {
-    status
-  }
-}
