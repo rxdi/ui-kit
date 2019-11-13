@@ -9,7 +9,7 @@ Declarative way of defining your API with components and simple state with templ
 import { GraphModule } from '@rxdi/ui-kit/graph';
 
 @Module({
-  components: [
+  imports: [
     GraphModule.forRoot({
       uri: 'https://questups.com/api/graphql',
       pubsub: 'https://questups.com/api/graphql',
@@ -82,4 +82,42 @@ export class GraphViewComponent extends LitElement {}
   } as GraphOptions}
 >
 </rx-graph>
+```
+
+
+
+#### Advanced usage
+
+Specify Error and loading templates on `forRoot` so they can be default for every request
+
+```typescript
+import { GraphModule } from '@rxdi/ui-kit/graph';
+
+@Module({
+  imports: [
+    GraphModule.forRoot(
+      {
+        uri: 'https://countries.trevorblades.com/',
+        pubsub: 'wss://countries.trevorblades.com/'
+      },
+      {
+        error: e => {
+          return html`
+            <p style="color: black">
+              ${e}
+            </p>
+          `;
+        },
+        loading: () => {
+          return html`
+            <div style="text-align: center;">
+              <rx-loading palette="danger"></rx-loading>
+            </div>
+          `;
+        }
+      }
+    )
+  ],
+})
+export class AppModule {}
 ```

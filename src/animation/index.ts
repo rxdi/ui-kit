@@ -9,3 +9,5 @@ declare global {
 export * from './animation.component';
 
 export * from './animate';
+
+export * from './interface';

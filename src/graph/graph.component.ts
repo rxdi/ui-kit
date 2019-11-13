@@ -1,9 +1,9 @@
 import { Component, html, property, LitElement, async } from '@rxdi/lit-html';
 import gql from 'graphql-tag';
 import { BaseService } from './base.service';
-import { Inject } from '@rxdi/core';
+import { Inject, Container } from '@rxdi/core';
 import { map, tap, catchError } from 'rxjs/operators';
-import { Observable, of, Subscription, Subject, ReplaySubject } from 'rxjs';
+import { Observable, of, Subscription, ReplaySubject } from 'rxjs';
 import {
   MutationOptions,
   QueryOptions,
@@ -11,6 +11,7 @@ import {
   SubscriptionOptions
 } from 'apollo-client';
 import { GraphOptions } from './types';
+import { DEFAULTS } from './tokens';
 
 /**
  * @customElement rx-graph
@@ -18,10 +19,6 @@ import { GraphOptions } from './types';
 @Component({
   selector: 'rx-graph',
   template(this: GraphComponent) {
-    console.log(this.options.fetch);
-    if (!this.options.fetch) {
-      return html``;
-    }
     return html`
       ${async(
         this.result.pipe(
@@ -36,12 +33,16 @@ import { GraphOptions } from './types';
       )}
       ${this.loading
         ? html`
-            ${this.options.loading()}
+            ${typeof this.options.loading === 'function'
+              ? this.options.loading()
+              : Container.get(DEFAULTS).loading()}
           `
         : ''}
       ${this.error
         ? html`
-            ${this.options.error(this.error)}
+            ${typeof this.options.error === 'function'
+              ? this.options.error(this.error)
+              : Container.get(DEFAULTS).error(this.error)}
           `
         : ''}
     `;
@@ -67,11 +68,27 @@ export class GraphComponent extends LitElement {
   private error = '';
 
   private subscription: Subscription;
-
   private result: ReplaySubject<any> = new ReplaySubject();
-  OnUpdateFirst() {
-    this.subscription = this.query().subscribe(s => this.result.next(s));
+
+  OnInit() {
+    this.subscription = this.query().subscribe(
+      detail => {
+        this.result.next(detail);
+        this.dispatchEvent(new CustomEvent('onSuccess', { detail }));
+      },
+      detail => {
+        this.result.error(detail);
+        this.dispatchEvent(new CustomEvent('onError', { detail }));
+      }
+    );
   }
+
+  OnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
   private query(): Observable<{ data: any }> {
     let fetch: any = this.options.fetch;
     if (this.options.fetch.loc && this.options.fetch.loc.source) {
@@ -95,11 +112,5 @@ export class GraphComponent extends LitElement {
       );
     }
     return this.graphql.query(this.options.settings as QueryOptions);
-  }
-
-  OnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
   }
 }

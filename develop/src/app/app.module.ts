@@ -7,6 +7,7 @@ import { NavModule } from '../../../src/nav';
 import { AppRoutingModule } from './app.routing.module';
 import { AppComponentsModule } from './app.components.module';
 import { GraphModule } from '../../../src/graph';
+import { html } from '@rxdi/lit-html';
 
 @Module({
   imports: [
@@ -18,10 +19,28 @@ import { GraphModule } from '../../../src/graph';
     ReactiveUiModule.forRoot(),
     MarkdownReaderModule,
     NavModule.forRoot(),
-    GraphModule.forRoot({
-      uri: 'https://countries.trevorblades.com/',
-      pubsub: 'wss://countries.trevorblades.com/'
-    })
+    GraphModule.forRoot(
+      {
+        uri: 'https://countries.trevorblades.com/',
+        pubsub: 'wss://countries.trevorblades.com/'
+      },
+      {
+        error: e => {
+          return html`
+            <p style="color: black">
+              ${e}
+            </p>
+          `;
+        },
+        loading: () => {
+          return html`
+            <div style="text-align: center;">
+              <rx-loading palette="danger"></rx-loading>
+            </div>
+          `;
+        }
+      }
+    )
   ],
   bootstrap: [AppComponent]
 })

@@ -33,3 +33,6 @@ export interface Options {
   ): AnimeTimelineInstance;
   random(min: number, max: number): number;
 }
+
+
+export type Overflow = 'auto' | 'hidden' | 'inherit' | 'initial' | 'scroll' | 'unset' | 'visible' | '-moz-hidden-unscrollable';

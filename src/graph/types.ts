@@ -12,10 +12,13 @@ export interface Settings {
   metadata?: any;
   context?: any;
 }
-export interface GraphOptions {
+
+export interface OptionalProperties {
   error?: (e) => TemplateResult;
-  fetch: any;
-  settings?: Settings;
-  template: <T>(res: { data: T }) => TemplateResult;
   loading?: () => TemplateResult;
+}
+export interface GraphOptions extends OptionalProperties {
+  fetch: any;
+  template: <T>(res: { data: T }) => TemplateResult;
+  settings?: Settings;
 }
