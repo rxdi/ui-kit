@@ -70,7 +70,7 @@ export class GraphComponent extends LitElement {
   private subscription: Subscription;
   private result: ReplaySubject<any> = new ReplaySubject();
 
-  OnInit() {
+  OnUpdateFirst() {
     this.subscription = this.query().subscribe(
       detail => {
         this.result.next(detail);
@@ -91,6 +91,7 @@ export class GraphComponent extends LitElement {
 
   private query(): Observable<{ data: any }> {
     let fetch: any = this.options.fetch;
+    this.options.settings = this.options.settings || {};
     if (this.options.fetch.loc && this.options.fetch.loc.source) {
       fetch = this.options.fetch.loc.source.body;
     }
