@@ -63,17 +63,15 @@ export class AnimationViewComponent extends LitElement {
   @query('rx-animation')
   public ac: AnimationComponent;
 
-  public options({ stagger }) {
-    return {
-      duration: 4200,
-      keyframes: [
-        { translateY: -200 },
-        { translateX: 300 },
-        { translateY: 0 },
-        { translateX: 0 }
-      ],
-      loop: true,
-      easing: 'easeInOutSine'
-    };
-  }
+  private options = () => ({
+    duration: 4200,
+    keyframes: [
+      { translateY: -200 },
+      { translateX: 300 },
+      { translateY: 0 },
+      { translateX: 0 }
+    ],
+    loop: true,
+    easing: 'easeInOutSine'
+  })
 }

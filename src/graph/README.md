@@ -121,3 +121,34 @@ import { GraphModule } from '@rxdi/ui-kit/graph';
 })
 export class AppModule {}
 ```
+
+
+
+
+##### Simplest query component
+
+```typescript
+<rx-graph
+  .options=${{
+    fetch: `
+      query {
+        continents {
+          name
+          countries {
+            code
+            name
+            currency
+            emoji
+          }
+        }
+      }
+    `,
+    template: ({ data: { continents } }) => {
+      return html`
+        ${continents}
+      `;
+    }
+  }}
+>
+</rx-graph>
+```

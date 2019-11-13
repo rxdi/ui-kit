@@ -34,7 +34,7 @@ import { IQuery } from '../../introspection';
             `,
             template: ({ data: { continents } }: { data: IQuery }) => {
               return html`
-                <rx-animation .options=${this.animation}>
+                <rx-animation overflow="hidden" .options=${this.animation}>
                   ${continents.map(
                     continent =>
                       html`
@@ -62,7 +62,7 @@ import { IQuery } from '../../introspection';
                                       )}
                                     >Collapse</rx-button
                                   >
-                                  <rx-animation .options=${this.animation}>
+                                  <rx-animation overflow="hidden" .options=${this.animation}>
                                     ${continent.countries.map(
                                       country =>
                                         html`

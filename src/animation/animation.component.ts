@@ -34,10 +34,10 @@ export class AnimationComponent extends LitElement {
   private instance: anime.AnimeInstance;
 
   @property()
-  overflow: Overflow = 'hidden';
+  overflow: Overflow = 'visible';
 
   @property({ type: Object })
-  public options: (anime: Options) => anime.AnimeParams = ({ stagger }) => ({
+  public options: (anime: anime.AnimeParams | any) => anime.AnimeParams | any = ({ stagger }) => ({
     delay: stagger(200),
     translateX: 0,
     easing: 'spring(1, 80, 10, 0)'
