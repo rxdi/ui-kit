@@ -3,7 +3,14 @@ import gql from 'graphql-tag';
 import { BaseService } from './base.service';
 import { Inject, Container } from '@rxdi/core';
 import { map, tap, catchError } from 'rxjs/operators';
-import { Observable, of, Subscription, ReplaySubject, BehaviorSubject, isObservable } from 'rxjs';
+import {
+  Observable,
+  of,
+  Subscription,
+  ReplaySubject,
+  BehaviorSubject,
+  isObservable
+} from 'rxjs';
 import {
   MutationOptions,
   QueryOptions,
@@ -72,33 +79,29 @@ export class GraphComponent<T = any> extends LitElement {
   private result: ReplaySubject<any> = new ReplaySubject();
 
   OnUpdateFirst() {
-
-    if (this.options.state && isObservable(this.options.state)) {
-      this.subscription = this.options.state.subscribe(
-        detail => {
-          this.result.next(detail);
-          this.dispatchEvent(new CustomEvent('onSuccess', { detail }));
-        },
-        detail => {
-          this.result.error(detail);
-          this.dispatchEvent(new CustomEvent('onError', { detail }));
-        }
-      );
-    } else if (typeof this.options.state === 'object') {
-      this.result.next(this.options.state);
+    let task: Observable<any>;
+    if (this.options.state) {
+      if (isObservable(this.options.state)) {
+        task = this.options.state;
+      } else if (typeof this.options.state === 'object') {
+        this.result.next(this.options.state);
+      } else {
+        this.result.error('State is incopatible');
+        this.result.complete();
+      }
     } else {
-      this.subscription = this.query().subscribe(
-        detail => {
-          this.result.next(detail);
-          this.dispatchEvent(new CustomEvent('onSuccess', { detail }));
-        },
-        detail => {
-          this.result.error(detail);
-          this.dispatchEvent(new CustomEvent('onError', { detail }));
-        }
-      );
+      task = this.query();
     }
-
+    this.subscription = task.subscribe(
+      detail => {
+        this.result.next(detail);
+        this.dispatchEvent(new CustomEvent('onData', { detail }));
+      },
+      detail => {
+        this.result.error(detail);
+        this.dispatchEvent(new CustomEvent('onError', { detail }));
+      }
+    );
   }
 
   OnDestroy() {
