@@ -214,3 +214,37 @@ In case you wonder how to add `Observable`
 >
 </rx-graph>
 ```
+
+
+
+##### Subscriptions with Graphql
+
+```typescript
+<rx-graph
+  .options=${<GraphOptions>{
+    fetch: `
+      subscription {
+        notifications {
+          appUpdated
+        }
+      }
+    `,
+    render: ({
+      data: {
+        notifications: { appUpdated }
+      }
+    }) => {
+      return html`
+        <p style="color: black">${appUpdated}</p>
+      `;
+    }
+  }}
+>
+</rx-graph>
+```
+
+GraphOptions interface is `generic` so we can specify following types for this particular `subscription`
+
+```typescript
+<GraphOptions<{notifications: {appUpdated: string}}>>
+```

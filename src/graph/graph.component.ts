@@ -104,8 +104,8 @@ export class GraphComponent extends LitElement {
   OnDestroy() {
     if (this.subscription) {
       this.subscription.unsubscribe();
-      this.result.complete();
     }
+    this.result.complete();
   }
 
   private query(): Observable<{ data: any }> {

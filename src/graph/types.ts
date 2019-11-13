@@ -18,9 +18,9 @@ export interface OptionalProperties {
   error?: (e) => TemplateResult;
   loading?: () => TemplateResult;
 }
-export interface GraphOptions extends OptionalProperties {
+export interface GraphOptions<T = any> extends OptionalProperties {
   fetch: any;
   state?: any;
-  render: <T>(res: { data: T }) => TemplateResult;
   settings?: Settings;
+  render(res: { data: T }): TemplateResult;
 }

@@ -6897,7 +6897,7 @@ module.exports="/ui-kit/glyph.e72576d6.svg";
 
     `}})],i);
 },{"@rxdi/lit-html":"R8ie"}],"Ad0c":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.GraphViewComponent=void 0;var t=require("@rxdi/lit-html"),e=function(t,e,n,r){var a,i=arguments.length,o=i<3?e:null===r?r=Object.getOwnPropertyDescriptor(e,n):r;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(t,e,n,r);else for(var d=t.length-1;d>=0;d--)(a=t[d])&&(o=(i<3?a(o):i>3?a(e,n,o):a(e,n))||o);return i>3&&o&&Object.defineProperty(e,n,o),o},n=function(t,e){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(t,e)};let r=class extends t.LitElement{constructor(){super(...arguments),this.expandedCountries={},this.animation=(({stagger:t})=>({delay:t(200),translateX:0,easing:"spring(1, 80, 10, 0)"}))}setActiveExpand(t,e){this.expandedCountries={[t]:e}}};exports.GraphViewComponent=r,e([(0,t.property)({attribute:!1}),n("design:type",Object)],r.prototype,"expandedCountries",void 0),exports.GraphViewComponent=r=e([(0,t.Component)({selector:"graph-view-component",style:t.css`
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.GraphViewComponent=void 0;var t=require("@rxdi/lit-html"),e=function(t,e,n,r){var i,o=arguments.length,a=o<3?e:null===r?r=Object.getOwnPropertyDescriptor(e,n):r;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)a=Reflect.decorate(t,e,n,r);else for(var p=t.length-1;p>=0;p--)(i=t[p])&&(a=(o<3?i(a):o>3?i(e,n,a):i(e,n))||a);return o>3&&a&&Object.defineProperty(e,n,a),a},n=function(t,e){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(t,e)};let r=class extends t.LitElement{constructor(){super(...arguments),this.expandedCountries={},this.animation=(({stagger:t})=>({delay:t(200),translateX:0,easing:"spring(1, 80, 10, 0)"}))}setActiveExpand(t,e){this.expandedCountries={[t]:e}}};exports.GraphViewComponent=r,e([(0,t.property)({attribute:!1}),n("design:type",Object)],r.prototype,"expandedCountries",void 0),exports.GraphViewComponent=r=e([(0,t.Component)({selector:"graph-view-component",style:t.css`
     .container {
       margin: 0 auto;
       background-color: white;
@@ -6905,15 +6905,15 @@ module.exports="/ui-kit/glyph.e72576d6.svg";
   `,template(){return t.html`
       <div class="container">
         <div style="text-align: center">
-          <rx-graph
+          <!-- <rx-graph
             .options=${{fetch:"\n                subscription {\n                  notifications {\n                    appUpdated\n                  }\n                }\n              ",render:({data:{notifications:{appUpdated:e}}})=>t.html`
                   <p style="color: black">${e}</p>
                 `}}
           >
-          </rx-graph>
+          </rx-graph> -->
         </div>
         <rx-graph
-          .options=${{settings:{fetchPolicy:"cache-first"},state:{data:{continents:[{name:"dada",countries:[{name:"dada",code:"dada"}]}]}},fetch:"\n              query {\n                continents {\n                  name\n                  countries {\n                    code\n                    name\n                    currency\n                    emoji\n                  }\n                }\n              }\n            ",render:({data:{continents:e}})=>t.html`
+          .options=${{settings:{fetchPolicy:"cache-first"},fetch:"\n              query {\n                continents {\n                  name\n                  countries {\n                    code\n                    name\n                    currency\n                    emoji\n                  }\n                }\n              }\n            ",render:({data:{continents:e}})=>t.html`
                 <rx-animation overflow="hidden" .options=${this.animation}>
                   ${e.map(e=>t.html`
                         <rx-description
@@ -9935,7 +9935,7 @@ var e=arguments[3],t=this&&this.__assign||Object.assign||function(e){for(var t,n
 },{"@rxdi/core":"lhgc","@rxdi/graphql-client":"AvBK","./graph.component":"w5RY","./tokens":"RBcz"}],"N4HU":[function(require,module,exports) {
 "use strict";function e(e){for(var r in e)exports.hasOwnProperty(r)||(exports[r]=e[r])}Object.defineProperty(exports,"__esModule",{value:!0}),e(require("./graph.component")),e(require("./graph.module")),e(require("./types"));
 },{"./graph.component":"w5RY","./graph.module":"u6mw","./types":"l0JX"}],"Gsig":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.AppModule=void 0;var e=require("@rxdi/core"),r=require("./app.component"),o=require("../../../src/markdown-reader"),t=require("../../../src"),l=require("../../../src/modal"),p=require("../../../src/nav"),u=require("./app.routing.module"),i=require("./app.components.module"),d=require("../../../src/graph"),a=require("@rxdi/lit-html"),n=function(e,r,o,t){var l,p=arguments.length,u=p<3?r:null===t?t=Object.getOwnPropertyDescriptor(r,o):t;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)u=Reflect.decorate(e,r,o,t);else for(var i=e.length-1;i>=0;i--)(l=e[i])&&(u=(p<3?l(u):p>3?l(r,o,u):l(r,o))||u);return p>3&&u&&Object.defineProperty(r,o,u),u};let c=class{};exports.AppModule=c,exports.AppModule=c=n([(0,e.Module)({imports:[i.AppComponentsModule,u.AppRoutingModule,l.ModalModule.forRoot({backdropClose:!0}),t.ReactiveUiModule.forRoot(),o.MarkdownReaderModule,p.NavModule.forRoot(),d.GraphModule.forRoot({uri:"http://localhost:9003/graphql",pubsub:"ws://localhost:9000/subscriptions"},{error:e=>a.html`
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.AppModule=void 0;var e=require("@rxdi/core"),r=require("./app.component"),o=require("../../../src/markdown-reader"),t=require("../../../src"),l=require("../../../src/modal"),p=require("../../../src/nav"),u=require("./app.routing.module"),d=require("./app.components.module"),i=require("../../../src/graph"),a=require("@rxdi/lit-html"),n=function(e,r,o,t){var l,p=arguments.length,u=p<3?r:null===t?t=Object.getOwnPropertyDescriptor(r,o):t;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)u=Reflect.decorate(e,r,o,t);else for(var d=e.length-1;d>=0;d--)(l=e[d])&&(u=(p<3?l(u):p>3?l(r,o,u):l(r,o))||u);return p>3&&u&&Object.defineProperty(r,o,u),u};let c=class{};exports.AppModule=c,exports.AppModule=c=n([(0,e.Module)({imports:[d.AppComponentsModule,u.AppRoutingModule,l.ModalModule.forRoot({backdropClose:!0}),t.ReactiveUiModule.forRoot(),o.MarkdownReaderModule,p.NavModule.forRoot(),i.GraphModule.forRoot({uri:"https://countries.trevorblades.com/",pubsub:"wss://countries.trevorblades.com/"},{error:e=>a.html`
             <p style="color: black">
               ${e}
             </p>
@@ -9947,4 +9947,4 @@ var e=arguments[3],t=this&&this.__assign||Object.assign||function(e){for(var t,n
 },{"@rxdi/core":"lhgc","./app.component":"XCbS","../../../src/markdown-reader":"X0WN","../../../src":"fUdq","../../../src/modal":"mF9g","../../../src/nav":"e2p2","./app.routing.module":"MVQp","./app.components.module":"ThiH","../../../src/graph":"N4HU","@rxdi/lit-html":"R8ie"}],"ZCfc":[function(require,module,exports) {
 "use strict";var e=require("@rxdi/core"),o=require("./src/app/app.module");window.addEventListener("load",()=>{(0,e.Bootstrap)(o.AppModule,{init:!1}).subscribe(()=>console.log("App Started!"),e=>console.error(e))}),module.hot&&module.hot.dispose(()=>document.body.innerHTML="");
 },{"@rxdi/core":"lhgc","./src/app/app.module":"Gsig"}]},{},["ZCfc"], null)
-//# sourceMappingURL=/ui-kit/main.1d498592.js.map
+//# sourceMappingURL=/ui-kit/main.3ea44609.js.map
