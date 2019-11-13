@@ -1,6 +1,9 @@
 import { Component, LitElement, html, css, property } from '@rxdi/lit-html';
 import { GraphOptions } from '@rxdi/ui-kit/graph';
 import { IQuery } from '../../introspection';
+import { BaseService } from '../../../../src/graph/base.service';
+import { Inject } from '@rxdi/core';
+import gql from 'graphql-tag';
 // import fetch from './get-continents.graphql';
 
 @Component({
@@ -14,10 +17,40 @@ import { IQuery } from '../../introspection';
   template(this: GraphViewComponent) {
     return html`
       <div class="container">
+        <div style="text-align: center">
+          <rx-graph
+            .options=${{
+              fetch: `
+                subscription {
+                  notifications {
+                    appUpdated
+                  }
+                }
+              `,
+              render: ({
+                data: {
+                  notifications: { appUpdated }
+                }
+              }) => {
+                return html`
+                  <p style="color: black">${appUpdated}</p>
+                `;
+              }
+            }}
+          >
+          </rx-graph>
+        </div>
         <rx-graph
           .options=${<GraphOptions>{
             settings: {
               fetchPolicy: 'cache-first'
+            },
+            state: {
+              data: {
+                continents: [
+                  { name: 'dada', countries: [{ name: 'dada', code: 'dada' }] }
+                ]
+              }
             },
             fetch: `
               query {
@@ -32,7 +65,7 @@ import { IQuery } from '../../introspection';
                 }
               }
             `,
-            template: ({ data: { continents } }: { data: IQuery }) => {
+            render: ({ data: { continents } }: { data: IQuery }) => {
               return html`
                 <rx-animation overflow="hidden" .options=${this.animation}>
                   ${continents.map(
@@ -62,7 +95,10 @@ import { IQuery } from '../../introspection';
                                       )}
                                     >Collapse</rx-button
                                   >
-                                  <rx-animation overflow="hidden" .options=${this.animation}>
+                                  <rx-animation
+                                    overflow="hidden"
+                                    .options=${this.animation}
+                                  >
                                     ${continent.countries.map(
                                       country =>
                                         html`

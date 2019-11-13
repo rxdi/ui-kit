@@ -21,8 +21,8 @@ import { html } from '@rxdi/lit-html';
     NavModule.forRoot(),
     GraphModule.forRoot(
       {
-        uri: 'https://countries.trevorblades.com/',
-        pubsub: 'wss://countries.trevorblades.com/'
+        uri: 'http://localhost:9003/graphql',
+        pubsub: 'ws://localhost:9000/subscriptions'
       },
       {
         error: e => {

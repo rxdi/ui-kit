@@ -6897,17 +6897,25 @@ module.exports="/ui-kit/glyph.e72576d6.svg";
 
     `}})],i);
 },{"@rxdi/lit-html":"R8ie"}],"Ad0c":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.GraphViewComponent=void 0;var e=require("@rxdi/lit-html"),t=function(e,t,n,r){var i,o=arguments.length,a=o<3?t:null===r?r=Object.getOwnPropertyDescriptor(t,n):r;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)a=Reflect.decorate(e,t,n,r);else for(var p=e.length-1;p>=0;p--)(i=e[p])&&(a=(o<3?i(a):o>3?i(t,n,a):i(t,n))||a);return o>3&&a&&Object.defineProperty(t,n,a),a},n=function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)};let r=class extends e.LitElement{constructor(){super(...arguments),this.expandedCountries={},this.animation=(({stagger:e})=>({delay:e(200),translateX:0,easing:"spring(1, 80, 10, 0)"}))}setActiveExpand(e,t){this.expandedCountries={[e]:t}}};exports.GraphViewComponent=r,t([(0,e.property)({attribute:!1}),n("design:type",Object)],r.prototype,"expandedCountries",void 0),exports.GraphViewComponent=r=t([(0,e.Component)({selector:"graph-view-component",style:e.css`
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.GraphViewComponent=void 0;var t=require("@rxdi/lit-html"),e=function(t,e,n,r){var a,i=arguments.length,o=i<3?e:null===r?r=Object.getOwnPropertyDescriptor(e,n):r;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(t,e,n,r);else for(var d=t.length-1;d>=0;d--)(a=t[d])&&(o=(i<3?a(o):i>3?a(e,n,o):a(e,n))||o);return i>3&&o&&Object.defineProperty(e,n,o),o},n=function(t,e){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(t,e)};let r=class extends t.LitElement{constructor(){super(...arguments),this.expandedCountries={},this.animation=(({stagger:t})=>({delay:t(200),translateX:0,easing:"spring(1, 80, 10, 0)"}))}setActiveExpand(t,e){this.expandedCountries={[t]:e}}};exports.GraphViewComponent=r,e([(0,t.property)({attribute:!1}),n("design:type",Object)],r.prototype,"expandedCountries",void 0),exports.GraphViewComponent=r=e([(0,t.Component)({selector:"graph-view-component",style:t.css`
     .container {
       margin: 0 auto;
       background-color: white;
     }
-  `,template(){return e.html`
+  `,template(){return t.html`
       <div class="container">
+        <div style="text-align: center">
+          <rx-graph
+            .options=${{fetch:"\n                subscription {\n                  notifications {\n                    appUpdated\n                  }\n                }\n              ",render:({data:{notifications:{appUpdated:e}}})=>t.html`
+                  <p style="color: black">${e}</p>
+                `}}
+          >
+          </rx-graph>
+        </div>
         <rx-graph
-          .options=${{settings:{fetchPolicy:"cache-first"},fetch:"\n              query {\n                continents {\n                  name\n                  countries {\n                    code\n                    name\n                    currency\n                    emoji\n                  }\n                }\n              }\n            ",template:({data:{continents:t}})=>e.html`
+          .options=${{settings:{fetchPolicy:"cache-first"},state:{data:{continents:[{name:"dada",countries:[{name:"dada",code:"dada"}]}]}},fetch:"\n              query {\n                continents {\n                  name\n                  countries {\n                    code\n                    name\n                    currency\n                    emoji\n                  }\n                }\n              }\n            ",render:({data:{continents:e}})=>t.html`
                 <rx-animation overflow="hidden" .options=${this.animation}>
-                  ${t.map(t=>e.html`
+                  ${e.map(e=>t.html`
                         <rx-description
                           style="display: block; transform: translateX(-100%);padding: 50px;"
                         >
@@ -6916,45 +6924,48 @@ module.exports="/ui-kit/glyph.e72576d6.svg";
                             style="background-color: rgba(0, 0, 0, 0.1);"
                           >
                             <p>
-                              ${t.name} Countries:
-                              ${t.countries.length}
+                              ${e.name} Countries:
+                              ${e.countries.length}
                             </p>
                           </div>
                           <div slot="text">
-                            ${this.expandedCountries[t.name]?e.html`
+                            ${this.expandedCountries[e.name]?t.html`
                                   <rx-button
                                     palette="danger"
-                                    @click=${()=>this.setActiveExpand(t.name,!1)}
+                                    @click=${()=>this.setActiveExpand(e.name,!1)}
                                     >Collapse</rx-button
                                   >
-                                  <rx-animation overflow="hidden" .options=${this.animation}>
-                                    ${t.countries.map(t=>e.html`
+                                  <rx-animation
+                                    overflow="hidden"
+                                    .options=${this.animation}
+                                  >
+                                    ${e.countries.map(e=>t.html`
                                           <div
                                             style="padding: 50px;display: block; transform: translateX(-100%);text-align: center"
                                           >
                                             <rx-card palette="secondary">
                                               <div style="padding: 50px;">
                                                 <p>
-                                                  Name: ${t.name}
+                                                  Name: ${e.name}
                                                 </p>
                                                 <p>
-                                                  Country code: ${t.code}
+                                                  Country code: ${e.code}
                                                 </p>
                                                 <p>
-                                                  Currency: ${t.currency}
+                                                  Currency: ${e.currency}
                                                 </p>
                                                 <p>
-                                                  Emojy: ${t.emoji}
+                                                  Emojy: ${e.emoji}
                                                 </p>
                                               </div>
                                             </rx-card>
                                           </div>
                                         `)}
                                   </rx-animation>
-                                `:e.html`
+                                `:t.html`
                                   <rx-button
                                     palette="primary"
-                                    @click=${()=>this.setActiveExpand(t.name,!0)}
+                                    @click=${()=>this.setActiveExpand(e.name,!0)}
                                     >Expand</rx-button
                                   >
                                 `}
@@ -6962,13 +6973,13 @@ module.exports="/ui-kit/glyph.e72576d6.svg";
                         </rx-description>
                       `)}
                 </rx-animation>
-              `,loading:()=>e.html`
+              `,loading:()=>t.html`
                 <div style="text-align: center;">
                   <rx-loading palette="danger"></rx-loading>
                 </div>
-              `,error:t=>e.html`
+              `,error:e=>t.html`
                 <p style="color: black">
-                  ${t}
+                  ${e}
                 </p>
               `}}
         >
@@ -9906,17 +9917,17 @@ var e=arguments[3],t=this&&this.__assign||Object.assign||function(e){for(var t,n
 },{"@rxdi/core":"lhgc","@rxdi/graphql-client":"AvBK","rxjs":"iRqj"}],"RBcz":[function(require,module,exports) {
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0});const e=require("@rxdi/core");exports.DEFAULTS=new e.InjectionToken;
 },{"@rxdi/core":"lhgc"}],"w5RY":[function(require,module,exports) {
-"use strict";var t,e,i=this&&this.__decorate||function(t,e,i,r){var o,s=arguments.length,n=s<3?e:null===r?r=Object.getOwnPropertyDescriptor(e,i):r;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)n=Reflect.decorate(t,e,i,r);else for(var p=t.length-1;p>=0;p--)(o=t[p])&&(n=(s<3?o(n):s>3?o(e,i,n):o(e,i))||n);return s>3&&n&&Object.defineProperty(e,i,n),n},r=this&&this.__metadata||function(t,e){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(t,e)},o=this&&this.__importDefault||function(t){return t&&t.__esModule?t:{default:t}};Object.defineProperty(exports,"__esModule",{value:!0});const s=require("@rxdi/lit-html"),n=o(require("graphql-tag")),p=require("./base.service"),h=require("@rxdi/core"),c=require("rxjs/operators"),a=require("rxjs"),l=require("./types"),u=require("./tokens");let d=class extends s.LitElement{constructor(){super(...arguments),this.options={fetch:"",template:()=>s.html``,loading:()=>s.html``,error:()=>s.html``,settings:{}},this.loading=!0,this.error="",this.result=new a.ReplaySubject}OnInit(){this.subscription=this.query().subscribe(t=>{this.result.next(t),this.dispatchEvent(new CustomEvent("onSuccess",{detail:t}))},t=>{this.result.error(t),this.dispatchEvent(new CustomEvent("onError",{detail:t}))})}OnDestroy(){this.subscription&&this.subscription.unsubscribe()}query(){let t=this.options.fetch;return this.options.fetch.loc&&this.options.fetch.loc.source&&(t=this.options.fetch.loc.source.body),"string"==typeof t&&t.includes("mutation")?(this.options.settings.mutation=n.default`
+"use strict";var t,e,s=this&&this.__decorate||function(t,e,s,i){var o,r=arguments.length,n=r<3?e:null===i?i=Object.getOwnPropertyDescriptor(e,s):i;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)n=Reflect.decorate(t,e,s,i);else for(var p=t.length-1;p>=0;p--)(o=t[p])&&(n=(r<3?o(n):r>3?o(e,s,n):o(e,s))||n);return r>3&&n&&Object.defineProperty(e,s,n),n},i=this&&this.__metadata||function(t,e){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(t,e)},o=this&&this.__importDefault||function(t){return t&&t.__esModule?t:{default:t}};Object.defineProperty(exports,"__esModule",{value:!0});const r=require("@rxdi/lit-html"),n=o(require("graphql-tag")),p=require("./base.service"),h=require("@rxdi/core"),c=require("rxjs/operators"),a=require("rxjs"),u=require("./types"),l=require("./tokens");let d=class extends r.LitElement{constructor(){super(...arguments),this.options={fetch:"",state:new a.BehaviorSubject({}),render:()=>r.html``,loading:()=>r.html``,error:()=>r.html``,settings:{}},this.loading=!0,this.error="",this.result=new a.ReplaySubject}OnUpdateFirst(){this.options.state&&a.isObservable(this.options.state)?this.subscription=this.options.state.subscribe(t=>{this.result.next(t),this.dispatchEvent(new CustomEvent("onSuccess",{detail:t}))},t=>{this.result.error(t),this.dispatchEvent(new CustomEvent("onError",{detail:t}))}):"object"==typeof this.options.state?this.result.next(this.options.state):this.subscription=this.query().subscribe(t=>{this.result.next(t),this.dispatchEvent(new CustomEvent("onSuccess",{detail:t}))},t=>{this.result.error(t),this.dispatchEvent(new CustomEvent("onError",{detail:t}))})}OnDestroy(){this.subscription&&(this.subscription.unsubscribe(),this.result.complete())}query(){let t=this.options.fetch;return this.options.settings=this.options.settings||{},this.options.fetch.loc&&this.options.fetch.loc.source&&(t=this.options.fetch.loc.source.body),"string"==typeof t&&t.includes("mutation")?(this.options.settings.mutation=n.default`
         ${t}
       `,this.graphql.mutate(this.options.settings)):(this.options.settings.query="string"!=typeof t?t:n.default`
             ${t}
-          `,"string"==typeof t&&t.includes("subscription")?this.graphql.subscribe(this.options.settings):this.graphql.query(this.options.settings))}};i([s.property({type:Object}),r("design:type","function"==typeof(t=void 0!==l.GraphOptions&&l.GraphOptions)?t:Object)],d.prototype,"options",void 0),i([h.Inject(p.BaseService),r("design:type","function"==typeof(e=void 0!==p.BaseService&&p.BaseService)?e:Object)],d.prototype,"graphql",void 0),i([s.property({type:Boolean}),r("design:type",Object)],d.prototype,"loading",void 0),i([s.property({type:String}),r("design:type",Object)],d.prototype,"error",void 0),d=i([s.Component({selector:"rx-graph",template(){return s.html`
-      ${s.async(this.result.pipe(c.map(t=>this.options.template(t)),c.tap(()=>this.loading=!1),c.catchError(t=>(this.error=t,this.loading=!1,a.of("")))))}
-      ${this.loading?s.html`
-            ${"function"==typeof this.options.loading?this.options.loading():h.Container.get(u.DEFAULTS).loading()}
+          `,"string"==typeof t&&t.includes("subscription")?this.graphql.subscribe(this.options.settings):this.graphql.query(this.options.settings))}};s([r.property({type:Object}),i("design:type","function"==typeof(t=void 0!==u.GraphOptions&&u.GraphOptions)?t:Object)],d.prototype,"options",void 0),s([h.Inject(p.BaseService),i("design:type","function"==typeof(e=void 0!==p.BaseService&&p.BaseService)?e:Object)],d.prototype,"graphql",void 0),s([r.property({type:Boolean}),i("design:type",Object)],d.prototype,"loading",void 0),s([r.property({type:String}),i("design:type",Object)],d.prototype,"error",void 0),d=s([r.Component({selector:"rx-graph",template(){return r.html`
+      ${r.async(this.result.pipe(c.map(t=>this.options.render(t)),c.tap(()=>this.loading=!1),c.catchError(t=>(this.error=t,this.loading=!1,a.of("")))))}
+      ${this.loading?r.html`
+            ${"function"==typeof this.options.loading?this.options.loading():h.Container.get(l.DEFAULTS).loading()}
           `:""}
-      ${this.error?s.html`
-            ${"function"==typeof this.options.error?this.options.error(this.error):h.Container.get(u.DEFAULTS).error(this.error)}
+      ${this.error?r.html`
+            ${"function"==typeof this.options.error?this.options.error(this.error):h.Container.get(l.DEFAULTS).error(this.error)}
           `:""}
     `}})],d),exports.GraphComponent=d;
 },{"@rxdi/lit-html":"R8ie","graphql-tag":"EwEs","./base.service":"vSSJ","@rxdi/core":"lhgc","rxjs/operators":"cVrl","rxjs":"iRqj","./types":"l0JX","./tokens":"RBcz"}],"u6mw":[function(require,module,exports) {
@@ -9924,7 +9935,7 @@ var e=arguments[3],t=this&&this.__assign||Object.assign||function(e){for(var t,n
 },{"@rxdi/core":"lhgc","@rxdi/graphql-client":"AvBK","./graph.component":"w5RY","./tokens":"RBcz"}],"N4HU":[function(require,module,exports) {
 "use strict";function e(e){for(var r in e)exports.hasOwnProperty(r)||(exports[r]=e[r])}Object.defineProperty(exports,"__esModule",{value:!0}),e(require("./graph.component")),e(require("./graph.module")),e(require("./types"));
 },{"./graph.component":"w5RY","./graph.module":"u6mw","./types":"l0JX"}],"Gsig":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.AppModule=void 0;var e=require("@rxdi/core"),r=require("./app.component"),o=require("../../../src/markdown-reader"),t=require("../../../src"),l=require("../../../src/modal"),p=require("../../../src/nav"),u=require("./app.routing.module"),d=require("./app.components.module"),i=require("../../../src/graph"),a=require("@rxdi/lit-html"),n=function(e,r,o,t){var l,p=arguments.length,u=p<3?r:null===t?t=Object.getOwnPropertyDescriptor(r,o):t;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)u=Reflect.decorate(e,r,o,t);else for(var d=e.length-1;d>=0;d--)(l=e[d])&&(u=(p<3?l(u):p>3?l(r,o,u):l(r,o))||u);return p>3&&u&&Object.defineProperty(r,o,u),u};let c=class{};exports.AppModule=c,exports.AppModule=c=n([(0,e.Module)({imports:[d.AppComponentsModule,u.AppRoutingModule,l.ModalModule.forRoot({backdropClose:!0}),t.ReactiveUiModule.forRoot(),o.MarkdownReaderModule,p.NavModule.forRoot(),i.GraphModule.forRoot({uri:"https://countries.trevorblades.com/",pubsub:"wss://countries.trevorblades.com/"},{error:e=>a.html`
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.AppModule=void 0;var e=require("@rxdi/core"),r=require("./app.component"),o=require("../../../src/markdown-reader"),t=require("../../../src"),l=require("../../../src/modal"),p=require("../../../src/nav"),u=require("./app.routing.module"),i=require("./app.components.module"),d=require("../../../src/graph"),a=require("@rxdi/lit-html"),n=function(e,r,o,t){var l,p=arguments.length,u=p<3?r:null===t?t=Object.getOwnPropertyDescriptor(r,o):t;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)u=Reflect.decorate(e,r,o,t);else for(var i=e.length-1;i>=0;i--)(l=e[i])&&(u=(p<3?l(u):p>3?l(r,o,u):l(r,o))||u);return p>3&&u&&Object.defineProperty(r,o,u),u};let c=class{};exports.AppModule=c,exports.AppModule=c=n([(0,e.Module)({imports:[i.AppComponentsModule,u.AppRoutingModule,l.ModalModule.forRoot({backdropClose:!0}),t.ReactiveUiModule.forRoot(),o.MarkdownReaderModule,p.NavModule.forRoot(),d.GraphModule.forRoot({uri:"http://localhost:9003/graphql",pubsub:"ws://localhost:9000/subscriptions"},{error:e=>a.html`
             <p style="color: black">
               ${e}
             </p>
@@ -9936,4 +9947,4 @@ var e=arguments[3],t=this&&this.__assign||Object.assign||function(e){for(var t,n
 },{"@rxdi/core":"lhgc","./app.component":"XCbS","../../../src/markdown-reader":"X0WN","../../../src":"fUdq","../../../src/modal":"mF9g","../../../src/nav":"e2p2","./app.routing.module":"MVQp","./app.components.module":"ThiH","../../../src/graph":"N4HU","@rxdi/lit-html":"R8ie"}],"ZCfc":[function(require,module,exports) {
 "use strict";var e=require("@rxdi/core"),o=require("./src/app/app.module");window.addEventListener("load",()=>{(0,e.Bootstrap)(o.AppModule,{init:!1}).subscribe(()=>console.log("App Started!"),e=>console.error(e))}),module.hot&&module.hot.dispose(()=>document.body.innerHTML="");
 },{"@rxdi/core":"lhgc","./src/app/app.module":"Gsig"}]},{},["ZCfc"], null)
-//# sourceMappingURL=/ui-kit/main.88c4bbe9.js.map
+//# sourceMappingURL=/ui-kit/main.1d498592.js.map

@@ -47,7 +47,7 @@ interface StatusType {
               }
             }
           `,
-          template: (res: StatusType) => html`Status is ${res.data.status.status}`,
+          render: (res: StatusType) => html`Status is ${res.data.status.status}`,
           loading: () => html`<rx-loading></rx-loading>`,
           error: (e) => html`${e}`
         } as GraphOptions}
@@ -72,7 +72,7 @@ export class GraphViewComponent extends LitElement {}
         }
       }
     `,
-    template: (res: StatusType) => html`
+    render: (res: StatusType) => html`
       Status is ${res.data.status.status}
     `,
     loading: () => html`
@@ -143,7 +143,69 @@ export class AppModule {}
         }
       }
     `,
-    template: ({ data: { continents } }) => {
+    render: ({ data: { continents } }) => {
+      return html`
+        ${continents}
+      `;
+    }
+  }}
+>
+</rx-graph>
+```
+
+
+
+##### Passing state to component
+
+`state` property can be `BehaviorSubject`, `ReplaySubject`, `Observable`, `Object`
+
+```typescript
+<rx-graph
+  .options=${{
+    state: {
+      data: {
+        continents: [
+          { name: 'dada', countries: [{ name: 'dada', code: 'dada' }] }
+        ]
+      }
+    },
+    fetch: `
+      query {
+        continents {
+          name
+          countries {
+            code
+            name
+            currency
+            emoji
+          }
+        }
+      }
+    `,
+    render: ({ data: { continents } }) => {
+      return html`
+        ${continents}
+      `;
+    }
+  }}
+>
+</rx-graph>
+```
+
+
+In case you wonder how to add `Observable`
+
+```typescript
+<rx-graph
+  .options=${{
+    state: new BehaviorSubject({
+      data: {
+        continents: [
+          { name: 'dada', countries: [{ name: 'dada', code: 'dada' }] }
+        ]
+      }
+    }),
+    render: ({ data: { continents } }) => {
       return html`
         ${continents}
       `;
