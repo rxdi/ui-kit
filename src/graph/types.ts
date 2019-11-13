@@ -22,5 +22,6 @@ export interface GraphOptions<T = any> extends OptionalProperties {
   fetch: any;
   state?: any;
   settings?: Settings;
+  subscribe?: any;
   render(res: { data: T }): TemplateResult;
 }

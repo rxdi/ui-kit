@@ -76,6 +76,7 @@ export class GraphComponent<T = any> extends LitElement {
   private error = '';
 
   private subscription: Subscription;
+  private pubsubSubscription: Subscription;
   private result: ReplaySubject<any> = new ReplaySubject();
 
   OnUpdateFirst() {
@@ -102,11 +103,26 @@ export class GraphComponent<T = any> extends LitElement {
         this.dispatchEvent(new CustomEvent('onError', { detail }));
       }
     );
+    if (this.options.subscribe) {
+      this.pubsubSubscription = this.graphql
+        .subscribe({
+          query: gql`
+            ${this.options.subscribe}
+          `
+        })
+        .subscribe(
+          data => this.result.next(data),
+          e => this.result.error(e)
+        );
+    }
   }
 
   OnDestroy() {
     if (this.subscription) {
       this.subscription.unsubscribe();
+    }
+    if (this.pubsubSubscription) {
+      this.pubsubSubscription.unsubscribe();
     }
     this.result.complete();
   }

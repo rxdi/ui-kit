@@ -15,7 +15,7 @@ import { IQuery } from '../../introspection';
     return html`
       <div class="container">
         <div style="text-align: center">
-          <rx-graph
+          <!-- <rx-graph
             .options=${<GraphOptions<{notifications: {appUpdated: string}}>>{
               fetch: `
                 subscription {
@@ -35,7 +35,7 @@ import { IQuery } from '../../introspection';
               }
             }}
           >
-          </rx-graph>
+          </rx-graph> -->
         </div>
         <rx-graph
           .options=${<GraphOptions>{
