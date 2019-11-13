@@ -48,9 +48,9 @@ import { DEFAULTS } from './tokens';
     `;
   }
 })
-export class GraphComponent extends LitElement {
+export class GraphComponent<T = any> extends LitElement {
   @property({ type: Object })
-  public options: GraphOptions = {
+  public options: GraphOptions<T> = {
     fetch: '',
     state: new BehaviorSubject({}),
     render: () => html``,
