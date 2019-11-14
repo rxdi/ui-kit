@@ -33,6 +33,7 @@ import { IntrospectViewComponent } from './client-introspect-view/introspect-vie
 import { PwaInstallViewComponent } from './pwa-install/pwa-install-view.component';
 import { GraphViewComponent } from './graph-view/graph-view.component';
 import { AnimationViewComponent } from './animation-view/animation-view.component';
+import { OperatorsViewComponent } from './operators-view/operators-view.component';
 
 @Module({
   imports: [
@@ -153,6 +154,10 @@ import { AnimationViewComponent } from './animation-view/animation-view.componen
         {
           path: '/ui-kit/animation',
           component: AnimationViewComponent
+        },
+        {
+          path: '/ui-kit/operators',
+          component: OperatorsViewComponent
         },
       ],
       { log: true, baseUrl: '/ui-kit' }

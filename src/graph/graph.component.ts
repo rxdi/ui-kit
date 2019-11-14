@@ -19,6 +19,11 @@ import {
 } from 'apollo-client';
 import { GraphOptions } from './types';
 import { DEFAULTS } from './tokens';
+import { FetchComponent } from './fetch.component';
+import { RenderComponent } from './render.component';
+import './fetch.component';
+import './render.component';
+import './space.component';
 
 /**
  * @customElement rx-graph
@@ -52,6 +57,7 @@ import { DEFAULTS } from './tokens';
               : Container.get(DEFAULTS).error(this.error)}
           `
         : ''}
+        <slot></slot>
     `;
   }
 })
@@ -63,7 +69,8 @@ export class GraphComponent<T = any> extends LitElement {
     render: () => html``,
     loading: () => html``,
     error: () => html``,
-    settings: {} as QueryBaseOptions
+    settings: {} as QueryBaseOptions,
+    defaultConfig: true
   };
 
   @Inject(BaseService)
@@ -80,6 +87,7 @@ export class GraphComponent<T = any> extends LitElement {
   private result: ReplaySubject<any> = new ReplaySubject();
 
   OnUpdateFirst() {
+
     let task: Observable<any>;
     if (this.options.state) {
       if (isObservable(this.options.state)) {

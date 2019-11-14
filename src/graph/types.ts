@@ -24,4 +24,5 @@ export interface GraphOptions<T = any> extends OptionalProperties {
   settings?: Settings;
   subscribe?: any;
   render(res: { data: T }, container: ObservableContainer): TemplateResult;
+  defaultConfig?: boolean;
 }
