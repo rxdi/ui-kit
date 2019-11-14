@@ -15,6 +15,6 @@ import { ObservableContainer } from '@rxdi/core/dist/container/observable-interf
 export class RenderComponent extends LitElement {
   @property({ type: Object }) state: <T>(
     state: T,
-    ctx?: ObservableContainer
+    setState?: (res: T) => void
   ) => TemplateResult;
 }

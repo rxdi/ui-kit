@@ -16,58 +16,68 @@ import { IQuery } from '../../introspection';
       <div class="container">
         <div style="text-align: center">
           <!-- <rx-graph
-            .options=${<GraphOptions<{notifications: {appUpdated: string}}>>{
-              fetch: `
+            .options=${<
+            GraphOptions<{ notifications: { appUpdated: string } }>
+          >{
+            fetch: `
                 subscription {
                   notifications {
                     appUpdated
                   }
                 }
               `,
-              render: ({
-                data: {
-                  notifications: { appUpdated }
-                }
-              }) => {
-                return html`
-                  <p style="color: black">${appUpdated}</p>
-                `;
+            render: ({
+              data: {
+                notifications: { appUpdated }
               }
-            }}
+            }) => {
+              return html`
+                <p style="color: black">${appUpdated}</p>
+              `;
+            }
+          }}
           >
           </rx-graph> -->
         </div>
-        <rx-graph
-          .options=${<GraphOptions>{
-            settings: {
-              fetchPolicy: 'cache-first'
-            },
-            // state: {
-            //   data: {
-            //     continents: [
-            //       { name: 'dada', countries: [{ name: 'dada', code: 'dada' }] }
-            //     ]
-            //   }
-            // },
-            fetch: `
-              query {
-                continents {
+        <rx-monad>
+          <!-- <rx-state
+            .value=${{
+              data: {
+                continents: [
+                  { name: 'dada', countries: [{ name: 'dada', code: 'dada' }] }
+                ]
+              }
+            }}
+          ></rx-state> -->
+          <rx-settings .value=${{ fetchPolicy: 'cache-first' }}></rx-settings>
+          <rx-fetch query="
+            query {
+              continents {
+                name
+                countries {
+                  code
                   name
-                  countries {
-                    code
-                    name
-                    currency
-                    emoji
-                  }
+                  currency
+                  emoji
                 }
               }
-            `,
-            render: ({ data: { continents } }: { data: IQuery }) => {
+            }
+          "
+          ></rx-fetch>
+          <rx-render
+            .state=${({ data: { continents } }: { data: IQuery }, setState) => {
               return html`
                 <rx-animation overflow="hidden" .options=${this.animation}>
-                  ${continents.map(
-                    continent =>
-                      html`
+                  <rx-for .of=${continents}>
+                    <rx-let
+                      .item=${continent => html`
+                        <rx-button
+                          @click=${() =>
+                            setState({
+                              continents: [{ name: 'gosho', countries: [] }]
+                            })}
+                          >Change state</rx-button
+                        >
                         <rx-description
                           style="display: block; transform: translateX(-100%);padding: 50px;"
                         >
@@ -92,36 +102,31 @@ import { IQuery } from '../../introspection';
                                       )}
                                     >Collapse</rx-button
                                   >
-                                  <rx-animation
-                                    overflow="hidden"
-                                    .options=${this.animation}
-                                  >
-                                    ${continent.countries.map(
-                                      country =>
-                                        html`
-                                          <div
-                                            style="padding: 50px;display: block; transform: translateX(-100%);text-align: center"
-                                          >
-                                            <rx-card palette="secondary">
-                                              <div style="padding: 50px;">
-                                                <p>
-                                                  Name: ${country.name}
-                                                </p>
-                                                <p>
-                                                  Country code: ${country.code}
-                                                </p>
-                                                <p>
-                                                  Currency: ${country.currency}
-                                                </p>
-                                                <p>
-                                                  Emojy: ${country.emoji}
-                                                </p>
-                                              </div>
-                                            </rx-card>
-                                          </div>
-                                        `
-                                    )}
-                                  </rx-animation>
+                                  ${continent.countries.map(
+                                    country =>
+                                      html`
+                                        <div
+                                          style="padding: 50px;display: block; transform: translateX(-100%);text-align: center"
+                                        >
+                                          <rx-card palette="secondary">
+                                            <div style="padding: 50px;">
+                                              <p>
+                                                Name: ${country.name}
+                                              </p>
+                                              <p>
+                                                Country code: ${country.code}
+                                              </p>
+                                              <p>
+                                                Currency: ${country.currency}
+                                              </p>
+                                              <p>
+                                                Emojy: ${country.emoji}
+                                              </p>
+                                            </div>
+                                          </rx-card>
+                                        </div>
+                                      `
+                                  )}
                                 `
                               : html`
                                   <rx-button
@@ -136,28 +141,14 @@ import { IQuery } from '../../introspection';
                                 `}
                           </div>
                         </rx-description>
-                      `
-                  )}
+                      `}
+                    ></rx-let>
+                  </rx-for>
                 </rx-animation>
               `;
-            },
-            loading: () => {
-              return html`
-                <div style="text-align: center;">
-                  <rx-loading palette="danger"></rx-loading>
-                </div>
-              `;
-            },
-            error: e => {
-              return html`
-                <p style="color: black">
-                  ${e}
-                </p>
-              `;
-            }
-          }}
-        >
-        </rx-graph>
+            }}
+          ></rx-render>
+        </rx-monad>
       </div>
       <markdown-reader
         link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/graph/README.md"

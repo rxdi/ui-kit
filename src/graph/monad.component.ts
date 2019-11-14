@@ -51,6 +51,10 @@ export class MonadComponent extends LitElement {
       fetch,
       render: renderComponent.state
     };
+    settingsComponent.remove();
+    stateComponent.remove();
+    renderComponent.remove();
+    fetchComponent.remove();
   }
 
   private trim(query = '', type: 'query' | 'mutation' | 'subscription') {

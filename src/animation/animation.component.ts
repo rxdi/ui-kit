@@ -7,7 +7,8 @@ import {
   unsafeCSS
 } from '@rxdi/lit-html';
 import anime from 'animejs';
-import { Options, Overflow } from './interface';
+import { Overflow } from './interface';
+import { Operators } from '../operators/operators';
 /**
  * @customElement rx-animation
  */
@@ -43,15 +44,19 @@ export class AnimationComponent extends LitElement {
     easing: 'spring(1, 80, 10, 0)'
   })
 
-  firstUpdated() {
-    const children = this.shadowRoot
-      .querySelector('slot')
-      .assignedNodes()
-      .filter(el => el.nodeType === 1);
-
+  async OnUpdateFirst() {
+    const slot = this.shadowRoot.querySelector('slot');
+    const nodes = slot.assignedNodes();
+    let targets = nodes.filter(el => el.nodeType === 1);
+    const forNode = this.findNode(nodes, 'rx-for') as LitElement;
+    if (forNode) {
+      const forNodeNodes = forNode.querySelector('rx-let' as Operators);
+      await forNodeNodes.requestUpdate();
+      targets = Array.from(forNodeNodes.shadowRoot.querySelectorAll('rx-description'));
+    }
     const { bezier, stagger, set, timeline, random } = anime;
     this.instance = anime({
-      targets: children,
+      targets,
       ...this.options({
         bezier,
         stagger,
@@ -80,5 +85,18 @@ export class AnimationComponent extends LitElement {
 
   seek(time: number) {
     this.instance.seek(time);
+  }
+
+  findNode(nodes: Node[], localName: Operators) {
+    const node = nodes.find(
+      n =>
+        n &&
+        n.nextSibling &&
+        (n.nextSibling as HTMLElement).localName === localName
+    );
+    if (node) {
+      return node.nextSibling;
+    }
+    return { value: null };
   }
 }

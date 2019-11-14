@@ -34,7 +34,9 @@ import './options.component';
     return html`
       ${async(
         this.result.pipe(
-          map(res => this.options.render(res, Container)),
+          map(state =>
+            this.options.render(state, data => this.result.next({ data }))
+          ),
           tap(() => (this.loading = false)),
           catchError(e => {
             this.error = e;
@@ -111,9 +113,9 @@ export class GraphComponent<T = any> extends LitElement {
         this.dispatchEvent(new CustomEvent('onData', { detail }));
       },
       error => {
-        error.message = `${JSON.stringify(
-          error.networkError.result.errors
-        )} ${error.message}`;
+        error.message = `${JSON.stringify(error.networkError.result.errors)} ${
+          error.message
+        }`;
         this.result.error(error);
         this.dispatchEvent(new CustomEvent('onError', { detail: error }));
       }
