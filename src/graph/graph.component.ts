@@ -29,7 +29,7 @@ import { DEFAULTS } from './tokens';
     return html`
       ${async(
         this.result.pipe(
-          map(res => this.options.render(res)),
+          map(res => this.options.render(res, Container)),
           tap(() => (this.loading = false)),
           catchError(e => {
             this.error = e;
