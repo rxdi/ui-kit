@@ -94,9 +94,6 @@ export class AnimationComponent extends LitElement {
         n.nextSibling &&
         (n.nextSibling as HTMLElement).localName === localName
     );
-    if (node) {
-      return node.nextSibling;
-    }
-    return { value: null };
+    return node ? node.nextSibling : null;
   }
 }
