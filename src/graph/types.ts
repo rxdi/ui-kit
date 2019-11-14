@@ -7,7 +7,7 @@ export interface Settings {
   query?: DocumentNode;
   mutation?: DocumentNode;
   variables?: any;
-  fetchPolicy?: FetchPolicy;
+  fetchPolicy?: string | FetchPolicy;
   errorPolicy?: ErrorPolicy;
   fetchResults?: boolean;
   metadata?: any;
@@ -23,6 +23,6 @@ export interface GraphOptions<T = any> extends OptionalProperties {
   state?: any;
   settings?: Settings;
   subscribe?: any;
-  render(res: { data: T }, container: ObservableContainer): TemplateResult;
   defaultConfig?: boolean;
+  render(res: { data: T }, container: ObservableContainer): TemplateResult;
 }
