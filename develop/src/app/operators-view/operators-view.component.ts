@@ -2,6 +2,7 @@ import { Component, html } from '@rxdi/lit-html';
 import '../../../../src/operators';
 import { ReactiveElement } from '../../../../src/';
 import { IQuery, IContinent } from '../../introspection';
+import { Inject } from '@rxdi/core';
 
 interface IQueryData {
   data: IQuery;
@@ -31,7 +32,16 @@ interface IQueryData {
       </rx-monad>
 
       <div>
-        <rx-button palette="danger" @click=${() => this.generateString()}>
+        <rx-button
+          palette="danger"
+          @click=${() => {
+            this.setState({
+              randomName: Math.random()
+                .toString(36)
+                .substring(7)
+            });
+          }}
+        >
           Random String
         </rx-button>
       </div>
@@ -51,9 +61,16 @@ interface IQueryData {
         ></rx-fetch>
         <rx-render
           .state=${({ data: { continents } }: IQueryData) => html`
-            <rx-for .of=${continents}>
-              <rx-let .item=${({ name }: IContinent) => name}></rx-let>
-            </rx-for>
+            <ol>
+              <rx-for .of=${continents}>
+                <rx-let
+                  .item=${({ name }: IContinent) =>
+                    html`
+                      <li>${name}</li>
+                    `}
+                ></rx-let>
+              </rx-for>
+            </ol>
           `}
         >
         </rx-render>
@@ -66,7 +83,10 @@ interface IQueryData {
             data: {
               notifications: { appUpdated }
             }
-          }) => html`<p>${appUpdated}</p>`}
+          }) =>
+            html`
+              <p>${appUpdated}</p>
+            `}
         ></rx-render>
       </rx-monad>
 
@@ -78,15 +98,4 @@ interface IQueryData {
 })
 export class OperatorsViewComponent extends ReactiveElement<{
   randomName: string;
-}> {
-  OnInit() {
-    this.setState({ randomName: 'MyRandomValue' });
-  }
-  generateString() {
-    this.setState({
-      randomName: Math.random()
-        .toString(36)
-        .substring(7)
-    });
-  }
-}
+}> {}

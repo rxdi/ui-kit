@@ -18,10 +18,10 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
-"@rxdi/core@0.7.39":
-  version "0.7.39"
-  resolved "https://registry.yarnpkg.com/@rxdi/core/-/core-0.7.39.tgz#2b20f1c8d70167441ab7bbc53340a5236851e589"
-  integrity sha512-ZhQLWORp38g6wYYkzQStxqcJDmZA4Vgje3L4w5EKuHEgDg9CzdFGj4Ifi7ScJKzrZMEW8into9iceTF1Be2KIA==
+"@rxdi/core@^0.7.39":
+  version "0.7.40"
+  resolved "https://registry.yarnpkg.com/@rxdi/core/-/core-0.7.40.tgz#acd23960c16d663eb38b220fc2eb70c2e94461b0"
+  integrity sha512-C23vep938Gxh6lrES0PDdNb+C0RkzoXlf00BuhW1Fqab9R7CqRlD8Fs9qVNgStwtQy8A0wlneSnLUCaXvUaUGA==
   dependencies:
     reflect-metadata "0.1.13"
     rxjs "^6.5.3"
@@ -50,22 +50,17 @@
     apollo-link-ws "^1.0.18"
     subscriptions-transport-ws "^0.9.16"
 
-"@rxdi/lit-html@0.7.34":
-  version "0.7.34"
-  resolved "https://registry.yarnpkg.com/@rxdi/lit-html/-/lit-html-0.7.34.tgz#f1e2d3d5640c4d2b01d1006f203ac1ad74d7c840"
-  integrity sha512-tm/JauzZELpKjZkeFoB6j9OpuKeNF5bhy0RA7EHFl956wrd9TiCUry/2UoETf1WU2BIIVS5sy97GiP+jlA09Ew==
+"@rxdi/lit-html@^0.7.40":
+  version "0.7.40"
+  resolved "https://registry.yarnpkg.com/@rxdi/lit-html/-/lit-html-0.7.40.tgz#74ccbfa5f1812767477d0fea23209a1b622944b5"
+  integrity sha512-Je/BYUuwrK5fSYjpsfENerxjZKtOQ3tEE9fVScqA9O+An5bFY3lgHPIOwCwFNNs8evQcCHBNMYNzS10J1Us0gw==
 
-"@rxdi/router@0.7.34":
-  version "0.7.34"
-  resolved "https://registry.yarnpkg.com/@rxdi/router/-/router-0.7.34.tgz#454ae6bcb9c906f5c1c94607023423f373e28876"
-  integrity sha512-53t1xCbQ3MglZ8FUUnZWkKMZKxaR7am0OEOE1zn67DAUYufuZVrSjLipepGFztljkq5iqk7jtnifvoFgM0GskA==
+"@rxdi/router@^0.7.39":
+  version "0.7.39"
+  resolved "https://registry.yarnpkg.com/@rxdi/router/-/router-0.7.39.tgz#93f42c868f0cfbb5759ff0ee3b3751d664caa1eb"
+  integrity sha512-rP0Evf0MVY9mlSM+6A2GnyTXXK0WlmSJvSf3615Usb2bZjAnXH+aGsMVnshiJFGFud967GtIDCTcJymAYM333A==
   dependencies:
     "@vaadin/router" "^1.2.0"
-
-"@types/animejs@^3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@types/animejs/-/animejs-3.1.0.tgz#9fa31e5fcf3a0304aa097a2a357e03630d820ab1"
-  integrity sha512-OOOQ11ylW8GeFY85yM3HrprR5wZl1R1KsxrxNLMpE9l24zs+4yXAu4WsDESWcCAf5+PxvPNsLV9W/PB3J+XGMQ==
 
 "@types/js-yaml@^3.12.1":
   version "3.12.1"

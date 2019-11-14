@@ -31,7 +31,7 @@
     "@rxdi/core": "^0.7.39",
     "@rxdi/firelink": "^0.7.38",
     "@rxdi/forms": "^0.7.36",
-    "@rxdi/lit-html": "^0.7.38",
+    "@rxdi/lit-html": "^0.7.40",
     "@rxdi/router": "^0.7.39",
     "@types/js-yaml": "^3.12.1",
     "@types/marked": "^0.7.0",
