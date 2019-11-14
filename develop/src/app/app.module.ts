@@ -22,7 +22,7 @@ import { html } from '@rxdi/lit-html';
     GraphModule.forRoot(
       {
         uri: 'https://countries.trevorblades.com/',
-        pubsub: 'wss://countries.trevorblades.com/'
+        pubsub: 'wss://pubsub.youvolio.com/subscriptions'
       },
       {
         error: e => {

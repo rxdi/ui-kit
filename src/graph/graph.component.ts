@@ -19,11 +19,11 @@ import {
 } from 'apollo-client';
 import { GraphOptions } from './types';
 import { DEFAULTS } from './tokens';
-import { FetchComponent } from './fetch.component';
-import { RenderComponent } from './render.component';
+
 import './fetch.component';
 import './render.component';
-import './space.component';
+import './monad.component';
+import './options.component';
 
 /**
  * @customElement rx-graph
@@ -57,7 +57,7 @@ import './space.component';
               : Container.get(DEFAULTS).error(this.error)}
           `
         : ''}
-        <slot></slot>
+      <slot></slot>
     `;
   }
 })
@@ -87,7 +87,6 @@ export class GraphComponent<T = any> extends LitElement {
   private result: ReplaySubject<any> = new ReplaySubject();
 
   OnUpdateFirst() {
-
     let task: Observable<any>;
     if (this.options.state) {
       if (isObservable(this.options.state)) {
@@ -99,16 +98,24 @@ export class GraphComponent<T = any> extends LitElement {
         this.result.complete();
       }
     } else {
-      task = this.query();
+      try {
+        task = this.query();
+      } catch (e) {
+        this.result.error(e);
+        this.result.complete();
+      }
     }
     this.subscription = task.subscribe(
       detail => {
         this.result.next(detail);
         this.dispatchEvent(new CustomEvent('onData', { detail }));
       },
-      detail => {
-        this.result.error(detail);
-        this.dispatchEvent(new CustomEvent('onError', { detail }));
+      error => {
+        error.message = `${JSON.stringify(
+          error.networkError.result.errors
+        )} ${error.message}`;
+        this.result.error(error);
+        this.dispatchEvent(new CustomEvent('onError', { detail: error }));
       }
     );
     if (this.options.subscribe) {
@@ -138,7 +145,7 @@ export class GraphComponent<T = any> extends LitElement {
   private query(): Observable<{ data: any }> {
     let fetch: any = this.options.fetch;
     this.options.settings = this.options.settings || {};
-
+    this.options.fetch = this.options.fetch || '';
     if (this.options.fetch.loc && this.options.fetch.loc.source) {
       fetch = this.options.fetch.loc.source.body;
     }
@@ -154,6 +161,7 @@ export class GraphComponent<T = any> extends LitElement {
         : gql`
             ${fetch}
           `;
+
     if (typeof fetch === 'string' && fetch.includes('subscription')) {
       return this.graphql.subscribe(
         this.options.settings as SubscriptionOptions

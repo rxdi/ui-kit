@@ -1,3 +1,6 @@
+# Reactive Operators
+
+```typescript
 import { Component, html } from '@rxdi/lit-html';
 import '../../../../src/operators';
 import { ReactiveElement } from '../../../../src/';
@@ -66,13 +69,12 @@ interface IQueryData {
             data: {
               notifications: { appUpdated }
             }
-          }) => html`<p>${appUpdated}</p>`}
+          }) =>
+            html`
+              <p>${appUpdated}</p>
+            `}
         ></rx-render>
       </rx-monad>
-
-      <markdown-reader
-        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/operators/README.md"
-      ></markdown-reader>
     `;
   }
 })
@@ -90,3 +92,44 @@ export class OperatorsViewComponent extends ReactiveElement<{
     });
   }
 }
+```
+
+
+
+## Subscriptions
+
+```html
+<rx-monad>
+  <rx-fetch subscribe="{ notifications { appUpdated } }"></rx-fetch>
+  <rx-render
+    .state=${({
+      data: {
+        notifications: { appUpdated }
+      }
+    }) => html`<p>${appUpdated}</p>`}
+  ></rx-render>
+</rx-monad>
+```
+
+
+## Queries
+
+```html
+<rx-monad>
+  <rx-fetch
+    query="{
+      continents {
+        name
+      }
+    }"
+  ></rx-fetch>
+  <rx-render
+    .state=${({ data: { continents } }) => html`
+      <rx-for .of=${continents}>
+        <rx-let .item=${({ name }) => name}></rx-let>
+      </rx-for>
+    `}
+  >
+  </rx-render>
+</rx-monad>
+```
