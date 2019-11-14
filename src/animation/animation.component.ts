@@ -44,7 +44,7 @@ export class AnimationComponent extends LitElement {
     easing: 'spring(1, 80, 10, 0)'
   })
 
-  async OnUpdateFirst() {
+  async OnUpdate() {
     const slot = this.shadowRoot.querySelector('slot');
     const nodes = slot.assignedNodes();
     let targets = nodes.filter(el => el.nodeType === 1);
@@ -52,7 +52,7 @@ export class AnimationComponent extends LitElement {
     if (forNode) {
       const forNodeNodes = forNode.querySelector('rx-let' as Operators);
       await forNodeNodes.requestUpdate();
-      targets = Array.from(forNodeNodes.shadowRoot.querySelectorAll('rx-description'));
+      targets = Array.from(forNodeNodes.shadowRoot.children);
     }
     const { bezier, stagger, set, timeline, random } = anime;
     this.instance = anime({

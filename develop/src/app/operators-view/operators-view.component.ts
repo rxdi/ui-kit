@@ -22,7 +22,7 @@ interface IQueryData {
       </rx-for>
 
       <rx-monad>
-        <rx-state .value=${this.select(res => res.data.randomName)}></rx-state>
+        <rx-state .value=${this.select(res => res.randomName)}></rx-state>
         <rx-render
           .state=${name => html`
             <p>${name}</p>
@@ -31,6 +31,13 @@ interface IQueryData {
         </rx-render>
       </rx-monad>
 
+      <!-- Lenses -->
+      <rx-monad>
+        <rx-state .value=${{pesho: { gosho: 'omgddddddddddddd'}}}></rx-state>
+        <!-- <rx-store .ref=${{ pesho: { gosho: 'omg' } }}></rx-store> -->
+        <rx-lens .select=${s => s.pesho.gosho}></rx-lens>
+        <rx-render .state=${({pesho}) => pesho.gosho}></rx-render>
+      </rx-monad>
       <div>
         <rx-button
           palette="danger"

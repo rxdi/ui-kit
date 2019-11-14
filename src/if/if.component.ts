@@ -7,7 +7,7 @@ import { Component, LitElement, html, property } from '@rxdi/lit-html';
   selector: 'rx-if',
   template(this: IfComponent) {
     return html`
-      ${this.exp()
+      ${this.exp
         ? html`
             <slot></slot>
           `
@@ -16,5 +16,5 @@ import { Component, LitElement, html, property } from '@rxdi/lit-html';
   }
 })
 export class IfComponent extends LitElement {
-  @property({ attribute: false }) exp: () => boolean;
+  @property() exp: boolean;
 }

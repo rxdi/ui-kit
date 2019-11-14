@@ -10,3 +10,5 @@ declare global {
 
 export * from './let.component';
 export * from './for.component';
+
+export * from './hook';

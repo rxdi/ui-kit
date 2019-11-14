@@ -35,7 +35,7 @@ import './options.component';
       ${async(
         this.result.pipe(
           map(state =>
-            this.options.render(state, data => this.result.next({ data }))
+            this.options.render(state, data => this.result.next(data))
           ),
           tap(() => (this.loading = false)),
           catchError(e => {
@@ -68,7 +68,7 @@ export class GraphComponent<T = any> extends LitElement {
   public options: GraphOptions<T> = {
     fetch: '',
     state: new BehaviorSubject({}),
-    render: () => html``,
+    render: (res) => html`${res}`,
     loading: () => html``,
     error: () => html``,
     settings: {} as QueryBaseOptions,
@@ -93,11 +93,8 @@ export class GraphComponent<T = any> extends LitElement {
     if (this.options.state) {
       if (isObservable(this.options.state)) {
         task = this.options.state;
-      } else if (typeof this.options.state === 'object') {
-        this.result.next(this.options.state);
       } else {
-        this.result.error('State is incopatible');
-        this.result.complete();
+        this.result.next(this.options.state);
       }
     } else {
       try {

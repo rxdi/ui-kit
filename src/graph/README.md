@@ -159,7 +159,7 @@ export class AppModule {}
 
 `state` property can be `BehaviorSubject`, `ReplaySubject`, `Observable`, `Object`
 
-```typescript
+```html
 <rx-graph
   .options=${{
     state: {
@@ -195,7 +195,7 @@ export class AppModule {}
 
 In case you wonder how to add `Observable`
 
-```typescript
+```html
 <rx-graph
   .options=${{
     state: new BehaviorSubject({
@@ -219,7 +219,7 @@ In case you wonder how to add `Observable`
 
 ##### Subscriptions with Graphql
 
-```typescript
+```html
 <rx-graph
   .options=${<GraphOptions>{
     fetch: `
@@ -247,4 +247,27 @@ GraphOptions interface is `generic` so we can specify following types for this p
 
 ```typescript
 <GraphOptions<{notifications: {appUpdated: string}}>>
+```
+
+
+
+# Experimental
+
+## Monads
+
+```html
+<rx-monad>
+  <rx-state .value=${1}></rx-state>
+  <rx-render
+    .state=${(counter, setState) => html`
+      <p style="color: red">${counter}</p>
+      <rx-button palette="danger" @click=${() => setState(counter + 1)}
+        >Increment</rx-button
+      >
+      <rx-button palette="danger" @click=${() => setState(counter - 1)}
+        >Decrement</rx-button
+      >
+    `}
+  ></rx-render>
+</rx-monad>
 ```

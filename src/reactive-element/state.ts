@@ -1,11 +1,9 @@
-import { LitElement } from '@rxdi/lit-html';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-export class ReactiveElement<T> extends LitElement {
+export class State<T> {
   private state: BehaviorSubject<T>;
   constructor(v: T) {
-    super();
     this.state = new BehaviorSubject(v || ({} as any));
   }
   get state$() {
