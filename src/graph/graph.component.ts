@@ -23,6 +23,7 @@ import { DEFAULTS } from './tokens';
 import './fetch.component';
 import './render.component';
 import './monad.component';
+import './lens.component';
 import './options.component';
 
 /**
@@ -34,9 +35,12 @@ import './options.component';
     return html`
       ${async(
         this.result.pipe(
-          map(state =>
-            this.options.render(state, data => this.result.next(data))
-          ),
+          map(state => {
+            if (this.isPrimitive(state) || !this.options.render) {
+              return state;
+            }
+            return this.options.render(state, data => this.result.next(data));
+          }),
           tap(() => (this.loading = false)),
           catchError(e => {
             this.error = e;
@@ -167,5 +171,9 @@ export class GraphComponent<T = any> extends LitElement {
       );
     }
     return this.graphql.query(this.options.settings as QueryOptions);
+  }
+
+  isPrimitive(test: any) {
+    return (test !== Object(test));
   }
 }

@@ -34,9 +34,8 @@ interface IQueryData {
       <!-- Lenses -->
       <rx-monad>
         <rx-state .value=${{pesho: { gosho: 'omgddddddddddddd'}}}></rx-state>
-        <!-- <rx-store .ref=${{ pesho: { gosho: 'omg' } }}></rx-store> -->
-        <rx-lens .select=${s => s.pesho.gosho}></rx-lens>
-        <rx-render .state=${({pesho}) => pesho.gosho}></rx-render>
+        <rx-lens match="pesho.gosho"></rx-lens>
+        <rx-render></rx-render>
       </rx-monad>
       <div>
         <rx-button
