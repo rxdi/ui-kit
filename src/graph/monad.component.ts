@@ -4,7 +4,7 @@ import { RenderComponent } from './render.component';
 import { StateComponent } from './state.component';
 import { GraphOptions } from './types';
 import { SettingsComponent } from './options.component';
-import { createUniqueHash } from '@rxdi/core';
+import { LensComponent } from './lens.component';
 
 /**
  * @customElement rx-monad
@@ -35,7 +35,17 @@ export class MonadComponent extends LitElement {
     const fetchComponent = this.findNode('rx-fetch') as FetchComponent;
     const stateComponent = this.findNode('rx-state') as StateComponent;
     const settingsComponent = this.findNode('rx-settings') as SettingsComponent;
+    const lensComponent = this.findNode('rx-lens') as LensComponent;
+
     let fetch: string;
+    let state = stateComponent.value;
+    if (lensComponent) {
+      if (lensComponent.match) {
+        state = this.get(state, lensComponent.match);
+      } else if (lensComponent.ray) {
+        state = lensComponent.ray(state);
+      }
+    }
     if (fetchComponent.query) {
       fetch = this.trim(fetchComponent.query, 'query');
     }
@@ -47,7 +57,7 @@ export class MonadComponent extends LitElement {
     }
     this.options = {
       settings: settingsComponent.value,
-      state: stateComponent.value,
+      state,
       fetch,
       render: renderComponent.state
     };
@@ -76,5 +86,13 @@ export class MonadComponent extends LitElement {
       return node.nextSibling;
     }
     return { value: null };
+  }
+  private get(obj = {}, path = '', defaultValue?) {
+    return (
+      path
+        .replace(/\[(.+?)\]/g, '.$1')
+        .split('.')
+        .reduce((o, key) => o[key], obj) || defaultValue
+    );
   }
 }
