@@ -2,7 +2,7 @@ import { Component, html, property, LitElement, async } from '@rxdi/lit-html';
 import gql from 'graphql-tag';
 import { BaseService } from './base.service';
 import { Inject, Container } from '@rxdi/core';
-import { map, tap, catchError } from 'rxjs/operators';
+import { map, tap, catchError, switchMap } from 'rxjs/operators';
 import {
   Observable,
   of,
@@ -35,8 +35,11 @@ import './options.component';
     return html`
       ${async(
         this.result.pipe(
-          map(state => {
-            return this.options.render(state, data => this.result.next(data));
+          switchMap(async state => {
+            let res = this.options.render
+              ? this.options.render(state, data => this.result.next(data))
+              : state;
+            return isObservable(res) ? res.toPromise() : res;
           }),
           tap(() => (this.loading = false)),
           catchError(e => {
@@ -69,7 +72,10 @@ export class GraphComponent<T = any> extends LitElement {
   public options: GraphOptions<T> = {
     fetch: '',
     state: new BehaviorSubject({}),
-    render: (res) => html`${res}`,
+    render: res =>
+      html`
+        ${res}
+      `,
     loading: () => html``,
     error: () => html``,
     settings: {} as QueryBaseOptions,
@@ -171,6 +177,6 @@ export class GraphComponent<T = any> extends LitElement {
   }
 
   isPrimitive(test: any) {
-    return (test !== Object(test));
+    return test !== Object(test);
   }
 }

@@ -114,5 +114,9 @@ export const navItems = [
   {
     path: '/ui-kit/operators',
     label: 'Operators'
+  },
+  {
+    path: '/ui-kit/router',
+    label: 'Router'
   }
 ];

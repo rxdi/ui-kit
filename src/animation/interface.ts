@@ -48,7 +48,7 @@ interface AnimeParams extends AnimeInstanceParams, AnimeAnimParams {
   // Just need this to merge both Params interfaces.
 }
 
-export interface Options {
+export interface AnimationOptions {
   bezier(x1: number, y1: number, x2: number, y2: number): (t: number) => number;
   stagger(
     value: number | string | ReadonlyArray<number | string>,

@@ -33,14 +33,15 @@
     "@rxdi/forms": "^0.7.36",
     "@rxdi/lit-html": "^0.7.40",
     "@rxdi/router": "^0.7.39",
+    "@types/animejs": "^3.1.0",
     "@types/js-yaml": "^3.12.1",
     "@types/marked": "^0.7.0",
     "@types/node": "^12.0.10",
     "@types/sortablejs": "^1.10.0",
     "cssnano": "^4.1.10",
     "graphql": "^14.5.8",
-    "typescript": "^3.5.3",
-    "husky": "^3.0.9"
+    "husky": "^3.0.9",
+    "typescript": "^3.5.3"
   },
   "browserslist": [
     "last 1 chrome versions"

@@ -20,6 +20,7 @@ import { TabsComponent } from '../../../src/tabs/tabs.component';
 import { TableComponent } from '../../../src/table/table.component';
 import { PwaInstallComponent } from '../../../src/pwa-install/pwa-install.component';
 import { AnimationComponent } from '../../../src/animation/animation.component'
+import { RouterOutlet } from '../../../src/router/router.component'
 
 import { DescriptionListComponent } from '../../../src/description-list/description-list.component';
 import { RegularMarkdownComponent } from './markdown-reader/markdown-regular.component';
@@ -52,7 +53,8 @@ import { NavComponent } from './nav-view/nav-component';
     TabsComponent,
     TableComponent,
     PwaInstallComponent,
-    AnimationComponent
+    AnimationComponent,
+    RouterOutlet
   ]
 })
 export class AppComponentsModule {}

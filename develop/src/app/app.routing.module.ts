@@ -34,6 +34,7 @@ import { PwaInstallViewComponent } from './pwa-install/pwa-install-view.componen
 import { GraphViewComponent } from './graph-view/graph-view.component';
 import { AnimationViewComponent } from './animation-view/animation-view.component';
 import { OperatorsViewComponent } from './operators-view/operators-view.component';
+import { RouterViewComponent } from './router-view/router-view.component';
 
 @Module({
   imports: [
@@ -41,15 +42,23 @@ import { OperatorsViewComponent } from './operators-view/operators-view.componen
       [
         {
           path: '/',
-          redirect: '/ui-kit/markdown-link'
+          redirect: '/ui-kit/markdown-link',
         },
         {
           path: '/ui-kit/markdown-link',
-          component: RegularMarkdownComponent
+          component: RegularMarkdownComponent,
+          animate: {
+            enter: 'users-entering',
+            leave: 'users-leaving'
+          } as any
         },
         {
           path: '/ui-kit/markdown-reader/:namespace/:repo/:filePath',
-          component: MarkdownReaderComponent
+          component: MarkdownReaderComponent,
+          animate: {
+            enter: 'users-entering',
+            leave: 'users-leaving'
+          } as any
         },
         {
           path: '/ui-kit/responsive',
@@ -112,7 +121,7 @@ import { OperatorsViewComponent } from './operators-view/operators-view.componen
           component: AlertViewComponent
         },
         {
-          path: '/ui-kit/description',
+          path: '/ui-kit/description-list',
           component: DescriptionListViewComponent
         },
         {
@@ -158,6 +167,10 @@ import { OperatorsViewComponent } from './operators-view/operators-view.componen
         {
           path: '/ui-kit/operators',
           component: OperatorsViewComponent
+        },
+        {
+          path: '/ui-kit/router',
+          component: RouterViewComponent
         },
       ],
       { log: true, baseUrl: '/ui-kit' }
