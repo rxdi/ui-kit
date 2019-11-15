@@ -1,6 +1,6 @@
 import { Component, LitElement, html, property } from '@rxdi/lit-html';
 import { Router, Route } from '@rxdi/router'
-import { of, Observable } from 'rxjs';
+import { of, Observable, interval } from 'rxjs';
 
 /**
  * @customElement router-outlet2
@@ -10,10 +10,10 @@ import { of, Observable } from 'rxjs';
   template(this: RouterOutlet) {
     return html`
     <rx-monad>
-      <rx-state .value=${this.routes}></rx-state>
-      <rx-render .state=${state => of(html`
-        ${state[0].path}
-      `)}></rx-render>
+      <rx-state .value=${interval(1000)}></rx-state>
+      <rx-render .state=${state => html`
+      ${state}
+      `}></rx-render>
     </rx-monad>
   `
   }

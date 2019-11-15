@@ -35,11 +35,10 @@ import './options.component';
     return html`
       ${async(
         this.result.pipe(
-          switchMap(async state => {
-            let res = this.options.render
+          map(state => {
+            return this.options.render
               ? this.options.render(state, data => this.result.next(data))
               : state;
-            return isObservable(res) ? res.toPromise() : res;
           }),
           tap(() => (this.loading = false)),
           catchError(e => {
@@ -111,6 +110,21 @@ export class GraphComponent<T = any> extends LitElement {
         this.result.complete();
       }
     }
+    if (this.options.subscribe) {
+      this.pubsubSubscription = this.graphql
+        .subscribe({
+          query: gql`
+            ${this.options.subscribe}
+          `
+        })
+        .subscribe(
+          data => this.result.next(data),
+          e => this.result.error(e)
+        );
+    }
+    if (!task) {
+      return;
+    }
     this.subscription = task.subscribe(
       detail => {
         this.result.next(detail);
@@ -124,18 +138,6 @@ export class GraphComponent<T = any> extends LitElement {
         this.dispatchEvent(new CustomEvent('onError', { detail: error }));
       }
     );
-    if (this.options.subscribe) {
-      this.pubsubSubscription = this.graphql
-        .subscribe({
-          query: gql`
-            ${this.options.subscribe}
-          `
-        })
-        .subscribe(
-          data => this.result.next(data),
-          e => this.result.error(e)
-        );
-    }
   }
 
   OnDestroy() {
