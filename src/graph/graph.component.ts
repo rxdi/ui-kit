@@ -36,9 +36,6 @@ import './options.component';
       ${async(
         this.result.pipe(
           map(state => {
-            if (this.isPrimitive(state) || !this.options.render) {
-              return state;
-            }
             return this.options.render(state, data => this.result.next(data));
           }),
           tap(() => (this.loading = false)),

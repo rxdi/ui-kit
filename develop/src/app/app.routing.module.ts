@@ -41,10 +41,10 @@ import { OperatorsViewComponent } from './operators-view/operators-view.componen
       [
         {
           path: '/',
-          redirect: '/ui-kit'
+          redirect: '/ui-kit/markdown-link'
         },
         {
-          path: '/ui-kit',
+          path: '/ui-kit/markdown-link',
           component: RegularMarkdownComponent
         },
         {
