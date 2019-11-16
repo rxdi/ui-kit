@@ -45,31 +45,29 @@ export class MonadComponent extends LitElement {
 
     let fetch: string;
     let state = await stateComponent.value;
-    if (lensComponent) {
-      if (lensComponent.match) {
-        state = this.get(state, lensComponent.match);
-      } else if (lensComponent.get) {
-        lensComponent.get = lensComponent.get.map(a => a === 'all' ? all : a);
-        if (isObservable(state)) {
-          state = state.pipe(map(s => {
-            const expectedState = (get as any)(...lensComponent.get)(s);
-            if (!expectedState) {
-              return s;
-            }
-            return expectedState;
-          }));
-        } else {
-          state = (get as any)(...lensComponent.get)(state);
-        }
-        if (lensComponent.ray) {
-          state = lensComponent.ray(state);
-        }
-      } else if (lensComponent.ray) {
-        if (isObservable(state)) {
-          state = state.pipe(map(s => lensComponent.ray(s)));
-        } else {
-          state = lensComponent.ray(state);
-        }
+    if (lensComponent.match) {
+      state = this.get(state, lensComponent.match);
+    } else if (lensComponent.get) {
+      lensComponent.get = lensComponent.get.map(a => a === 'all' ? all : a);
+      if (isObservable(state)) {
+        state = state.pipe(map(s => {
+          const expectedState = (get as any)(...lensComponent.get)(s);
+          if (!expectedState) {
+            return s;
+          }
+          return expectedState;
+        }));
+      } else {
+        state = (get as any)(...lensComponent.get)(state);
+      }
+      if (lensComponent.ray) {
+        state = lensComponent.ray(state);
+      }
+    } else if (lensComponent.ray) {
+      if (isObservable(state)) {
+        state = state.pipe(map(s => lensComponent.ray(s)));
+      } else {
+        state = lensComponent.ray(state);
       }
     }
 
