@@ -1,5 +1,5 @@
 import { Component, LitElement, html, property } from '@rxdi/lit-html';
-import { Router, Route } from '@rxdi/router'
+// import { Router, Route } from '@rxdi/router'
 import { of, Observable, interval } from 'rxjs';
 
 /**
@@ -15,11 +15,11 @@ import { of, Observable, interval } from 'rxjs';
       ${state}
       `}></rx-render>
     </rx-monad>
-  `
+  `;
   }
 })
 export class RouterOutlet extends LitElement {
-  @property() public routes: Route[] | Observable<Route[]> = of<Route[]>([
+  @property() public routes: any[] | Observable<any[]> = of<any[]>([
     {
       path: '/ui-kit/button',
       component: 'test-component'

@@ -1,4 +1,3 @@
-import { Options } from './interface';
 import { AnimeParams } from 'animejs';
 import { TemplateResult, html } from '@rxdi/lit-html';
 
