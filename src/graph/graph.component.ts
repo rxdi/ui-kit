@@ -131,9 +131,12 @@ export class GraphComponent<T = any> extends LitElement {
         this.dispatchEvent(new CustomEvent('onData', { detail }));
       },
       error => {
-        error.message = `${JSON.stringify(error.networkError.result.errors)} ${
-          error.message
-        }`;
+        if (error.networkError) {
+          error.message = `${JSON.stringify(
+            error.networkError.result.errors
+          )} ${error.message}`;
+        }
+
         this.result.error(error);
         this.dispatchEvent(new CustomEvent('onError', { detail: error }));
       }

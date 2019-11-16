@@ -1,8 +1,7 @@
-import { Component, LitElement, html, css, property } from '@rxdi/lit-html';
+import { Component, LitElement, html, css } from '@rxdi/lit-html';
 import { GraphOptions } from '@rxdi/ui-kit/graph';
-import { IQuery } from '../../introspection';
-// import fetch from './get-continents.graphql';
 import { Form, FormGroup } from '@rxdi/forms';
+
 
 @Component({
   selector: 'graph-view-component',
@@ -14,21 +13,6 @@ import { Form, FormGroup } from '@rxdi/forms';
   `,
   template(this: GraphViewComponent) {
     return html`
-      <rx-monad>
-        <rx-state .value=${1}></rx-state>
-        <rx-render
-          .state=${(counter: number, setState: (res: number) => void) => html`
-            <p style="color: red">${counter}</p>
-            <rx-button palette="danger" @click=${() => setState(counter + 1)}
-              >Increment</rx-button
-            >
-            <rx-button palette="danger" @click=${() => setState(counter - 1)}
-              >Decrement</rx-button
-            >
-          `}
-        ></rx-render>
-      </rx-monad>
-
       <div class="container">
         <div style="text-align: center">
           <!-- <rx-graph
@@ -186,4 +170,5 @@ export class GraphViewComponent extends LitElement {
   private form = new FormGroup({
     textArea: ''
   });
+
 }

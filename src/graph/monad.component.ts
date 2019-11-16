@@ -5,6 +5,9 @@ import { StateComponent } from './state.component';
 import { GraphOptions } from './types';
 import { SettingsComponent } from './options.component';
 import { LensComponent } from './lens.component';
+import { get, mod, all } from 'shades';
+import { isObservable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 /**
  * @customElement rx-monad
@@ -23,29 +26,53 @@ import { LensComponent } from './lens.component';
   }
 })
 export class MonadComponent extends LitElement {
-  private nodes: Node[] = [];
-
   @property({ type: Object })
   private options: GraphOptions;
 
-  OnUpdateFirst() {
-    const slot = this.shadowRoot.querySelector('slot');
-    this.nodes = slot.assignedNodes();
-    const renderComponent = this.findNode('rx-render') as RenderComponent;
-    const fetchComponent = this.findNode('rx-fetch') as FetchComponent;
-    const stateComponent = this.findNode('rx-state') as StateComponent;
-    const settingsComponent = this.findNode('rx-settings') as SettingsComponent;
-    const lensComponent = this.findNode('rx-lens') as LensComponent;
+  async OnUpdateFirst() {
+    const nodes = this.shadowRoot.querySelector('slot').assignedNodes();
+    const renderComponent = this.findNode(
+      nodes,
+      'rx-render'
+    ) as RenderComponent;
+    const fetchComponent = this.findNode(nodes, 'rx-fetch') as FetchComponent;
+    const stateComponent = this.findNode(nodes, 'rx-state') as StateComponent;
+    const settingsComponent = this.findNode(
+      nodes,
+      'rx-settings'
+    ) as SettingsComponent;
+    const lensComponent = this.findNode(nodes, 'rx-lens') as LensComponent;
 
     let fetch: string;
-    let state = stateComponent.value;
+    let state = await stateComponent.value;
     if (lensComponent) {
       if (lensComponent.match) {
         state = this.get(state, lensComponent.match);
+      } else if (lensComponent.get) {
+        lensComponent.get = lensComponent.get.map(a => a === 'all' ? all : a);
+        if (isObservable(state)) {
+          state = state.pipe(map(s => {
+            const expectedState = (get as any)(...lensComponent.get)(s);
+            if (!expectedState) {
+              return s;
+            }
+            return expectedState;
+          }));
+        } else {
+          state = (get as any)(...lensComponent.get)(state);
+        }
+        if (lensComponent.ray) {
+          state = lensComponent.ray(state);
+        }
       } else if (lensComponent.ray) {
-        state = lensComponent.ray(state);
+        if (isObservable(state)) {
+          state = state.pipe(map(s => lensComponent.ray(s)));
+        } else {
+          state = lensComponent.ray(state);
+        }
       }
     }
+
     if (fetchComponent.query) {
       fetch = this.trim(fetchComponent.query, 'query');
     }
@@ -61,10 +88,6 @@ export class MonadComponent extends LitElement {
       fetch,
       render: renderComponent.state
     };
-    settingsComponent.remove();
-    stateComponent.remove();
-    renderComponent.remove();
-    fetchComponent.remove();
   }
 
   private trim(query = '', type: 'query' | 'mutation' | 'subscription') {
@@ -75,8 +98,18 @@ export class MonadComponent extends LitElement {
     return `${type} ${trimmedQuery}`;
   }
 
-  findNode(localName: string) {
-    const node = this.nodes.find(
+  private modState(args: any[], state) {
+    return new Promise((resolve, reject) => {
+      try {
+        mod(args[0], args[1], args[2], args[3], args[4])(resolve)(state);
+      } catch (e) {
+        reject(e);
+      }
+    });
+  }
+
+  private findNode(nodes: Node[], localName: string) {
+    const node = nodes.find(
       n =>
         n &&
         n.nextSibling &&
@@ -87,6 +120,7 @@ export class MonadComponent extends LitElement {
     }
     return { value: null };
   }
+
   private get(obj = {}, path = '', defaultValue?) {
     return (
       path

@@ -3,10 +3,10 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 export class ReactiveElement<T> extends LitElement {
-  private state: BehaviorSubject<T>;
+  state: BehaviorSubject<T>;
   constructor(v: T) {
     super();
-    this.state = new BehaviorSubject(v || ({} as any));
+    this.state = new BehaviorSubject(v || ({} as T));
   }
   get state$() {
     return this.state.asObservable();
@@ -16,8 +16,8 @@ export class ReactiveElement<T> extends LitElement {
     return this.state.pipe(map(mapFn));
   }
 
-  setState = (data: T) => {
-    this.state.next({ ...this.state.getValue(), ...data });
+  setState = (newState: T) => {
+    this.state.next({ ...this.state.getValue(), ...newState });
   }
 
   getState = () => {
