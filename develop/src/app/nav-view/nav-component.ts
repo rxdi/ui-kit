@@ -16,12 +16,32 @@ export const activeRoute = fromEvent(
   selector: 'nav-component',
   template(this: NavComponent) {
     return html`
+      <style>
+        /* width */
+        .nav-wrapper::-webkit-scrollbar {
+          width: 4px;
+        }
+
+        /* Track */
+        .nav-wrapper::-webkit-scrollbar-track {
+          background: #f1f1f1;
+        }
+
+        /* Handle */
+        .nav-wrapper::-webkit-scrollbar-thumb {
+          background: #888;
+        }
+
+        /* Handle on hover */
+        .nav-wrapper::-webkit-scrollbar-thumb:hover {
+          background: #555;
+        }
+      </style>
       <div
+        class="nav-wrapper"
         style="position: fixed; height: 100%; overflow-y: auto; width: 250px; background: #1c1f24;display: grid"
       >
-          <ul
-            style="list-style: none; padding: 0; margin: 0;"
-          >
+        <ul style="list-style: none; padding: 0; margin: 0;">
           <rx-animation .options=${this.listOptions}>
             <rx-for .of=${navItems}>
               <rx-let
@@ -35,6 +55,7 @@ export const activeRoute = fromEvent(
                             <rx-button
                               style=${styleMap({
                                 display: 'block',
+                                borderBottom: '1px solid #99999969',
                                 backgroundColor:
                                   state === path
                                     ? 'var(--primary-hover-color)'
@@ -52,8 +73,8 @@ export const activeRoute = fromEvent(
                 `}
               ></rx-let>
             </rx-for>
-            </rx-animation>
-          </ul>
+          </rx-animation>
+        </ul>
       </div>
     `;
   }
@@ -63,5 +84,5 @@ export class NavComponent extends LitElement {
     delay: stagger(20),
     opacity: 1,
     duration: 3000
-  })
+  });
 }

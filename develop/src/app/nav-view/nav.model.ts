@@ -119,4 +119,4 @@ export const navItems = [
     path: '/ui-kit/router',
     label: 'Router'
   }
-];
+].sort((a, b) => a.label.localeCompare(b.label));

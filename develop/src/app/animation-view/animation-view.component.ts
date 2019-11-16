@@ -53,9 +53,9 @@ import { AnimationComponent } from '../../../../src/animation/animation.componen
           <rx-button palette="warning">ff</rx-button>
         </rx-animation>
       </div>
-      <!-- <markdown-reader
+      <markdown-reader
         link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/animation/README.md"
-      ></markdown-reader> -->
+      ></markdown-reader>
     `;
   }
 })
