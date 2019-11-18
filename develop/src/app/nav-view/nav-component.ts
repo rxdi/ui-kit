@@ -2,7 +2,6 @@ import { Component, LitElement, html, styleMap } from '@rxdi/lit-html';
 import { fromEvent } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { navItems } from './nav.model';
-import anime from 'animejs';
 
 export const activeRoute = fromEvent(
   window,
@@ -29,7 +28,7 @@ export const activeRoute = fromEvent(
 
         /* Handle */
         .nav-wrapper::-webkit-scrollbar-thumb {
-          background: #888;
+          background: #26292b;
         }
 
         /* Handle on hover */
@@ -44,8 +43,7 @@ export const activeRoute = fromEvent(
         <ul style="list-style: none; padding: 0; margin: 0;">
           <rx-animation .options=${this.listOptions}>
             <rx-for .of=${navItems}>
-              <rx-let
-                .item=${({ path, label }) => html`
+              <rx-let .item=${({ path, label }) => html`
                   <li style="opacity: 0" class="list-item">
                     <a style="text-decoration: none" href="${path}">
                       <rx-monad>
