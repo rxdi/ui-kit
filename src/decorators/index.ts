@@ -1,0 +1,2 @@
+
+export * from './template.decorator';

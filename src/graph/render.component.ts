@@ -2,14 +2,18 @@ import {
   LitElement,
   Component,
   property,
-  TemplateResult
+  TemplateResult,
+  html
 } from '@rxdi/lit-html';
 
 /**
  * @customElement rx-render
  */
 @Component({
-  selector: 'rx-render'
+  selector: 'rx-render',
+  template: () => html`
+    <slot></slot>
+  `
 })
 export class RenderComponent extends LitElement {
   @property({ type: Object }) state: <T>(

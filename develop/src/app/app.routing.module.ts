@@ -35,6 +35,7 @@ import { GraphViewComponent } from './graph-view/graph-view.component';
 import { AnimationViewComponent } from './animation-view/animation-view.component';
 import { OperatorsViewComponent } from './operators-view/operators-view.component';
 import { RouterViewComponent } from './router-view/router-view.component';
+import { TemplateHtmlViewComponent } from './template-html-view/template-html-view.component';
 
 @Module({
   imports: [
@@ -171,6 +172,10 @@ import { RouterViewComponent } from './router-view/router-view.component';
         {
           path: '/ui-kit/router',
           component: RouterViewComponent
+        },
+        {
+          path: '/ui-kit/template',
+          component: TemplateHtmlViewComponent
         },
       ],
       { log: true, baseUrl: '/ui-kit' }
