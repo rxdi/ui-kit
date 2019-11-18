@@ -91,21 +91,11 @@
       main();
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-    <script async>
-      window.onerror = (text, url, lineNumber) => {
-        Swal.fire({
-          type: 'error',
-          title: 'Oops...',
-          text,
-          footer: `<p><strong>File:</strong> ${url}</p>&nbsp<p><strong>Line:</strong> ${lineNumber}</p>`
-        });
-        return true;
-      };
-    </script>
+
   </head>
   <body>
     <div id="app"></div>
   </body>
 
-  <script type="text/javascript" src="./main.ts"></script>
+  <!-- <script type="text/javascript" src="./main.ts"></script> -->
 </html>

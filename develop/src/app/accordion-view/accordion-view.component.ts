@@ -1,6 +1,6 @@
 import { html, Component, LitElement, svg } from '@rxdi/lit-html';
 import { AccordionItem } from '../../../../src/accordion/model';
-import glyph from '@rxdi/ui-kit/images/glyph.svg';
+// import glyph from '@rxdi/ui-kit/images/glyph.svg';
 
 /**
  * @customElement accordion-view-component

@@ -15,6 +15,7 @@ export const activeRoute = fromEvent(
 @Component({
   selector: 'nav-component',
   template(this: NavComponent) {
+    debugger;
     return html`
       <style>
         /* width */
@@ -84,5 +85,5 @@ export class NavComponent extends LitElement {
     delay: stagger(20),
     opacity: 1,
     duration: 3000
-  });
+  })
 }

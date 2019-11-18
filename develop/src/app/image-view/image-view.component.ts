@@ -1,5 +1,5 @@
 import { html, Component, LitElement } from '@rxdi/lit-html';
-import glyph from '@rxdi/ui-kit/images/glyph.svg';
+// import glyph from '@rxdi/ui-kit/images/glyph.svg';
 
 /**
  * @customElement image-view-component
@@ -12,7 +12,7 @@ import glyph from '@rxdi/ui-kit/images/glyph.svg';
         <rx-image
           image="https://getuikit.com/images/icon-clipboard.svg"
         ></rx-image>
-        <rx-image image=${glyph} @onLoad=${this.onLoad}></rx-image>
+        <rx-image image=${{}} @onLoad=${this.onLoad}></rx-image>
       </div>
       <markdown-reader
         link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/image/README.md"

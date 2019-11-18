@@ -125,8 +125,10 @@ export class GraphComponent<T = any> extends LitElement {
     if (!task) {
       return;
     }
+
     this.subscription = task.subscribe(
       detail => {
+        console.log('Detail');
         this.result.next(detail);
         this.dispatchEvent(new CustomEvent('onData', { detail }));
       },
@@ -144,6 +146,7 @@ export class GraphComponent<T = any> extends LitElement {
   }
 
   OnDestroy() {
+    console.log('Destroy');
     if (this.subscription) {
       this.subscription.unsubscribe();
     }

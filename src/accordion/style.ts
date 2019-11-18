@@ -2,8 +2,7 @@ import { css, unsafeCSS } from '@rxdi/lit-html';
 import { MAIN_CSS } from '../styles';
 import { TRANSITIONS } from '../styles/transitions';
 
-import minus from '../images/minus.svg';
-import plus from '../images/plus.svg';
+// import plus from '../images/plus.svg';
 
 export const style = css`
   ${MAIN_CSS}
@@ -33,12 +32,10 @@ export const style = css`
     margin-left: 10px;
     float: right;
     color: black;
-    background-image: url(${unsafeCSS(plus)});
     background-repeat: no-repeat;
     background-position: 50% 50%;
   }
   .title.collapsed::before {
-    background-image: url(${unsafeCSS(minus)});
   }
   .content {
     color: #666;

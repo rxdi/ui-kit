@@ -13,6 +13,8 @@
     "build-all": "npm run build && rm -rf ./docs && cp -r ./dist/* ./src && bolt ws exec -- npm run build && cp -r ./docs/index.html ./docs/404.html",
     "patch": "rm -rf dist && tsc && cp -r ./dist/* . && npm version patch && npm publish --update-readme --access public && npm run clean && bolt",
     "clean": "git clean -dxf",
+    "start2": "webpack-dev-server --port 1234 --hot --inline --progress --profile --colors --watch --content-base src/ --mode development",
+    "build2": "webpack --config webpack.config.js --mode production",
     "build": "rm -rf dist && tsc && cp -r ./dist/* ./src"
   },
   "repository": {
@@ -28,6 +30,12 @@
   "author": "Kristiyan Tachev",
   "license": "MIT",
   "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.4.0",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.0",
+    "@babel/preset-env": "^7.4.1",
+    "@babel/preset-typescript": "^7.3.3",
     "@rxdi/core": "^0.7.39",
     "@rxdi/firelink": "^0.7.38",
     "@rxdi/forms": "^0.7.36",
@@ -38,10 +46,19 @@
     "@types/marked": "^0.7.0",
     "@types/node": "^12.0.10",
     "@types/sortablejs": "^1.10.0",
+    "awesome-typescript-loader": "5.2.0",
+    "brotli-webpack-plugin": "^1.1.0",
     "cssnano": "^4.1.10",
     "graphql": "^14.5.8",
     "husky": "^3.0.9",
-    "typescript": "^3.5.3"
+    "source-map-loader": "0.2.3",
+    "terser-webpack-plugin": "^2.2.1",
+    "tslint": "^5.11.0",
+    "tslint-loader": "3.6.0",
+    "typescript": "^3.5.3",
+    "webpack": "4.12.0",
+    "webpack-cli": "3.0.8",
+    "webpack-dev-server": "3.1.4"
   },
   "browserslist": [
     "last 1 chrome versions"
@@ -53,6 +70,7 @@
     "@rxdi/graphql-client": "^0.7.38",
     "animejs": "^3.1.0",
     "graphql-tag": "^2.10.1",
+    "html-webpack-plugin": "^3.2.0",
     "js-yaml": "^3.13.1",
     "marked": "^0.6.2",
     "shades": "^2.1.0",

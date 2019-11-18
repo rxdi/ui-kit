@@ -2,7 +2,7 @@ import { GraphComponent } from './graph.component';
 
 declare global {
   interface HTMLElementTagNameMap {
-    'rx-graph': GraphComponent;
+    'rx-graph': any;
   }
 }
 
