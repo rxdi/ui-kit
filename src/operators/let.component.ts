@@ -10,9 +10,9 @@ import { map } from 'rxjs/operators';
         this.data.pipe(
           map(v =>
             v.map(
-              e =>
+              (element, index, array) =>
                 html`
-                  ${this.item(e)}
+                  ${this.item(element, index, array)}
                 `
             )
           )

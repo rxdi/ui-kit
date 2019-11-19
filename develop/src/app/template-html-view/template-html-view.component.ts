@@ -12,7 +12,7 @@ export class TemplateHtmlViewComponent extends LitElement {
   private state = 1;
 
   @property()
-  private pesho = 'gosh222o';
+  private pesho = 'gosh222o22';
 
   private interval = interval(1000).pipe(tap(res => (this.state = res)));
   OnInit() {

@@ -43,17 +43,6 @@ export class AnimationComponent extends LitElement {
   @property()
   overflow: Overflow = 'visible';
 
-  _aaa;
-  @property()
-  get playAnimation() {
-    return this._aaa;
-  }
-  set playAnimation(value) {
-      this._aaa = value;
-      debugger;
-      this.instance.play();
-  }
-
   @property({ type: Object })
   public options: ({
     bezier,

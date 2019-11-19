@@ -43,6 +43,10 @@ import { TemplateHtmlViewComponent } from './template-html-view/template-html-vi
       [
         {
           path: '/',
+          redirect: '/ui-kit',
+        },
+        {
+          path: '/ui-kit',
           redirect: '/ui-kit/markdown-link',
         },
         {

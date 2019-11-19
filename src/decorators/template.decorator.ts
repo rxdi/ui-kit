@@ -25,7 +25,7 @@ interface TemplateOptions<T> {
   providers?: Function[];
 }
 
-const regexes = [/\${[^{]+}/g, /\@\{(.*?)(?!\@\{)\}/g, /{(.*?)}/];
+const regexes = [/\${[^{]+}/g, /\@\{(.*?)(?!\@\{)\}/g, /{(.*?)}/g];
 
 export function Template<T>(options: TemplateOptions<T>) {
   function interpolate(this: LitElement, string: any) {
@@ -34,7 +34,7 @@ export function Template<T>(options: TemplateOptions<T>) {
         .slice(2, -1)
         .trim()
         .split('.')
-        .reduce((el: LitElement, k: string) => String(el[k]) || '', this)
+        .reduce((el: LitElement, k: string) => String(el[k]) , this)
     );
   }
   return function(target: typeof LitElement) {

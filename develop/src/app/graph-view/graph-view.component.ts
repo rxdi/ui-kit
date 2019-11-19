@@ -77,7 +77,7 @@ import { Form, FormGroup } from '@rxdi/forms';
               { collapsedContinent, data: { continents } },
               setState
             ) => html`
-              <rx-animation overflow="hidden">
+              <rx-animation overflow="hidden" .options=${this.options}>
                 <rx-for .of=${continents}>
                   <rx-let
                     .item=${continent => html`
@@ -106,7 +106,7 @@ import { Form, FormGroup } from '@rxdi/forms';
                                   }}
                                   >Collapse</rx-button
                                 >
-                                <rx-animation overflow="hidden">
+                                <rx-animation overflow="hidden" .options=${this.options}>
                                   <rx-for .of=${continent.countries}>
                                     <rx-let
                                       .item=${country => html`
@@ -170,5 +170,11 @@ export class GraphViewComponent extends LitElement {
   private form = new FormGroup({
     textArea: ''
   });
+
+  private options = () => ({
+    duration: 500,
+    translateX: 0,
+    easing: 'easeInOutSine'
+  })
 
 }
