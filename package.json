@@ -28,10 +28,9 @@
   "author": "Kristiyan Tachev",
   "license": "MIT",
   "devDependencies": {
-    "@rxdi/core": "^0.7.39",
     "@rxdi/firelink": "^0.7.38",
     "@rxdi/forms": "^0.7.36",
-    "@rxdi/lit-html": "^0.7.40",
+    "@rxdi/lit-html": "^0.7.42",
     "@rxdi/router": "^0.7.39",
     "@types/animejs": "^3.1.0",
     "@types/js-yaml": "^3.12.1",
@@ -51,6 +50,7 @@
   "typings": "./index.d.ts",
   "dependencies": {
     "@rxdi/graphql-client": "^0.7.38",
+    "@rxdi/core": "^0.7.41",
     "animejs": "^3.1.0",
     "graphql-tag": "^2.10.1",
     "js-yaml": "^3.13.1",

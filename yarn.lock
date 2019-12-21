@@ -18,10 +18,10 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
-"@rxdi/core@^0.7.39":
-  version "0.7.40"
-  resolved "https://registry.yarnpkg.com/@rxdi/core/-/core-0.7.40.tgz#acd23960c16d663eb38b220fc2eb70c2e94461b0"
-  integrity sha512-C23vep938Gxh6lrES0PDdNb+C0RkzoXlf00BuhW1Fqab9R7CqRlD8Fs9qVNgStwtQy8A0wlneSnLUCaXvUaUGA==
+"@rxdi/core@^0.7.41":
+  version "0.7.41"
+  resolved "https://registry.yarnpkg.com/@rxdi/core/-/core-0.7.41.tgz#6cf1ed8f321d7dfc069ae150419ffd89a376a9f6"
+  integrity sha512-nG0CD/yaEWFN3QY/nkp6qgWYgRirOOc+13XkFWIu2nVdYk4N4TCHafDAKtGT2iDd0pzdcwaRbB/IotX+lkxg0A==
   dependencies:
     reflect-metadata "0.1.13"
     rxjs "^6.5.3"
@@ -50,10 +50,10 @@
     apollo-link-ws "^1.0.18"
     subscriptions-transport-ws "^0.9.16"
 
-"@rxdi/lit-html@^0.7.40":
-  version "0.7.40"
-  resolved "https://registry.yarnpkg.com/@rxdi/lit-html/-/lit-html-0.7.40.tgz#74ccbfa5f1812767477d0fea23209a1b622944b5"
-  integrity sha512-Je/BYUuwrK5fSYjpsfENerxjZKtOQ3tEE9fVScqA9O+An5bFY3lgHPIOwCwFNNs8evQcCHBNMYNzS10J1Us0gw==
+"@rxdi/lit-html@^0.7.42":
+  version "0.7.42"
+  resolved "https://registry.yarnpkg.com/@rxdi/lit-html/-/lit-html-0.7.42.tgz#0c0bd948496b2d869e68a56e3d8603a0cbc38ef9"
+  integrity sha512-XKoyXLp877C4+s9Qo2JSlmgrGLNGDanr9SDZlv0HrZ012LQJCjCJCH/s0Dl5OzXPyzUin97pCmZ64ntggpbSbQ==
 
 "@rxdi/router@^0.7.39":
   version "0.7.39"
