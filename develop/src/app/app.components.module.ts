@@ -20,15 +20,16 @@ import { TabsComponent } from '../../../src/tabs/tabs.component';
 import { TableComponent } from '../../../src/table/table.component';
 import { PwaInstallComponent } from '../../../src/pwa-install/pwa-install.component';
 import { AnimationComponent } from '../../../src/animation/animation.component'
-import { RouterOutlet } from '../../../src/router/router.component'
 
 import { DescriptionListComponent } from '../../../src/description-list/description-list.component';
 import { RegularMarkdownComponent } from './markdown-reader/markdown-regular.component';
 import { AccordionViewComponent } from './accordion-view/accordion-view.component';
 import { NavComponent } from './nav-view/nav-component';
+import { DocsViewComponent } from './docs-view/docs-view.component';
 
 @Module({
   components: [
+    DocsViewComponent,
     RegularMarkdownComponent,
     AccordionViewComponent,
     AccordionComponent,
@@ -54,7 +55,6 @@ import { NavComponent } from './nav-view/nav-component';
     TableComponent,
     PwaInstallComponent,
     AnimationComponent,
-    RouterOutlet
   ]
 })
 export class AppComponentsModule {}

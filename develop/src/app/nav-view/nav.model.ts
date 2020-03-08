@@ -123,4 +123,8 @@ export const navItems = [
     path: '/ui-kit/template',
     label: 'Template'
   },
+  {
+    path: '/ui-kit/docs',
+    label: 'Docs'
+  },
 ].sort((a, b) => a.label.localeCompare(b.label));
