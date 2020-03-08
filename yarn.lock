@@ -55,12 +55,13 @@
   resolved "https://registry.yarnpkg.com/@rxdi/lit-html/-/lit-html-0.7.42.tgz#0c0bd948496b2d869e68a56e3d8603a0cbc38ef9"
   integrity sha512-XKoyXLp877C4+s9Qo2JSlmgrGLNGDanr9SDZlv0HrZ012LQJCjCJCH/s0Dl5OzXPyzUin97pCmZ64ntggpbSbQ==
 
-"@rxdi/router@^0.7.39":
-  version "0.7.39"
-  resolved "https://registry.yarnpkg.com/@rxdi/router/-/router-0.7.39.tgz#93f42c868f0cfbb5759ff0ee3b3751d664caa1eb"
-  integrity sha512-rP0Evf0MVY9mlSM+6A2GnyTXXK0WlmSJvSf3615Usb2bZjAnXH+aGsMVnshiJFGFud967GtIDCTcJymAYM333A==
+"@rxdi/router@^0.7.40":
+  version "0.7.40"
+  resolved "https://registry.yarnpkg.com/@rxdi/router/-/router-0.7.40.tgz#b3ea0541c02eac31945c0f0542c0e123af596ffe"
+  integrity sha512-DXwORrMZ0/ntyKXuMWEpFCapcQCHa2K2HEESQS1pLOB9jOrWqSJSI8Ii5u8SeZ4JNybGmT2kgmAzrynfjv1VVA==
   dependencies:
     "@vaadin/router" "^1.2.0"
+    router-slot "^1.5.2"
 
 "@types/animejs@^3.1.0":
   version "3.1.0"
@@ -1388,6 +1389,11 @@ rgba-regex@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/rgba-regex/-/rgba-regex-1.0.0.tgz#43374e2e2ca0968b0ef1523460b7d730ff22eeb3"
   integrity sha1-QzdOLiyglosO8VI0YLfXMP8i7rM=
+
+router-slot@^1.5.2:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/router-slot/-/router-slot-1.5.2.tgz#89f5f82c79b1e5343d449083e9f09bbd9e55a375"
+  integrity sha512-NUvYbjsd1CAhhc23V6+UQsUKS+ZVfPe0esRPTDKW0iV+dilfB3Tn5A1SwIkEnf7BP4flUNXKEVa21fvaGn3JVQ==
 
 run-node@^1.0.0:
   version "1.0.0"
