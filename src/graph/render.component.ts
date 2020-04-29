@@ -2,19 +2,22 @@ import {
   LitElement,
   Component,
   property,
-  TemplateResult
+  TemplateResult,
+  html
 } from '@rxdi/lit-html';
-import { ObservableContainer } from '@rxdi/core/dist/container/observable-interface';
 
 /**
  * @customElement rx-render
  */
 @Component({
-  selector: 'rx-render'
+  selector: 'rx-render',
+  template: () => html`
+    <slot></slot>
+  `
 })
 export class RenderComponent extends LitElement {
   @property({ type: Object }) state: <T>(
     state: T,
-    ctx?: ObservableContainer
+    setState?: (res: T) => void
   ) => TemplateResult;
 }

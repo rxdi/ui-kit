@@ -38,24 +38,7 @@ import { map } from 'rxjs/operators';
       </style>
       <div style="display: flex">
         <div class="rx-nav" id="rx-nav"></div>
-        <div class="test" style="transition: margin-left .5s;width: 100%;">
-          <div style="display: flex;     ">
-            <rx-button
-              palette="primary"
-              @click=${() => this.openNav()}
-              style="width: 100%; background-color: red"
-            >
-              OpenNav
-            </rx-button>
-            <rx-button
-              palette="primary"
-              @click=${() => this.closeNav()}
-              style="width: 100%; background-color: red"
-            >
-              CloseNav
-            </rx-button>
-          </div>
-
+        <div class="test" style="width: calc(100% - 250px); margin-left: 250px">
           <router-outlet></router-outlet>
         </div>
       </div>

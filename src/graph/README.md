@@ -159,7 +159,7 @@ export class AppModule {}
 
 `state` property can be `BehaviorSubject`, `ReplaySubject`, `Observable`, `Object`
 
-```typescript
+```html
 <rx-graph
   .options=${{
     state: {
@@ -195,7 +195,7 @@ export class AppModule {}
 
 In case you wonder how to add `Observable`
 
-```typescript
+```html
 <rx-graph
   .options=${{
     state: new BehaviorSubject({
@@ -219,7 +219,7 @@ In case you wonder how to add `Observable`
 
 ##### Subscriptions with Graphql
 
-```typescript
+```html
 <rx-graph
   .options=${<GraphOptions>{
     fetch: `
@@ -247,4 +247,51 @@ GraphOptions interface is `generic` so we can specify following types for this p
 
 ```typescript
 <GraphOptions<{notifications: {appUpdated: string}}>>
+```
+
+
+
+# Experimental
+
+## Monads
+
+```html
+<rx-monad>
+  <rx-state .value=${1}></rx-state>
+  <rx-render
+    .state=${(counter, setState) => html`
+      <p style="color: red">${counter}</p>
+      <rx-button palette="danger" @click=${() => setState(counter + 1)}
+        >Increment</rx-button
+      >
+      <rx-button palette="danger" @click=${() => setState(counter - 1)}
+        >Decrement</rx-button
+      >
+    `}
+  ></rx-render>
+</rx-monad>
+```
+
+
+## For each inside monads
+
+```html
+<rx-monad>
+  <rx-state .value=${this.state}></rx-state>
+  <rx-lens .ray=${res => res.users}> </rx-lens>
+  <rx-render .state=${(users: IUser[], setState: (users: IUser[]) => void) => html`
+    <rx-for .of=${users}>
+      <rx-let .item=${({ posts }: IUser) => html`
+        <rx-for .of=${posts}>
+          <rx-let .item=${({ name }: IUser) => html`
+            <p>${name}</p>
+          `}>
+          </rx-let>
+        </rx-for>
+      `}>
+      </rx-let>
+    </rx-for>
+  `}>
+  </rx-render>
+</rx-monad>
 ```

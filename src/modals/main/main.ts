@@ -61,6 +61,6 @@ export class MainModalComponent extends LitElement {
     }
   }
   close() {
-    this.modalService.close(true);
+    this.modalService.close();
   }
 }

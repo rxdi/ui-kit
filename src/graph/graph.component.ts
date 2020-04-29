@@ -2,7 +2,7 @@ import { Component, html, property, LitElement, async } from '@rxdi/lit-html';
 import gql from 'graphql-tag';
 import { BaseService } from './base.service';
 import { Inject, Container } from '@rxdi/core';
-import { map, tap, catchError } from 'rxjs/operators';
+import { map, tap, catchError, switchMap } from 'rxjs/operators';
 import {
   Observable,
   of,
@@ -23,6 +23,7 @@ import { DEFAULTS } from './tokens';
 import './fetch.component';
 import './render.component';
 import './monad.component';
+import './lens.component';
 import './options.component';
 
 /**
@@ -34,7 +35,11 @@ import './options.component';
     return html`
       ${async(
         this.result.pipe(
-          map(res => this.options.render(res, Container)),
+          map(state => {
+            return this.options.render
+              ? this.options.render(state, data => this.result.next(data))
+              : state;
+          }),
           tap(() => (this.loading = false)),
           catchError(e => {
             this.error = e;
@@ -66,7 +71,10 @@ export class GraphComponent<T = any> extends LitElement {
   public options: GraphOptions<T> = {
     fetch: '',
     state: new BehaviorSubject({}),
-    render: () => html``,
+    render: res =>
+      html`
+        ${res}
+      `,
     loading: () => html``,
     error: () => html``,
     settings: {} as QueryBaseOptions,
@@ -91,11 +99,8 @@ export class GraphComponent<T = any> extends LitElement {
     if (this.options.state) {
       if (isObservable(this.options.state)) {
         task = this.options.state;
-      } else if (typeof this.options.state === 'object') {
-        this.result.next(this.options.state);
       } else {
-        this.result.error('State is incopatible');
-        this.result.complete();
+        this.result.next(this.options.state);
       }
     } else {
       try {
@@ -105,19 +110,6 @@ export class GraphComponent<T = any> extends LitElement {
         this.result.complete();
       }
     }
-    this.subscription = task.subscribe(
-      detail => {
-        this.result.next(detail);
-        this.dispatchEvent(new CustomEvent('onData', { detail }));
-      },
-      error => {
-        error.message = `${JSON.stringify(
-          error.networkError.result.errors
-        )} ${error.message}`;
-        this.result.error(error);
-        this.dispatchEvent(new CustomEvent('onError', { detail: error }));
-      }
-    );
     if (this.options.subscribe) {
       this.pubsubSubscription = this.graphql
         .subscribe({
@@ -130,6 +122,25 @@ export class GraphComponent<T = any> extends LitElement {
           e => this.result.error(e)
         );
     }
+    if (!task) {
+      return;
+    }
+    this.subscription = task.subscribe(
+      detail => {
+        this.result.next(detail);
+        this.dispatchEvent(new CustomEvent('onData', { detail }));
+      },
+      error => {
+        if (error.networkError) {
+          error.message = `${JSON.stringify(
+            error.networkError.result.errors
+          )} ${error.message}`;
+        }
+
+        this.result.error(error);
+        this.dispatchEvent(new CustomEvent('onError', { detail: error }));
+      }
+    );
   }
 
   OnDestroy() {
@@ -168,5 +179,9 @@ export class GraphComponent<T = any> extends LitElement {
       );
     }
     return this.graphql.query(this.options.settings as QueryOptions);
+  }
+
+  isPrimitive(test: any) {
+    return test !== Object(test);
   }
 }

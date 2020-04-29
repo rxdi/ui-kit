@@ -25,9 +25,11 @@ import { DescriptionListComponent } from '../../../src/description-list/descript
 import { RegularMarkdownComponent } from './markdown-reader/markdown-regular.component';
 import { AccordionViewComponent } from './accordion-view/accordion-view.component';
 import { NavComponent } from './nav-view/nav-component';
+import { DocsViewComponent } from './docs-view/docs-view.component';
 
 @Module({
   components: [
+    DocsViewComponent,
     RegularMarkdownComponent,
     AccordionViewComponent,
     AccordionComponent,
@@ -52,7 +54,7 @@ import { NavComponent } from './nav-view/nav-component';
     TabsComponent,
     TableComponent,
     PwaInstallComponent,
-    AnimationComponent
+    AnimationComponent,
   ]
 })
 export class AppComponentsModule {}

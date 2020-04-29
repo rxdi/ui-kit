@@ -44,11 +44,7 @@ interface AnimeAnimParams extends AnimeCallBack {
   [AnyAnimatedProperty: string]: any;
 }
 
-interface AnimeParams extends AnimeInstanceParams, AnimeAnimParams {
-  // Just need this to merge both Params interfaces.
-}
-
-export interface Options {
+export interface AnimationOptions {
   bezier(x1: number, y1: number, x2: number, y2: number): (t: number) => number;
   stagger(
     value: number | string | ReadonlyArray<number | string>,
@@ -59,10 +55,14 @@ export interface Options {
     value: { [AnyAnimatedProperty: string]: any }
   ): void;
   timeline(
-    params?: AnimeParams | ReadonlyArray<AnimeInstance>
+    params?: AnimationParams | ReadonlyArray<AnimeInstance>
   ): AnimeTimelineInstance;
   random(min: number, max: number): number;
 }
 
 
 export type Overflow = 'auto' | 'hidden' | 'inherit' | 'initial' | 'scroll' | 'unset' | 'visible' | '-moz-hidden-unscrollable';
+
+export interface AnimationParams extends AnimeInstanceParams, AnimeAnimParams {
+  trigger?: keyof GlobalEventHandlersEventMap;
+}

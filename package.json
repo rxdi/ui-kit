@@ -1,6 +1,6 @@
 {
   "name": "@rxdi/ui-kit",
-  "version": "0.7.47",
+  "version": "0.7.60",
   "description": "UI Components for building graphql-server website",
   "bolt": {
     "workspaces": [
@@ -13,7 +13,7 @@
     "build-all": "npm run build && rm -rf ./docs && cp -r ./dist/* ./src && bolt ws exec -- npm run build && cp -r ./docs/index.html ./docs/404.html",
     "patch": "rm -rf dist && tsc && cp -r ./dist/* . && npm version patch && npm publish --update-readme --access public && npm run clean && bolt",
     "clean": "git clean -dxf",
-    "build": "rm -rf dist && tsc && cp -r ./dist/* ./src"
+    "build": "rm -rf dist && tsc && cp -r ./dist/* ."
   },
   "repository": {
     "type": "git",
@@ -28,19 +28,19 @@
   "author": "Kristiyan Tachev",
   "license": "MIT",
   "devDependencies": {
-    "@rxdi/core": "^0.7.39",
     "@rxdi/firelink": "^0.7.38",
     "@rxdi/forms": "^0.7.36",
-    "@rxdi/lit-html": "^0.7.38",
-    "@rxdi/router": "^0.7.39",
+    "@rxdi/lit-html": "^0.7.42",
+    "@rxdi/router": "^0.7.40",
+    "@types/animejs": "^3.1.0",
     "@types/js-yaml": "^3.12.1",
     "@types/marked": "^0.7.0",
     "@types/node": "^12.0.10",
     "@types/sortablejs": "^1.10.0",
     "cssnano": "^4.1.10",
     "graphql": "^14.5.8",
-    "typescript": "^3.5.3",
-    "husky": "^3.0.9"
+    "husky": "^3.0.9",
+    "typescript": "^3.5.3"
   },
   "browserslist": [
     "last 1 chrome versions"
@@ -49,11 +49,14 @@
   "module": "./index.js",
   "typings": "./index.d.ts",
   "dependencies": {
+    "@rxdi/core": "^0.7.41",
     "@rxdi/graphql-client": "^0.7.38",
-    "graphql-tag": "^2.10.1",
     "animejs": "^3.1.0",
+    "graphql-tag": "^2.10.1",
     "js-yaml": "^3.13.1",
     "marked": "^0.6.2",
+    "router-slot": "^1.5.2",
+    "shades": "^2.1.0",
     "sortablejs": "^1.10.1"
   }
 }

@@ -59,6 +59,9 @@ type InputType =
           text-transform: uppercase;
           transition: 0.1s ease-in-out;
           transition-property: color, background-color, border-color;
+          user-select: none;
+          -webkit-user-select: none;
+          -moz-user-select: none;
         }
         :host(:hover) {
           background-color: var(--${this.palette}-hover-color);

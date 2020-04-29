@@ -1,7 +1,7 @@
-import { Component, LitElement, html, css, property } from '@rxdi/lit-html';
+import { Component, LitElement, html, css } from '@rxdi/lit-html';
 import { GraphOptions } from '@rxdi/ui-kit/graph';
-import { IQuery } from '../../introspection';
-// import fetch from './get-continents.graphql';
+import { Form, FormGroup } from '@rxdi/forms';
+
 
 @Component({
   selector: 'graph-view-component',
@@ -16,148 +16,145 @@ import { IQuery } from '../../introspection';
       <div class="container">
         <div style="text-align: center">
           <!-- <rx-graph
-            .options=${<GraphOptions<{notifications: {appUpdated: string}}>>{
-              fetch: `
+            .options=${<
+            GraphOptions<{ notifications: { appUpdated: string } }>
+          >{
+            fetch: `
                 subscription {
                   notifications {
                     appUpdated
                   }
                 }
               `,
-              render: ({
-                data: {
-                  notifications: { appUpdated }
-                }
-              }) => {
-                return html`
-                  <p style="color: black">${appUpdated}</p>
-                `;
+            render: ({
+              data: {
+                notifications: { appUpdated }
               }
-            }}
-          >
-          </rx-graph> -->
-        </div>
-        <rx-graph
-          .options=${<GraphOptions>{
-            settings: {
-              fetchPolicy: 'cache-first'
-            },
-            // state: {
-            //   data: {
-            //     continents: [
-            //       { name: 'dada', countries: [{ name: 'dada', code: 'dada' }] }
-            //     ]
-            //   }
-            // },
-            fetch: `
-              query {
-                continents {
-                  name
-                  countries {
-                    code
-                    name
-                    currency
-                    emoji
-                  }
-                }
-              }
-            `,
-            render: ({ data: { continents } }: { data: IQuery }) => {
+            }) => {
               return html`
-                <rx-animation overflow="hidden" .options=${this.animation}>
-                  ${continents.map(
-                    continent =>
-                      html`
-                        <rx-description
-                          style="display: block; transform: translateX(-100%);padding: 50px;"
-                        >
-                          <div
-                            slot="description"
-                            style="background-color: rgba(0, 0, 0, 0.1);"
-                          >
-                            <p>
-                              ${continent.name} Countries:
-                              ${continent.countries.length}
-                            </p>
-                          </div>
-                          <div slot="text">
-                            ${this.expandedCountries[continent.name]
-                              ? html`
-                                  <rx-button
-                                    palette="danger"
-                                    @click=${() =>
-                                      this.setActiveExpand(
-                                        continent.name,
-                                        false
-                                      )}
-                                    >Collapse</rx-button
-                                  >
-                                  <rx-animation
-                                    overflow="hidden"
-                                    .options=${this.animation}
-                                  >
-                                    ${continent.countries.map(
-                                      country =>
-                                        html`
-                                          <div
-                                            style="padding: 50px;display: block; transform: translateX(-100%);text-align: center"
-                                          >
-                                            <rx-card palette="secondary">
-                                              <div style="padding: 50px;">
-                                                <p>
-                                                  Name: ${country.name}
-                                                </p>
-                                                <p>
-                                                  Country code: ${country.code}
-                                                </p>
-                                                <p>
-                                                  Currency: ${country.currency}
-                                                </p>
-                                                <p>
-                                                  Emojy: ${country.emoji}
-                                                </p>
-                                              </div>
-                                            </rx-card>
-                                          </div>
-                                        `
-                                    )}
-                                  </rx-animation>
-                                `
-                              : html`
-                                  <rx-button
-                                    palette="primary"
-                                    @click=${() =>
-                                      this.setActiveExpand(
-                                        continent.name,
-                                        true
-                                      )}
-                                    >Expand</rx-button
-                                  >
-                                `}
-                          </div>
-                        </rx-description>
-                      `
-                  )}
-                </rx-animation>
-              `;
-            },
-            loading: () => {
-              return html`
-                <div style="text-align: center;">
-                  <rx-loading palette="danger"></rx-loading>
-                </div>
-              `;
-            },
-            error: e => {
-              return html`
-                <p style="color: black">
-                  ${e}
-                </p>
+                <p style="color: black">${appUpdated}</p>
               `;
             }
           }}
-        >
-        </rx-graph>
+          >
+          </rx-graph> -->
+        </div>
+        <form name="my-form">
+          <input
+            name="textArea"
+            type="hidden"
+            value=${this.form.value.textArea}
+          />
+        </form>
+
+        <rx-monad>
+          <!-- <rx-state
+            .value=${{
+            data: {
+              continents: [
+                { name: 'dada', countries: [{ name: 'dada', code: 'dada' }] }
+              ]
+            }
+          }}
+          ></rx-state> -->
+          <rx-settings .value=${{ fetchPolicy: 'cache-first' }}></rx-settings>
+          <rx-fetch
+            query="query {
+              continents {
+                name
+                countries {
+                  code
+                  name
+                  currency
+                  emoji
+                }
+              }
+            }
+            "
+          ></rx-fetch>
+          <rx-render
+            .state=${(
+              { collapsedContinent, data: { continents } },
+              setState
+            ) => html`
+              <rx-animation overflow="hidden" .options=${this.options}>
+                <rx-for .of=${continents}>
+                  <rx-let
+                    .item=${continent => html`
+                      <rx-description
+                        style="display: block; transform: translateX(-100%);padding: 50px;"
+                      >
+                        <div
+                          slot="description"
+                          style="background-color: rgba(0, 0, 0, 0.1);"
+                        >
+                          <p>
+                            ${continent.name} Countries:
+                            ${continent.countries.length}
+                          </p>
+                        </div>
+                        <div slot="text">
+                          <div style="color: black"></div>
+                          ${collapsedContinent === continent.name
+                            ? html`
+                                <rx-button
+                                  palette="danger"
+                                  @click=${() => {
+                                    setState({
+                                      data: { continents }
+                                    });
+                                  }}
+                                  >Collapse</rx-button
+                                >
+                                <rx-animation overflow="hidden" .options=${this.options}>
+                                  <rx-for .of=${continent.countries}>
+                                    <rx-let
+                                      .item=${country => html`
+                                        <div
+                                          style="padding: 50px;display: block;transform: translateX(-100%) ;text-align: center"
+                                        >
+                                          <rx-card palette="secondary">
+                                            <div style="padding: 50px;">
+                                              <p>
+                                                Name: ${country.name}
+                                              </p>
+                                              <p>
+                                                Country code: ${country.code}
+                                              </p>
+                                              <p>
+                                                Currency: ${country.currency}
+                                              </p>
+                                              <p>
+                                                Emojy: ${country.emoji}
+                                              </p>
+                                            </div>
+                                          </rx-card>
+                                        </div>
+                                      `}
+                                    ></rx-let>
+                                  </rx-for>
+                                </rx-animation>
+                              `
+                            : html`
+                                <rx-button
+                                  palette="primary"
+                                  @click=${() =>
+                                    setState({
+                                      data: { continents },
+                                      collapsedContinent: continent.name
+                                    })}
+                                  >Expand</rx-button
+                                >
+                              `}
+                        </div>
+                      </rx-description>
+                    `}
+                  ></rx-let>
+                </rx-for>
+              </rx-animation>
+            `}
+          ></rx-render>
+        </rx-monad>
       </div>
       <markdown-reader
         link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/graph/README.md"
@@ -166,22 +163,18 @@ import { IQuery } from '../../introspection';
   }
 })
 export class GraphViewComponent extends LitElement {
-  @property({
-    attribute: false
+  @Form({
+    name: 'my-form',
+    strategy: 'input'
   })
-  private expandedCountries: {
-    [key: string]: boolean;
-  } = {};
+  private form = new FormGroup({
+    textArea: ''
+  });
 
-  private animation = ({ stagger }) => ({
-    delay: stagger(200),
+  private options = () => ({
+    duration: 500,
     translateX: 0,
-    easing: 'spring(1, 80, 10, 0)'
+    easing: 'easeInOutSine'
   })
 
-  private setActiveExpand(name: string, status: boolean) {
-    this.expandedCountries = {
-      [name]: status
-    };
-  }
 }

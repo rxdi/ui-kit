@@ -34,6 +34,9 @@ import { PwaInstallViewComponent } from './pwa-install/pwa-install-view.componen
 import { GraphViewComponent } from './graph-view/graph-view.component';
 import { AnimationViewComponent } from './animation-view/animation-view.component';
 import { OperatorsViewComponent } from './operators-view/operators-view.component';
+import { RouterViewComponent } from './router-view/router-view.component';
+import { TemplateHtmlViewComponent } from './template-html-view/template-html-view.component';
+import { DocsViewComponent } from './docs-view/docs-view.component';
 
 @Module({
   imports: [
@@ -41,15 +44,27 @@ import { OperatorsViewComponent } from './operators-view/operators-view.componen
       [
         {
           path: '/',
-          redirect: '/ui-kit'
+          redirect: '/ui-kit',
         },
         {
           path: '/ui-kit',
-          component: RegularMarkdownComponent
+          redirect: '/ui-kit/markdown-link',
+        },
+        {
+          path: '/ui-kit/markdown-link',
+          component: RegularMarkdownComponent,
+          animate: {
+            enter: 'users-entering',
+            leave: 'users-leaving'
+          } as any
         },
         {
           path: '/ui-kit/markdown-reader/:namespace/:repo/:filePath',
-          component: MarkdownReaderComponent
+          component: MarkdownReaderComponent,
+          animate: {
+            enter: 'users-entering',
+            leave: 'users-leaving'
+          } as any
         },
         {
           path: '/ui-kit/responsive',
@@ -112,7 +127,7 @@ import { OperatorsViewComponent } from './operators-view/operators-view.componen
           component: AlertViewComponent
         },
         {
-          path: '/ui-kit/description',
+          path: '/ui-kit/description-list',
           component: DescriptionListViewComponent
         },
         {
@@ -159,6 +174,26 @@ import { OperatorsViewComponent } from './operators-view/operators-view.componen
           path: '/ui-kit/operators',
           component: OperatorsViewComponent
         },
+        {
+          path: '/ui-kit/router',
+          component: RouterViewComponent
+        },
+        {
+          path: '/ui-kit/template',
+          component: TemplateHtmlViewComponent
+        },
+        {
+          path: '/ui-kit/docs',
+          component: DocsViewComponent
+        },
+        {
+          path: '/ui-kit/docs/home',
+          redirect: 'ui-kit/docs'
+        },
+        {
+          path: '/ui-kit/docs/about',
+          redirect: 'ui-kit/docs'
+        }
       ],
       { log: true, baseUrl: '/ui-kit' }
     )

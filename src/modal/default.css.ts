@@ -10,6 +10,7 @@ export const defaultModalStyle = css`
     pointer-events: none;
     width: 100%;
     height: 100%;
+    z-index: 1000;
   }
 
   .backdrop {

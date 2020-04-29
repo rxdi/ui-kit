@@ -19,10 +19,10 @@ export interface OptionalProperties {
   loading?: () => TemplateResult;
 }
 export interface GraphOptions<T = any> extends OptionalProperties {
-  fetch: any;
+  fetch?: any;
   state?: any;
   settings?: Settings;
   subscribe?: any;
   defaultConfig?: boolean;
-  render(res: { data: T }, container: ObservableContainer): TemplateResult;
+  render(state: T, setState: (res: T) => void): TemplateResult;
 }
