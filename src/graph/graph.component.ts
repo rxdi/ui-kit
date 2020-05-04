@@ -92,7 +92,11 @@ export class GraphComponent<T = any> extends LitElement {
 
   private subscription: Subscription;
   private pubsubSubscription: Subscription;
-  private result: ReplaySubject<any> = new ReplaySubject();
+  private result: ReplaySubject<any>;
+
+  OnInit() {
+    this.result = new ReplaySubject();
+  }
 
   OnUpdateFirst() {
     let task: Observable<any>;
