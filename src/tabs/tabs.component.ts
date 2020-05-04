@@ -5,7 +5,7 @@ import {
   css,
   property,
   TemplateResult,
-  classMap
+  classMap,
 } from '@rxdi/lit-html';
 import { PalettesUnion } from '../settings';
 
@@ -68,16 +68,17 @@ import { PalettesUnion } from '../settings';
       </style>
       <ul class="tabs">
         ${this.pages.map(
-          v => html`
+          (v) => html`
             <li class=${classMap({ active: v.active })}>
               <a
                 @click=${() => {
-                  this.pages = this.pages.map(p => {
+                  this.pages = this.pages.map((p) => {
                     p.active = false;
                     return p;
                   });
                   v.active = true;
                   this.pages = [...this.pages];
+                  this.dispatchEvent(new CustomEvent('change', { detail: v }));
                 }}
                 >${v.name}</a
               >
@@ -88,9 +89,9 @@ import { PalettesUnion } from '../settings';
 
       <ul class="switcher">
         ${this.pages
-          .filter(a => a.active)
+          .filter((a) => a.active)
           .map(
-            v => html`
+            (v) => html`
               <li>
                 ${v.view}
               </li>
@@ -98,7 +99,7 @@ import { PalettesUnion } from '../settings';
           )}
       </ul>
     `;
-  }
+  },
 })
 export class TabsComponent extends LitElement {
   @property({ type: String })
