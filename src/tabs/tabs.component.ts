@@ -68,19 +68,19 @@ import { PalettesUnion } from '../settings';
       </style>
       <ul class="tabs">
         ${this.pages.map(
-          (v) => html`
-            <li class=${classMap({ active: v.active })}>
+          (tab, index) => html`
+            <li class=${classMap({ active: tab.active })}>
               <a
                 @click=${() => {
                   this.pages = this.pages.map((p) => {
                     p.active = false;
                     return p;
                   });
-                  v.active = true;
+                  tab.active = true;
                   this.pages = [...this.pages];
-                  this.dispatchEvent(new CustomEvent('change', { detail: v }));
+                  this.dispatchEvent(new CustomEvent('change', { detail: { tab, index } }));
                 }}
-                >${v.name}</a
+                >${tab.name}</a
               >
             </li>
           `
