@@ -22,6 +22,7 @@ import { PalettesUnion } from '../settings';
       padding: 0;
       list-style: none;
       position: relative;
+      user-select: none;
     }
     .switcher {
       margin: 0;
