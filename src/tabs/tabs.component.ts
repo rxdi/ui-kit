@@ -78,7 +78,16 @@ import { PalettesUnion } from '../settings';
                   });
                   tab.active = true;
                   this.pages = [...this.pages];
-                  this.dispatchEvent(new CustomEvent('change', { detail: { tab, index } }));
+                  if (this.changeLocation) {
+                    const newLocation = window.location.pathname.substring(
+                      0,
+                      window.location.pathname.lastIndexOf('/') + 1
+                    );
+                    window.history.pushState({}, null, `${newLocation}${index}`);
+                  }
+                  this.dispatchEvent(
+                    new CustomEvent('change', { detail: { tab, index } })
+                  );
                 }}
                 >${tab.name}</a
               >
@@ -104,6 +113,9 @@ import { PalettesUnion } from '../settings';
 export class TabsComponent extends LitElement {
   @property({ type: String })
   public palette: PalettesUnion = 'default';
+
+  @property({ type: String })
+  public changeLocation = true;
 
   @property({ type: Array })
   pages: {
