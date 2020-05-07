@@ -37,7 +37,7 @@ import './options.component';
         this.result.pipe(
           map(state => {
             return this.options.render
-              ? this.options.render(state, data => this.result.next(data))
+              ? this.options.render(state, data => this.result.next(data), this.shadowRoot)
               : state;
           }),
           tap(() => (this.loading = false)),
@@ -66,7 +66,7 @@ import './options.component';
     `;
   }
 })
-export class GraphComponent<T = any> extends LitElement {
+export class GraphComponent<T extends any = any> extends LitElement {
   @property({ type: Object })
   public options: GraphOptions<T> = {
     fetch: '',

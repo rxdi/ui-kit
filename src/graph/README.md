@@ -1,4 +1,3 @@
-
 # Graph Component
 
 Declarative way of defining your API with components and simple state with template
@@ -15,13 +14,12 @@ import { GraphModule } from '@rxdi/ui-kit/graph';
       pubsub: 'https://questups.com/api/graphql',
       async onRequest() {
         return new Headers();
-      }
-    })
+      },
+    }),
   ],
 })
 export class AppModule {}
 ```
-
 
 ```typescript
 import { Component, LitElement, html } from '@rxdi/lit-html';
@@ -38,7 +36,7 @@ interface StatusType {
       <rx-graph
         .options=${{
           settings: {
-            fetchPolicy: 'cache-first'
+            fetchPolicy: 'cache-first',
           },
           fetch: `
             query status {
@@ -47,14 +45,15 @@ interface StatusType {
               }
             }
           `,
-          render: (res: StatusType) => html`Status is ${res.data.status.status}`,
+          render: (res: StatusType, setState, shadowRoot) =>
+            html`Status is ${res.data.status.status}`,
           loading: () => html`<rx-loading></rx-loading>`,
-          error: (e) => html`${e}`
+          error: (e) => html`${e}`,
         } as GraphOptions}
       >
       </rx-graph>
     `;
-  }
+  },
 })
 export class GraphViewComponent extends LitElement {}
 ```
@@ -72,7 +71,7 @@ export class GraphViewComponent extends LitElement {}
         }
       }
     `,
-    render: (res: StatusType) => html`
+    render: (res: StatusType, setState, shadowRoot) => html`
       Status is ${res.data.status.status}
     `,
     loading: () => html`
@@ -83,8 +82,6 @@ export class GraphViewComponent extends LitElement {}
 >
 </rx-graph>
 ```
-
-
 
 #### Advanced usage
 
@@ -98,10 +95,10 @@ import { GraphModule } from '@rxdi/ui-kit/graph';
     GraphModule.forRoot(
       {
         uri: 'https://countries.trevorblades.com/',
-        pubsub: 'wss://countries.trevorblades.com/'
+        pubsub: 'wss://countries.trevorblades.com/',
       },
       {
-        error: e => {
+        error: (e) => {
           return html`
             <p style="color: black">
               ${e}
@@ -114,16 +111,13 @@ import { GraphModule } from '@rxdi/ui-kit/graph';
               <rx-loading palette="danger"></rx-loading>
             </div>
           `;
-        }
+        },
       }
-    )
+    ),
   ],
 })
 export class AppModule {}
 ```
-
-
-
 
 ##### Simplest query component
 
@@ -143,7 +137,7 @@ export class AppModule {}
         }
       }
     `,
-    render: ({ data: { continents } }) => {
+    render: ({ data: { continents } }, setState, shadowRoot) => {
       return html`
         ${continents}
       `;
@@ -152,8 +146,6 @@ export class AppModule {}
 >
 </rx-graph>
 ```
-
-
 
 ##### Passing state to component
 
@@ -182,7 +174,7 @@ export class AppModule {}
         }
       }
     `,
-    render: ({ data: { continents } }) => {
+    render: ({ data: { continents } }, setState, shadowRoot) => {
       return html`
         ${continents}
       `;
@@ -191,7 +183,6 @@ export class AppModule {}
 >
 </rx-graph>
 ```
-
 
 In case you wonder how to add `Observable`
 
@@ -205,7 +196,7 @@ In case you wonder how to add `Observable`
         ]
       }
     }),
-    render: ({ data: { continents } }) => {
+    render: ({ data: { continents } }, setState, shadowRoot) => {
       return html`
         ${continents}
       `;
@@ -215,31 +206,14 @@ In case you wonder how to add `Observable`
 </rx-graph>
 ```
 
-
-
 ##### Subscriptions with Graphql
 
 ```html
-<rx-graph
-  .options=${<GraphOptions>{
-    fetch: `
-      subscription {
-        notifications {
-          appUpdated
-        }
-      }
-    `,
-    render: ({
-      data: {
-        notifications: { appUpdated }
-      }
-    }) => {
-      return html`
-        <p style="color: black">${appUpdated}</p>
-      `;
-    }
-  }}
->
+<rx-graph .options="${<GraphOptions"
+  >{ fetch: ` subscription { notifications { appUpdated } } `, render: ({ data:
+  { notifications: { appUpdated } } }, setState, shadowRoot) => { return html`
+  <p style="color: black">${appUpdated}</p>
+  `; } }} >
 </rx-graph>
 ```
 
@@ -248,8 +222,6 @@ GraphOptions interface is `generic` so we can specify following types for this p
 ```typescript
 <GraphOptions<{notifications: {appUpdated: string}}>>
 ```
-
-
 
 # Experimental
 
@@ -271,7 +243,6 @@ GraphOptions interface is `generic` so we can specify following types for this p
   ></rx-render>
 </rx-monad>
 ```
-
 
 ## For each inside monads
 

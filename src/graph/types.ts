@@ -24,5 +24,5 @@ export interface GraphOptions<T = any> extends OptionalProperties {
   settings?: Settings;
   subscribe?: any;
   defaultConfig?: boolean;
-  render(state: T, setState: (res: T) => void): TemplateResult;
+  render(state: T, setState: (res: T) => void, shadowRoot: ShadowRoot): TemplateResult;
 }
