@@ -37,6 +37,7 @@ import { OperatorsViewComponent } from './operators-view/operators-view.componen
 import { RouterViewComponent } from './router-view/router-view.component';
 import { TemplateHtmlViewComponent } from './template-html-view/template-html-view.component';
 import { DocsViewComponent } from './docs-view/docs-view.component';
+import { PaginationViewComponent } from './pagination-view/pagination-view.component';
 
 @Module({
   imports: [
@@ -185,6 +186,10 @@ import { DocsViewComponent } from './docs-view/docs-view.component';
         {
           path: '/ui-kit/docs',
           component: DocsViewComponent
+        },
+        {
+          path: '/ui-kit/pagination',
+          component: PaginationViewComponent
         },
         {
           path: '/ui-kit/docs/home',

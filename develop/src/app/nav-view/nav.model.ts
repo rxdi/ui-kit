@@ -127,4 +127,8 @@ export const navItems = [
     path: '/ui-kit/docs',
     label: 'Docs'
   },
+  {
+    path: '/ui-kit/pagination',
+    label: 'Pagination'
+  },
 ].sort((a, b) => a.label.localeCompare(b.label));
