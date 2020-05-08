@@ -25,6 +25,7 @@ export interface Page {
       padding: 0;
       margin-left: -20px;
       list-style: none;
+      user-select: none;
     }
 
     .rx-pagination > * {
@@ -56,7 +57,7 @@ export interface Page {
   `,
   template(this: PaginationComponent) {
     return html`
-      <ul class="rx-pagination" rx-margin="">
+      <ul class="rx-pagination">
         <li class="rx-first-column">
           <a
             ><span
