@@ -47,7 +47,7 @@ export interface Page {
 
     li a {
       cursor: pointer;
-      font-size: 16px;
+      font-size: 14px;
       color: #b9b9b9;
     }
     .rx-icon:not(.rx-preserve) [stroke*='#']:not(.rx-preserve) {
@@ -73,7 +73,7 @@ export interface Page {
         </li>
         ${this.pages.map(
           (v, index) => html`
-            <li class=${classMap({ 'rx-active': v.active })}>
+            <li class=${classMap({ 'rx-active': v.active || this.activePage === index  + 1})}>
               <a @click=${() => this.clicked(index)}>${v.value || index + 1}</a>
             </li>
           `
@@ -100,6 +100,9 @@ export class PaginationComponent extends LitElement {
   @property({ type: Array })
   public pages: Page[] = [];
 
+  @property({ type: Number })
+  public activePage = 1;
+
   private prev() {
     const index = this.pages.findIndex((v) => v.active);
     if (index === 0) {
@@ -108,6 +111,7 @@ export class PaginationComponent extends LitElement {
     this.pages = this.pages.filter((p, i) => {
       if (i === index - 1) {
         this.OnChange(i, p)
+        this.activePage = i + 1;
         p.active = true;
       } else {
         p.active = false;
@@ -123,7 +127,8 @@ export class PaginationComponent extends LitElement {
     }
     this.pages = this.pages.filter((p, i) => {
       if (i === index + 1) {
-        this.OnChange(i, p)
+        this.OnChange(i, p);
+        this.activePage = i + 1;
         p.active = true;
       } else {
         p.active = false;
@@ -143,11 +148,8 @@ export class PaginationComponent extends LitElement {
   private clicked(index: number) {
     this.pages = this.pages.map((p, i) => {
       if (i === index) {
-        this.dispatchEvent(
-          new CustomEvent('change', {
-            detail: { index: index + 1, page: p },
-          })
-        );
+        this.OnChange(i, p);
+        this.activePage = i + 1;
         p.active = true;
       } else {
         p.active = false;
