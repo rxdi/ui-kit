@@ -107,6 +107,7 @@ export class PaginationComponent extends LitElement {
     }
     this.pages = this.pages.filter((p, i) => {
       if (i === index - 1) {
+        this.OnChange(i, p)
         p.active = true;
       } else {
         p.active = false;
@@ -122,12 +123,21 @@ export class PaginationComponent extends LitElement {
     }
     this.pages = this.pages.filter((p, i) => {
       if (i === index + 1) {
+        this.OnChange(i, p)
         p.active = true;
       } else {
         p.active = false;
       }
       return p;
     });
+  }
+
+  private OnChange(index: number, page: Page) {
+    this.dispatchEvent(
+      new CustomEvent('change', {
+        detail: { index: index + 1, page },
+      })
+    );
   }
 
   private clicked(index: number) {
