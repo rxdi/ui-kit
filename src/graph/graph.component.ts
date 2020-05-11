@@ -25,6 +25,7 @@ import './render.component';
 import './monad.component';
 import './lens.component';
 import './options.component';
+import './state.component';
 
 /**
  * @customElement rx-graph
