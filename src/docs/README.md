@@ -1,13 +1,10 @@
 
-# Dotnav Component
-
-Pull request: https://github.com/rxdi/ui-kit/pull/30
-
+# Docs toc Component
 
 ##### Usage
 
 ```typescript
-import { DocsComponent } from '@rxdi';
+import { DocsComponent } from '@rxdi/ui-kit/docs';
 
 @Module({
   components: [DocsComponent],
@@ -18,7 +15,7 @@ export class AppModule {}
 Without module encapsulation
 
 ```typescript
-import '@rxdi';
+import '@rxdi/ui-kit/docs';
 ```
 
 ```html

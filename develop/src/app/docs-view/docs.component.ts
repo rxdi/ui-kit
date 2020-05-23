@@ -142,6 +142,9 @@ type ISubmenuSetState = (s: ISubmenuState) => void;
           </div>
         </div>
       </div>
+      <markdown-reader
+        link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/docs/README.md"
+      ></markdown-reader>
     `;
   }
 })
