@@ -1,6 +1,6 @@
 {
   "name": "@rxdi/ui-kit",
-  "version": "0.7.75",
+  "version": "0.7.76",
   "description": "UI Components for building graphql-server website",
   "bolt": {
     "workspaces": [
