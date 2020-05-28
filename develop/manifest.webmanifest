@@ -45,6 +45,8 @@
     ],
     "start_url": "/",
     "display": "standalone",
+    "features":["pesho", "dada"],
+    "description":"Simple applications for PWA",
     "background_color": "hsl(214, 27%, 26%)",
     "theme_color": "hsl(214, 27%, 26%)"
 }
