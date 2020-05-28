@@ -1,4 +1,4 @@
-import { LitElement, Component, html } from '@rxdi/lit-html';
+import { LitElement, Component, html, property } from '@rxdi/lit-html';
 
 @Component({
   selector: 'pwa-install-view-component',
@@ -15,6 +15,8 @@ import { LitElement, Component, html } from '@rxdi/lit-html';
 })
 export class PwaInstallViewComponent extends LitElement {
   private webmanifest = 'manifest.webmanifest';
+
+  @property()
   private webmanifestData: {
     background_color: string;
     display: 'standalone';

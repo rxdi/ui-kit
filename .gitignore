@@ -3,6 +3,4 @@ node_modules
 build
 dist
 
-*.js
-*.js.map
 *.d.ts

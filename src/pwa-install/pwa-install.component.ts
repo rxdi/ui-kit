@@ -481,7 +481,7 @@ export class PwaInstallComponent extends LitElement {
   @property()
   explainer = ``;
 
-  async firstUpdated(): Promise<void> {
+  async OnUpdate(): Promise<void> {
     await this.getManifestData();
 
     window.addEventListener('beforeinstallprompt', e => {
