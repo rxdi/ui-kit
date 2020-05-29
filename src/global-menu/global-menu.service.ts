@@ -15,15 +15,17 @@ export class GlobalMenuService {
     this.element = document.createElement('global-menu') as GlobalMenuComponent;
     this.element.open(template);
     document.body.appendChild(this.element);
-    this.menuOpened.next(true);
   }
   close() {
     this.element.cancel();
     this.element.remove();
-    this.menuOpened.next(false);
   }
 
   getOpenSubject() {
     return this.menuOpened.asObservable();
+  }
+
+  setOpenSubject(opened: boolean) {
+    this.menuOpened.next(opened);
   }
 }

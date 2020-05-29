@@ -49,6 +49,9 @@ import { GlobalMenuService } from './global-menu.service';
 export class GlobalMenuComponent extends LitElement {
   @property({ type: Object }) template: TemplateResult;
 
+  @Inject(GlobalMenuService)
+  private menu: GlobalMenuService;
+
   async OnUpdateFirst(): Promise<void> {
     document.onkeyup = (e) => {
       if (e.key === 'Escape') {
@@ -59,9 +62,11 @@ export class GlobalMenuComponent extends LitElement {
 
   open(template: TemplateResult) {
     this.template = template;
+    this.menu.setOpenSubject(true)
   }
 
   cancel() {
     this.remove();
+    this.menu.setOpenSubject(false)
   }
 }
