@@ -22,4 +22,8 @@ export class GlobalMenuService {
     this.element.remove();
     this.menuOpened.next(false);
   }
+
+  getOpenSubject() {
+    return this.menuOpened.asObservable();
+  }
 }
