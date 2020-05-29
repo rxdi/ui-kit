@@ -28,7 +28,7 @@ button {
   padding: 0;
   animation-name: opened;
   animation-duration: 150ms;
-  z-index: var(--modal-z-index);
+  z-index: 100000;
 }
 @keyframes opened {
   from {
@@ -61,6 +61,7 @@ button {
   top: 0;
   bottom: 0;
   left: 0;
+  z-index: 10000;
   right: 0;
   background: #e3e3e3b0;
   backdrop-filter: blur(5px);
@@ -146,7 +147,7 @@ button {
   font-weight: 600;
   outline: none;
   cursor: pointer;
-  z-index: 1;
+  z-index: 100001;
   animation-name: fadein;
   animation-duration: 450ms;
 }
