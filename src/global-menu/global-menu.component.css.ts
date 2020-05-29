@@ -56,6 +56,15 @@ button {
     opacity: 1;
   }
 }
+
+@keyframes scale {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
 #background {
   position: fixed;
   top: 0;
@@ -148,7 +157,7 @@ button {
   outline: none;
   cursor: pointer;
   z-index: 100001;
-  animation-name: fadein;
+  animation-name: scale;
   animation-duration: 450ms;
 }
 #contentContainer {
