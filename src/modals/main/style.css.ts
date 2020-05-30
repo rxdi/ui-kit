@@ -1,17 +1,34 @@
 import { css } from '@rxdi/lit-html';
 
 export const style = css`
+
+@keyframes scale {
+   from {
+    transform: scale(0);
+   }
+   to {
+    transform: scale(1);
+   }
+  }
+
+  @keyframes blur {
+   to {
+    backdrop-filter: blur(5px);
+   }
+  }
+
   .backdrop {
     width: 100%;
     height: 100%;
     position: absolute;
     top: 0;
     z-index: 10;
-    background: rgba(0, 0, 0, 0.32);
+    animation: blur 0.3s linear forwards;
   }
 
   .container {
     padding: 50px 50px;
+
   }
 
   .dialog {
@@ -29,6 +46,8 @@ export const style = css`
     padding: 30px 30px;
     color: #666;
     z-index: 12;
+    animation-name: scale;
+   animation-duration: 300ms;
   }
 
   h1 {
