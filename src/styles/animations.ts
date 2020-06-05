@@ -3268,20 +3268,72 @@ export const Animations = css`
 	animation-delay: 5s
 }
 
-.animated.fast {
-	-webkit-animation-duration: .8s;
-	animation-duration: .8s
+.animated.duration-0 {
+	-webkit-animation-duration: 0ms;
+	animation-duration: 0ms
+}
+.animated.duration-100 {
+	-webkit-animation-duration: 100ms;
+	animation-duration: 100ms
+}
+.animated.duration-200 {
+	-webkit-animation-duration: 200ms;
+	animation-duration: 200ms
+}
+.animated.duration-300 {
+	-webkit-animation-duration: 300ms;
+	animation-duration: 300ms
+}
+.animated.duration-400 {
+	-webkit-animation-duration: 400ms;
+	animation-duration: 400ms
+}
+.animated.duration-500 {
+	-webkit-animation-duration: 500ms;
+	animation-duration: 500ms
 }
 
-.animated.faster {
-	-webkit-animation-duration: .5s;
-	animation-duration: .5s
+.animated.duration-600 {
+	-webkit-animation-duration: 600ms;
+	animation-duration: 600ms
 }
 
-.animated.fastest {
-	-webkit-animation-duration: .3s;
-	animation-duration: .3s
+.animated.duration-700 {
+	-webkit-animation-duration: 700ms;
+	animation-duration: 700ms
 }
+
+.animated.duration-800 {
+	-webkit-animation-duration: 800ms;
+	animation-duration: 800ms
+}
+
+.animated.duration-1000 {
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+}
+
+.animated.duration-2000 {
+	-webkit-animation-duration: 2s;
+	animation-duration: 2s;
+}
+
+
+.animated.duration-3000 {
+	-webkit-animation-duration: 3s;
+	animation-duration: 3s;
+}
+
+.animated.duration-4000 {
+	-webkit-animation-duration: 4s;
+	animation-duration: 4s;
+}
+
+.animated.duration-5000 {
+	-webkit-animation-duration: 5s;
+	animation-duration: 5s;
+}
+
 
 .animated.stop {
 	-webkit-animation-duration: 0s;
@@ -3393,18 +3445,16 @@ export type AnimationsType = 'slideOutDown'
 ;
 
 
-type Speed = 'fast' | 'faster' | 'fastest' | 'slow' | 'slower';
-
-export function animateElement(node: HTMLElement, animationName: AnimationsType, speed: Speed = 'faster') {
+export function animateElement(node: HTMLElement, animationName: AnimationsType, duration: string = 'duration-300') {
   return new Observable((observable) => {
     if (!node) {
        observable.error('Missing element');
     }
 	node.classList.add('animated', animationName);
-	node.classList.add(speed);
+	node.classList.add(duration);
     function handleAnimationEnd() {
 	  node.classList.remove('animated', animationName);
-	  node.classList.remove(speed);
+	  node.classList.remove(duration);
       node.removeEventListener('animationend', handleAnimationEnd);
       observable.next(true);
       observable.complete();
