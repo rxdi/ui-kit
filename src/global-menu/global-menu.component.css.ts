@@ -72,8 +72,7 @@ button {
   left: 0;
   z-index: 10000;
   right: 0;
-  background: #e3e3e3b0;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(25px);
   animation-name: fadein;
   animation-duration: 250ms;
 }
