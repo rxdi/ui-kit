@@ -3279,6 +3279,11 @@ export const Animations = css`
 }
 
 .animated.fastest {
+	-webkit-animation-duration: .3s;
+	animation-duration: .3s
+}
+
+.animated.stop {
 	-webkit-animation-duration: 0s;
 	animation-duration: 0s
 }
