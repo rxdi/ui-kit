@@ -3278,6 +3278,11 @@ export const Animations = css`
 	animation-duration: .5s
 }
 
+.animated.fastest {
+	-webkit-animation-duration: 0s;
+	animation-duration: 0s
+}
+
 .animated.slow {
 	-webkit-animation-duration: 2s;
 	animation-duration: 2s
@@ -3287,7 +3292,7 @@ export const Animations = css`
 	-webkit-animation-duration: 3s;
 	animation-duration: 3s
 }
-
+/*
 @media (prefers-reduced-motion:reduce),
 (print) {
 	.animated {
@@ -3298,7 +3303,7 @@ export const Animations = css`
 		-webkit-animation-iteration-count: 1!important;
 		animation-iteration-count: 1!important
 	}
-}
+} */
 `;
 
 
@@ -3383,14 +3388,18 @@ export type AnimationsType = 'slideOutDown'
 ;
 
 
-export function animateElement(node: HTMLElement, animationName: AnimationsType) {
+type Speed = 'fast' | 'faster' | 'fastest' | 'slow' | 'slower';
+
+export function animateElement(node: HTMLElement, animationName: AnimationsType, speed: Speed = 'faster') {
   return new Observable((observable) => {
     if (!node) {
        observable.error('Missing element');
     }
-    node.classList.add('animated.delay-1s', animationName);
+	node.classList.add('animated', animationName);
+	node.classList.add(speed);
     function handleAnimationEnd() {
-      node.classList.remove('animated.delay-1s', animationName);
+	  node.classList.remove('animated', animationName);
+	  node.classList.remove(speed);
       node.removeEventListener('animationend', handleAnimationEnd);
       observable.next(true);
       observable.complete();

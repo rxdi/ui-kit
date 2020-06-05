@@ -41,7 +41,13 @@ export class TableViewComponent extends LitElement implements OnUpdateFirst {
   private container: HTMLElement;
 
   OnUpdateFirst() {
-    animateElement(this.container, 'bounceInDown');
+    animateElement(this.container, 'bounceInDown', 'fast');
   }
 }
+```
+
+
+Speed
+```ts
+type Speed = 'fast' | 'faster' | 'fastest' | 'slow' | 'slower';
 ```
