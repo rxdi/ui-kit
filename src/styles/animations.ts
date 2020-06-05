@@ -3388,9 +3388,9 @@ export function animateElement(node: HTMLElement, animationName: AnimationsType)
     if (!node) {
        observable.error('Missing element');
     }
-    node.classList.add('animated', animationName);
+    node.classList.add('animated.delay-1s', animationName);
     function handleAnimationEnd() {
-      node.classList.remove('animated', animationName);
+      node.classList.remove('animated.delay-1s', animationName);
       node.removeEventListener('animationend', handleAnimationEnd);
       observable.next(true);
       observable.complete();
