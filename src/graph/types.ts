@@ -1,7 +1,6 @@
 import { DocumentNode } from 'graphql';
 import { ErrorPolicy, FetchPolicy } from 'apollo-client';
 import { TemplateResult } from '@rxdi/lit-html';
-import { ObservableContainer } from '@rxdi/core/dist/container/observable-interface';
 
 export interface Settings {
   query?: DocumentNode;
@@ -20,7 +19,7 @@ export interface OptionalProperties {
 }
 export interface GraphOptions<T = any> extends OptionalProperties {
   fetch?: any;
-  state?: any;
+  state?: T;
   settings?: Settings;
   subscribe?: any;
   defaultConfig?: boolean;
