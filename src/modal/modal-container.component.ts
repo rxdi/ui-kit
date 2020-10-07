@@ -34,7 +34,11 @@ export class ModalContainerComponent extends LitElement {
 
   private template: Observable<
     TemplateResult
-  > = this.modalService.getTemplate();
+  >;
+
+  OnInit() {
+    this.template = this.modalService.getTemplate()
+  }
 
   @Injector(MODAL_DIALOG_OPTIONS)
   private options: MODAL_DIALOG_OPTIONS;

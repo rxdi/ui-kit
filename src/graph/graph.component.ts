@@ -71,7 +71,7 @@ export class GraphComponent<T extends any = any> extends LitElement {
   @property({ type: Object })
   public options: GraphOptions<T> = {
     fetch: '',
-    state: new BehaviorSubject({}),
+    state: new BehaviorSubject({}) as any,
     render: res =>
       html`
         ${res}

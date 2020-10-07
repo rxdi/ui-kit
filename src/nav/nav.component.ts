@@ -27,31 +27,37 @@ import { Observable, of } from 'rxjs';
 })
 export class NavComponent extends LitElement {
   @Inject(Nav) private nav: Nav;
-  private styles: Observable<CSSResult> = this.nav.getStylesSubject();
-  private template: Observable<TemplateResult> = this.nav.getTemplateSubject();
+  private styles: Observable<CSSResult>;
+  private template: Observable<TemplateResult>;
   private initDelaySet: boolean;
   private defaultDelay = 30;
   private openSubject: Observable<
     TemplateResult
-  > = this.nav.getOpenSubject().pipe(
-    mergeMap(i =>
-      of(i).pipe(
-        delay(
-          this.initDelaySet ? this.defaultDelay : i.delay || this.defaultDelay
-        ),
-        tap(() => (this.initDelaySet = true))
+  >;
+
+  OnInit() {
+    this.styles = this.nav.getStylesSubject();
+    this.template = this.nav.getTemplateSubject()
+    this.openSubject = this.nav.getOpenSubject().pipe(
+      mergeMap(i =>
+        of(i).pipe(
+          delay(
+            this.initDelaySet ? this.defaultDelay : i.delay || this.defaultDelay
+          ),
+          tap(() => (this.initDelaySet = true))
+        )
+      ),
+      map(
+        options => html`
+          <style>
+            :host {
+              left: ${options.left}px;
+            }
+          </style>
+        `
       )
-    ),
-    map(
-      options => html`
-        <style>
-          :host {
-            left: ${options.left}px;
-          }
-        </style>
-      `
     )
-  );
+  }
 
   close() {
     this.nav.close();

@@ -64,10 +64,8 @@ export class MarkdownReaderComponent extends LitElement implements OnUpdate {
   @queryAll('code')
   private tags: NodeListOf<HTMLElement>[];
 
-  private widthHeight = this.responsive.combineBoth();
-
   OnInit() {
-    this.widthHeight
+    this.responsive.combineBoth()
       .pipe(
         tap(({ width }) => {
           if (width < 600) {

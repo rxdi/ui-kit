@@ -1,10 +1,10 @@
-import { LitElement, Component, html, property, async } from '@rxdi/lit-html';
+import { LitElement, Component, html, property, async, TemplateResult } from '@rxdi/lit-html';
 import { style } from './toc.component.css';
 import { Inject } from '@rxdi/core';
 import { MarkdownParserMenuProvider } from '../markdown-menu.provider';
 import { map, filter, tap } from 'rxjs/operators';
 import { TocInterface } from './toc.interface';
-
+import { Observable } from 'rxjs';
 /**
  * @customElement toc-component
  */
@@ -35,11 +35,15 @@ export class TocComponent extends LitElement {
   @Inject(MarkdownParserMenuProvider)
   private menuProvider: MarkdownParserMenuProvider;
 
-  private menus = this.menuProvider.menu.pipe(
-    filter(() => !!this.opened),
-    filter((res) => !!res.length),
-    map(menus => this.createMenusTemplate(menus))
-  );
+  private menus: Observable<TemplateResult>;
+
+  OnInit() {
+    this.menus = this.menuProvider.menu.pipe(
+      filter(() => !!this.opened),
+      filter((res) => !!res.length),
+      map(menus => this.createMenusTemplate(menus))
+    )
+  }
 
   private clickAnchor(element: HTMLElement) {
     this.menuProvider.navigateToAnchor(element);

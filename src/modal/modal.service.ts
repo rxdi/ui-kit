@@ -9,10 +9,14 @@ import { DialogData } from '../modals/main/interface';
 export class ModalService {
   @Injector(MODAL_DIALOG_OPTIONS)
   private options: MODAL_DIALOG_OPTIONS;
-  private originalOptions = Object.assign({}, this.options);
+  private originalOptions: MODAL_DIALOG_OPTIONS;
   private modalRef: HTMLElement;
   private modalTemplate: ReplaySubject<TemplateResult> = new ReplaySubject();
   private closeSubject$ = new Subject();
+
+  constructor() {
+    this.originalOptions = Object.assign({}, this.options);
+  }
 
   open<T>(template: TemplateResult, dialogOptions?: MODAL_DIALOG_OPTIONS) {
     this.overflow('hidden');
