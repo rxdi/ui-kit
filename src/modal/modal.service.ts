@@ -37,10 +37,10 @@ export class ModalService {
     });
   }
 
-  openCustomModal(
+  openCustomModal<T = any>(
     data: DialogData,
     settings: MODAL_DIALOG_OPTIONS = { backdropClose: true }
-  ) {
+  ): Observable<T> {
     this.overflow('hidden');
     return from(import('../modals/main/main')).pipe(
       map(main => main.MainModalComponent),
@@ -81,16 +81,16 @@ export class ModalService {
     }
   }
 
-  openComponent<T>(
+  openComponent<T = any>(
     component: Function,
     options = {},
     dialogOptions?: MODAL_DIALOG_OPTIONS
-  ) {
+  ): Observable<T> {
     if (dialogOptions) {
       this.setSettings(dialogOptions);
     }
     this.overflow('hidden');
-    return new Observable<T>(observer => {
+    return new Observable(observer => {
       const tag = (component as any).is;
       if (!tag) {
         throw new Error(
