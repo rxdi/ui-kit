@@ -1,6 +1,6 @@
 import { DocumentNode } from 'graphql';
 import { ErrorPolicy, FetchPolicy } from 'apollo-client';
-import { TemplateResult } from '@rxdi/lit-html';
+import { CSSResult, TemplateResult } from '@rxdi/lit-html';
 
 export interface Settings {
   query?: DocumentNode;
@@ -22,6 +22,7 @@ export interface GraphOptions<T = any> extends OptionalProperties {
   state?: T;
   settings?: Settings;
   subscribe?: any;
+  style?: CSSResult;
   defaultConfig?: boolean;
   render(state: T, setState: (res: T) => void, shadowRoot: ShadowRoot): TemplateResult;
 }

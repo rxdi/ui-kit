@@ -1,4 +1,4 @@
-import { Component, html, property, LitElement, async } from '@rxdi/lit-html';
+import { Component, html, property, LitElement, async, css } from '@rxdi/lit-html';
 import gql from 'graphql-tag';
 import { BaseService } from './base.service';
 import { Inject, Container } from '@rxdi/core';
@@ -34,6 +34,9 @@ import './state.component';
   selector: 'rx-graph',
   template(this: GraphComponent) {
     return html`
+      <style>
+        ${this.options?.style}
+      </style>
       ${async(
         this.result.pipe(
           map(state => {
@@ -78,6 +81,7 @@ export class GraphComponent<T extends any = any> extends LitElement {
       `,
     loading: () => html``,
     error: () => html``,
+    style: css``,
     settings: {} as QueryBaseOptions,
     defaultConfig: true
   };
