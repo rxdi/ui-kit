@@ -8,6 +8,7 @@ import { LensComponent } from './lens.component';
 import { get, mod, all } from 'shades';
 import { isObservable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { StyleComponent } from './style.component';
 
 /**
  * @customElement rx-monad
@@ -37,6 +38,7 @@ export class MonadComponent extends LitElement {
     ) as RenderComponent;
     const fetchComponent = this.findNode(nodes, 'rx-fetch') as FetchComponent;
     const stateComponent = this.findNode(nodes, 'rx-state') as StateComponent;
+    const styleComponent = this.findNode(nodes, 'rx-style') as StyleComponent;
     const settingsComponent = this.findNode(
       nodes,
       'rx-settings'
@@ -45,6 +47,7 @@ export class MonadComponent extends LitElement {
 
     let fetch: string;
     let state = await stateComponent.value;
+    
     if (lensComponent.match) {
       state = this.get(state, lensComponent.match);
     } else if (lensComponent.get) {
@@ -84,6 +87,7 @@ export class MonadComponent extends LitElement {
       settings: settingsComponent.value,
       state,
       fetch,
+      style: styleComponent.value,
       render: renderComponent.state
     };
   }
