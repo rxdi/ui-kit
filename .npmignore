@@ -1,0 +1,11 @@
+node_modules
+.cache
+.github
+docs
+src
+build
+dist
+develop
+.prettierrc
+tslint.json
+gapi-cli.conf.yml
