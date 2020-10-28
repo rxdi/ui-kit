@@ -46,6 +46,6 @@ export function Template<T>(options: TemplateOptions<T>) {
         ${async(this.getTemplate())}
       `;
     };
-    Component(options)(target);
+    return Component(options)(target);
   };
 }

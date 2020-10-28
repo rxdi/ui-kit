@@ -29,10 +29,9 @@
   "author": "Kristiyan Tachev",
   "license": "MIT",
   "devDependencies": {
-    "@rxdi/firelink": "^0.7.52",
-    "@rxdi/forms": "^0.7.50",
-    "@rxdi/lit-html": "^0.7.51",
-    "@rxdi/router": "^0.7.40",
+    "@rxdi/forms": "^0.7.82",
+    "@rxdi/lit-html": "^0.7.82",
+    "@rxdi/router": "^0.7.82",
     "@types/animejs": "^3.1.0",
     "@types/js-yaml": "^3.12.1",
     "@types/marked": "^0.7.0",
@@ -41,7 +40,7 @@
     "cssnano": "^4.1.10",
     "graphql": "^14.5.8",
     "husky": "^3.0.9",
-    "typescript": "^3.5.3"
+    "typescript": "^4.0.5"
   },
   "browserslist": [
     "last 1 chrome versions"
@@ -50,10 +49,13 @@
   "module": "./index.js",
   "typings": "./index.d.ts",
   "dependencies": {
-    "@rxdi/core": "^0.7.50",
-    "@rxdi/graphql-client": "^0.7.50",
+    "@rhtml/di": "^0.0.62",
+    "@rxdi/core": "^0.7.82",
+    "@rxdi/graphql-client": "^0.7.82",
+    "@rxdi/hotkeys": "^0.7.82",
     "animejs": "^3.1.0",
     "graphql-tag": "^2.10.1",
+    "infinite-carousel-wc": "^0.5.3",
     "js-yaml": "^3.13.1",
     "marked": "^0.6.2",
     "router-slot": "^1.5.2",

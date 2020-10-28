@@ -36,7 +36,7 @@ import './style.component';
   template(this: GraphComponent) {
     return html`
       <style>
-        ${this.options?.style}
+        ${this.options.style}
       </style>
       ${async(
         this.result.pipe(
