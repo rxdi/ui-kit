@@ -8,14 +8,10 @@ import {
 } from '@rxdi/lit-html';
 import {
   Animations,
-  animateElement,
   AnimationsType,
   animateChain
 } from '../../../../src/styles/animations';
 import { DATA } from './data';
-import { switchMap, concatMap } from 'rxjs/operators';
-import { of, from } from 'rxjs';
-type AnimationsUnion = keyof typeof Animations;
 
 /**
  * @customElement table-view-component

@@ -6,3 +6,6 @@ dist
 *.d.ts
 *.js.map
 *.js
+
+!/src/action-control/swiper/swiper.min.js
+!/src/action-control/swiper/swiper.min.d.ts

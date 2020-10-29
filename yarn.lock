@@ -18,29 +18,29 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
-"@rxdi/core@^0.7.50":
-  version "0.7.50"
-  resolved "https://registry.yarnpkg.com/@rxdi/core/-/core-0.7.50.tgz#35f9386e86302b143cf533529c2f1d566db123f3"
-  integrity sha512-jpG321HJ2bCjm9O6RBBwRobgvJsPvk6Agh1I8je482/4gGbVrqcH6sQ5td2SsdiGb0X88ZGwObpmrrxhEssn8w==
+"@rhtml/di@^0.0.62":
+  version "0.0.62"
+  resolved "https://registry.yarnpkg.com/@rhtml/di/-/di-0.0.62.tgz#3eb9e8e40f102ab2995941544debea396447cc3c"
+  integrity sha512-XbHLqE58VTzDToL4x/W+5AynW/kHmH3fHPiybSMDS0TawYMwGhrnfKyPJAjlpmSb3hOZHH+jiZokmsSNq5Py4g==
+
+"@rxdi/core@^0.7.81", "@rxdi/core@^0.7.82":
+  version "0.7.82"
+  resolved "https://registry.yarnpkg.com/@rxdi/core/-/core-0.7.82.tgz#a70b273a8c87d55baaac8966d764a0d358364dee"
+  integrity sha512-PcN5oAVcPoq2xlCat3Mcth4gRgHGnxdsslOluoEdUoQnU1TVDJTVgH0Lk9nNnSb2NhaL6e6YYBApXTT0VoVVdA==
   dependencies:
     reflect-metadata "0.1.13"
     rxjs "^6.5.3"
     systemjs "0.21.4"
 
-"@rxdi/firelink@^0.7.52":
-  version "0.7.52"
-  resolved "https://registry.yarnpkg.com/@rxdi/firelink/-/firelink-0.7.52.tgz#6a0bf15523189de32baf6ef63c190e25584c79c0"
-  integrity sha512-8L1UVFtGYGXpyvohujvpCvlCJwPKoVC/07ovcfyvIcDjeXiwb4p3Mpl5ZN7nv5HvORaaKlN/TJlis+yHXvJ1Zg==
+"@rxdi/forms@^0.7.82":
+  version "0.7.82"
+  resolved "https://registry.yarnpkg.com/@rxdi/forms/-/forms-0.7.82.tgz#6006d07399a37ca3abcb9469c0737e62d2d98f25"
+  integrity sha512-PMokbUvukIMeiUwxm5FUdCc6JuTOU+HwhnRuPjyL+0X/YFmKjOcXYMl9DaYR/Y6WVsv9GdnCtWVojgx7wxKoFg==
 
-"@rxdi/forms@^0.7.50":
-  version "0.7.50"
-  resolved "https://registry.yarnpkg.com/@rxdi/forms/-/forms-0.7.50.tgz#6165437d57d10948c223067e7c342f8efad1f079"
-  integrity sha512-2YgGgDLGQbSdd13VadBjIBdBU2Z+RLKZLZXRrynXd/aqZodocXqXDU77oXHyZ087H5WnvPdO70aQqc+jiNyN+A==
-
-"@rxdi/graphql-client@^0.7.50":
-  version "0.7.50"
-  resolved "https://registry.yarnpkg.com/@rxdi/graphql-client/-/graphql-client-0.7.50.tgz#58f199fd2aa4f62f9c0fb8bccfa304c8e8eef0ec"
-  integrity sha512-zCGIs7ytfsNK5UDTTbF5H2rGGbyZd5kffI5v4nxh2jc0oB2eadk4f7wSKa8eK+DxvSKX2OCMhXUtQ0UWDrgblQ==
+"@rxdi/graphql-client@^0.7.82":
+  version "0.7.82"
+  resolved "https://registry.yarnpkg.com/@rxdi/graphql-client/-/graphql-client-0.7.82.tgz#e2ea8a1969cdded8aaddb8ed6ba9a666414eaead"
+  integrity sha512-chjpEycNJco86MVuhNZHmVFFEQqqtAzLC6mE6UflROEEvW184fYJziifOILbXDHTQJ2KDN2NpmptE1ffBfmlEw==
   dependencies:
     apollo-cache-inmemory "^1.6.2"
     apollo-client "^2.6.3"
@@ -50,18 +50,26 @@
     apollo-link-ws "^1.0.18"
     subscriptions-transport-ws "^0.9.16"
 
-"@rxdi/lit-html@^0.7.51":
-  version "0.7.51"
-  resolved "https://registry.yarnpkg.com/@rxdi/lit-html/-/lit-html-0.7.51.tgz#7e0b56c9387a07117515bd44fe4cfd682bfa35ed"
-  integrity sha512-PAEPTV3ir6WvDDXvCk6gklzraG4hbelwptiF3Alh+WC2bUd3y/4Af7F+KQjbp0EbxptmgpieD9RjFjPcqurRRg==
-
-"@rxdi/router@^0.7.40":
-  version "0.7.40"
-  resolved "https://registry.yarnpkg.com/@rxdi/router/-/router-0.7.40.tgz#b3ea0541c02eac31945c0f0542c0e123af596ffe"
-  integrity sha512-DXwORrMZ0/ntyKXuMWEpFCapcQCHa2K2HEESQS1pLOB9jOrWqSJSI8Ii5u8SeZ4JNybGmT2kgmAzrynfjv1VVA==
+"@rxdi/hotkeys@^0.7.82":
+  version "0.7.82"
+  resolved "https://registry.yarnpkg.com/@rxdi/hotkeys/-/hotkeys-0.7.82.tgz#68be4b3b2502547702b924a114f5a6b83387bdca"
+  integrity sha512-nFl2uGwj7jf7Snaga9b81W77btVR0547Ws3HigtjqGHblr+jdMm7pGtYX0MHlyDh5GSvzplcErcx4suo1ofS+w==
   dependencies:
-    "@vaadin/router" "^1.2.0"
-    router-slot "^1.5.2"
+    "@rxdi/core" "^0.7.81"
+    mousetrap "^1.6.5"
+    rxjs "^6.5.3"
+
+"@rxdi/lit-html@^0.7.82":
+  version "0.7.82"
+  resolved "https://registry.yarnpkg.com/@rxdi/lit-html/-/lit-html-0.7.82.tgz#9f68369035c2fdad90a0319daa421ba2f6023a84"
+  integrity sha512-3ttTXEgQ8PzbtN7R7SHwgFtjeIoaSsySdHCwo/Bt9kLt/AtnfebGJ021g7yUSFhYAqKy8lcsWJiJJYm0AuHd0w==
+
+"@rxdi/router@^0.7.82":
+  version "0.7.82"
+  resolved "https://registry.yarnpkg.com/@rxdi/router/-/router-0.7.82.tgz#60159f38cc929ab8536914c370a48c6a8e0dab09"
+  integrity sha512-v/YMy/LNACi0/4lkXkRQgm1I5r+V6Lcz8jekXFDk0G76ptjPH11HswUTnMeZObaR0e/TYiGxCSeAq9SF/yEzjg==
+  dependencies:
+    router-slot "^1.5.4"
 
 "@types/animejs@^3.1.0":
   version "3.1.0"
@@ -102,26 +110,6 @@
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/@types/zen-observable/-/zen-observable-0.8.0.tgz#8b63ab7f1aa5321248aad5ac890a485656dcea4d"
   integrity sha512-te5lMAWii1uEJ4FwLjzdlbw3+n0FZNOvFXHxQDKeT0dilh7HOzdMzV2TrJVUzq8ep7J4Na8OUYPRLSQkJHAlrg==
-
-"@vaadin/router@^1.2.0":
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/@vaadin/router/-/router-1.5.2.tgz#a80a1146e03806d4476c957c69681e6b681fcc66"
-  integrity sha512-Byjz/FQ7ohGZRrxZnoZ2DJgTUWtj7YLKFY9L4iaWw/NW9fklPyn+wYRgPfLc/uk3srBr1Hc9JWg/b++lE6lyfw==
-  dependencies:
-    "@vaadin/vaadin-usage-statistics" "^2.0.8"
-    path-to-regexp "2.4.0"
-
-"@vaadin/vaadin-development-mode-detector@^2.0.0":
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/@vaadin/vaadin-development-mode-detector/-/vaadin-development-mode-detector-2.0.4.tgz#f49c8009856bead92d248377c36b295b5aae78e5"
-  integrity sha512-S+PaFrZpK8uBIOnIHxjntTrgumd5ztuCnZww96ydGKXgo9whXfZsbMwDuD/102a/IuPUMyF+dh/n3PbWzJ6igA==
-
-"@vaadin/vaadin-usage-statistics@^2.0.8":
-  version "2.0.11"
-  resolved "https://registry.yarnpkg.com/@vaadin/vaadin-usage-statistics/-/vaadin-usage-statistics-2.0.11.tgz#6712d389089f248d2865ed2d74c665103b354378"
-  integrity sha512-6isKfOQnb6BSj181nehId4w8SOUKDLNcNza1RKdiNGgnOlqjZx/p4+FbJS9PQ4q0lwP1/TQa3Vx7SAWdoVfNOQ==
-  dependencies:
-    "@vaadin/vaadin-development-mode-detector" "^2.0.0"
 
 "@wry/context@^0.4.0":
   version "0.4.4"
@@ -746,6 +734,11 @@ indexes-of@^1.0.1:
   resolved "https://registry.yarnpkg.com/indexes-of/-/indexes-of-1.0.1.tgz#f30f716c8e2bd346c7b67d3df3915566a7c05607"
   integrity sha1-8w9xbI4r00bHtn0985FVZqfAVgc=
 
+infinite-carousel-wc@^0.5.3:
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/infinite-carousel-wc/-/infinite-carousel-wc-0.5.3.tgz#68d8b770f203065b45de5ae3d5d153a1a768c9d8"
+  integrity sha512-EFnTaoS1P0s3llBScniG525E81PciUlsKOcX9SI6AiQmKb1IIcRmJo6O6u2o38pWWOHaqgp++mXfovXcIAPO7Q==
+
 is-absolute-url@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/is-absolute-url/-/is-absolute-url-2.1.0.tgz#50530dfb84fcc9aa7dbe7852e83a37b93b9f2aa6"
@@ -896,6 +889,11 @@ mkdirp@~0.5.1:
   dependencies:
     minimist "0.0.8"
 
+mousetrap@^1.6.5:
+  version "1.6.5"
+  resolved "https://registry.yarnpkg.com/mousetrap/-/mousetrap-1.6.5.tgz#8a766d8c272b08393d5f56074e0b5ec183485bf9"
+  integrity sha512-QNo4kEepaIBwiT8CDhP98umTetp+JNfQYBWvC1pc6/OAibuXtRcxZ58Qz8skvEHYvURne/7R8T5VoOI7rDsEUA==
+
 nice-try@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
@@ -1040,11 +1038,6 @@ path-parse@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.6.tgz#d62dbb5679405d72c4737ec58600e9ddcf06d24c"
   integrity sha512-GSmOT2EbHrINBf9SR7CDELwlJ8AENk3Qn7OikK4nFYAu3Ote2+JYNVvkpAEQm3/TLNEJFD/xZJjzyxg3KBWOzw==
-
-path-to-regexp@2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-2.4.0.tgz#35ce7f333d5616f1c1e1bfe266c3aba2e5b2e704"
-  integrity sha512-G6zHoVqC6GGTQkZwF4lkuEyMbVOjoBKAEybQUypI1WTkqinCOrq2x6U2+phkJ1XsEMTy4LjtwPI7HW+NVrRR2w==
 
 pkg-dir@^4.2.0:
   version "4.2.0"
@@ -1395,6 +1388,11 @@ router-slot@^1.5.2:
   resolved "https://registry.yarnpkg.com/router-slot/-/router-slot-1.5.2.tgz#89f5f82c79b1e5343d449083e9f09bbd9e55a375"
   integrity sha512-NUvYbjsd1CAhhc23V6+UQsUKS+ZVfPe0esRPTDKW0iV+dilfB3Tn5A1SwIkEnf7BP4flUNXKEVa21fvaGn3JVQ==
 
+router-slot@^1.5.4:
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/router-slot/-/router-slot-1.5.4.tgz#2262a1eaf49962e3f922f84ae4692abe0b25a59c"
+  integrity sha512-tHqDp0ZZ/KF+j3+OlPbxHoYRkMrHQrxU8D0kUoUhZEevj+j/sMV2pXmZ2jL4oND2o6PyTsCYz1VRqZr7mBfaTg==
+
 run-node@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/run-node/-/run-node-1.0.0.tgz#46b50b946a2aa2d4947ae1d886e9856fd9cabe5e"
@@ -1613,10 +1611,10 @@ type-fest@^0.6.0:
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.6.0.tgz#8d2a2370d3df886eb5c90ada1c5bf6188acf838b"
   integrity sha512-q+MB8nYR1KDLrgr4G5yemftpMC7/QLqVndBmEEdqzmNj5dcFOO4Oo8qlwZE3ULT3+Zim1F8Kq4cBnikNhlCMlg==
 
-typescript@^3.5.3:
-  version "3.7.2"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.7.2.tgz#27e489b95fa5909445e9fef5ee48d81697ad18fb"
-  integrity sha512-ml7V7JfiN2Xwvcer+XAf2csGO1bPBdRbFCkYBczNZggrBZ9c7G3riSUeJmqEU5uOtXNPMhE3n+R4FA/3YOAWOQ==
+typescript@^4.0.5:
+  version "4.0.5"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.0.5.tgz#ae9dddfd1069f1cb5beb3ef3b2170dd7c1332389"
+  integrity sha512-ywmr/VrTVCmNTJ6iV2LwIrfG1P+lv6luD8sUJs+2eI9NLGigaN+nUQc13iHqisq7bra9lnmUSYqbJvegraBOPQ==
 
 uniq@^1.0.1:
   version "1.0.1"

@@ -192,6 +192,10 @@ import { PaginationViewComponent } from './pagination-view/pagination-view.compo
           component: PaginationViewComponent
         },
         {
+          path: '/ui-kit/action-control',
+          children: () => import('./action-control/action-control.module')
+        },
+        {
           path: '/ui-kit/docs/home',
           redirect: 'ui-kit/docs'
         },

@@ -1,7 +1,6 @@
-import { html, Component, css, async, query, LitElement } from '@rxdi/lit-html';
+import { html, Component, css,  LitElement } from '@rxdi/lit-html';
 import { Inject } from '@rxdi/core';
 import { Nav } from '../../../src/nav';
-import { map } from 'rxjs/operators';
 
 /**
  * @customElement app-component
@@ -10,32 +9,6 @@ import { map } from 'rxjs/operators';
   selector: 'app-component',
   template(this: AppComponent) {
     return html`
-      <!-- ${async(
-        this.navService.getOpenSubject().pipe(
-          map(res => {
-            if (res.left >= 0) {
-              return html`
-                <style>
-                  .test {
-                    margin-left: 500px;
-                  }
-                </style>
-              `;
-            }
-            console.log('vlizam');
-            return html`
-              <style>
-                .test {
-                  margin-left: 0px;
-                }
-              </style>
-            `;
-          })
-        )
-      )} -->
-      <style>
-      /*  */
-      </style>
       <div style="display: flex">
         <div class="rx-nav" id="rx-nav"></div>
         <div class="test" style="width: calc(100% - 250px); margin-left: 250px">
@@ -58,7 +31,7 @@ export class AppComponent extends LitElement {
     this.navService.open({
       navOptions: { delay: 0, left: 0 },
       template: html`
-        <nav-component></nav-component>
+       dada
       `,
       styles: css`
         :host {
