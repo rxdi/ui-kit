@@ -746,6 +746,11 @@ indexes-of@^1.0.1:
   resolved "https://registry.yarnpkg.com/indexes-of/-/indexes-of-1.0.1.tgz#f30f716c8e2bd346c7b67d3df3915566a7c05607"
   integrity sha1-8w9xbI4r00bHtn0985FVZqfAVgc=
 
+infinite-carousel-wc@^0.5.3:
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/infinite-carousel-wc/-/infinite-carousel-wc-0.5.3.tgz#68d8b770f203065b45de5ae3d5d153a1a768c9d8"
+  integrity sha512-EFnTaoS1P0s3llBScniG525E81PciUlsKOcX9SI6AiQmKb1IIcRmJo6O6u2o38pWWOHaqgp++mXfovXcIAPO7Q==
+
 is-absolute-url@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/is-absolute-url/-/is-absolute-url-2.1.0.tgz#50530dfb84fcc9aa7dbe7852e83a37b93b9f2aa6"

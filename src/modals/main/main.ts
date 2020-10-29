@@ -1,5 +1,5 @@
 import { Component, LitElement, html, svg, query } from '@rxdi/lit-html';
-import { Inject, Injector } from '@rxdi/core';
+import { Container, Inject, Injector } from '@rxdi/core';
 import { ModalService } from '../../modal/modal.service';
 import { MODAL_DIALOG_OPTIONS, MODAL_DIALOG_DATA } from '../../modal/interface';
 import { DialogData } from './interface';
@@ -43,8 +43,7 @@ import { style, button } from './style.css';
   }
 })
 export class MainModalComponent extends LitElement {
-  @Inject(ModalService)
-  private modalService: ModalService;
+  private modalService: ModalService = Container.get(ModalService);
 
   @Injector(MODAL_DIALOG_DATA)
   private data: DialogData;

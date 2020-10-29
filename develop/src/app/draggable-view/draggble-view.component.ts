@@ -7,7 +7,7 @@ import {
   query
 } from '@rxdi/lit-html';
 import { Inject } from '@rxdi/core';
-import { DraggableService } from '@rxdi/ui-kit/draggable/draggable.service';
+import { DraggableService } from '../../../../src/draggable/draggable.service';
 import { MultiDrag } from 'sortablejs';
 
 @Component({

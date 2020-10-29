@@ -1,5 +1,5 @@
 import { html, Component, LitElement } from '@rxdi/lit-html';
-import glyph from '@rxdi/ui-kit/images/glyph.svg';
+import glyph from '../../../../src/images/glyph.svg';
 
 /**
  * @customElement image-view-component

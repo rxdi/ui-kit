@@ -1,7 +1,7 @@
 import { html, LitElement, Component, css, styleMap, property } from '@rxdi/lit-html';
 import { FormGroup, Form } from '@rxdi/forms';
 import { InputErrorTemplate, EmailValidator } from './error';
-import { InputStyle } from '@rxdi/ui-kit/styles/form/input';
+import { InputStyle } from '../../../../src/styles/form/input';
 
 /**
  * @customElement forms-view-component

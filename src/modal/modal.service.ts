@@ -4,6 +4,7 @@ import { ReplaySubject, Observable, Subject, of, from } from 'rxjs';
 import { MODAL_DIALOG_DATA, MODAL_DIALOG_OPTIONS } from './interface';
 import { take, map, concatMap, switchMap, tap } from 'rxjs/operators';
 import { DialogData } from '../modals/main/interface';
+import { MainModalComponent } from '../modals/main/main';
 
 @Injectable()
 export class ModalService {
@@ -20,7 +21,7 @@ export class ModalService {
 
   open<T>(template: TemplateResult, dialogOptions?: MODAL_DIALOG_OPTIONS) {
     this.overflow('hidden');
-    return new Observable<T>(observer => {
+    return new Observable<T>((observer) => {
       this.createModalPortal();
       if (dialogOptions) {
         this.setSettings(dialogOptions);
@@ -42,37 +43,31 @@ export class ModalService {
     settings: MODAL_DIALOG_OPTIONS = { backdropClose: true }
   ): Observable<T> {
     this.overflow('hidden');
-    return from(import('../modals/main/main')).pipe(
-      map(main => main.MainModalComponent),
-      switchMap(main =>
-        this.openComponent(main, data, {
-          backdropClose: settings.backdropClose,
-          style:
-            settings.style ||
-            css`
-              .wrapper {
-                position: fixed;
-                top: 0;
-                left: 0;
-                align-items: center;
-                justify-content: center;
-                pointer-events: none;
-                width: 100%;
-                height: 100%;
-                z-index: 10000;
-              }
-              .content {
-                width: 100%;
-                height: 100%;
-                z-index: 10001;
-                position: fixed;
-                pointer-events: all;
-              }
-            `
-        })
-      ),
-      tap(() => this.overflow('visible'))
-    );
+    return this.openComponent(MainModalComponent, data, {
+      backdropClose: settings.backdropClose,
+      style:
+        settings.style ||
+        css`
+          .wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            width: 100%;
+            height: 100%;
+            z-index: 10000;
+          }
+          .content {
+            width: 100%;
+            height: 100%;
+            z-index: 10001;
+            position: fixed;
+            pointer-events: all;
+          }
+        `,
+    }).pipe(tap(() => this.overflow('visible')));
   }
 
   overflow(type: 'hidden' | 'visible') {
@@ -90,7 +85,7 @@ export class ModalService {
       this.setSettings(dialogOptions);
     }
     this.overflow('hidden');
-    return new Observable(observer => {
+    return new Observable((observer) => {
       const tag = (component as any).is;
       if (!tag) {
         throw new Error(
@@ -100,11 +95,7 @@ export class ModalService {
       this.createModalPortal();
       Container.remove(MODAL_DIALOG_DATA);
       Container.set(MODAL_DIALOG_DATA, options);
-      this.modalTemplate.next(
-        html`
-          ${unsafeHTML(`<${tag()}></${tag()}>`)}
-        `
-      );
+      this.modalTemplate.next(html` ${unsafeHTML(`<${tag()}></${tag()}>`)} `);
       this.closeSubject$.pipe(take(1)).subscribe((stream: T) => {
         if (dialogOptions) {
           this.setSettings(this.originalOptions);
@@ -128,10 +119,10 @@ export class ModalService {
       options?: MODAL_DIALOG_OPTIONS;
     }[]
   ) {
-    const identity = v => v;
+    const identity = (v) => v;
     return of(components).pipe(
-      map(val =>
-        val.map(v => this.openComponent(v.component, v.data, v.options))
+      map((val) =>
+        val.map((v) => this.openComponent(v.component, v.data, v.options))
       ),
       concatMap(identity),
       concatMap(identity)

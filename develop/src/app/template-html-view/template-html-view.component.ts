@@ -1,5 +1,5 @@
 import { LitElement, property } from '@rxdi/lit-html';
-import { Template } from '@rxdi/ui-kit/decorators';
+import { Template } from '../../../../src/decorators';
 import { interval } from 'rxjs';
 import { tap } from 'rxjs/operators';
 

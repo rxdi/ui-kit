@@ -66,7 +66,7 @@ import { PalettesUnion } from '../settings';
         @mouseenter=${() => (this.entered = true)}
         @mouseleave=${() => (this.entered = false)}
       >
-        <div style="cursor: pointer;" @click=${this.onDropdownClicked}>
+        <div style="cursor: pointer;" @click=${() => this.onDropdownClicked()}>
           <slot></slot>
         </div>
         ${this.isOpened

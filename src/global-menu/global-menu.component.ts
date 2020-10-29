@@ -3,11 +3,10 @@ import {
   html,
   property,
   Component,
-  async,
   TemplateResult,
 } from '@rxdi/lit-html';
 import { style } from './global-menu.component.css';
-import { Inject } from '@rxdi/core';
+import { Container } from '@rxdi/core';
 import { GlobalMenuService } from './global-menu.service';
 /**
  * @customElement global-menu
@@ -49,8 +48,7 @@ import { GlobalMenuService } from './global-menu.service';
 export class GlobalMenuComponent extends LitElement {
   @property({ type: Object }) template: TemplateResult;
 
-  @Inject(GlobalMenuService)
-  private menu: GlobalMenuService;
+  private menu: GlobalMenuService = Container.get(GlobalMenuService);
 
   async OnUpdateFirst(): Promise<void> {
     document.onkeyup = (e) => {
@@ -62,11 +60,11 @@ export class GlobalMenuComponent extends LitElement {
 
   open(template: TemplateResult) {
     this.template = template;
-    this.menu.setOpenSubject(true)
+    this.menu.setOpenSubject(true);
   }
 
   cancel() {
     this.remove();
-    this.menu.setOpenSubject(false)
+    this.menu.setOpenSubject(false);
   }
 }
