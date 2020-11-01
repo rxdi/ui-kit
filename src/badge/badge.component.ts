@@ -25,12 +25,12 @@ export interface BadgeOptions {
       <style>
         .badge {
           box-sizing: border-box;
-          min-width: ${this.options.minWidth}px;
-          height: ${this.options.height}px;
+          min-width: ${this.options?.minWidth}px;
+          height: ${this.options?.height}px;
           padding: 0 5px;
           border-radius: ${this.options?.boarderRadius}px;
           vertical-align: middle;
-          font-size: ${this.options.fontSize}px;
+          font-size: ${this.options?.fontSize}px;
           display: inline-flex;
           justify-content: center;
           align-items: center;
@@ -40,7 +40,7 @@ export interface BadgeOptions {
       </style>
       <span
         style=${styleMap(
-          this.palette ? {} : { color: this.color || this.options.color, background: this.background || this.options.background }
+          this.palette ? {} : { color: this.color || this.options?.color, background: this.background || this.options?.background }
         )}
         class="badge"
         ><slot></slot
