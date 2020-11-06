@@ -1,4 +1,4 @@
-import { html, Component, LitElement, css, property } from '@rxdi/lit-html';
+import { html, Component, LitElement, css, property, styleMap } from '@rxdi/lit-html';
 import { fromEvent, Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { PalettesUnion } from '../settings';
@@ -71,7 +71,7 @@ import { PalettesUnion } from '../settings';
         </div>
         ${this.isOpened
           ? html`
-              <div class="dropdown-content show">
+              <div class="dropdown-content show" style=${styleMap({'margin-left': this.marginLeft})}>
                 <slot name="first-item"></slot>
                 ${this.menuItems.map(
                   i =>
@@ -90,7 +90,7 @@ import { PalettesUnion } from '../settings';
 export class DropdownComponent extends LitElement {
   @property({ type: Boolean }) isOpened = false;
   @property({ type: String }) palette: PalettesUnion = 'primary';
-
+  @property({ type: String }) marginLeft = '-160px';
   @property({ type: Array }) menuItems = [];
   @property({ type: Object }) defaultTemplate = html`
     <button class="dropbtn">
