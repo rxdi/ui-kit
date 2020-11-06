@@ -14,6 +14,7 @@ export interface Tab {
   view: TemplateResult | string;
   active?: boolean;
   lastElement?: boolean;
+  settingsElement?: boolean;
 }
 
 /**
@@ -77,6 +78,9 @@ export interface Tab {
       <ul class="tabs">
         ${this.pages.map(
           (tab, index) => html`
+            ${tab.settingsElement
+              ? html`<span style="flex: 1 3 auto;"></span>`
+              : html``}
             <li class=${classMap({ active: tab.active })}>
               <a
                 @click=${() => {
@@ -114,13 +118,7 @@ export interface Tab {
       <ul class="switcher">
         ${this.pages
           .filter((a) => a.active)
-          .map(
-            (v) => html`
-              <li>
-                ${v.view}
-              </li>
-            `
-          )}
+          .map((v) => html` <li>${v.view}</li> `)}
       </ul>
     `;
   },
