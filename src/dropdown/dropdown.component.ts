@@ -90,7 +90,7 @@ import { PalettesUnion } from '../settings';
 export class DropdownComponent extends LitElement {
   @property({ type: Boolean }) isOpened = false;
   @property({ type: String }) palette: PalettesUnion = 'primary';
-  @property({ type: String }) marginLeft = '-160px';
+  @property({ type: String }) marginLeft = '0';
   @property({ type: Array }) menuItems = [];
   @property({ type: Object }) defaultTemplate = html`
     <button class="dropbtn">
