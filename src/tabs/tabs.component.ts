@@ -13,6 +13,7 @@ export interface Tab {
   name: string | TemplateResult;
   view: TemplateResult | string;
   active?: boolean;
+  lastElement?: boolean;
 }
 
 /**
@@ -79,23 +80,26 @@ export interface Tab {
             <li class=${classMap({ active: tab.active })}>
               <a
                 @click=${() => {
-                  this.pages = this.pages.map((p) => {
-                    p.active = false;
-                    return p;
-                  });
-                  tab.active = true;
-                  this.pages = [...this.pages];
-                  if (this.changeLocation) {
-                    const newLocation = window.location.pathname.substring(
-                      0,
-                      window.location.pathname.lastIndexOf('/') + 1
-                    );
-                    window.history.pushState(
-                      {},
-                      null,
-                      `${newLocation}${index}`
-                    );
+                  if (!tab.lastElement) {
+                    this.pages = this.pages.map((p) => {
+                      p.active = false;
+                      return p;
+                    });
+                    tab.active = true;
+                    this.pages = [...this.pages];
+                    if (this.changeLocation) {
+                      const newLocation = window.location.pathname.substring(
+                        0,
+                        window.location.pathname.lastIndexOf('/') + 1
+                      );
+                      window.history.pushState(
+                        {},
+                        null,
+                        `${newLocation}${index}`
+                      );
+                    }
                   }
+
                   this.dispatchEvent(
                     new CustomEvent('change', { detail: { tab, index } })
                   );
