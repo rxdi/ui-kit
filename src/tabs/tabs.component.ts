@@ -13,7 +13,7 @@ export interface Tab {
   name: string | TemplateResult;
   view: TemplateResult | string;
   active?: boolean;
-  lastElement?: boolean;
+  disableOnChangeEvent?: boolean;
   settingsElement?: boolean;
 }
 
@@ -84,7 +84,7 @@ export interface Tab {
             <li class=${classMap({ active: tab.active })}>
               <a
                 @click=${() => {
-                  if (!tab.lastElement) {
+                  if (!tab.disableOnChangeEvent) {
                     this.pages = this.pages.map((p) => {
                       p.active = false;
                       return p;
@@ -102,11 +102,11 @@ export interface Tab {
                         `${newLocation}${index}`
                       );
                     }
+                    this.dispatchEvent(
+                      new CustomEvent('change', { detail: { tab, index } })
+                    );
                   }
 
-                  this.dispatchEvent(
-                    new CustomEvent('change', { detail: { tab, index } })
-                  );
                 }}
                 >${tab.name}</a
               >
