@@ -16,7 +16,7 @@ import { style, button } from './style.css';
       <style>
         ${this.data.style}
       </style>
-      <div class="container">
+      <div class="container" @scroll=${(e) => this.modalService.setScrollWidth(e.currentTarget.scrollTop)}>
         <div class="dialog">
           <button @click=${() => this.close()}>
             ${svg`
@@ -54,10 +54,14 @@ export class MainModalComponent extends LitElement {
   @query('.backdrop')
   private backdrop: HTMLElement;
 
+  @query('.container')
+  private container: HTMLElement;
+
   OnUpdateFirst() {
     if (this.options.backdropClose) {
       this.backdrop.addEventListener('click', () => this.close());
     }
+    this.modalService.setContainerRef(this.container)
   }
   close() {
     this.modalService.close();

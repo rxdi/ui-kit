@@ -3,7 +3,7 @@ import {
   html,
   TemplateResult,
   async,
-  LitElement
+  LitElement,
 } from '@rxdi/lit-html';
 import { Inject, Injector } from '@rxdi/core';
 import { ModalService } from './modal.service';
@@ -26,20 +26,18 @@ import { MODAL_DIALOG_OPTIONS } from './interface';
         ></div>
       </div>
     `;
-  }
+  },
 })
 export class ModalContainerComponent extends LitElement {
   @Inject(ModalService)
   private modalService: ModalService;
 
-  private template: Observable<
-    TemplateResult
-  >;
-
-  OnInit() {
-    this.template = this.modalService.getTemplate()
-  }
-
   @Injector(MODAL_DIALOG_OPTIONS)
   private options: MODAL_DIALOG_OPTIONS;
+
+  private template: Observable<TemplateResult>;
+
+  OnInit() {
+    this.template = this.modalService.getTemplate();
+  }
 }

@@ -15,8 +15,32 @@ export class ModalService {
   private modalTemplate: ReplaySubject<TemplateResult> = new ReplaySubject();
   private closeSubject$ = new Subject();
 
+  private containerRef: HTMLElement;
+
+  private $onScroll: Subject<number> = new Subject();
+
   constructor() {
     this.originalOptions = Object.assign({}, this.options);
+  }
+
+  setScrollWidth(value: number) {
+    this.$onScroll.next(value);
+  }
+
+  setContainerRef(element: HTMLElement) {
+    this.containerRef = element;
+  }
+
+  getContainerRef() {
+    return this.containerRef;
+  }
+
+  scrollTo(value: number) {
+    this.containerRef.scrollTo(0, value)
+  }
+
+  onScroll() {
+    return this.$onScroll.asObservable();
   }
 
   open<T>(template: TemplateResult, dialogOptions?: MODAL_DIALOG_OPTIONS) {
