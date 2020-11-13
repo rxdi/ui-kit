@@ -28,6 +28,7 @@ import { progressCss } from './circle.css';
 
           justify-content: ${this.type === 'bar' ? 'start' : 'center'};
           align-items: ${this.type === 'bar' ? 'flex-start' : 'center'};
+          background: rgba(0,0,0,0.03);
         }
         .bar {
           width: ${this.value}%;
