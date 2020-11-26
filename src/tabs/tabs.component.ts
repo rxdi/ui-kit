@@ -64,8 +64,8 @@ export interface Tab {
       text-decoration: none;
       cursor: pointer;
     }
-    a:hover {
-      color: #333;
+    .hover:hover {
+      background: rgba(255, 255, 255, 0.1);
     }
     li {
       color: #666;
@@ -87,6 +87,7 @@ export interface Tab {
             <li part="li" class=${classMap({ active: tab.active })}>
               <a
                 part="a"
+                class=${classMap({ hover: tab.hoverable })}
                 style=${styleMap(
                   tab.hoverable
                     ? {
