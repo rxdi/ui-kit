@@ -6,6 +6,7 @@ import {
   property,
   TemplateResult,
   classMap,
+  styleMap,
 } from '@rxdi/lit-html';
 import { PalettesUnion } from '../settings';
 
@@ -76,14 +77,16 @@ export interface Tab {
           border-color: var(--${this.palette}-bg-color);
         }
       </style>
-      <ul class="tabs">
+      <ul part="tabs" class="tabs">
         ${this.pages.map(
           (tab, index) => html`
             ${tab.settingsElement
               ? html`<span style="flex: 1 3 auto;"></span>`
               : html``}
-            <li class=${classMap({ active: tab.active })}>
+            <li part="li" class=${classMap({ active: tab.active })}>
               <a
+                part="a"
+                style=${styleMap({ background: tab.active ? 'rgba(255, 255, 255, 0.1)' : '' })}
                 @click=${() => {
                   if (!tab.disableOnChangeEvent) {
                     this.pages = this.pages.map((p) => {
