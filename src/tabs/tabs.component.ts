@@ -16,6 +16,7 @@ export interface Tab {
   active?: boolean;
   disableOnChangeEvent?: boolean;
   settingsElement?: boolean;
+  hoverable?: boolean;
 }
 
 /**
@@ -86,7 +87,15 @@ export interface Tab {
             <li part="li" class=${classMap({ active: tab.active })}>
               <a
                 part="a"
-                style=${styleMap({ background: tab.active ? 'rgba(255, 255, 255, 0.1)' : '' })}
+                style=${styleMap(
+                  tab.hoverable
+                    ? {
+                        background: tab.active
+                          ? 'rgba(255, 255, 255, 0.1)'
+                          : '',
+                      }
+                    : {}
+                )}
                 @click=${() => {
                   if (!tab.disableOnChangeEvent) {
                     this.pages = this.pages.map((p) => {
@@ -110,7 +119,6 @@ export interface Tab {
                       new CustomEvent('change', { detail: { tab, index } })
                     );
                   }
-
                 }}
                 >${tab.name}</a
               >
