@@ -63,25 +63,48 @@ type InputType =
           -webkit-user-select: none;
           -moz-user-select: none;
         }
-        :host(:hover) {
-          background-color: var(--${this.palette}-hover-color);
-        }
-        :host(:active) {
-          background-color: var(--${this.palette}-active-color);
-        }
+
         slot {
           user-select: none;
           color: var(--${this.palette}-color);
         }
       </style>
-      ${this.shadow ? html`<style>:host {box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 3px, rgba(0, 0, 0, 0.14) 0px 1px 2px;}</style>` : ''}
+      ${this.disabled
+        ? html`
+            <style>
+              :host {
+                background: #929a9c;
+              }
+            </style>
+          `
+        : html`
+            <style>
+              :host(:hover) {
+                background-color: var(--${this.palette}-hover-color);
+              }
+              :host(:active) {
+                background-color: var(--${this.palette}-active-color);
+              }
+            </style>
+          `}
+      ${this.shadow
+        ? html`<style>
+            :host {
+              box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 3px,
+                rgba(0, 0, 0, 0.14) 0px 1px 2px;
+            }
+          </style>`
+        : ''}
       <slot part="text"></slot>
     `;
-  }
+  },
 })
 export class ButtonComponent extends LitElement {
   @property({ type: String })
   public palette: PalettesUnion = 'default';
+
+  @property({ type: Boolean })
+  public disabled: boolean;
 
   @property({ type: String })
   public type: InputType;

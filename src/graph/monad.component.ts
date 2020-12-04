@@ -39,6 +39,7 @@ export class MonadComponent extends LitElement {
     const fetchComponent = this.findNode(nodes, 'rx-fetch') as FetchComponent;
     const stateComponent = this.findNode(nodes, 'rx-state') as StateComponent;
     const styleComponent = this.findNode(nodes, 'rx-style') as StyleComponent;
+    
     const settingsComponent = this.findNode(
       nodes,
       'rx-settings'
