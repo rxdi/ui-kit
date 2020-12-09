@@ -5,6 +5,7 @@ export const InputStyle = css`
     -webkit-appearance: slider-horizontal;
     color: rgb(157, 150, 142);
     border: initial;
+    
   }
 
   .rx-input,
@@ -19,6 +20,7 @@ export const InputStyle = css`
     border: 1px solid #e5e5e5;
     transition: 0.2s ease-in-out;
     transition-property: color, background-color, border;
+    outline: none;
   }
   .rx-radio,
   .rx-checkbox {
