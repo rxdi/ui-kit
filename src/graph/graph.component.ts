@@ -151,6 +151,9 @@ export class GraphComponent<T extends any = any> extends LitElement {
         this.dispatchEvent(new CustomEvent('onError', { detail: error }));
       }
     );
+    // const mainComponent = this.getRootNode().host.getRootNode();
+    // mainComponent.append(this.shadowRoot)
+    // setTimeout(() => mainComponent.append(this), 1000)
   }
 
   OnDestroy() {

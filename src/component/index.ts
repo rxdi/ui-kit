@@ -4,6 +4,7 @@ import {
   CustomElementConfig,
   TemplateResult,
   html,
+  LitElement,
 } from '@rxdi/lit-html';
 import { Observable } from 'rxjs';
 
@@ -30,14 +31,17 @@ export function InjectDependencies<T>(deps: T) {
 export type Options = Without<CustomElementConfig<never>, 'template'> & {
   di?: Injection;
 };
-export type State<S, D, K> = (this: K, deps: D) => Observable<S> | S | Promise<S>;
+export type State<S, D, K> = (
+  this: K,
+  deps: D
+) => Observable<S> | S | Promise<S>;
 export type Render<S, D, K> = (
   deps: D
 ) => (this: K, state: S, setState: (s: S) => void) => TemplateResult;
 
-export const Component = <S, D, K>(options?: Options) => (deps?: D & any) => (
-  state: State<S, D, K>
-) => (render: Render<S, D, K>) => {
+export const Component = <S, D, K extends LitElement>(options?: Options) => (
+  deps?: D & any
+) => (state: State<S, D, K>) => (render: Render<S, D, K>) => {
   const injections = InjectDependencies<D>(deps)(options?.di);
   return OriginalComponent({
     ...options,
@@ -48,11 +52,17 @@ export const Component = <S, D, K>(options?: Options) => (deps?: D & any) => (
           <rx-state .value=${state.call(this, injections)}></rx-state>
           <rx-style .value=${options?.style}></rx-style>
           <rx-render
-            .state=${(state: S, setState: (s: S) => void) =>
-              render(injections).call(this, state, setState)}
+            .state=${(
+              state: S,
+              setState: (s: S) => void,
+              shadowRoot: ShadowRoot
+            ) => {
+              this.shadowRoot.append(shadowRoot);
+              return render(injections).call(this, state, setState, shadowRoot);
+            }}
           ></rx-render>
         </rx-monad>
       `;
     },
-  })
+  });
 };
