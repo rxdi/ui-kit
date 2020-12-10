@@ -18,10 +18,10 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
-"@rxdi/core@^0.7.91":
-  version "0.7.91"
-  resolved "https://registry.yarnpkg.com/@rxdi/core/-/core-0.7.91.tgz#a9a3332312b9e560f36ed1e67ea31105358a600a"
-  integrity sha512-a0hVd7dBfBjHWVG+LbNlxlRoFzcDZvZwpReM9FLonzn4p05NtmhWJVZc3pvTfMGHvqf0jhr6ynWULp8lrxjOkw==
+"@rxdi/core@^0.7.92":
+  version "0.7.92"
+  resolved "https://registry.yarnpkg.com/@rxdi/core/-/core-0.7.92.tgz#746e20e77a7ed6645c90a58e22ac4219794f020b"
+  integrity sha512-G0InZ3NvxE84sObpNsRMLTQngxzw9e86SqFjU9GuPGqWB4lew72pnMEfOBXqK9/EaI9g7GhACuh3ZpuJdVUYHA==
   dependencies:
     reflect-metadata "0.1.13"
     rxjs "^6.5.3"
@@ -32,15 +32,15 @@
   resolved "https://registry.yarnpkg.com/@rxdi/firelink/-/firelink-0.7.52.tgz#6a0bf15523189de32baf6ef63c190e25584c79c0"
   integrity sha512-8L1UVFtGYGXpyvohujvpCvlCJwPKoVC/07ovcfyvIcDjeXiwb4p3Mpl5ZN7nv5HvORaaKlN/TJlis+yHXvJ1Zg==
 
-"@rxdi/forms@^0.7.91":
-  version "0.7.91"
-  resolved "https://registry.yarnpkg.com/@rxdi/forms/-/forms-0.7.91.tgz#cd396fb1b3067e5554429f7c856602150a89da5c"
-  integrity sha512-OnzVbYM0wHTdn+lAx+cs9GohoyTzRazOs+9R6dcdriyG68BiZ5FAib01zCuNGaQzQIPT97Z5La81VwFZ6izq0g==
+"@rxdi/forms@^0.7.92":
+  version "0.7.92"
+  resolved "https://registry.yarnpkg.com/@rxdi/forms/-/forms-0.7.92.tgz#c7cfc7b97910e8ae8b8e40f73169c06c317dc10e"
+  integrity sha512-MN7NEHNL8jL4n6eiRbRAHqRwhyEuiOT+zB6WTqkpqcm8i3wmUjuyg1VavcjxVT9JfivZLyx1Fd2Z++WCB1V3Tg==
 
-"@rxdi/graphql-client@^0.7.91":
-  version "0.7.91"
-  resolved "https://registry.yarnpkg.com/@rxdi/graphql-client/-/graphql-client-0.7.91.tgz#eb6bf9589ce020224f2da752463e9068f8f5cd60"
-  integrity sha512-ueZno8OrPRL9Nf+Ch48hV7rhQ9SioowqIXwsJzZZBqI/7j5AjN8DMG74qDyIJ+kodgRJ99HT7L2TwjLb36AgQA==
+"@rxdi/graphql-client@^0.7.92":
+  version "0.7.92"
+  resolved "https://registry.yarnpkg.com/@rxdi/graphql-client/-/graphql-client-0.7.92.tgz#feb65af56158f92bf33b0c774e3e0050f573df02"
+  integrity sha512-dt1mBUR9/btkTbgz0t/5p0iX2Tf2k5K7WgFEMWSH/IQxn7n3QD7+StwttidgE+6LXAif90R07m04QEjHG7QEBw==
   dependencies:
     apollo-cache-inmemory "^1.6.2"
     apollo-client "^2.6.3"
@@ -50,15 +50,15 @@
     apollo-link-ws "^1.0.18"
     subscriptions-transport-ws "^0.9.16"
 
-"@rxdi/lit-html@^0.7.91":
-  version "0.7.91"
-  resolved "https://registry.yarnpkg.com/@rxdi/lit-html/-/lit-html-0.7.91.tgz#1744cb00403f585890237f56a33a0ff6a4edcb93"
-  integrity sha512-gRfyOQRAUCPZwG8s0+nwXxu9jqN2EVjQS9geV0u9r5A2MEayNVkJX4qs4GFUfKDM+zwa6+beUC7LjMAV2i+qWg==
+"@rxdi/lit-html@^0.7.92":
+  version "0.7.92"
+  resolved "https://registry.yarnpkg.com/@rxdi/lit-html/-/lit-html-0.7.92.tgz#e1bae3321d32e8935b771c718a0da1fa889cb139"
+  integrity sha512-Ais3YdJNpjPItAjDaefuCiC35gRbNK5yBfGoLs5XesnJi2d2c3Ikbe/xzE6LptTeWlcSVE7lPOXfHGYwcHnXhQ==
 
-"@rxdi/router@^0.7.91":
-  version "0.7.91"
-  resolved "https://registry.yarnpkg.com/@rxdi/router/-/router-0.7.91.tgz#141f38323fa34186a80e229584fbecbdacf8a607"
-  integrity sha512-nEQImhZdfduaRH/e8QvY6yN5aj3vUFzXh0YfrsgXv1m9AUNUVukALNkPvbD6FveSoRElAJFa0X1NOv+qDSmwJQ==
+"@rxdi/router@^0.7.92":
+  version "0.7.92"
+  resolved "https://registry.yarnpkg.com/@rxdi/router/-/router-0.7.92.tgz#0644949ed9b634983238eeaab7f7398ccf6ec629"
+  integrity sha512-5siOa1+O8sLky7DHUrAQ+WKWTxvfk4q87N1vBKIVn70aAv1kXAB9GhH0lgs5ZNrMhhESqDVfeITZHEGHD7snGg==
   dependencies:
     router-slot "^1.5.4"
 

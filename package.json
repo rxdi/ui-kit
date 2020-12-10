@@ -30,9 +30,9 @@
   "license": "MIT",
   "devDependencies": {
     "@rxdi/firelink": "^0.7.52",
-    "@rxdi/forms": "^0.7.91",
-    "@rxdi/lit-html": "^0.7.91",
-    "@rxdi/router": "^0.7.91",
+    "@rxdi/forms": "^0.7.92",
+    "@rxdi/lit-html": "^0.7.92",
+    "@rxdi/router": "^0.7.92",
     "@types/animejs": "^3.1.0",
     "@types/js-yaml": "^3.12.1",
     "@types/marked": "^0.7.0",
@@ -50,8 +50,8 @@
   "module": "./index.js",
   "typings": "./index.d.ts",
   "dependencies": {
-    "@rxdi/core": "^0.7.91",
-    "@rxdi/graphql-client": "^0.7.91",
+    "@rxdi/core": "^0.7.92",
+    "@rxdi/graphql-client": "^0.7.92",
     "animejs": "^3.1.0",
     "graphql-tag": "^2.10.1",
     "infinite-carousel-wc": "^0.5.3",
