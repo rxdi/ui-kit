@@ -8,9 +8,9 @@
     "last 1 chrome versions"
   ],
   "dependencies": {
-    "@rxdi/forms": "^0.7.50",
-    "@rxdi/ui-kit": "^0.7.97",
-    "@rxdi/graphql-client": "^0.7.50",
+    "@rxdi/forms": "^0.7.91",
+    "@rxdi/ui-kit": "^0.7.112",
+    "@rxdi/graphql-client": "^0.7.91",
     "graphql": "^14.5.8",
     "shades": "^2.1.0",
     "sortablejs": "^1.10.1"

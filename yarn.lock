@@ -18,10 +18,10 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
-"@rxdi/core@^0.7.50":
-  version "0.7.50"
-  resolved "https://registry.yarnpkg.com/@rxdi/core/-/core-0.7.50.tgz#35f9386e86302b143cf533529c2f1d566db123f3"
-  integrity sha512-jpG321HJ2bCjm9O6RBBwRobgvJsPvk6Agh1I8je482/4gGbVrqcH6sQ5td2SsdiGb0X88ZGwObpmrrxhEssn8w==
+"@rxdi/core@^0.7.91":
+  version "0.7.91"
+  resolved "https://registry.yarnpkg.com/@rxdi/core/-/core-0.7.91.tgz#a9a3332312b9e560f36ed1e67ea31105358a600a"
+  integrity sha512-a0hVd7dBfBjHWVG+LbNlxlRoFzcDZvZwpReM9FLonzn4p05NtmhWJVZc3pvTfMGHvqf0jhr6ynWULp8lrxjOkw==
   dependencies:
     reflect-metadata "0.1.13"
     rxjs "^6.5.3"
@@ -32,15 +32,15 @@
   resolved "https://registry.yarnpkg.com/@rxdi/firelink/-/firelink-0.7.52.tgz#6a0bf15523189de32baf6ef63c190e25584c79c0"
   integrity sha512-8L1UVFtGYGXpyvohujvpCvlCJwPKoVC/07ovcfyvIcDjeXiwb4p3Mpl5ZN7nv5HvORaaKlN/TJlis+yHXvJ1Zg==
 
-"@rxdi/forms@^0.7.50":
-  version "0.7.50"
-  resolved "https://registry.yarnpkg.com/@rxdi/forms/-/forms-0.7.50.tgz#6165437d57d10948c223067e7c342f8efad1f079"
-  integrity sha512-2YgGgDLGQbSdd13VadBjIBdBU2Z+RLKZLZXRrynXd/aqZodocXqXDU77oXHyZ087H5WnvPdO70aQqc+jiNyN+A==
+"@rxdi/forms@^0.7.91":
+  version "0.7.91"
+  resolved "https://registry.yarnpkg.com/@rxdi/forms/-/forms-0.7.91.tgz#cd396fb1b3067e5554429f7c856602150a89da5c"
+  integrity sha512-OnzVbYM0wHTdn+lAx+cs9GohoyTzRazOs+9R6dcdriyG68BiZ5FAib01zCuNGaQzQIPT97Z5La81VwFZ6izq0g==
 
-"@rxdi/graphql-client@^0.7.50":
-  version "0.7.50"
-  resolved "https://registry.yarnpkg.com/@rxdi/graphql-client/-/graphql-client-0.7.50.tgz#58f199fd2aa4f62f9c0fb8bccfa304c8e8eef0ec"
-  integrity sha512-zCGIs7ytfsNK5UDTTbF5H2rGGbyZd5kffI5v4nxh2jc0oB2eadk4f7wSKa8eK+DxvSKX2OCMhXUtQ0UWDrgblQ==
+"@rxdi/graphql-client@^0.7.91":
+  version "0.7.91"
+  resolved "https://registry.yarnpkg.com/@rxdi/graphql-client/-/graphql-client-0.7.91.tgz#eb6bf9589ce020224f2da752463e9068f8f5cd60"
+  integrity sha512-ueZno8OrPRL9Nf+Ch48hV7rhQ9SioowqIXwsJzZZBqI/7j5AjN8DMG74qDyIJ+kodgRJ99HT7L2TwjLb36AgQA==
   dependencies:
     apollo-cache-inmemory "^1.6.2"
     apollo-client "^2.6.3"
@@ -50,18 +50,17 @@
     apollo-link-ws "^1.0.18"
     subscriptions-transport-ws "^0.9.16"
 
-"@rxdi/lit-html@^0.7.51":
-  version "0.7.51"
-  resolved "https://registry.yarnpkg.com/@rxdi/lit-html/-/lit-html-0.7.51.tgz#7e0b56c9387a07117515bd44fe4cfd682bfa35ed"
-  integrity sha512-PAEPTV3ir6WvDDXvCk6gklzraG4hbelwptiF3Alh+WC2bUd3y/4Af7F+KQjbp0EbxptmgpieD9RjFjPcqurRRg==
+"@rxdi/lit-html@^0.7.91":
+  version "0.7.91"
+  resolved "https://registry.yarnpkg.com/@rxdi/lit-html/-/lit-html-0.7.91.tgz#1744cb00403f585890237f56a33a0ff6a4edcb93"
+  integrity sha512-gRfyOQRAUCPZwG8s0+nwXxu9jqN2EVjQS9geV0u9r5A2MEayNVkJX4qs4GFUfKDM+zwa6+beUC7LjMAV2i+qWg==
 
-"@rxdi/router@^0.7.40":
-  version "0.7.40"
-  resolved "https://registry.yarnpkg.com/@rxdi/router/-/router-0.7.40.tgz#b3ea0541c02eac31945c0f0542c0e123af596ffe"
-  integrity sha512-DXwORrMZ0/ntyKXuMWEpFCapcQCHa2K2HEESQS1pLOB9jOrWqSJSI8Ii5u8SeZ4JNybGmT2kgmAzrynfjv1VVA==
+"@rxdi/router@^0.7.91":
+  version "0.7.91"
+  resolved "https://registry.yarnpkg.com/@rxdi/router/-/router-0.7.91.tgz#141f38323fa34186a80e229584fbecbdacf8a607"
+  integrity sha512-nEQImhZdfduaRH/e8QvY6yN5aj3vUFzXh0YfrsgXv1m9AUNUVukALNkPvbD6FveSoRElAJFa0X1NOv+qDSmwJQ==
   dependencies:
-    "@vaadin/router" "^1.2.0"
-    router-slot "^1.5.2"
+    router-slot "^1.5.4"
 
 "@types/animejs@^3.1.0":
   version "3.1.0"
@@ -102,26 +101,6 @@
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/@types/zen-observable/-/zen-observable-0.8.0.tgz#8b63ab7f1aa5321248aad5ac890a485656dcea4d"
   integrity sha512-te5lMAWii1uEJ4FwLjzdlbw3+n0FZNOvFXHxQDKeT0dilh7HOzdMzV2TrJVUzq8ep7J4Na8OUYPRLSQkJHAlrg==
-
-"@vaadin/router@^1.2.0":
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/@vaadin/router/-/router-1.5.2.tgz#a80a1146e03806d4476c957c69681e6b681fcc66"
-  integrity sha512-Byjz/FQ7ohGZRrxZnoZ2DJgTUWtj7YLKFY9L4iaWw/NW9fklPyn+wYRgPfLc/uk3srBr1Hc9JWg/b++lE6lyfw==
-  dependencies:
-    "@vaadin/vaadin-usage-statistics" "^2.0.8"
-    path-to-regexp "2.4.0"
-
-"@vaadin/vaadin-development-mode-detector@^2.0.0":
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/@vaadin/vaadin-development-mode-detector/-/vaadin-development-mode-detector-2.0.4.tgz#f49c8009856bead92d248377c36b295b5aae78e5"
-  integrity sha512-S+PaFrZpK8uBIOnIHxjntTrgumd5ztuCnZww96ydGKXgo9whXfZsbMwDuD/102a/IuPUMyF+dh/n3PbWzJ6igA==
-
-"@vaadin/vaadin-usage-statistics@^2.0.8":
-  version "2.0.11"
-  resolved "https://registry.yarnpkg.com/@vaadin/vaadin-usage-statistics/-/vaadin-usage-statistics-2.0.11.tgz#6712d389089f248d2865ed2d74c665103b354378"
-  integrity sha512-6isKfOQnb6BSj181nehId4w8SOUKDLNcNza1RKdiNGgnOlqjZx/p4+FbJS9PQ4q0lwP1/TQa3Vx7SAWdoVfNOQ==
-  dependencies:
-    "@vaadin/vaadin-development-mode-detector" "^2.0.0"
 
 "@wry/context@^0.4.0":
   version "0.4.4"
@@ -1046,11 +1025,6 @@ path-parse@^1.0.6:
   resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.6.tgz#d62dbb5679405d72c4737ec58600e9ddcf06d24c"
   integrity sha512-GSmOT2EbHrINBf9SR7CDELwlJ8AENk3Qn7OikK4nFYAu3Ote2+JYNVvkpAEQm3/TLNEJFD/xZJjzyxg3KBWOzw==
 
-path-to-regexp@2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-2.4.0.tgz#35ce7f333d5616f1c1e1bfe266c3aba2e5b2e704"
-  integrity sha512-G6zHoVqC6GGTQkZwF4lkuEyMbVOjoBKAEybQUypI1WTkqinCOrq2x6U2+phkJ1XsEMTy4LjtwPI7HW+NVrRR2w==
-
 pkg-dir@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/pkg-dir/-/pkg-dir-4.2.0.tgz#f099133df7ede422e81d1d8448270eeb3e4261f3"
@@ -1399,6 +1373,11 @@ router-slot@^1.5.2:
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/router-slot/-/router-slot-1.5.2.tgz#89f5f82c79b1e5343d449083e9f09bbd9e55a375"
   integrity sha512-NUvYbjsd1CAhhc23V6+UQsUKS+ZVfPe0esRPTDKW0iV+dilfB3Tn5A1SwIkEnf7BP4flUNXKEVa21fvaGn3JVQ==
+
+router-slot@^1.5.4:
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/router-slot/-/router-slot-1.5.4.tgz#2262a1eaf49962e3f922f84ae4692abe0b25a59c"
+  integrity sha512-tHqDp0ZZ/KF+j3+OlPbxHoYRkMrHQrxU8D0kUoUhZEevj+j/sMV2pXmZ2jL4oND2o6PyTsCYz1VRqZr7mBfaTg==
 
 run-node@^1.0.0:
   version "1.0.0"
