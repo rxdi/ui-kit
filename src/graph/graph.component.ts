@@ -1,4 +1,11 @@
-import { Component, html, property, LitElement, async, css } from '@rxdi/lit-html';
+import {
+  Component,
+  html,
+  property,
+  LitElement,
+  async,
+  css,
+} from '@rxdi/lit-html';
 import gql from 'graphql-tag';
 import { BaseService } from './base.service';
 import { Inject, Container } from '@rxdi/core';
@@ -9,13 +16,13 @@ import {
   Subscription,
   ReplaySubject,
   BehaviorSubject,
-  isObservable
+  isObservable,
 } from 'rxjs';
 import {
   MutationOptions,
   QueryOptions,
   QueryBaseOptions,
-  SubscriptionOptions
+  SubscriptionOptions,
 } from 'apollo-client';
 import { GraphOptions } from './types';
 import { DEFAULTS } from './tokens';
@@ -40,13 +47,17 @@ import './style.component';
       </style>
       ${async(
         this.result.pipe(
-          map(state => {
+          map((state) => {
             return this.options.render
-              ? this.options.render(state, data => this.result.next(data), this.shadowRoot)
+              ? this.options.render(
+                  state,
+                  (data) => this.result.next(data),
+                  this.shadowRoot
+                )
               : state;
           }),
           tap(() => (this.loading = false)),
-          catchError(e => {
+          catchError((e) => {
             this.error = e;
             this.loading = false;
             return of('');
@@ -69,22 +80,19 @@ import './style.component';
         : ''}
       <slot></slot>
     `;
-  }
+  },
 })
 export class GraphComponent<T extends any = any> extends LitElement {
   @property({ type: Object })
   public options: GraphOptions<T> = {
     fetch: '',
     state: new BehaviorSubject({}) as any,
-    render: res =>
-      html`
-        ${res}
-      `,
+    render: (res) => html` ${res} `,
     loading: () => html``,
     error: () => html``,
     style: css``,
     settings: {} as QueryBaseOptions,
-    defaultConfig: true
+    defaultConfig: true,
   };
 
   @Inject(BaseService)
@@ -125,22 +133,22 @@ export class GraphComponent<T extends any = any> extends LitElement {
         .subscribe({
           query: gql`
             ${this.options.subscribe}
-          `
+          `,
         })
         .subscribe(
-          data => this.result.next(data),
-          e => this.result.error(e)
+          (data) => this.result.next(data),
+          (e) => this.result.error(e)
         );
     }
     if (!task) {
       return;
     }
     this.subscription = task.subscribe(
-      detail => {
+      (detail) => {
         this.result.next(detail);
         this.dispatchEvent(new CustomEvent('onData', { detail }));
       },
-      error => {
+      (error) => {
         if (error.networkError) {
           error.message = `${JSON.stringify(
             error.networkError.result.errors
@@ -151,9 +159,13 @@ export class GraphComponent<T extends any = any> extends LitElement {
         this.dispatchEvent(new CustomEvent('onError', { detail: error }));
       }
     );
-    // const mainComponent = this.getRootNode().host.getRootNode();
-    // mainComponent.append(this.shadowRoot)
-    // setTimeout(() => mainComponent.append(this), 1000)
+    // const monad = this.getRootNode().host.getRootNode();
+    // monad.append(this.shadowRoot)
+    // const monad = this.getRootNode().host;
+
+    // if (monad.parentElement) {
+    //     monad.parentElement.prepend(this.shadowRoot)
+    // }
   }
 
   OnDestroy() {

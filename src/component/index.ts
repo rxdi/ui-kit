@@ -45,12 +45,10 @@ export const Component = <S, D, K extends LitElement>(options?: Options) => (
   const injections = InjectDependencies<D>(deps)(options?.di);
   return OriginalComponent({
     ...options,
-    style: null,
     template(this: K) {
       return html`
         <rx-monad>
           <rx-state .value=${state.call(this, injections)}></rx-state>
-          <rx-style .value=${options?.style}></rx-style>
           <rx-render
             .state=${(
               state: S,
