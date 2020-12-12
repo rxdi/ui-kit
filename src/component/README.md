@@ -52,9 +52,9 @@ const compose = <T, D = []>(selector: string, styles?: CSSResult[], deps?: D) =>
   styles,
  })(deps);
 
-const state = interval(1000).pipe(map(() => new Date().getSeconds()));
+const state = () => interval(1000).pipe(map(() => new Date().getSeconds()));
 
-@(compose<number>('date-component')(() => state)(() => (date) => date))
+@(compose<number>('date-component')(state)(() => (date) => date))
 export class DateComponent extends LitElement {}
 
 @(compose<number, typeof Dependencies>(
@@ -62,12 +62,12 @@ export class DateComponent extends LitElement {}
  null,
  Dependencies,
 )
-(([appService]) => state.pipe(map((res) => res)))
+(([appService]) => state().pipe(map((res) => res)))
 (() => (date) => date))
 export class DateComponent2 extends LitElement {}
 
 @compose<number>('date-component3')
-(() => state)
+(state)
 (() => (date) => html`${date}`)
 export class DateComponent3 extends LitElement {}
 
