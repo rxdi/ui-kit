@@ -8,7 +8,7 @@ import {
  Render,
  Settings,
  State,
-} from '@core/helpers/component';
+} from '@rxdi/ui-kit';
 import { Container, Injectable } from '@rxdi/core';
 import { html, LitElement, property } from '@rxdi/lit-html';
 import { interval } from 'rxjs';
