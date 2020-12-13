@@ -15,9 +15,9 @@ export type Injection = {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type Constructor<T = {}> = new (...args: any[]) => T;
+export type Constructor<T = {}> = new (...args: any[]) => T;
 
-type InstanceTypes<T> = {
+export type InstanceTypes<T> = {
  [P in keyof T]: T[P] extends Constructor<infer U> ? U : never;
 };
 
@@ -32,9 +32,12 @@ export const DefineDependencies = <T extends Constructor[]>(...deps: T) => (
  return deps as never;
 };
 
-export type Options = Without<CustomElementConfig<never>, 'template'>;
-export type State<S, D, K> = (this: K, deps: D) => Observable<S> | S | Promise<S>;
-export type Render<S, D, K> = (
+export type StateToRender<S, D, K extends LitElement> = (
+ this: K,
+ deps: D,
+) => Observable<S> | S | Promise<S>;
+
+export type RenderResult<S, D, K extends LitElement> = (
  deps: D,
 ) => (
  this: K,
@@ -42,10 +45,14 @@ export type Render<S, D, K> = (
  setState: (s: S) => void,
 ) => TemplateResult | string | number | unknown;
 
-export const Component = <S, D = [], K extends LitElement = LitElement>(
+export type Options = Without<CustomElementConfig<never>, 'template'>;
+
+export const Compose = <S, D = [], K extends LitElement = LitElement>(
  options?: Options,
-) => (deps: D = [] as never) => (state: State<S, D, K>) => (render: Render<S, D, K>) => {
- return OriginalComponent({
+) => (deps: D = [] as never) => (state: StateToRender<S, D, K>) => (
+ render: RenderResult<S, D, K>,
+) =>
+ OriginalComponent<K>({
   ...options,
   template(this: K) {
    return html`
@@ -61,4 +68,23 @@ export const Component = <S, D = [], K extends LitElement = LitElement>(
    `;
   },
  });
-};
+
+export const Monad = <S, D = unknown, K extends LitElement = LitElement>([
+ options,
+ deps,
+ state,
+ render,
+]: [Options, D, StateToRender<S, D, K>, RenderResult<S, D, K>]) =>
+ Compose(options)(deps as never)(state as never)(render as never);
+
+export const Settings = (o: Options) => o;
+// export const λettings = (o: Options) => o;
+
+export const Providers = <S, D, K>(o: D) => o;
+// export const ρroviders = <S, D, K>(o: D) => o;
+
+export const State = <S, D, K extends LitElement>(o: StateToRender<S, D, K>) => o;
+// export const ςtate = <S, D, K extends LitElement>(o: StateToRender<S, D, K>) => o;
+
+export const Render = <S, D, K extends LitElement>(o: RenderResult<S, D, K>) => o;
+// export const πender = <S, D, K extends LitElement>(o: RenderResult<S, D, K>) => o;
