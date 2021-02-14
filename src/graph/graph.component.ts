@@ -9,7 +9,7 @@ import {
 import gql from 'graphql-tag';
 import { BaseService } from './base.service';
 import { Inject, Container } from '@rxdi/core';
-import { map, tap, catchError, switchMap } from 'rxjs/operators';
+import { map, tap, catchError } from 'rxjs/operators';
 import {
   Observable,
   of,

@@ -7,6 +7,8 @@ import {
 } from '@rxdi/lit-html';
 import { Observable } from 'rxjs';
 
+import '../graph/graph.component';
+
 export type Without<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
 export type Injection = {
