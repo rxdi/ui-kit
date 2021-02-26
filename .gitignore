@@ -6,3 +6,7 @@ dist
 *.d.ts
 *.js.map
 *.js
+
+
+!docs/*.js
+!docs/*.js.map

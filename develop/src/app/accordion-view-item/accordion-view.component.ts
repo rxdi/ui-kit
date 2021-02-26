@@ -1,4 +1,4 @@
-import { html, Component, LitElement, svg } from '@rxdi/lit-html';
+import { html, Component, LitElement } from '@rxdi/lit-html';
 
 /**
  * @customElement accordion-view-component
