@@ -1,5 +1,6 @@
 import { Module } from '@rxdi/core';
 import { AccordionComponent } from '../../../src/accordion';
+import { AccordionItemComponent } from '../../../src/accordion-item';
 import { RxImageComponent } from '../../../src/image';
 import { GridComponent } from '../../../src/grid/grid.component';
 import { BadgeComponent } from '../../../src/badge/badge.component';
@@ -24,7 +25,6 @@ import { PaginationComponent } from '../../../src/pagination/pagination.componen
 
 import { DescriptionListComponent } from '../../../src/description-list/description-list.component';
 import { RegularMarkdownComponent } from './markdown-reader/markdown-regular.component';
-import { AccordionViewComponent } from './accordion-view/accordion-view.component';
 import { NavComponent } from './nav-view/nav-component';
 import { DocsViewComponent } from './docs-view/docs-view.component';
 
@@ -32,8 +32,8 @@ import { DocsViewComponent } from './docs-view/docs-view.component';
   components: [
     DocsViewComponent,
     RegularMarkdownComponent,
-    AccordionViewComponent,
     AccordionComponent,
+    AccordionItemComponent,
     RxImageComponent,
     GridComponent,
     BadgeComponent,

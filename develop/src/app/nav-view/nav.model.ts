@@ -16,6 +16,10 @@ export const navItems = [
     label: 'Accordion'
   },
   {
+    path: '/ui-kit/accordion-item',
+    label: 'Accordion Item'
+  },
+  {
     path: '/ui-kit/image',
     label: 'Image'
   },
