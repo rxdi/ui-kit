@@ -1,5 +1,4 @@
 import {
-  classMap,
   Component,
   css,
   html,
@@ -10,13 +9,13 @@ import {
  } from '@rxdi/lit-html';
  
  export const FaqArrow = svg`
- <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-  <path
-   fill="currentColor"
-   d="M8.222 4.607a.737.737 0 000 1.055l5.944 5.838-5.944 5.838a.737.737 0 000 1.054.77.77 0 001.075 0l6.48-6.365a.737.737 0 000-1.054l-6.48-6.366a.77.77 0 00-1.075 0z"
-  ></path>
- </svg>
- `;
+    <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+     <path
+      fill="currentColor"
+      d="M8.222 4.607a.737.737 0 000 1.055l5.944 5.838-5.944 5.838a.737.737 0 000 1.054.77.77 0 001.075 0l6.48-6.365a.737.737 0 000-1.054l-6.48-6.366a.77.77 0 00-1.075 0z"
+     ></path>
+    </svg>
+    `;
  
  /**
   * @customElement rx-accordion-item
@@ -72,9 +71,8 @@ import {
      border-radius: 50px;
      width: 1em;
      height: 1em;
-     transform: rotate3d(0, 0, 0, 90deg);
-     transform-origin: 50% 50%;
-     transition: transform 250ms ease-in-out 0s;
+ 
+     transition: transform 300ms ease-in-out 0s;
     }
  
     svg {
@@ -96,14 +94,10 @@ import {
      transition: all 500ms ease 0s;
      z-index: 1;
      overflow: hidden;
-     margin-bottom: 10px;
      margin-top: 10px;
      color: rgb(111, 124, 166);
      font-size: 18px;
-    }
- 
-    .rotate {
-     transform: rotate(90deg);
+     padding-bottom: 10px;
     }
    `,
   ],
@@ -120,7 +114,15 @@ import {
      }}
     >
      <button part="button" type="button">
-      <div part="icon" class=${classMap({ icon: true, rotate: this.opened })}>
+      <div
+       part="icon"
+       class="icon"
+       style=${styleMap({
+        transform: this.opened
+         ? `rotate(${this.arrowRotationOpened})`
+         : `rotate(${this.arrowRotationClosed})`,
+       })}
+      >
        ${FaqArrow}
       </div>
       <h4
@@ -137,6 +139,7 @@ import {
       'max-height': this.opened ? this.maxContentHeight : '0',
       opacity: this.opened ? '1' : '0',
       padding: this.opened ? '30px 36px 25.6px' : '0px 36px 0px',
+      'margin-bottom': this.opened ? '10px' : '0px',
      })}
      part="content"
      class="content"
@@ -152,5 +155,11 @@ import {
  
   @property({ type: String })
   maxContentHeight = '1000px';
+ 
+  @property({ type: String })
+  arrowRotationClosed = '0deg';
+ 
+  @property({ type: String })
+  arrowRotationOpened = '90deg';
  }
  

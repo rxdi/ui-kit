@@ -44,3 +44,19 @@ Parts are also available for outside `shadowRoot` styling
   }
 </style>
 ```
+
+Available component properties
+
+```html
+
+<rx-accordion-item
+  .opened=${true}
+  .maxContentHeight=${'1000px'} 
+  .rotationClosed=${'0deg'}
+  .rotationOpened=${'90deg'}
+>
+  <div slot="title">Why should i upgrade ?</div>
+  <div slot="content">Optimized for best experience...</div>
+</rx-accordion-item>
+
+```
