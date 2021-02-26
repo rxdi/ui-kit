@@ -28,7 +28,7 @@ export interface Tab {
     .tabs {
       display: flex;
       flex-wrap: wrap;
-      margin-left: -20px;
+      /* margin-left: -20px; */
       margin-top: 0px;
       padding: 0;
       list-style: none;
