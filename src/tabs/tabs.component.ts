@@ -42,7 +42,7 @@ export interface Tab {
     }
     .tabs > * {
       flex: none;
-      padding-left: 20px;
+      /* padding-left: 20px; */
       position: relative;
     }
     .tabs > .active > a {
