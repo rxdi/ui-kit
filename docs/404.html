@@ -31,8 +31,8 @@
       }
     </style>
     <base href="/" />
-    <link rel="manifest" href="/manifest.webmanifest" />
-    <link rel="apple-touch-icon" href="/icon-144x144.a331d17c.png" />
+    <link rel="manifest" href="/ui-kit/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/ui-kit/icon-144x144.a331d17c.png" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-status-bar-style" content="black" />
     <meta name="mobile-web-app-title" content="Expenses" />
@@ -45,7 +45,7 @@
           } else
             window.addEventListener('load', function () {
               navigator.serviceWorker
-                .register('/service-worker.js', { scope: '/ui-kit/' })
+                .register('/ui-kit/service-worker.js', { scope: '/ui-kit/' })
                 .then(async function (e) {
                   console.log('Registration successful, scope is:', e.scope),
                     await e.update(),
@@ -74,5 +74,5 @@
   <body>
     <div id="app"></div>
   </body>
-  <script type="text/javascript" src="/ui-kit/main.73a34aa5.js"></script>
+  <script type="text/javascript" src="/ui-kit/main.c1cda0a8.js"></script>
 </html>
