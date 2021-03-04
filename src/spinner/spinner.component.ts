@@ -69,13 +69,13 @@ import { Spinner } from './spinner.svg';
         }
 
         .uk-spinner > * > * {
-          stroke-width: ${unsafeCSS(this.stroke)};
+          stroke-width: var(--spinner-stroke-width, ${unsafeCSS(this.stroke)});
           animation: uk-spinner-dash ${unsafeCSS(this.speed)}s ease-in-out
             infinite;
-          stroke: ${unsafeCSS(this.color)};
+          stroke: var(--spinner-stroke-color, ${unsafeCSS(this.color)});
         }
       </style>
-      <div uk-spinner="" class="uk-icon uk-spinner">
+      <div class="uk-icon uk-spinner" part="container">
         ${Spinner(this.width, this.height)}
       </div>
     `;
