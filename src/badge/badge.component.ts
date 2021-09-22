@@ -40,7 +40,12 @@ export interface BadgeOptions {
       </style>
       <span
         style=${styleMap(
-          this.palette ? {} : { color: this.color || this.options?.color, background: this.background || this.options?.background }
+          this.palette
+            ? {}
+            : {
+                color: this.color || this.options?.color,
+                background: this.background || this.options?.background,
+              }
         )}
         class="badge"
         ><slot></slot
@@ -61,7 +66,7 @@ export class BadgeComponent extends LitElement {
   @property({ type: String })
   public palette: PalettesUnion;
 
-  OnUpdate() {
+  OnUpdateFirst() {
     this.options = {
       boarderRadius: 500,
       height: 22,
