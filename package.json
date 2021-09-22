@@ -31,7 +31,7 @@
   "devDependencies": {
     "@rxdi/firelink": "^0.7.52",
     "@rxdi/forms": "^0.7.92",
-    "@rxdi/lit-html": "^0.7.118",
+    "@rxdi/lit-html": "^0.7.119",
     "@rxdi/router": "^0.7.92",
     "@types/animejs": "^3.1.0",
     "@types/js-yaml": "^3.12.1",

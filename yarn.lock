@@ -55,10 +55,10 @@
     apollo-link-ws "^1.0.18"
     subscriptions-transport-ws "^0.9.16"
 
-"@rxdi/lit-html@^0.7.118":
-  version "0.7.118"
-  resolved "https://registry.yarnpkg.com/@rxdi/lit-html/-/lit-html-0.7.118.tgz#d5480be8ff96c275ad2ebb2556a3e601de64646a"
-  integrity sha512-pzVAaI3/mIgg4+w42Y/ESIeLNSqUVdF3v+5gRoTAhoEpTcpF/69zyEdf9RODVzlWxJ4HToEpPr/cgYWw682vDA==
+"@rxdi/lit-html@^0.7.119":
+  version "0.7.119"
+  resolved "https://registry.yarnpkg.com/@rxdi/lit-html/-/lit-html-0.7.119.tgz#0a5ed1e6c505f638954dfd815b36c007f80ad119"
+  integrity sha512-D+oAfrCxcbfk0a2JU3LnP6WXW7ReCA28ayP0NgR0cpug6ikaD6NAWarF+PP0pfsp4hrzqgPubUITAXBTml3IzQ==
   dependencies:
     lit "^2.0.0"
 
