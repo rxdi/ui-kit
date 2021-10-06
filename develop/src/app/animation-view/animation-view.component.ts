@@ -1,7 +1,7 @@
 import { Component, html, LitElement, css, query, async } from '@rxdi/lit-html';
 import { AnimationComponent } from '../../../../src/animation/animation.component';
-import { AnimationParams } from '@rxdi/ui-kit/animation/interface';
-import { BehaviorSubject, of } from 'rxjs';
+import { AnimationParams } from '../../../../src/animation/interface';
+import { BehaviorSubject } from 'rxjs';
 
 /**
  * @customElement animation-view-component
@@ -51,7 +51,7 @@ import { BehaviorSubject, of } from 'rxjs';
         <p>
           Progress:
           <input
-            @input=${event =>
+            @input=${(event) =>
               this.ac.seek(this.ac.duration * (event.target.value / 100))}
             type="range"
             step=".001"
@@ -82,19 +82,26 @@ import { BehaviorSubject, of } from 'rxjs';
           </rx-button>
         </rx-animation>
       </div>
-      <br>
-      <br>
-      <br>
+      <br />
+      <br />
+      <br />
       <div>
-        <rx-animation .options=${this.options2} style="background: var(--warning-bg-color)">
+        <rx-animation
+          .options=${this.options2}
+          style="background: var(--warning-bg-color)"
+        >
           <rx-for
             .of=${Array.from({ length: 60 }, (_, i) => ({ position: i }))}
           >
             <rx-let
-            style="display: grid; grid-template-columns: repeat(10, 1fr);"
-              .item=${i =>
+              style="display: grid; grid-template-columns: repeat(10, 1fr);"
+              .item=${(i) =>
                 html`
-                  <p style="opacity: 0; text-align: center; padding: 10px; margin: 0">${i.position}</p>
+                  <p
+                    style="opacity: 0; text-align: center; padding: 10px; margin: 0"
+                  >
+                    ${i.position}
+                  </p>
                 `}
             ></rx-let>
           </rx-for>
@@ -104,7 +111,7 @@ import { BehaviorSubject, of } from 'rxjs';
         link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/animation/README.md"
       ></markdown-reader> -->
     `;
-  }
+  },
 })
 export class AnimationViewComponent extends LitElement {
   @query('rx-animation')
@@ -119,17 +126,18 @@ export class AnimationViewComponent extends LitElement {
         { translateY: -200 },
         { translateX: 300 },
         { translateY: 0 },
-        { translateX: 0 }
+        { translateX: 0 },
       ],
       loop: false,
       easing: 'easeInOutSine',
-      trigger: 'mouseover'
+      trigger: 'mouseover',
     } as AnimationParams);
 
-    private options2 = ({ stagger }) => ({
+  private options2 = ({ stagger }) =>
+    ({
       delay: stagger(50),
       opacity: 1,
       trigger: 'click',
       direction: 'alternate',
-    } as AnimationParams)
+    } as AnimationParams);
 }

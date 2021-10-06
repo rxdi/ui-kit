@@ -1,7 +1,6 @@
 import { Component, LitElement, html, css } from '@rxdi/lit-html';
-import { GraphOptions } from '@rxdi/ui-kit/graph';
+import { GraphOptions } from '../../../../src/graph';
 import { Form, FormGroup } from '@rxdi/forms';
-
 
 @Component({
   selector: 'graph-view-component',
@@ -28,13 +27,11 @@ import { Form, FormGroup } from '@rxdi/forms';
               `,
             render: ({
               data: {
-                notifications: { appUpdated }
-              }
+                notifications: { appUpdated },
+              },
             }) => {
-              return html`
-                <p style="color: black">${appUpdated}</p>
-              `;
-            }
+              return html` <p style="color: black">${appUpdated}</p> `;
+            },
           }}
           >
           </rx-graph> -->
@@ -52,9 +49,9 @@ import { Form, FormGroup } from '@rxdi/forms';
             .value=${{
             data: {
               continents: [
-                { name: 'dada', countries: [{ name: 'dada', code: 'dada' }] }
-              ]
-            }
+                { name: 'dada', countries: [{ name: 'dada', code: 'dada' }] },
+              ],
+            },
           }}
           ></rx-state> -->
           <rx-settings .value=${{ fetchPolicy: 'cache-first' }}></rx-settings>
@@ -80,7 +77,7 @@ import { Form, FormGroup } from '@rxdi/forms';
               <rx-animation overflow="hidden" .options=${this.options}>
                 <rx-for .of=${continents}>
                   <rx-let
-                    .item=${continent => html`
+                    .item=${(continent) => html`
                       <rx-description
                         style="display: block; transform: translateX(-100%);padding: 50px;"
                       >
@@ -101,32 +98,31 @@ import { Form, FormGroup } from '@rxdi/forms';
                                   palette="danger"
                                   @click=${() => {
                                     setState({
-                                      data: { continents }
+                                      data: { continents },
                                     });
                                   }}
                                   >Collapse</rx-button
                                 >
-                                <rx-animation overflow="hidden" .options=${this.options}>
+                                <rx-animation
+                                  overflow="hidden"
+                                  .options=${this.options}
+                                >
                                   <rx-for .of=${continent.countries}>
                                     <rx-let
-                                      .item=${country => html`
+                                      .item=${(country) => html`
                                         <div
                                           style="padding: 50px;display: block;transform: translateX(-100%) ;text-align: center"
                                         >
                                           <rx-card palette="secondary">
                                             <div style="padding: 50px;">
-                                              <p>
-                                                Name: ${country.name}
-                                              </p>
+                                              <p>Name: ${country.name}</p>
                                               <p>
                                                 Country code: ${country.code}
                                               </p>
                                               <p>
                                                 Currency: ${country.currency}
                                               </p>
-                                              <p>
-                                                Emojy: ${country.emoji}
-                                              </p>
+                                              <p>Emojy: ${country.emoji}</p>
                                             </div>
                                           </rx-card>
                                         </div>
@@ -141,7 +137,7 @@ import { Form, FormGroup } from '@rxdi/forms';
                                   @click=${() =>
                                     setState({
                                       data: { continents },
-                                      collapsedContinent: continent.name
+                                      collapsedContinent: continent.name,
                                     })}
                                   >Expand</rx-button
                                 >
@@ -160,21 +156,20 @@ import { Form, FormGroup } from '@rxdi/forms';
         link="https://raw.githubusercontent.com/rxdi/ui-kit/master/src/graph/README.md"
       ></markdown-reader>
     `;
-  }
+  },
 })
 export class GraphViewComponent extends LitElement {
   @Form({
     name: 'my-form',
-    strategy: 'input'
+    strategy: 'input',
   })
   private form = new FormGroup({
-    textArea: ''
+    textArea: '',
   });
 
   private options = () => ({
     duration: 500,
     translateX: 0,
-    easing: 'easeInOutSine'
-  })
-
+    easing: 'easeInOutSine',
+  });
 }

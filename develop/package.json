@@ -2,24 +2,17 @@
   "name": "@rxdi/ui-kit-client",
   "version": "1.0.0",
   "scripts": {
-    "build": "npx firelink build ./index.html --out-dir ../docs --public-url /ui-kit "
+    "build": "npx parcel build ./index.html --out-dir ../docs --public-url /ui-kit "
   },
   "browserslist": [
     "last 1 chrome versions"
   ],
   "dependencies": {
-    "@rxdi/forms": "^0.7.92",
-    "@rxdi/ui-kit": "^0.7.112",
-    "@rxdi/graphql-client": "^0.7.92",
+    "@rxdi/forms": "^0.7.130",
+    "@rxdi/graphql-client": "^0.7.130",
     "graphql": "^14.5.8",
     "shades": "^2.1.0",
     "sortablejs": "^1.10.1"
-  },
-  "fireConfig": {
-    "runner": "parcel"
-  },
-  "fireDependencies": {
-    "@rxdi/ui-kit": "../src/"
   },
   "devDependencies": {
     "@types/sortablejs": "^1.10.0",

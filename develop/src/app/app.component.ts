@@ -12,7 +12,7 @@ import { map } from 'rxjs/operators';
     return html`
       <!-- ${async(
         this.navService.getOpenSubject().pipe(
-          map(res => {
+          map((res) => {
             if (res.left >= 0) {
               return html`
                 <style>
@@ -34,7 +34,7 @@ import { map } from 'rxjs/operators';
         )
       )} -->
       <style>
-      /*  */
+        /*  */
       </style>
       <div style="display: flex">
         <div class="rx-nav" id="rx-nav"></div>
@@ -44,9 +44,9 @@ import { map } from 'rxjs/operators';
       </div>
     `;
   },
-  container: document.getElementById('app')
+  container: document.getElementById('app'),
 })
-export class AppComponent extends LitElement {
+export class AppComponent {
   @Inject(Nav) private navService: Nav;
   OnInit() {
     this.openNav();
@@ -57,9 +57,7 @@ export class AppComponent extends LitElement {
     }
     this.navService.open({
       navOptions: { delay: 0, left: 0 },
-      template: html`
-        <nav-component></nav-component>
-      `,
+      template: html` <nav-component></nav-component> `,
       styles: css`
         :host {
           position: relative;
@@ -72,7 +70,7 @@ export class AppComponent extends LitElement {
           overflow-y: auto;
         }
       `,
-      ref: document.getElementById('rx-nav')
+      ref: document.getElementById('rx-nav'),
     });
   }
 

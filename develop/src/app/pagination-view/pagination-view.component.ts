@@ -1,5 +1,5 @@
 import { Component, LitElement, html, css } from '@rxdi/lit-html';
-import { Page } from '@rxdi/ui-kit/pagination/pagination.component';
+import { Page } from '../../../../src/pagination';
 
 /**
  * @customElement pagination-view-component
@@ -20,7 +20,9 @@ import { Page } from '@rxdi/ui-kit/pagination/pagination.component';
     return html`
       <div class="container">
         <rx-pagination
-          @change=${({ detail }: CustomEvent<{index: number; page: Page}>) => {}}
+          @change=${({
+            detail,
+          }: CustomEvent<{ index: number; page: Page }>) => {}}
           .pages=${[
             { active: false },
             { active: false },

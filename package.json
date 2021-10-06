@@ -14,6 +14,7 @@
     "build-all": "npm run build && rm -rf ./docs && cp -r ./dist/* ./src && bolt ws exec -- npm run build && cp -r ./docs/index.html ./docs/404.html",
     "patch": "rm -rf dist && tsc && cp -r ./dist/* . && npm version patch && npm publish --update-readme --access public && npm run clean && bolt",
     "clean": "git clean -dxf",
+    "clean-build": "rm -rf package-lock.json node_modules/ .cache/ build/",
     "build": "rm -rf dist && tsc && cp -r ./dist/* ."
   },
   "repository": {
@@ -29,10 +30,9 @@
   "author": "Kristiyan Tachev",
   "license": "MIT",
   "devDependencies": {
-    "@rxdi/firelink": "^0.7.52",
-    "@rxdi/forms": "^0.7.92",
-    "@rxdi/lit-html": "^0.7.119",
-    "@rxdi/router": "^0.7.92",
+    "@rxdi/forms": "^0.7.130",
+    "@rxdi/lit-html": "^0.7.130",
+    "@rxdi/router": "^0.7.130",
     "@types/animejs": "^3.1.0",
     "@types/js-yaml": "^3.12.1",
     "@types/marked": "^0.7.0",
@@ -50,8 +50,8 @@
   "module": "./index.js",
   "typings": "./index.d.ts",
   "dependencies": {
-    "@rxdi/core": "^0.7.92",
-    "@rxdi/graphql-client": "^0.7.92",
+    "@rxdi/core": "^0.7.130",
+    "@rxdi/graphql-client": "^0.7.130",
     "animejs": "^3.1.0",
     "graphql-tag": "^2.10.1",
     "infinite-carousel-wc": "^0.5.3",
