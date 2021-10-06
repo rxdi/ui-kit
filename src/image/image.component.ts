@@ -4,10 +4,8 @@ import {
   LitElement,
   styleMap,
   property,
-  query
+  TemplateResult,
 } from '@rxdi/lit-html';
-import { fromEvent, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 /**
  * @customElement rx-image
@@ -29,7 +27,14 @@ import { map } from 'rxjs/operators';
           height: 1px;
         }
       </style>
-      <img src=${this.image} />
+      ${this.image?.['_$litType$']
+        ? html`<img />${this.image}`
+        : html`<img
+            @load=${this.dispatch('load')}
+            @error=${this.dispatch('error')}
+            src=${this.image}
+          />`}
+
       <span
         style=${styleMap({
           display: 'block',
@@ -37,15 +42,15 @@ import { map } from 'rxjs/operators';
           height: '100%',
           'background-image': `url(${this.image})`,
           'background-repeat': 'no-repeat',
-          'background-size': 'contain'
+          'background-size': 'contain',
         })}
       ></span>
     `;
-  }
+  },
 })
 export class RxImageComponent extends LitElement {
-  @property({ type: String })
-  public image: string;
+  @property()
+  public image: string | TemplateResult<1> | TemplateResult<2>;
 
   @property({ type: String })
   public width = '80px';
@@ -53,32 +58,13 @@ export class RxImageComponent extends LitElement {
   @property({ type: String })
   public height = '80px';
 
-  @query('img')
-  private element: HTMLImageElement;
-
-  private onLoadSubscription: Subscription;
-  private onErrorSubscription: Subscription;
-
-  OnUpdateFirst() {
-    this.onLoadSubscription = this.createSubscription('load').subscribe();
-    this.onErrorSubscription = this.createSubscription('error').subscribe();
-  }
-
-  createSubscription(type: 'error' | 'load') {
-    return fromEvent<HTMLImageElement>(this.element, type).pipe(
-      map(detail =>
-        this.dispatchEvent(
-          new CustomEvent<HTMLImageElement>(
-            type === 'error' ? 'onError' : 'onLoad',
-            { detail }
-          )
-        )
-      )
-    );
-  }
-
-  OnDestroy() {
-    this.onErrorSubscription.unsubscribe();
-    this.onLoadSubscription.unsubscribe();
+  dispatch(type: 'error' | 'load') {
+    return (detail: Event) => {
+      this.dispatchEvent(
+        new CustomEvent<Event>(type === 'error' ? 'onError' : 'onLoad', {
+          detail,
+        })
+      );
+    };
   }
 }

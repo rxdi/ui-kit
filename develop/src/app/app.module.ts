@@ -14,7 +14,7 @@ import { html } from '@rxdi/lit-html';
     AppComponentsModule,
     AppRoutingModule,
     ModalModule.forRoot({
-      backdropClose: true
+      backdropClose: true,
     }),
     ReactiveUiModule.forRoot(),
     MarkdownReaderModule,
@@ -22,15 +22,11 @@ import { html } from '@rxdi/lit-html';
     GraphModule.forRoot(
       {
         uri: 'https://countries.trevorblades.com/',
-        pubsub: 'wss://pubsub.youvolio.com/subscriptions'
+        pubsub: 'wss://my-pubsub-address/subscriptions',
       },
       {
-        error: e => {
-          return html`
-            <p style="color: black">
-              ${e}
-            </p>
-          `;
+        error: (e) => {
+          return html` <p style="color: black">${e}</p> `;
         },
         loading: () => {
           return html`
@@ -38,10 +34,10 @@ import { html } from '@rxdi/lit-html';
               <rx-loading palette="danger"></rx-loading>
             </div>
           `;
-        }
+        },
       }
-    )
+    ),
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

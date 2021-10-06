@@ -8,9 +8,7 @@ declare module '*.css' {
   export default value;
 }
 
-declare module '*.html' {
-
-}
+declare module '*.html' {}
 declare module '*.json' {
   const value: any;
   export default value;
@@ -31,17 +29,15 @@ declare module '*.jpg' {
   export default value;
 }
 
-declare module '*.svg' {
-  const value: string;
-  export default value;
-}
-
+// declare module '*.svg' {
+//   const value: string;
+//   export default value;
+// }
 
 declare module '*.graphql' {
   const value: string;
   export default value;
 }
-
 
 declare module '@rxdi/ui-kit/images/glyph.svg' {
   const value: string;

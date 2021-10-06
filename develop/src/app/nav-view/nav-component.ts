@@ -43,13 +43,14 @@ export const activeRoute = fromEvent(
         <ul style="list-style: none; padding: 0; margin: 0;">
           <rx-animation .options=${this.listOptions}>
             <rx-for .of=${navItems}>
-              <rx-let .item=${({ path, label }) => html`
+              <rx-let
+                .item=${({ path, label }) => html`
                   <li style="opacity: 0" class="list-item">
                     <a style="text-decoration: none" href="${path}">
                       <rx-monad>
                         <rx-state .value=${activeRoute}></rx-state>
                         <rx-render
-                          .state=${state => html`
+                          .state=${(state) => html`
                             <rx-button
                               style=${styleMap({
                                 display: 'block',
@@ -57,7 +58,7 @@ export const activeRoute = fromEvent(
                                 backgroundColor:
                                   state === path
                                     ? 'var(--primary-hover-color)'
-                                    : ''
+                                    : '',
                               })}
                               palette="primary"
                             >
@@ -75,12 +76,12 @@ export const activeRoute = fromEvent(
         </ul>
       </div>
     `;
-  }
+  },
 })
 export class NavComponent extends LitElement {
   private listOptions = ({ stagger }) => ({
     delay: stagger(20),
     opacity: 1,
-    duration: 3000
+    duration: 3000,
   });
 }

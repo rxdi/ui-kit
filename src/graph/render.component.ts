@@ -3,7 +3,7 @@ import {
   Component,
   property,
   TemplateResult,
-  html
+  html,
 } from '@rxdi/lit-html';
 
 /**
@@ -11,14 +11,12 @@ import {
  */
 @Component({
   selector: 'rx-render',
-  template: () => html`
-    <slot></slot>
-  `
+  template: () => html` <slot></slot> `,
 })
 export class RenderComponent extends LitElement {
   @property({ type: Object }) state: <T>(
     state: T,
     setState?: (res: T) => void,
     shadowRoot?: ShadowRoot
-  ) => TemplateResult;
+  ) => TemplateResult<1 | 2>;
 }
