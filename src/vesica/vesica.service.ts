@@ -39,7 +39,7 @@ export class VesicaService {
           }
           // r = r - rspace;
         }
-        var nscale = (100 - rspace * count) / 100
+        const nscale = (100 - rspace * count) / 100
         elm.appendChild(this.scale(nscale, nscale, [this.generate(depth + 1, ls * nscale)]));
         return elm;
       } else if (r > 0.5) { // simple rotate
@@ -63,7 +63,7 @@ export class VesicaService {
         const num = (1 << (Math.random() * 4 + 1));
         const shape = this.scale(size / 100, size / 100, [this.generate(depth + 7, ls * size / 100)]);
         for (let i = 0; i < num; i++) {
-          var relm = this.rotate(360 * i / num, [this.translate(0, 100 - size, [shape.cloneNode(true)])]);
+          const relm = this.rotate(360 * i / num, [this.translate(0, 100 - size, [shape.cloneNode(true)])]);
           base.appendChild(relm);
         }
         const s = (100 - size) / 100;
@@ -80,7 +80,7 @@ export class VesicaService {
   }
 
   public static randomShape(size: number, style: Style) {
-    var r = Math.random();
+    const r = Math.random();
     if (r > 0.4) {
       return this.circle(size, style);
     } else if (r > 0.2) {
@@ -92,36 +92,36 @@ export class VesicaService {
   }
 
   public static scale(x: number, y: number, child: SVGElement[]) {
-    var elm = this.svgElm("g");
+    const elm = this.svgElm("g");
     elm.setAttribute("transform", "scale(" + x + "," + y + ")");
     this.addChild(elm, child);
     return elm;
   }
 
   public static rotate(deg: number, child?: SVGElement[]) {
-    var elm = this.svgElm("g");
+    const elm = this.svgElm("g");
     elm.setAttribute("transform", "rotate(" + deg + ")");
     this.addChild(elm, child);
     return elm;
   }
 
   public static translate(x: number, y: number, child?: Node[]) {
-    var elm = this.svgElm("g");
+    const elm = this.svgElm("g");
     elm.setAttribute("transform", "translate(" + x + "," + y + ")");
     this.addChild(elm, child);
     return elm;
   }
 
   public static group(child?: SVGElement[]) {
-    var elm = this.svgElm("g");
+    const elm = this.svgElm("g");
     this.addChild(elm, child);
     return elm;
   }
   public static npoly(r: number, n: number, s: number, style: Style) {
-    var elm = this.svgElm("polygon");
-    var points = [];
-    var c = 0;
-    for (var i = 0; i < n; i++) {
+    const elm = this.svgElm("polygon");
+    const points = [];
+    let c = 0;
+    for (let i = 0; i < n; i++) {
       points.push(r * Math.cos(Math.PI * 2 * c / n) + "," + r * Math.sin(Math.PI * 2 * c / n));
       c += s;
     }

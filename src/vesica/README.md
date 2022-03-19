@@ -1,7 +1,7 @@
 ##### Usage
 
 ```typescript
-import { VesicaComponent } from '@rxdi/ui-kit/tabs';
+import { VesicaComponent } from '@rxdi/ui-kit/vesica';
 
 @Module({
   components: [VesicaComponent],
@@ -17,7 +17,7 @@ import { Component, html, LitElement, query, render } from '@rxdi/lit-html';
 import '@rxdi/button';
 
 @Component({
-  selector: 'vesica-piscis-container',
+  selector: 'vesica-container',
   template(this: VesicaComponent) {
     return html`
       <div id="vesica"></div>
@@ -38,7 +38,7 @@ export class VesicaComponent extends LitElement {
       this.element.remove();
     }
     this.element = document.createElement('div');
-    render(html`<vesica-piscis></vesica-piscis>`, this.element);
+    render(html`<rx-vesica></rx-vesica>`, this.element);
     this.vesica.appendChild(this.element);
   }
 }
