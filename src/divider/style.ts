@@ -15,7 +15,7 @@ export const style = css`
   .default {
     overflow: visible;
     text-align: inherit;
-    margin: 0 0 20px 0;
+    margin: 20px 0 20px 0;
     border: 0;
     border-top: 1px solid #e5e5e5;
   }
