@@ -15,7 +15,6 @@ export const InputStyle = css`
     width: 100%;
     padding: 0 10px;
     box-sizing: border-box;
-    background: #fff;
     color: #666;
     border: 1px solid #e5e5e5;
     transition: 0.2s ease-in-out;
@@ -67,6 +66,7 @@ export const InputStyle = css`
     height: 40px;
     vertical-align: middle;
     display: inline-block;
+    background: #fff;
   }
   .rx-input {
     height: 40px;
