@@ -81,12 +81,12 @@ export class ModalService {
             pointer-events: none;
             width: 100%;
             height: 100%;
-            z-index: 10000;
+            z-index: 200;
           }
           .content {
             width: 100%;
             height: 100%;
-            z-index: 10001;
+            z-index: 201;
             position: fixed;
             pointer-events: all;
           }
