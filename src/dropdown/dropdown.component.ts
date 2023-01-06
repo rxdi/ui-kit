@@ -34,7 +34,7 @@ import { PalettesUnion } from '../settings';
       min-width: 160px;
       overflow: auto;
       box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-      z-index: 1;
+      z-index: 10;
     }
 
     .dropdown-content .item {
@@ -70,19 +70,19 @@ import { PalettesUnion } from '../settings';
           <slot></slot>
         </div>
         ${this.isOpened
-          ? html`
-              <div class="dropdown-content show" style=${styleMap({'margin-left': this.marginLeft})}>
+        ? html`
+              <div class="dropdown-content show" style=${styleMap({ 'margin-left': this.marginLeft })}>
                 <slot name="first-item"></slot>
                 ${this.menuItems.map(
-                  i =>
-                    html`
+          i =>
+            html`
                       ${i}
                     `
-                )}
+        )}
                 <slot name="last-item"></slot>
               </div>
             `
-          : ''}
+        : ''}
       </div>
     `;
   }
