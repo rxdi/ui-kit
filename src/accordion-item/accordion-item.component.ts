@@ -6,9 +6,9 @@ import {
   property,
   styleMap,
   svg,
- } from '@rxdi/lit-html';
- 
- export const FaqArrow = svg`
+} from '@rxdi/lit-html';
+
+export const FaqArrow = svg`
     <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
      <path
       fill="currentColor"
@@ -16,19 +16,19 @@ import {
      ></path>
     </svg>
     `;
- 
- /**
-  * @customElement rx-accordion-item
-  *
-  * CSS Variables
-  * --accordion-bg-color: rgb(255, 255, 255);
-  * --accordion-content-bg-color: rgb(255, 255, 255);
-  * --accordion-title-font-size: 20px;
-  */
- @Component({
+
+/**
+ * @customElement rx-accordion-item
+ *
+ * CSS Variables
+ * --accordion-bg-color: rgb(255, 255, 255);
+ * --accordion-content-bg-color: rgb(255, 255, 255);
+ * --accordion-title-font-size: 20px;
+ */
+@Component({
   selector: 'rx-accordion-item',
   styles: [
-   css`
+    css`
     .container {
      position: relative;
      background: white;
@@ -102,16 +102,16 @@ import {
    `,
   ],
   template(this: AccordionItemComponent) {
-   return html`
+    return html`
     <div
      part="container"
      class="container"
      @click=${() => {
-      this.opened = !this.opened;
-      this.dispatchEvent(
-       new CustomEvent('clicked', { detail: { el: this, opened: this.opened } }),
-      );
-     }}
+        this.opened = !this.opened;
+        this.dispatchEvent(
+          new CustomEvent('clicked', { detail: { el: this, opened: this.opened } }),
+        );
+      }}
     >
      <button part="button" type="button">
       <div
@@ -119,16 +119,17 @@ import {
        class="icon"
        style=${styleMap({
         transform: this.opened
-         ? `rotate(${this.arrowRotationOpened})`
-         : `rotate(${this.arrowRotationClosed})`,
-       })}
+          ? `rotate(${this.arrowRotationOpened})`
+          : `rotate(${this.arrowRotationClosed})`,
+      })}
       >
        ${FaqArrow}
       </div>
       <h4
+       part="title"
        style=${styleMap({
         color: this.opened ? 'rgb(33, 43, 54)' : 'rgb(111, 124, 166)',
-       })}
+      })}
       >
        <slot name="title"></slot>
       </h4>
@@ -136,11 +137,11 @@ import {
     </div>
     <div
      style=${styleMap({
-      'max-height': this.opened ? this.maxContentHeight : '0',
-      opacity: this.opened ? '1' : '0',
-      padding: this.opened ? '30px 36px 25.6px' : '0px 36px 0px',
-      'margin-bottom': this.opened ? '10px' : '0px',
-     })}
+        'max-height': this.opened ? this.maxContentHeight : '0',
+        opacity: this.opened ? '1' : '0',
+        padding: this.opened ? '30px 36px 25.6px' : '0px 36px 0px',
+        'margin-bottom': this.opened ? '10px' : '0px',
+      })}
      part="content"
      class="content"
     >
@@ -148,18 +149,17 @@ import {
     </div>
    `;
   },
- })
- export class AccordionItemComponent extends LitElement {
+})
+export class AccordionItemComponent extends LitElement {
   @property({ type: Boolean })
   opened = false;
- 
+
   @property({ type: String })
   maxContentHeight = '1000px';
- 
+
   @property({ type: String })
   arrowRotationClosed = '0deg';
- 
+
   @property({ type: String })
   arrowRotationOpened = '90deg';
- }
- 
+}
