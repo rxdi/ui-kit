@@ -62,7 +62,7 @@ export const style = css`
     text-transform: none;
   }
 
-  button {
+  .close-button {
     position: absolute;
     z-index: 1010;
     top: 10px;

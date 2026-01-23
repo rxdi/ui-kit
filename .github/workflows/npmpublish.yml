@@ -12,12 +12,12 @@ jobs:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 20
           # registry-url: https://npm.pkg.github.com/
           # scope: "@rxdi"
       - run: npm install
       - run: npm run lint --if-present
-      - run: npm test
+      - run: npm test --if-present
       - run: git config --global user.email 'kristiqn.tachev@gmail.com'
       - run: git config --global user.name "Kristiyan Tachev"
       - run: npm config set '//registry.npmjs.org/:_authToken' "${{secrets.NPM_TOKEN}}"
