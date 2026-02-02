@@ -164,6 +164,7 @@ export class ModalService {
   close<T>(result?: T) {
     this.removeModalPortal();
     this.closeSubject$.next(result);
+    this.closeSubject$.complete();
   }
 
   private createModalContainer() {
