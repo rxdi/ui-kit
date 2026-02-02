@@ -178,6 +178,8 @@ export class ModalService {
     if (this.modalRef) {
       this.removeModalPortal();
     }
+    this.closeSubject$.complete();
+    this.closeSubject$ = new Subject();
     this.createModalContainer();
     this.appendReference();
   }
